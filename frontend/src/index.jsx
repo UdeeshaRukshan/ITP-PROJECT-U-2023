@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import { Index } from "./screens/Index";
+import { Index } from "./screens/index";
 
 const app = document.getElementById("app");
 const root = ReactDOMClient.createRoot(app);
