@@ -9,7 +9,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5004/login", {
+      const response = await axios.post("http://localhost:5005/login", {
         email,
         password,
       });
