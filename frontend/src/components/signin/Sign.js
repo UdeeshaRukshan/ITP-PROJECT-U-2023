@@ -1,0 +1,51 @@
+import React, { useState } from "react";
+import axios from "axios";
+import "./Sign.css";
+
+const Sign = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5004/sign", {
+        username,
+        email,
+        password,
+      });
+      console.log("User registered:", response.data);
+    } catch (error) {
+      console.error("Error:", error.response.data);
+    }
+  };
+  return (
+    <div className="sign-form">
+      <h1>User Registration</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  );
+};
+
+export default Sign;

@@ -11,6 +11,8 @@ import About from "./pages/About";
 import Products from "./pages/Products";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
+import Sign from "./components/signin/Sign";
+import Login from "./components/signin/login";
 function App() {
   return (
     <div className="App">
@@ -25,6 +27,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
 
           <Route path="/signin" element={<Screen />} />
+          <Route path="/sign" element={<Sign />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
