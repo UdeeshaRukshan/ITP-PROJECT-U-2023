@@ -10,7 +10,7 @@ import {
 } from "./NavElement";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faStar } from "@fortawesome/free-solid-svg-icons";
-import { navItems } from "./NavItems";
+
 import Dropdown from "./Dropdown";
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
