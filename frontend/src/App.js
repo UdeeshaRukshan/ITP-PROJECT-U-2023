@@ -1,7 +1,12 @@
 import Screen from "./components/signin/signin";
 import "./style.css";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 
 import React from "react";
 
@@ -29,6 +34,7 @@ function App() {
           <Route path="/signin" element={<Screen />} />
           <Route path="/sign" element={<Sign />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Navigate to="/home" />} />
         </Routes>
       </Router>
     </div>

@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const port = process.env.PORT || 5005;
+const port = process.env.PORT || 5001;
 // Connect to the MongoDB database
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -25,10 +25,14 @@ mongoose
   .catch((err) => {
     console.log(err.message);
   });
+
 //user schema
 const userSchema = new mongoose.Schema({
-  username: String,
+  firstName: String,
+  lastName: String,
   email: String,
+  phoneNumber: String,
+  address: String,
   password: String,
 });
 
@@ -36,7 +40,23 @@ const User = mongoose.model("User", userSchema);
 
 app.post("/sign", async (req, res) => {
   try {
-    const newUser = new User(req.body);
+    const { firstName, lastName, email, phoneNumber, address, password } =
+      req.body;
+
+    // Check if the password and confirmPassword match before proceeding
+    // if (password !== req.body.confirmPassword) {
+    //   return res.status(400).json({ error: "Passwords do not match" });
+    // }
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      address,
+      password,
+    });
+
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {

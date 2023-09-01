@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./login.css"; // Import the CSS file for styling
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const history = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5005/login", {
+      const response = await axios.post("http://localhost:5001/login", {
         email,
         password,
       });
+
       console.log("Login successful:", response.data);
+      history("/home");
     } catch (error) {
       console.error("Error:", error.response.data);
     }
