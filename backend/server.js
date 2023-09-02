@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5003;
 // Connect to the MongoDB database
 mongoose
   .connect(process.env.MONGO_URI, {
