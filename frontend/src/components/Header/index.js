@@ -19,7 +19,7 @@ const Navbar = () => {
       <PrimaryNav>
         <Hamburger />
         <LeftAlignedMenuLogo>
-          <MenuLink to="/home" activeStyle>
+          <MenuLink to="/" activeStyle>
             AuctionPal
           </MenuLink>
         </LeftAlignedMenuLogo>
