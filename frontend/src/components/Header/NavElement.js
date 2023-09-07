@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 export const PrimaryNav = styled.nav`
   z-index: 10;
-  width: 100%;
+  width: 110%;
   height: 80px;
   display: flex;
   background: #363753;
+  margin-right: 11vh;
 `;
 export const MenuLink = styled(Link)`
   color: #fff;

@@ -33,17 +33,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(143, 187, 204, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background-color: #9d9595;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .form_container {
   background-color: #fff;
+  margin-left: 35%;
+  margin-top: 10%;
   padding: 2rem 3rem;
   border-radius: 0.5rem;
   width: 100%;
