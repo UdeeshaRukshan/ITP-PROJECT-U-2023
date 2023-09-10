@@ -41,3 +41,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/", authRoute);
+
+// randi
+const feedbackRoute = require("./Routes/FeedbackRoute");
+app.use("/api/feedback", feedbackRoute);
