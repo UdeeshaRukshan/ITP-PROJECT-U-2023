@@ -5,6 +5,7 @@ const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
+const ticketRoute = require("./Routes/TicketRoute");
 
 dotenv.config();
 
@@ -41,3 +42,4 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/", authRoute);
+app.use("/ticket",ticketRoute);
