@@ -6,10 +6,12 @@ const ticketSchema = new mongoose.Schema(
       type: String,
       required: [true, "your name is required"],
     },
+
     email: {
       type: String,
       required: [true, "your email is required"],
     },
+
     category: {
       type: String,
       required: [true, "category is required"],
