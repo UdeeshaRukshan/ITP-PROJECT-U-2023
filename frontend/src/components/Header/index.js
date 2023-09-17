@@ -19,7 +19,7 @@ const Navbar = () => {
       <PrimaryNav>
         <Hamburger />
         <LeftAlignedMenuLogo>
-          <MenuLink to="/home" activeStyle>
+          <MenuLink to="/" activeStyle>
             AuctionPal
           </MenuLink>
         </LeftAlignedMenuLogo>
@@ -45,7 +45,7 @@ const Navbar = () => {
               style={{ color: "#ffffff", width: "30px", height: "30px" }}
             />
           </RightAlignedMenuLink>
-          <MenuLink to="/sign" activeStyle>
+          <MenuLink to="/signup" activeStyle>
             <FontAwesomeIcon
               icon={faUser}
               style={{ color: "#ffffff", width: "30px", height: "30px" }}

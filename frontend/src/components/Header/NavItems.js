@@ -2,13 +2,13 @@ export const navItems = [
   {
     id: 1,
     title: "Vehicle",
-    path: "/home",
+    path: "pages/Home",
     cName: "nav-item",
   },
   {
     id: 2,
     title: "Properties",
-    path: "/about",
+    path: "pages/About",
     cName: "nav-item",
   },
   {
@@ -29,7 +29,7 @@ export const serviceDropdown = [
   {
     id: 1,
     title: "Vehicle",
-    path: "/home",
+    path: "/pages/Blog",
     cName: "submenu-item",
   },
   {

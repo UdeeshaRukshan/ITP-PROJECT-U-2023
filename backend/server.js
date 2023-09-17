@@ -1,87 +1,45 @@
-// backend/server.mjs
+const express = require("express");
 const mongoose = require("mongoose");
-// Rest of your code...
-const bodyParser = require("body-parser");
-const dotenv = require("dotenv");
 const cors = require("cors");
-const express = require("express"); //import express from "express";
+const app = express();
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+const authRoute = require("./Routes/AuthRoute");
+const ticketRoute = require("./Routes/TicketRoute");
 
 dotenv.config();
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
+const { MONGO_URL } = process.env;
+const PORT = 4040;
 
-const port = process.env.PORT || 5003;
-// Connect to the MongoDB database
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => {
-    console.log("Connected to the database");
+  .then(() => console.log("MongoDB is connected successfully"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+app.use(
+  cors({
+    origin: ["http://localhost:3002"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    //optionsSuccessStatus: 200,
+    credentials: true,
   })
-  .catch((err) => {
-    console.log(err.message);
-  });
+);
 
-//user schema
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  phoneNumber: String,
-  address: String,
-  password: String,
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Credentials", true);
+//   next();
+// });
 
-const User = mongoose.model("User", userSchema);
+app.use(cookieParser());
+app.use(express.json());
 
-app.post("/sign", async (req, res) => {
-  try {
-    const { firstName, lastName, email, phoneNumber, address, password } =
-      req.body;
-
-    // Check if the password and confirmPassword match before proceeding
-    // if (password !== req.body.confirmPassword) {
-    //   return res.status(400).json({ error: "Passwords do not match" });
-    // }
-
-    const newUser = new User({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      address,
-      password,
-    });
-
-    await newUser.save();
-    res.status(201).json(newUser);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ email, password });
-    if (user) {
-      // User found, send a success response
-      res.status(200).json({ message: "Login successful" });
-      console.log("Done login");
-    } else {
-      // User not found or password mismatch, send an error response
-      res.status(401).json({ message: "Invalid credentials" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+app.use("/", authRoute);
+app.use("/ticket",ticketRoute);

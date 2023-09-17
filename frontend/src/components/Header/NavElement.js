@@ -2,12 +2,12 @@ import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 export const PrimaryNav = styled.nav`
-  z-index: 14;
+  z-index: 10;
+  width: 110%;
   height: 80px;
   display: flex;
   background: #363753;
-  margin-right:10vh
-  padding: 0.18rem calc((100vw - 1000px) / 2);
+  margin-right: 11vh;
 `;
 export const MenuLink = styled(Link)`
   color: #fff;
@@ -40,7 +40,7 @@ export const Menu = styled.div`
   display: flex;
 
   align-items: center;
-  margin-right: -25px;
+  margin-right: -14px;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -48,10 +48,10 @@ export const Menu = styled.div`
 `;
 export const RightAlignedMenuLink = styled(MenuLink)`
   display: flex;
-  margin-left: 30vh;
+  margin-left: 20vh;
 `;
 
 export const LeftAlignedMenuLogo = styled(MenuLink)`
   display: flex;
-  margin-right: 60vh;
+  margin-right: 50vh;
 `;
