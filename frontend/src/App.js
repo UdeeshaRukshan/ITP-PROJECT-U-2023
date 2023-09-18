@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Products from "./pages/Products";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashbord";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/dashbord" element={<Dashboard />} />
+
         {/* <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />

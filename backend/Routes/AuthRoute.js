@@ -1,4 +1,11 @@
-const { Signup, Login } = require("../Controllers/AuthController");
+const {
+  Signup,
+  Login,
+  GetUser,
+  UpdateUser,
+  DeleteUser,
+  UserProfile,
+} = require("../Controllers/AuthController");
 const router = require("express").Router();
 const userVerification = require("../Middleware/AuthMiddleware");
 const User = require("../models/UserModel");
@@ -27,5 +34,9 @@ const verifyUser = (req, res, next) => {
 router.post("/", verifyUser);
 router.post("/signup", Signup);
 router.post("/login", Login);
+router.get("/dashbord", UserProfile);
 
+router.get("/user:id", GetUser);
+router.put("/user/update/:id", UpdateUser);
+router.delete("/user/delete/:id", DeleteUser);
 module.exports = router;
