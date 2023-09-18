@@ -2,8 +2,8 @@ body {
   margin: 0px;
   padding: 0px;
 
-  background-color: #121212;
-  overflow: hidden;
+  background-color: #cfc9c9;
+
   font-family: system-ui;
 }
 .clearfix {
@@ -92,7 +92,7 @@ body {
 .box {
   width: 85%;
   height: 100px;
-  background-color: #272c4a;
+  background-color: #b2b4c1;
   margin-left: 10px;
   padding: 10px;
 }
@@ -118,7 +118,7 @@ body {
   padding-right: 10px;
 }
 .col-div-8 {
-  margin-left: 40vh;
+  margin-left: 50vh;
   width: 70%;
   height: 70vh;
 }
@@ -143,7 +143,7 @@ body {
 .box-8,
 .box-4 {
   width: 95%;
-  background-color: #272c4a;
+  background-color: #b4b5bc;
   height: 330px;
 }
 .nav2 {
@@ -244,4 +244,24 @@ img {
 }
 .user-name {
   margin-left: 2.5vh;
+}
+
+/* Dashboard.css */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgb(0, 0, 4); /* Blue border */
+}
+
+.styled-table th,
+.styled-table td {
+  color: #1b203d;
+  border: 2px solid rgb(8, 8, 15); /* Blue border for table cells */
+  padding: 8px;
+  text-align: left;
+}
+
+.styled-table th {
+  background-color: rgb(0, 0, 0); /* Blue background color for table headers */
+  color: rgb(247, 247, 247); /* Black text color for table headers */
 }

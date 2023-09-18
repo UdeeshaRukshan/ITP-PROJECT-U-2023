@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import "./Dashbord.css";
 // import { useCookies } from "react-cookie"; // Import useCookies from react-cookie
 // import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
@@ -6,6 +8,20 @@ import "./Dashbord.css";
 // import { toast } from "react-toastify"; // Import toast for notifications
 
 const Dashboard = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Fetch user data from your server
+    axios
+      .get("http://localhost:4041/dashbord")
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
+
   return (
     <div>
       <div id="mySidenav" class="sidenav">
@@ -16,9 +32,9 @@ const Dashboard = () => {
           <img />
           <p class="user-name"> Udeesha Rukshan</p>
         </a>
-        <a href="index.jsp" class="icon-a" id="btn1">
+        <Link to={"/dashbord"} class="icon-a" id="btn1">
           <i class="fa fa-dashboard icons"></i> &nbsp;&nbsp; Profile
-        </a>
+        </Link>
 
         <a href="" class="icon-a" id="btn1">
           <i class="fa fa-users icons"></i> &nbsp;&nbsp;Bidding History
@@ -51,7 +67,30 @@ const Dashboard = () => {
       <br />
 
       <div class="col-div-8" id="displayArea">
-        display area
+        <table className="styled-table">
+          {" "}
+          {/* Add a className for styling */}
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Age</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.address}</td>
+                <td>{user.age}</td>
+                <td>{user.id}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <div class="clearfix"></div>

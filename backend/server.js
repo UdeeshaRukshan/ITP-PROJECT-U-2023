@@ -10,7 +10,7 @@ const ticketRoute = require("./Routes/TicketRoute");
 dotenv.config();
 
 const { MONGO_URL } = process.env;
-const PORT = 4040;
+const PORT = 4041;
 
 mongoose
   .connect(MONGO_URL, {
@@ -26,7 +26,7 @@ app.listen(PORT, () => {
 
 app.use(
   cors({
-    origin: ["http://localhost:3002"],
+    origin: ["http://localhost:3004"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     //optionsSuccessStatus: 200,
     credentials: true,
@@ -42,4 +42,4 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/", authRoute);
-app.use("/ticket",ticketRoute);
+app.use("/ticket", ticketRoute);

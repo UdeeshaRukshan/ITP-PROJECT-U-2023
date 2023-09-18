@@ -2,12 +2,14 @@ import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 export const PrimaryNav = styled.nav`
+  margin: 0;
+  padding: 0;
   z-index: 10;
-  width: 110%;
+  width: 180vh;
   height: 80px;
   display: flex;
+  justify-content: center;
   background: #363753;
-  margin-right: 11vh;
 `;
 export const MenuLink = styled(Link)`
   color: #fff;

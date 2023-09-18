@@ -73,6 +73,10 @@ module.exports.GetUser = async (req, res, next) => {
   }
 };
 
+module.exports.UserProfile = async (req, res) => {
+  User.find().then((users) => res.json(users));
+};
+
 module.exports.UpdateUser = async (req, res, next) => {
   try {
     const userId = req.params.id; // Assuming you have a route parameter for the user ID
