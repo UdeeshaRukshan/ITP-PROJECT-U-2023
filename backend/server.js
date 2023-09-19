@@ -1,13 +1,32 @@
-const http = require("http");
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const app = express();
+require("dotenv").config();
 
-const host = "localhost";
-const port = 8000;
-const requestListener = function (req, res) {
-  res.writeHead(200);
-  res.end("Hello World from Node.js HTTP Server");
-};
 
-const server = http.createServer(requestListener);
-server.listen(port, host, () => {
-  console.log(`Server is running on http://${host}:${port}`);
+const PORT = process.env.PORT || 8070;
+
+app.use(cors());
+app.use(bodyParser.json());
+
+const URL = process.env.MONGODB_URL;
+
+mongoose.connect(URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
+
+
+const connection = mongoose.connection;
+connection.once("open", () => {
+console.log("Mongodb connection success!");
+})
+
+app.listen(PORT, () => {
+  console.log(`Server is up and runinng on port number: ${PORT}`)
+})
+ 
+
