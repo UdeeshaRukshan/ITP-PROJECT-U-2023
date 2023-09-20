@@ -35,8 +35,8 @@ router.post("/", verifyUser);
 router.post("/signup", Signup);
 router.post("/login", Login);
 router.get("/dashbord", UserProfile);
+router.put("/update/:id", UpdateUser);
 
-router.get("/user:id", GetUser);
 router.put("/user/update/:id", UpdateUser);
-router.delete("/user/delete/:id", DeleteUser);
+router.delete("/delete/:id", DeleteUser);
 module.exports = router;
