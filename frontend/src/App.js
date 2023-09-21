@@ -16,16 +16,18 @@ import Products from "./pages/Products";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashbord" element={<Dashboard />} />
+        <Route path="/admin" element={<AdminDashboard/>}/>
 
         {/* <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
