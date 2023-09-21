@@ -36,7 +36,7 @@ const Navbar = () => {
             Category
             {dropdown && <Dropdown />}
           </MenuLink>
-          <MenuLink to="/products" activeStyle>
+          <MenuLink to="/contactUs" activeStyle>
             Contact us
           </MenuLink>
           <RightAlignedMenuLink to="/blog" activeStyle>
