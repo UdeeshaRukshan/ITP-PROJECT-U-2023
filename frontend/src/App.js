@@ -4,7 +4,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-
+import Footer from "./components/dashbord/Footer/footer";
 import React from "react";
 import IndexPage from "./pages/IndexPage";
 import Header from "./components/Header";
@@ -39,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/login" element={<Navigate to="/home" />} /> */}
       </Routes>
+      <Footer />
     </div>
   );
 }
