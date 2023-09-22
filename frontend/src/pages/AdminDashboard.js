@@ -36,24 +36,7 @@ import Tab from '@mui/material/Tab';
 import SendNewAlerts from "../components/admin/SendNewAlerts";
 import AlertDetails from "../components/admin/AlertDetails"
 import SendEmail from "../components/admin/SendEmail"
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
@@ -137,6 +120,7 @@ function CustomTabPanel(props) {
 const mdTheme = createTheme();
 
 function DashboardContent() {
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -147,6 +131,26 @@ function DashboardContent() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const logout=(e)=>{
+    e.preventDefault()
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Please save all changes before logout!!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("adminInfo")
+        localStorage.clear()
+        window.location.reload();
+      }
+    })
+    
+  }
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -203,7 +207,10 @@ function DashboardContent() {
           <List component="nav">
             {mainListItems}
             <Divider sx={{ my: 1 }} />
-            {/* {secondaryListItems} */}
+            <Button component="label" variant="contained" startIcon={<LogoutIcon />} onClick={logout}>
+              LogOut
+              <VisuallyHiddenInput type="file" />
+            </Button>
           </List>
         </Drawer>
         
@@ -430,4 +437,16 @@ export default function Dashboard() {
   return <LoginForm/>;
 
 }
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
