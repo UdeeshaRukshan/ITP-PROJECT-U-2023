@@ -201,7 +201,6 @@ function SendNewAlerts() {
             autoComplete="description"
             multiline
             rows={4}
-            autoFocus
             value={description}
             onChange={(e)=>setDescription(e.target.value)}
             />

@@ -1,8 +1,8 @@
 const Admin = require("../models/Admin");
-const User = require("../models/UserModel")
+const UserModel = require("../models/UserModel")
 const Notification = require("../models/Notification")
 const asyncHandler = require('express-async-handler');
-
+const nodemailer = require('nodemailer');
 
 //user authenticate
 const authAdmin = asyncHandler(async (req, res) => {
@@ -96,7 +96,7 @@ const keyword = req.query.search
     : {};
 
 //find user in databse by keyword
-const user = await User.find(keyword);
+const user = await UserModel.find(keyword);
 console.log(user);
 //send data to frontend
 if(user.length>0){
@@ -136,6 +136,35 @@ if(!image || !selectedUser || !description){
 
 });
 
+const updateNotification = asyncHandler(async(req,res)=>{
+
+  const {image,description,id} = req.body;
+
+  if(!image || !description || !id){
+      res.status(400);
+     throw new error("Invalid data passes into backend request!!!");
+ }
+ else{
+     const updateNotification = await Notification.findByIdAndUpdate(id,{
+      image:image,
+      description:description,
+     },
+     {
+         new: true,
+     });
+
+
+     if(updateNotification){
+         res.status(200).json({
+          updateNotification
+         })
+
+     }else{
+     res.status(400).json({message:"Notification not updated !!!",status:false});
+ }
+ }
+})
+
 const getAllNotifications = asyncHandler(async(req,res)=>{
 
   const notification = await Notification.find();
@@ -150,5 +179,78 @@ const getAllNotifications = asyncHandler(async(req,res)=>{
         }
 });
 
+const getUserById = asyncHandler(async(req,res)=>{
 
-module.exports = {authAdmin,addAdmin,sendNotification,getAllNotifications,searchUser}
+  try {
+    const {id} = req.body; // Assuming you have a route parameter for the user ID
+    console.log(id);
+    const user = await UserModel.findById(id)
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+const deleteNotification = asyncHandler(async(req,res)=>{
+
+  const {id}=req.body
+  console.log(id);
+  if(!id){
+      console.log('Invalid data passes into backend request');
+      return res.sendStatus(400);
+  }else{
+
+  try {
+
+      const notification = await Notification.findOneAndDelete({_id:id});
+
+      if(notification){
+          res.status(201).json({
+            notificationId:id
+          })
+      }
+      
+  } catch (error) {
+      res.status(400);
+      throw new error("Error while deleting package !!!"+error.message);
+  }
+}
+
+})
+
+const sendEmail = asyncHandler(async (req, res) => {
+
+  const {userEmail,subject,message} = req.body;
+
+  console.log(userEmail,subject,message);
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'add your email here',
+      pass: 'add your pass key here'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'add your email here',
+    to: userEmail,
+    subject: subject,
+    text: message
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      res.status(400).json({message:"Failed to send email",status:false});
+    } else {
+      res.status(200).send(info)
+    }
+  });
+
+})
+
+module.exports = {authAdmin,addAdmin,sendNotification,getAllNotifications,searchUser,getUserById,updateNotification,deleteNotification,sendEmail}

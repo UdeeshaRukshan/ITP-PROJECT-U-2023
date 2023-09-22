@@ -37,7 +37,8 @@ function AlertDetails() {
   const[search,setSearch] = React.useState()
   const[searchResult, setSearchResult] = React.useState([]);
   const[selectedUser,setSelectedUser] = React.useState()
-  const[selectedUserName,setSelectedUserName] = React.useState()
+  const[userInfo,setUserInfo]  = useState()
+  const[id,setId]  = useState()
   const[selectedUserVisibility,setSelectedUserVisibility] = React.useState(false)
   const[searchText,setSearchText]=React.useState("Loading...")
   const[openNotification,setOpenNotification]  = useState()
@@ -61,33 +62,127 @@ function AlertDetails() {
       );
 
       setNotification(data.notification);
-      console.log(data.notification);
     } catch (error) {
       console.log(error);
     }
   };
 
   const editNotification=(notification)=>{
+    getUserById(notification.selectedUser)
     setOpenNotification(notification)
+    setImage(notification.image)
+    setDescription(notification.description)
+    setSelectedUser(notification.selectedUser)
+    setId(notification._id)
     setSelectedUserVisibility(true)
     handleOpen()
   }
 
-  const setUser=(user)=>{
-    setSelectedUser(user._id)
-    setSelectedUserName(user.username)
-    setSelectedUserVisibility(true)
-    setSearch("")
-    setSearchResult(null)
+  const getUserById=async(id)=>{
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "http://localhost:4041/admin/get-user-by-id",
+        { 
+          id
+         },
+        config
+      );
+      setUserInfo(data)
+    } catch (error) {
+        console.log(error);
+    }
   }
-  const handleDelete = () => {
-    setSelectedUserVisibility(false)
-    setSelectedUser(null)
-    setSelectedUserName(null)
-  };
 
   const handleUpdate=async()=>{
-    console.log(openNotification);
+    if(!image || !description || !id){
+      Swal.fire({
+        icon: "error",
+        title: "Please enter all fields",
+        text: "error while publishing artical",
+      });
+    }
+    else{
+        try {
+          const config = {
+            headers: {
+              "Content-type": "application/json",
+            },
+          };
+          const { data } = await axios.post(
+            "http://localhost:4041/admin/update-notification",
+            { 
+              image,
+              description,
+              id,
+             },
+            config
+          );
+            Swal.fire({
+            icon: "success",
+            title: "Updated",
+            text: "Notification has been updated",
+          });
+          setOpen(false)
+          setImage(null)
+          setDescription("")
+          setSelectedUser(null)
+          setSearchText(null)
+          setSelectedUserVisibility(false)
+          getAllNotifications();
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error while updating notification",
+              });
+        }
+    }
+  }
+
+  const handleDelete=async()=>{
+        try {
+          const config = {
+            headers: {
+              "Content-type": "application/json",
+            },
+          };
+          const { data } = await axios.post(
+            "http://localhost:4041/admin/delete-notification",
+            {
+              id
+            },
+            config
+          );
+            Swal.fire({
+            icon: "success",
+            title: "Deleted",
+            text: "Notification has been deleted",
+          });
+          setOpen(false)
+          setImage(null)
+          setDescription("")
+          setSelectedUser(null)
+          setSearchText(null)
+          setSelectedUserVisibility(false)
+          getAllNotifications();
+        } catch (error) {
+          setOpen(false)
+          setImage(null)
+          setDescription("")
+          setSelectedUser(null)
+          setSearchText(null)
+          setSelectedUserVisibility(false)
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error while deleting notification",
+              });
+        }
   }
 
   const handleSearch = async (event) => {
@@ -113,7 +208,6 @@ function AlertDetails() {
             setSearchResult(null);
             setSearchText(error.response.data.message)
         }
-      console.log(error.response);
     }
   };
 
@@ -152,11 +246,11 @@ const postDetails = (pic) => {
 
   useEffect(() => {
     getAllNotifications()
-  }, [notifications])
+  }, [])
 
   useEffect(() => {
     handleSearch()
-  }, [notifications])
+  }, [])
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -235,8 +329,6 @@ const postDetails = (pic) => {
         aria-describedby="modal-modal-description"
       >
           <Box sx={style}>
-          <Grid container spacing={2}>
-            <Grid item xs={8}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
 
           <input
@@ -247,8 +339,8 @@ const postDetails = (pic) => {
             onChange={(e) => postDetails(e.target.files[0])}
           />
           <img
-              src={image?image:openNotification?.image}
-              alt={image?image:openNotification?.image.charAt(0).toUpperCase()}
+              src={image?image:null}
+              alt={image?.charAt(0).toUpperCase()}
               loading="lazy"
               style={{borderRadius:"0%",width:"200px",height:"200px"}}
             />
@@ -269,88 +361,20 @@ const postDetails = (pic) => {
               multiline
               rows={4}
               autoFocus
-              value={description?description:openNotification?.description}
+              value={description?description:"no description"}
               onChange={(e)=>setDescription(e.target.value)}
               />
 
               <Stack direction="row" spacing={1} sx={{mb:"10px",display: selectedUserVisibility ? 'block' : 'none',}} >
-                  <Chip label={selectedUserName?selectedUserName:openNotification?.selectedUser} variant="outlined" onDelete={handleDelete} />
+                  <Chip label={userInfo?.user.username} variant="outlined" />
               </Stack>
-              <InputBase
-                  sx={{ 
-                      ml: 1, 
-                      flex: 1,
-                      width:"15vw",
-                      border: '1px solid #ccc',
-                      borderRadius: '4px',
-                      padding: '8px', }}
-                      placeholder="Search user"
-                      inputProps={{ "aria-label": "search users" }}
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                  />
-              <IconButton type="button" sx={{ p: "10px",border: '1px solid #ccc',borderRadius: '4px', }} aria-label="search">
-                  <SearchIcon />
-              </IconButton>
 
               <Divider sx={{ height: 28, m: 0.5 }} orientation="horizontal" />
-            <Button onClick={handleClose}>Close</Button>
-            <Button onClick={handleUpdate} >Update</Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {search ? (
-                    <div>
-                    <Box
-                        sx={{
-                        width: "100%",
-                        maxHeight: 600,
-                        maxWidth: 500,
-                        bgcolor: "background.paper",
-                        marginTop: "4px",
-                        }}
-                    >
-                        {searchResult? (
-                        <div>
-                            {searchResult.map((user) => (
-                            <ListItemButton>
-                                <List
-                                sx={{
-                                    maxWidth: 500,
-                                    bgcolor: "background.paper",
-                                }}
-                                >
-                                <ListItem
-                                    alignItems="flex-start"
-                                    onClick={(e) => setUser(user)}
-                                    key={user._id}
-                                >
-                                    <ListItemAvatar>
-                                    <Avatar alt={user.username.charAt(0).toUpperCase()} src={user.userImage} />
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                    primary={user.username}
-                                    secondary={user.email}
-                                    sx={{ marginTop: "5px" }}
-                                    />
-                                </ListItem>
-
-                                <Divider variant="middle" sx={{ width: "100%" }} />
-                                </List>
-                            </ListItemButton>
-                            ))}
-                        </div>
-                        ) : (
-                        <div>{searchText}</div>
-                        )}
-                    </Box>
-                    </div>
-                ) : (
-                    <div></div>
-                )}
-              </Item>
-            </Grid>
-            </Grid>
+            <Button style={{marginRight:"150px"}}onClick={handleClose}>Close</Button>
+            <Button  style={{marginRight:"20px"}} variant="outlined" color="error" onClick={handleDelete}>
+              Delete
+            </Button>
+            <Button variant="outlined" color="success" onClick={handleUpdate} >Update</Button>
           </Box>
       </Modal>
 
@@ -363,17 +387,10 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 1200,
+  width: 500,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 export default AlertDetails
