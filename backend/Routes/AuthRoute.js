@@ -16,6 +16,7 @@ const TOKEN_KEY = "jtx";
 // Define the user verification middleware separately
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
+
   if (!token) {
     return res.json({ status: false });
   }

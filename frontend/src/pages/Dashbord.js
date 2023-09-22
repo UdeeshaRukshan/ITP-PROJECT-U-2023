@@ -11,7 +11,9 @@ const Dashboard = () => {
   useEffect(() => {
     // Fetch user data from your server
     axios
-      .get("http://localhost:4042/dashbord")
+      .get("http://localhost:4042/dashbord", {
+        withCredentials: true, //fix cookie problem
+      })
       .then((response) => {
         setUsers(response.data);
       })
