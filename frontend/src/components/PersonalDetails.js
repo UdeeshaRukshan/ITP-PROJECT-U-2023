@@ -1,18 +1,30 @@
 import React,{useState} from "react";
+import { useNavigate } from "react-router-dom";
+import VehicleDetails from "./VehicleDetails";
 
 export default function PersonalDetails() {
+  const navigate = useNavigate();
+
+  const handleFormSubmit = () => {
+    navigate('/VehicleDetails');
+  };
+
   return (
-    <div className="container">
-      <form>
-  <div class="row">
-    <label for="exampleInputName" class="form-label">Full Name</label>
-    <div class="col">
+
+    <div className="container">   
+     <h3>Your Info</h3>
+     <hr></hr>
+
+      <form onSubmit={handleFormSubmit}>
+      <div class="row">
+      <label for="exampleInputName" class="form-label">Full Name</label>
+       <div class="col">
       <input type="text" class="form-control" placeholder="First name" aria-label="First name" required />
       <br></br>
-    </div>
-    <div class="col">
+      </div>
+      <div class="col">
       <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required />
-    </div>
+      </div>
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail" class="form-label">Email Address</label>
@@ -38,7 +50,12 @@ export default function PersonalDetails() {
   </select>
 
   <br></br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="text-center">
+  <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+  </div>
+
 </form>
 
     </div>
