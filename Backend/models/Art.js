@@ -2,35 +2,35 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const vehicleSchema = new Schema({
+const artSchema = new Schema({
 
-    vehicleNumber: {
+    title: {
         type : String,
         required: true //backend validation
 
     },
-    year: {
+    medium: {
+        type : String,
+        required: true
+    },
+    height: {
         type : Number,
         required: true
     },
-    model: {
-        type : String,
+    width: {
+        type : Number,
         required: true
     },
-    fuelType: {
-        type : String,
-        required: true
-    },
-    mileage: {
-        type: Number,
-        required: true
-    },
-    features: {
+    condition: {
         type: String,
-        required:true
+        required: true
     },
     location: {
         type: String,
+        required:true
+    },
+    value: {
+        type: Number,
         required:true
     },
     image: {
@@ -40,7 +40,7 @@ const vehicleSchema = new Schema({
 
 })
 
-const Vehicle = mongoose.model("Vehicle",vehicleSchema);
+const Art = mongoose.model("Art",artSchema);
 
-module.exports = Vehicle;
+module.exports = Art;
 
