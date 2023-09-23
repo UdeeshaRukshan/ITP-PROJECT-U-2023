@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Footer/footer.css";
-import { Facebook, Twitter, Snapchat, Instagram } from "react-feather";
+import { Facebook, Twitter, Instagram } from "react-feather";
 
 const Footer = () => {
   const backgroundc = () => {
@@ -16,9 +16,12 @@ const Footer = () => {
             <h1 class="headin5_amrc col_white_amrc pt2">AuctionPal</h1>
 
             <p class="mb10">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s
+              Discover a world of exciting auctions with AuctionPal! We bring
+              you the thrill of bidding on a wide range of items, from unique
+              collectibles to must-have gadgets. Dive into the art of
+              competitive bidding and secure your treasures with ease. Join us
+              in this exhilarating journey through auctions, where history meets
+              innovation. Explore, bid, and win with AuctionPal."
             </p>
             <p>
               <i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35{" "}
@@ -45,7 +48,7 @@ const Footer = () => {
                 <a href="http://webenlance.com">Finalizing the Sale</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Faq</a>
+                <a href="http://webenlance.com">FAQ</a>
               </li>
             </ul>
           </div>
@@ -82,13 +85,11 @@ const Footer = () => {
               <a href="#">
                 <Facebook />
               </a>
-              <a href="#">
+              <a href="#" style={{ margin: "40px" }}>
                 <Twitter />
               </a>
-              <a href="#">
-                <Snapchat />
-              </a>
-              <a href="#">
+
+              <a href="#" style={{ margin: "20px" }}>
                 <Instagram />
               </a>
             </div>
@@ -107,9 +108,7 @@ const Footer = () => {
           <li>
             <a href="http://webenlance.com">Services</a>
           </li>
-          <li>
-            <a href="http://webenlance.com">Pricing</a>
-          </li>
+
           <li>
             <a href="http://webenlance.com">Blog</a>
           </li>
