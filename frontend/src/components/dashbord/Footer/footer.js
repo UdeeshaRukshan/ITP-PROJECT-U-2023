@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="" style={backgroundc()}>
       <div
         className=" d-flex justify-content-center align-items-center "
-        style={{ width: "100%", height: "38vh" }}
+        style={{ width: "100%", height: "34vh" }}
       >
         <div className="" style={margin}>
           Auctionpal logo
