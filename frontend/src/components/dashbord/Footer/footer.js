@@ -1,6 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Footer/footer.css";
+import { Facebook, Twitter, Snapchat, Instagram } from "react-feather";
+
 const Footer = () => {
   const backgroundc = () => {
     return { backgroundColor: "#363753", color: "white" };
@@ -76,35 +78,20 @@ const Footer = () => {
           <div class=" col-sm-4 col-md  col-12 col">
             <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
 
-            <ul class="footer_ul2_amrc">
-              <li>
-                <a href="#">
-                  <i class="fab fa-twitter fleft padding-right"></i>{" "}
-                </a>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing...
-                  <a href="#">https://www.lipsum.com/</a>
-                </p>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fab fa-twitter fleft padding-right"></i>{" "}
-                </a>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing...
-                  <a href="#">https://www.lipsum.com/</a>
-                </p>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fab fa-twitter fleft padding-right"></i>{" "}
-                </a>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing...
-                  <a href="#">https://www.lipsum.com/</a>
-                </p>
-              </li>
-            </ul>
+            <div className="col item social">
+              <a href="#">
+                <Facebook />
+              </a>
+              <a href="#">
+                <Twitter />
+              </a>
+              <a href="#">
+                <Snapchat />
+              </a>
+              <a href="#">
+                <Instagram />
+              </a>
+            </div>
           </div>
         </div>
       </div>
