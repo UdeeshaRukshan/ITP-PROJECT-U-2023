@@ -1,9 +1,10 @@
 import React,{useState} from "react";
 
+
 export default function VehicleDetails() {
    
   return (
-
+ 
     <div className="container">
       <div class="text-center">
         <h2>Tell Us About Your Vehicle</h2>

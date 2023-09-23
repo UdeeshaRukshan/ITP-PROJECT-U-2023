@@ -4,8 +4,9 @@ import CounterClass from './components/CounterClass';
 import CounterFunction from './components/CounterFunction';
 import Header from './components/Header';
 import PersonalDetails from  './components/PersonalDetails';
-import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
 import VehicleDetails from './components/VehicleDetails';
+import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
+
 
 function App() {
   return (
