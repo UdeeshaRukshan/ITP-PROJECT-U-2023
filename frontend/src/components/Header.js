@@ -1,7 +1,9 @@
  import React from "react";
 
  function Header() {
+
    return(
+    
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
     <a className="navbar-brand" href="#">Navbar</a>
@@ -18,13 +20,13 @@
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Sell
           </a>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action 1</a></li>
-            <li><a className="dropdown-item" href="#">Action 2</a></li>
-            <li><a className="dropdown-item" href="#">Action 3</a></li>        
-            <li><a className="dropdown-item" href="#">Action 4</a></li>
+            <li><a className="dropdown-item" href="/add">Vehicles</a></li>
+            <li><a className="dropdown-item" href="#">Properties</a></li>
+            <li><a className="dropdown-item" href="#">Collectables</a></li>        
+            <li><a className="dropdown-item" href="#">Arts</a></li>
           </ul>
         </li>
         <li className="nav-item">
