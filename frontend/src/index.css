@@ -104,13 +104,3 @@ span a {
 .home_page button:hover {
   background-color: rgba(0, 212, 255, 1);
 }
-
-/* @media only screen and (max-width: 1200px) {
-  .home_page {
-    font-size: 1.5rem;
-  }
-  .home_page button {
-    padding: 0.6rem 1rem;
-    font-size: 1.5rem;
-  }
-} */

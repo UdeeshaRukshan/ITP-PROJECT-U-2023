@@ -14,7 +14,7 @@ const IndexPage = () => {
   return (
     <div className="bg-white">
       <div
-        className="image container col-lg-4 bg-white my-5"
+        className="image container col-lg-4 bg-black my-5"
         style={{ width: "120vh", height: "50vh" }}
       >
         {" "}

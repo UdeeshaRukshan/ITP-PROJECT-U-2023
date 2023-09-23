@@ -193,14 +193,6 @@ th {
   transform: rotate(126deg);
 }
 
-@keyframes fill {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(126deg);
-  }
-}
 .circle-wrap .inside-circle {
   width: 130px;
   height: 130px;
