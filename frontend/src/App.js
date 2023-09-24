@@ -7,20 +7,22 @@ import ArtForm from "./components/ArtForm";
 import VehiclesForm from "./components/VehiclesForm";
 import CollectableForm from "./components/CollectableForm";
 import PropertiesForm from "./components/PropertiesForm";
+import AllAuctioneers  from "./components/AllAuctioneers";
 
 function App() {
   return (
     <div>
-      <Header/>       
+      <Header/>    
+         
         <Router>
          <Routes>
-          {/* Define your routes */}
-
-           <Route path="/add" element={<PersonalDetails />} /> 
-           <Route path="/addart" element={<ArtForm />} />      
-           <Route path="/addvehicle" element={<VehiclesForm />} />
-           <Route path="/addcollectable" element={<CollectableForm />} />
-           <Route path="/addproperty" element={<PropertiesForm />} />
+          
+           <Route path="/" exact element={<AllAuctioneers/>} />
+           <Route path="/add" exact element={<PersonalDetails />} /> 
+           <Route path="/addart" exact element={<ArtForm />} />      
+           <Route path="/addvehicle" exact element={<VehiclesForm />} />
+           <Route path="/addcollectable" exact element={<CollectableForm />} />
+           <Route path="/addproperty" exact element={<PropertiesForm />} />
 
 
           {/* Add other routes if needed */}

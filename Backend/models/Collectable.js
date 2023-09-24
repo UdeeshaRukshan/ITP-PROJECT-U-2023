@@ -21,13 +21,8 @@ const collectableSchema = new Schema({
         type : String,
         required: true
     },
-    image: {
-        type: String, // You can use String to store the file name or URL
-        required: true,
-      }
-    
-
-})
+    images: [{ type: String }], // Store multiple image URLs or file names in an array
+});
 
 const Collectable = mongoose.model("Collectable",collectableSchema);
 

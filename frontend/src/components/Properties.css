@@ -11,7 +11,7 @@
 
 form {
   width: 80%; /* Set the width to 90% of the viewport width */
-  max-width: 900px; /* Set the maximum width for the form */
+  max-width: 600px; /* Set the maximum width for the form */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;

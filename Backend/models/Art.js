@@ -33,12 +33,8 @@ const artSchema = new Schema({
         type: Number,
         required:true
     },
-    image: {
-        type: String, // You can use String to store the file name or URL
-        required: true
-      }
-
-})
+    images: [{ type: String }], // Store multiple image URLs or file names in an array
+});
 
 const Art = mongoose.model("Art",artSchema);
 

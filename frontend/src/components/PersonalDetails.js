@@ -96,12 +96,12 @@ export default function PersonalDetails() {
     setCity(e.target.value);
   }}>
     <option selected disabled>City</option>
-    <option value="1">Colombo</option>
-    <option value="2">Galle</option>
-    <option value="3">Matara</option>
-    <option value="4">Kandy</option>
-    <option value="5">Kurunegala</option>
-    <option value="6">Negambo</option>
+    <option value="Colombo">Colombo</option>
+    <option value="Galle">Galle</option>
+    <option value="Matara">Matara</option>
+    <option value="Kandy">Kandy</option>
+    <option value="Kurunegala">Kurunegala</option>
+    <option value="Negambo">Negambo</option>
   </select>
 
   <br></br>
