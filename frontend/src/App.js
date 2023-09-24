@@ -11,11 +11,12 @@ import PropertiesForm from "./components/PropertiesForm";
 function App() {
   return (
     <div>
-      <Header/>
-       <PersonalDetails/>   
+      <Header/>       
         <Router>
          <Routes>
           {/* Define your routes */}
+
+           <Route path="/add" element={<PersonalDetails />} /> 
            <Route path="/addart" element={<ArtForm />} />      
            <Route path="/addvehicle" element={<VehiclesForm />} />
            <Route path="/addcollectable" element={<CollectableForm />} />
