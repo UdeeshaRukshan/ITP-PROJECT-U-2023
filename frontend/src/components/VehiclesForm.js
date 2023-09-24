@@ -6,7 +6,6 @@ function VehicleForm() {
     make: "",
     model: "",
     year: "",
-    imageUrl: "",
     images:[],
   });
 
