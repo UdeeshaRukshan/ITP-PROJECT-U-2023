@@ -29,10 +29,16 @@
  })
 
  const auctioneerRouter = require("./routes/auctioneers.js");
- const vehicleRouter = require("./routes/vehicles.js")
+ const vehicleRouter = require("./routes/vehicles.js");
+ const artRouter = require("./routes/arts.js");
+ const propertyRouter = require("./routes/properties.js");
+ const collectableRouter = require("./routes/collectables.js")
 
 app.use("/auctioneer",auctioneerRouter)
 app.use("/vehicle",vehicleRouter)
+app.use("/art",artRouter)
+app.use("/property",propertyRouter)
+app.use("/collectable",collectableRouter)
 
  app.listen(PORT,() => {
     console.log(`server is up and running on port ${PORT}`)

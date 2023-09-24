@@ -1,7 +1,7 @@
 const router = require("express").Router();
 let Art = require("../models/Art");
 
-router.route("/add").post((req,res) =>{
+router.route("/addart").post((req,res) =>{
 
     const title = req.body.title;
     const medium = req.body.medium;
@@ -44,9 +44,9 @@ router.route("/").get((req,res) => {
 
 })
 
-router.route("/update/:auctioneerid").put(async (req,res) => {
-    let userID = req.params.auctioneerid;
-    const {firstName,lastName,email,contactNumber,address,street,city} = req.body;
+router.route("/updateart/:artid").put(async (req,res) => {
+    let userID = req.params.artid;
+    const {title,medium,height,width,condition,location,value,image} = req.body;
 
     const updateArt = {
         title,
@@ -59,7 +59,7 @@ router.route("/update/:auctioneerid").put(async (req,res) => {
         image
     }
 
-    const update = await Art.findByIdAndUpdate(userID, updateArt)
+    const updateart = await Art.findByIdAndUpdate(userID, updateArt)
     .then(() =>{
         res.status(200).send({status: "Art updated"})   
     }).catch((err) =>{
@@ -69,8 +69,8 @@ router.route("/update/:auctioneerid").put(async (req,res) => {
 
 })
 
-router.route("/delete/:auctioneerid").delete(async (req,res) => {
-    let userID = req.params.auctioneerid;
+router.route("/deleteart/:artid").delete(async (req,res) => {
+    let userID = req.params.artid;
 
     await Art.findByIdAndDelete(userID)
     .then(() => {
@@ -81,11 +81,11 @@ router.route("/delete/:auctioneerid").delete(async (req,res) => {
     })
 })
 
-router.route("/get/:auctioneerid").get(async(req,res) => {
-    let userID = req.params.auctioneerid;
+router.route("/getart/:artid").get(async(req,res) => {
+    let userID = req.params.artid;
     await Art.findById(userID)
     .then((Art) => {
-        res.status(200).send({status: "Art fetched", Auctioneer})   
+        res.status(200).send({status: "Art fetched", Art})   
     }).catch(() => {
         console.log(err.message);
         res.status(500).send({status: "Error with get art", error:err.message});

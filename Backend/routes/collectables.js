@@ -1,29 +1,25 @@
 const router = require("express").Router();
-let Auctioneer = require("../models/Auctioneer");
+let Collectable = require("../models/Collectable");
 
-router.route("/add").post((req,res) =>{
+router.route("/addcollectable").post((req,res) =>{
 
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const email = req.body.email;
-    const contactNumber = req.body.contactNumber;
-    const address = req.body.address;
-    const street = req.body.street;
-    const city = req.body.city;
+    const type = req.body.type;
+    const name = req.body.name;
+    const value = req.body.value;
+    const description = req.body.description;
+    const image = req.body.image;
 
-    const newAuctioneer = new Auctioneer({
+    const newCollectable = new Collectable({
 
-        firstName,
-        lastName,
-        email,
-        contactNumber,
-        address,
-        street,
-        city
+        type,
+        name,
+        value,
+        description,
+        image
     })
 
-    newAuctioneer.save().then(() => {
-        res.json("Auctioneer Added")
+    newCollectable.save().then(() => {
+        res.json("Collectable Added")
     }).catch((err) => {
         console.log(err);
     })
@@ -32,8 +28,8 @@ router.route("/add").post((req,res) =>{
 
 router.route("/").get((req,res) => {
 
-    Auctioneer.find().then((auctioneers) =>{
-        res.json(auctioneers)
+    Collectable.find().then((collectables) =>{
+        res.json(collectables)
     }).catch((err) =>{
         console.log(err) 
 
@@ -42,47 +38,44 @@ router.route("/").get((req,res) => {
 
 })
 
-router.route("/update/:auctioneerid").put(async (req,res) => {
-    let userID = req.params.auctioneerid;
-    const {firstName,lastName,email,contactNumber,address,street,city} = req.body;
-
-    const updateAuctioneer = {
-        firstName,
-        lastName,
-        email,
-        contactNumber,
-        address,
-        street,
-        city
+router.route("/updatecollectable/:collectableid").put(async (req,res) => {
+    let userID = req.params.collectableid;
+    const {type,name,value,description,image}=req.body;
+    const updateCollectable = {
+        type,
+        name,
+        value,
+        description,
+        image
     }
 
-    const update = await Auctioneer.findByIdAndUpdate(userID, updateAuctioneer)
+    const updatecollectable = await Collectable.findByIdAndUpdate(userID, updateCollectable)
     .then(() =>{
-        res.status(200).send({status: "User updated"})   
+        res.status(200).send({status: "Collectable updated"})   
     }).catch((err) =>{
         console.log(err);
-        res.status(500).send({status: "Error with updating data", error: err.message});
+        res.status(500).send({status: "Error with updating collectable", error: err.message});
     })
 
 })
 
-router.route("/delete/:auctioneerid").delete(async (req,res) => {
-    let userID = req.params.auctioneerid;
+router.route("/deletecollectable/:collectableid").delete(async (req,res) => {
+    let userID = req.params.collectableid;
 
-    await Auctioneer.findByIdAndDelete(userID)
+    await Collectable.findByIdAndDelete(userID)
     .then(() => {
-        res.status(200).send({status: "User Deleted"});  
+        res.status(200).send({status: "Collectable Deleted"});  
     }).catch((err) => {
         console.log(err.message);
-        res.status(500).send({status: "Error with delete user", error:err.message});
+        res.status(500).send({status: "Error with delete collectable", error:err.message});
     })
 })
 
-router.route("/get/:auctioneerid").get(async(req,res) => {
-    let userID = req.params.auctioneerid;
-    await Auctioneer.findById(userID)
-    .then((Auctioneer) => {
-        res.status(200).send({status: "User fetched", Auctioneer})   
+router.route("/getcollectable/:collectableid").get(async(req,res) => {
+    let userID = req.params.collectableid;
+    await Collectable.findById(userID)
+    .then((Collectable) => {
+        res.status(200).send({status: "User fetched", Collectable})   
     }).catch(() => {
         console.log(err.message);
         res.status(500).send({status: "Error with get user", error:err.message});

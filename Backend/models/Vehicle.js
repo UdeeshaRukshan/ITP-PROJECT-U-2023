@@ -33,6 +33,10 @@ const vehicleSchema = new Schema({
         type: String,
         required:true
     },
+    value: {
+        type : Number,
+        required: true
+    },
     image: {
         type: String, // You can use String to store the file name or URL
         required: true

@@ -14,10 +14,10 @@ const collectableSchema = new Schema({
         required: true
     },
     value: {
-        type : String,
+        type : Number,
         required: true
     },
-    desription: {
+    description: {
         type : String,
         required: true
     },

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 let Property = require("../models/Property");
 
-router.route("/add").post((req,res) =>{
+router.route("/addproperty").post((req,res) =>{
 
     const address = req.body.address;
     const description = req.body.description;
@@ -37,50 +37,47 @@ router.route("/").get((req,res) => {
 
 })
 
-router.route("/update/:auctioneerid").put(async (req,res) => {
-    let userID = req.params.auctioneerid;
-    const {firstName,lastName,email,contactNumber,address,street,city} = req.body;
+router.route("/updateproperty/:propertyid").put(async (req,res) => {
+    let userID = req.params.propertyid;
+    const { address,description,value,image,} = req.body;
 
-    const updateAuctioneer = {
-        firstName,
-        lastName,
-        email,
-        contactNumber,
+    const updateProperty = {
         address,
-        street,
-        city
+        description,
+        value,
+        image,
     }
 
-    const update = await Auctioneer.findByIdAndUpdate(userID, updateAuctioneer)
+    const update = await Property.findByIdAndUpdate(userID, updateProperty)
     .then(() =>{
-        res.status(200).send({status: "User updated"})   
+        res.status(200).send({status: "Property updated"})   
     }).catch((err) =>{
         console.log(err);
-        res.status(500).send({status: "Error with updating data", error: err.message});
+        res.status(500).send({status: "Error with updating property", error: err.message});
     })
 
 })
 
-router.route("/delete/:auctioneerid").delete(async (req,res) => {
-    let userID = req.params.auctioneerid;
+router.route("/deleteproperty/:propertyid").delete(async (req,res) => {
+    let userID = req.params.propertyid;
 
-    await Auctioneer.findByIdAndDelete(userID)
+    await Property.findByIdAndDelete(userID)
     .then(() => {
-        res.status(200).send({status: "User Deleted"});  
+        res.status(200).send({status: "Property Deleted"});  
     }).catch((err) => {
         console.log(err.message);
-        res.status(500).send({status: "Error with delete user", error:err.message});
+        res.status(500).send({status: "Error with delete property", error:err.message});
     })
 })
 
-router.route("/get/:auctioneerid").get(async(req,res) => {
-    let userID = req.params.auctioneerid;
-    await Auctioneer.findById(userID)
-    .then((Auctioneer) => {
-        res.status(200).send({status: "User fetched", Auctioneer})   
+router.route("/getproperty/:propertyid").get(async(req,res) => {
+    let userID = req.params.propertyid;
+    await Property.findById(userID)
+    .then((Property) => {
+        res.status(200).send({status: "Property fetched", Property})   
     }).catch(() => {
         console.log(err.message);
-        res.status(500).send({status: "Error with get user", error:err.message});
+        res.status(500).send({status: "Error with get property", error:err.message});
 
     })
 })

@@ -10,6 +10,8 @@ router.route("/addvehicle").post((req,res) =>{
     const mileage = req.body.mileage;
     const features = req.body.features;
     const location = req.body.location;
+    const value = req.body.value;
+    const image = req.body.image;
 
     const newVehicle = new Vehicle({
 
@@ -19,7 +21,9 @@ router.route("/addvehicle").post((req,res) =>{
         fuelType,
         mileage,
         features,
-        location
+        location,
+        value,
+        image
     })
 
     newVehicle.save().then(() => {
@@ -44,19 +48,21 @@ router.route("/").get((req,res) => {
 
 router.route("/updatevehicle/:vehicleid").put(async (req,res) => {
     let userID = req.params.vehicleid;
-    const {vehicleNumber,year,model,fuelType,mileage,features,location} = req.body;
+    const {vehicleNumber,year,model,fuelType,mileage,features,location,value,image} = req.body;
 
-    const vehicleupdate = {
+    const vehicleUpdate = {
         vehicleNumber,
         year,
         model,
         fuelType,
         mileage,
         features,
-        location
+        location,
+        value,
+        image
     }
 
-    const updatevehicle = await Vehicle.findByIdAndUpdate(userID, vehicleupdate)
+    const updatevehicle = await Vehicle.findByIdAndUpdate(userID, vehicleUpdate)
     .then(() =>{
         res.status(200).send({status: "Vehicle updated"})   
     }).catch((err) =>{
