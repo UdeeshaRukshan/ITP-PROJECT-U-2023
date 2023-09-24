@@ -4,27 +4,36 @@ import {
   IconChevronRight,
 } from "@tabler/icons-react";
 import {useNavigate} from 'react-router-dom';
+import {useState} from 'react';
 
-const SideNavBar = () => {
+
+const SideNavBar = ({activeIndex}) => {
 
   const navigate = useNavigate();
-
+  const[active,setActive] = useState(activeIndex);
 
   return (
     <>
       <Paper
         withBorder
-        w={300}
+        w={350}
         mt={20}
-        h={"80vh"}
+        h={"110vh"}
+        ml={80}
+        mr={30}
         style={{ backgroundColor: "#D9D9D9" }}
+        p={30}
       >
         <NavLink
           label="Help - How it work"
+          style={{fontWeight: 600}}
           rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
+          mb={5}
         />
         <NavLink
           label="Frequently Asked Questions"
+          style={{fontWeight: 600}}
+          mb={5}
           rightSection={
             <IconChevronRight
               size="1rem"
@@ -34,6 +43,8 @@ const SideNavBar = () => {
         />
         <NavLink
           label="How to bid an Auction"
+          style={{fontWeight: 600}}
+          mb={5}
           rightSection={
             <IconChevronRight
               size="1rem"
@@ -43,6 +54,8 @@ const SideNavBar = () => {
         />
         <NavLink
           label="Orders & Shipping"
+          style={{fontWeight: 600}}
+          mb={5}
           rightSection={
             <IconChevronRight
               size="1rem"
@@ -53,27 +66,33 @@ const SideNavBar = () => {
         />
         <NavLink
           label="Payments"
+          style={{fontWeight: 600}}
           rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
         />
         <NavLink
           label="Contact Support"
+          style={{fontWeight: 600}}
           icon={<IconGauge size="1rem" stroke={1.5} />}
           childrenOffset={28}
+          // active ={ active === 5 ? true : false}
         >
         <NavLink
         label="Submit Ticket"
         rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
         onClick={() => navigate("/ticket/submit")}
+        color="dark"
+      variant="filled"
+        active ={ active === 5 ? true : false}
         />
           <NavLink
-            label="Raised Tickets"
-            rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
-
+            label="My Tickets"
+             rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
+            
           />
           <NavLink
             label="Chat bot"
             rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
-
+            onClick={() => navigate("/support/chatbot")}
           />
         </NavLink>
       </Paper>

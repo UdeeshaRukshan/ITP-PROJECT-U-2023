@@ -6,8 +6,8 @@ import SubmitTicketForm from "../../components/support/submitTicket/submitTicket
 const SubmitTicketPage =() => {
    return(
    <Grid>
-    <Grid.Col span="content"><SideNavBar/></Grid.Col>
-    <Grid.Col span={6}><SubmitTicketForm/></Grid.Col>
+    <Grid.Col span="content"><SideNavBar activeIndex={5}/></Grid.Col>
+    <Grid.Col span={7}><SubmitTicketForm/></Grid.Col>
   </Grid>
    )
 }
