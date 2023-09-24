@@ -16,6 +16,8 @@ import Products from "./pages/Products";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
+import AddImage from "./pages/AddImage";
+import DisplayImage from "./pages/DisplayImage";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashbord" element={<Dashboard />} />
         <Route path="/home" element={<IndexPage />} />
+        <Route path="/image-add" element={<AddImage />} />
+        <Route path="/image" element={<DisplayImage />} />
 
         {/* <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />

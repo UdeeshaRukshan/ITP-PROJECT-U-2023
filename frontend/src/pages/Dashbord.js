@@ -8,6 +8,42 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({});
+  const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [res, setRes] = useState({});
+  const handleSelectFile = (e) => setFile(e.target.files[0]);
+  const [imageUrls, setImageUrls] = useState([]);
+  const filteredImages = imageUrls.filter(
+    (imageUrl) => imageUrl.useremail === "udeeshagamage12@gmail.com"
+  );
+  console.log("Filtered Images: ", filteredImages);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4042/dashbord") // Fix the URL, add "http://"
+      .then((response) => {
+        const fetchedImageUrls = response.data;
+        setImageUrls(fetchedImageUrls);
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle errors
+      });
+  }, []);
+
+  // const handleUpload = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const data = new FormData();
+  //     data.append("my_file", file);
+  //     const res = await axios.post("http://localhost:4042/image-add", data);
+  //     setRes(res.data);
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
     // Fetch user data from your server
@@ -71,6 +107,14 @@ const Dashboard = () => {
         </p>
         <a>
           <img />
+          {filteredImages.length > 0 && (
+            <img
+              key={0}
+              style={{ width: "20vh", height: "20vh" }}
+              src={filteredImages[0].url}
+              alt={`Image 0`}
+            />
+          )}
           <p class="user-name"> Udeesha Rukshan</p>
         </a>
         <Link to={"/dashbord"} class="icon-a" id="btn1">
