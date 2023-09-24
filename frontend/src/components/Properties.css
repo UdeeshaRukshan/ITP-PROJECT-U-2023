@@ -1,46 +1,60 @@
-/* PropertyForm.css (or any other CSS file you prefer) */
+/* VehicleForm.css */
 
-.property-form {
-  max-width: 400px;
-  margin: 0 auto;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Decreased the height to 80% of the viewport height */
+  width: 80%; /* Increased the width to 80% of the viewport width */
+  background-color: #f0f0f0;
+}
+
+form {
+  width: 80%; /* Set the width to 90% of the viewport width */
+  max-width: 900px; /* Set the maximum width for the form */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #fff; /* Background color for the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
 }
 
 h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
+  text-align: center; /* Center the heading */
 }
 
 label {
-  display: block;
   font-weight: bold;
 }
 
 input[type="text"],
-input[type="url"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
+input[type="date"],
+input[type="email"],
+select,
+textarea,
+input[type="file"] {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+select {
+  appearance: none; /* Remove default styles on select */
 }
 
-button:hover {
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* Center the button */
+}
+
+.btn-primary:hover {
   background-color: #0056b3;
 }

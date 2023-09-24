@@ -23,10 +23,10 @@
             Sell
           </a>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Vehicles</a></li>
-            <li><a className="dropdown-item" href="#">Properties</a></li>
-            <li><a className="dropdown-item" href="#">Collectables</a></li>        
-            <li><a className="dropdown-item" href="#">Arts</a></li>
+            <li><a className="dropdown-item" href="/addvehicle">Vehicles</a></li>
+            <li><a className="dropdown-item" href="/addproperty">Properties</a></li>
+            <li><a className="dropdown-item" href="/addcollectable">Collectables</a></li>        
+            <li><a className="dropdown-item" href="/addart">Arts</a></li>
           </ul>
         </li>
         <li className="nav-item">

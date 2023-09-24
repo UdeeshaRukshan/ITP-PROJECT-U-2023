@@ -1,21 +1,20 @@
-/* App.css */
-.App {
-  font-family: Arial, sans-serif;
-  text-align: center;
+/* ArtForm.css */
+.vehicle-form {
+  max-width: 400px;
+  margin: 0 auto;
   padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
 h2 {
-  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-form {
-  width: 300px;
-  margin: 0 auto;
-}
-
-div {
-  margin: 10px 0;
+.form-group {
+  margin-bottom: 15px;
 }
 
 label {
@@ -33,7 +32,7 @@ textarea {
   box-sizing: border-box;
 }
 
-button[type="submit"] {
+button {
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
@@ -42,6 +41,6 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button:hover {
   background-color: #0056b3;
 }

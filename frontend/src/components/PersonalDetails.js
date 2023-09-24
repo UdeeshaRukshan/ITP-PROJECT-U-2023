@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "../App.css";
+
+import "./PersonalDetails.css"; // Import the new CSS file
+
 export default function PersonalDetails() {
 
 
@@ -33,14 +35,25 @@ export default function PersonalDetails() {
     <input type="text" class="form-control" id="exampleInputStreet1" placeholder="Street/house/apartment etc." required />
   </div>
   <select class="form-select" aria-label="Default select example" required>
-    <option selected disabled>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+    <option selected disabled>City</option>
+    <option value="1">Colombo</option>
+    <option value="1">Galle</option>
+    <option value="1">Matara</option>
+    <option value="1">Kandy</option>
+    <option value="2">Kurunegala</option>
+    <option value="3">Negambo</option>
   </select>
 
   <br></br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div className="row justify-content-center">
+          {/* Center the buttons within a row */}
+          <div className="col-auto">
+            <button type="button" className="btn btn-secondary btn-lg">Back</button>
+          </div>
+          <div className="col-auto">
+            <button type="button" className="btn btn-primary btn-lg">Next</button>
+          </div>
+        </div>
 </form>
     </div>
   );
