@@ -2,6 +2,10 @@ import { NavLink, Paper } from "@mantine/core";
 import {
   IconGauge,
   IconChevronRight,
+  IconHelp,
+  IconQuestionMark,
+  IconCurrencyDollar,
+  IconCoin
 } from "@tabler/icons-react";
 import {useNavigate} from 'react-router-dom';
 import {useState} from 'react';
@@ -25,10 +29,11 @@ const SideNavBar = ({activeIndex}) => {
         p={30}
       >
         <NavLink
-          label="Help - How it work"
+          label="Help - How it works"
           style={{fontWeight: 600}}
           rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
           mb={5}
+          icon={<IconHelp size="1rem" stroke={1.5} />}
         />
         <NavLink
           label="Frequently Asked Questions"
@@ -40,6 +45,7 @@ const SideNavBar = ({activeIndex}) => {
               stroke={1.5}
             />
           }
+          icon={<IconQuestionMark size="1rem" stroke={1.5} />}
         />
         <NavLink
           label="How to bid an Auction"
@@ -51,8 +57,9 @@ const SideNavBar = ({activeIndex}) => {
               stroke={1.5}
             />
           }
+          icon={<IconCurrencyDollar size="1rem" stroke={1.5} />}
         />
-        <NavLink
+        {/* <NavLink
           label="Orders & Shipping"
           style={{fontWeight: 600}}
           mb={5}
@@ -63,11 +70,12 @@ const SideNavBar = ({activeIndex}) => {
 
             />
           }
-        />
+        /> */}
         <NavLink
           label="Payments"
           style={{fontWeight: 600}}
           rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
+          icon={<IconCoin size="1rem" stroke={1.5} />}
         />
         <NavLink
           label="Contact Support"
