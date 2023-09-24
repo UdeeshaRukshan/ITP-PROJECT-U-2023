@@ -3,6 +3,10 @@ import axios from "axios";
 
 const DisplayImage = () => {
   const [imageUrls, setImageUrls] = useState([]);
+  const filteredImages = imageUrls.filter(
+    (imageUrl) => imageUrl.useremail === "udeeshagamage12@gmail.com"
+  );
+  console.log("Filtered Images: ", filteredImages);
 
   useEffect(() => {
     axios
@@ -10,6 +14,7 @@ const DisplayImage = () => {
       .then((response) => {
         const fetchedImageUrls = response.data;
         setImageUrls(fetchedImageUrls);
+        // const filteredImages = imageUrls.filter(imageUrl => imageUrl.useremail === userEmail);
       })
       .catch((error) => {
         console.error(error);
