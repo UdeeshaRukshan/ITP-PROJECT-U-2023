@@ -30,7 +30,7 @@ function App() {
         <Route path="/dashbord" element={<Dashboard />} />
         <Route path="/home" element={<IndexPage />} />
         <Route path="/image-add" element={<AddImage />} />
-        <Route path="/image" element={<DisplayImage />} />
+        <Route path="/image-display" element={<DisplayImage />} />
 
         {/* <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />

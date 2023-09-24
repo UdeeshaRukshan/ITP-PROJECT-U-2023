@@ -3,10 +3,6 @@ import axios from "axios";
 
 const DisplayImage = () => {
   const [imageUrls, setImageUrls] = useState([]);
-  const filteredImages = imageUrls.filter(
-    (imageUrl) => imageUrl.useremail === "udeeshagamage12@gmail.com"
-  );
-  console.log("Filtered Images: ", filteredImages);
 
   useEffect(() => {
     axios
@@ -24,14 +20,13 @@ const DisplayImage = () => {
 
   return (
     <div>
-      {imageUrls.map((imageUrl, index) => (
+      {imageUrls.length > 0 && (
         <img
-          key={index} // Use a unique key for each image
           style={{ width: "20vh", height: "20vh" }}
-          src={imageUrl.url} // Use imageUrl.url as the source
-          alt={`Image ${index}`}
+          src={imageUrls[0].url} // Display the first image from the array
+          alt={`Image 0`}
         />
-      ))}
+      )}
     </div>
   );
 };

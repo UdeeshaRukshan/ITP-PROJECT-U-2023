@@ -66,8 +66,6 @@ const IndexPage = () => {
           </button>
         </Link>
       </div>
-
-      <div className="bg-warning">hehe</div>
     </div>
   );
 };

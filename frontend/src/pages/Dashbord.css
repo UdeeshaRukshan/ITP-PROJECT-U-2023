@@ -231,11 +231,14 @@ img {
   margin-left: 2.5vh;
   width: 20vh;
   height: 20vh;
-  background: lightblue;
+  background: rgb(250, 250, 250);
   border-radius: 50%;
 }
 .user-name {
-  margin-left: 2.5vh;
+  margin-left: 2.2vh;
+  font-family: "Georgia", Serif, monospace;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 /* Dashboard.css */
@@ -301,4 +304,8 @@ img {
 .form-group input {
   width: 40vh;
   height: 5vh;
+}
+
+.btn-update {
+  margin-left: 4vh;
 }
