@@ -4,9 +4,9 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-
+import Footer from "./components/dashbord/Footer/footer";
 import React from "react";
-
+import IndexPage from "./pages/IndexPage";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
@@ -26,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashbord" element={<Dashboard />} />
+        <Route path="/home" element={<IndexPage />} />
 
         {/* <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -38,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/login" element={<Navigate to="/home" />} /> */}
       </Routes>
+      <Footer />
     </div>
   );
 }
