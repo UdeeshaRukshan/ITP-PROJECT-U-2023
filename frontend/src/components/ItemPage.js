@@ -1,17 +1,16 @@
-// frontend/src/components/ItemPage.js
-
 import React, { useState } from 'react';
-import { useHistory } from 'react-router'; // Import useHistory from 'react-router'
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function ItemPage() {
-  const history = useHistory(); // Use useHistory hook
+  const navigate = useNavigate(); // Use useNavigate
+
   const [newItem, setNewItem] = useState({ name: '', description: '', price: 0 });
 
   const handleAddItem = () => {
+    // Use navigate function to programmatically navigate
     axios.post('/api/wishlist', newItem)
       .then(() => {
-        history.push('/wishlist'); // Navigate to the wishlist page
+        navigate('/wishlist'); // Navigate to the wishlist page
       })
       .catch((error) => {
         console.error('Error adding wishlist item:', error);
