@@ -4,6 +4,8 @@ let Property = require("../models/Property");
 router.route("/addproperty").post((req,res) =>{
 
     const address = req.body.address;
+    const street = req.body.street;
+    const city = req.body.city;
     const description = req.body.description;
     const value = req.body.value;
     const image = req.body.image;
@@ -11,6 +13,8 @@ router.route("/addproperty").post((req,res) =>{
     const newProperty = new Property({
 
         address,
+        street,
+        city,
         description,
         value,
         image,
@@ -39,10 +43,12 @@ router.route("/").get((req,res) => {
 
 router.route("/updateproperty/:propertyid").put(async (req,res) => {
     let userID = req.params.propertyid;
-    const { address,description,value,image,} = req.body;
+    const { address,street,city,description,value,image,} = req.body;
 
     const updateProperty = {
         address,
+        street,
+        city,
         description,
         value,
         image,

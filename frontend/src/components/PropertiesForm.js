@@ -1,49 +1,44 @@
 import React, { useState } from "react";
+import axios from "axios";
+import "./Properties.css";
 
 function PropertyForm() {
-  const [propertyData, setPropertyData] = useState({
-    address: "",
-    street: "",
-    city: "",
-    description: "",
-    openingValue: "",
-    images: [],
-  });
+  const [address, setAddress] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
+  const [images, setImages] = useState("");
+  
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "openingValue" && (parseFloat(value) <= 0 || isNaN(parseFloat(value)))) {
-      setPropertyData({
-        ...propertyData,
-        [name]: "",
-      });
-    } else {
-      setPropertyData({
-        ...propertyData,
-        [name]: value,
-      });
-    }
-  };
-
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    setPropertyData({
-      ...propertyData,
-      images: files,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  function sendData(e){
     e.preventDefault();
-    // You can handle the form submission logic here, such as saving the data to a database.
-    console.log("Property data:", propertyData);
-  };
+
+    const newProperty= {
+
+      address,
+      street,
+      city,
+      description,
+      value,
+      images,
+    }
+
+    axios.post("http://localhost:8070/property/addproperty", newProperty).then(()=> {
+      alert("Property Added");
+      setAddress("");
+      setDescription("");
+      setValue("");
+      setImages("");
+
+    }).catch((err)=>{
+      alert(err);
+    });
+  }
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={sendData}>
       <h2>Add a New Property</h2>
       <h6 className="bold-header">Property Address</h6>
         <label htmlFor="address">Address:</label>
@@ -52,9 +47,10 @@ function PropertyForm() {
           id="address"
           name="address"
           placeholder="Address"
-          value={propertyData.address}
-          onChange={handleChange}
           required
+          onChange={(e) =>{
+            setAddress(e.target.value);
+          }}
         />
 
         <label htmlFor="street">Street:</label>
@@ -63,18 +59,20 @@ function PropertyForm() {
           id="street"
           name="street"
           placeholder="Street/house/apartment etc."
-          value={propertyData.street}
-          onChange={handleChange}
           required
+          onChange={(e) =>{
+            setStreet(e.target.value);
+          }}
         />
 
 <label htmlFor="city">City:</label>
         <select class="form-select"
           id="city"
           name="city"
-          value={propertyData.city}
-          onChange={handleChange}
           required
+          onChange={(e) =>{
+            setCity(e.target.value);
+          }}
         >
           <option value="">Select Location</option>
           <option value="Colombo">Colombo</option>
@@ -91,20 +89,22 @@ function PropertyForm() {
           id="description"
           name="description"
           placeholder="Property description"
-          value={propertyData.description}
-          onChange={handleChange}
           required
+          onChange={(e) =>{
+            setDescription(e.target.value);
+          }}
         ></textarea>
 
         <label htmlFor="openingValue">Opening Value (Rs):</label>
         <input
-          type="text"
+          type="number"
           id="openingValue"
           name="openingValue"
           placeholder="e.g., 2.8 lakhs"
-          value={propertyData.openingValue}
-          onChange={handleChange}
           required
+          onChange={(e) =>{
+            setValue(e.target.value);
+          }}
         />
 
         <label htmlFor="images">Images:</label>
@@ -114,18 +114,14 @@ function PropertyForm() {
           name="images"
           accept="image/*"
           multiple
-          onChange={handleImageChange}
           required
+          onChange={(e) =>{
+            setImages(e.target.value);
+          }}
         />
 
-       <div className="row justify-content-center">
-          {/* Center the buttons within a row */}
-          <div className="col-auto">
-            <button type="button" className="btn btn-secondary btn-lg">Back</button>
-          </div>
-          <div className="col-auto">
-            <button type="button" className="btn btn-primary btn-lg">Submit</button>
-          </div>
+        <div className="form-group">
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>

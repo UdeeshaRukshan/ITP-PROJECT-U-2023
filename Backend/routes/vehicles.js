@@ -11,29 +11,30 @@ router.route("/addvehicle").post((req,res) =>{
     const features = req.body.features;
     const location = req.body.location;
     const value = req.body.value;
-    const image = req.body.image;
+    const images = req.body.images;
 
-    const newVehicle = new Vehicle({
+    
+        const newVehicle = new Vehicle({
+          vehicleNumber,
+          year,
+          model,
+          fuelType,
+          mileage,
+          features,
+          location,
+          value,
+          images,
+        })
 
-        vehicleNumber,
-        year,
-        model,
-        fuelType,
-        mileage,
-        features,
-        location,
-        value,
-        image
+        newVehicle.save().then(() => {
+            res.json("Vehicle Added")
+        }).catch((err) => {
+            console.log(err);
+        })
+    
     })
-
-    newVehicle.save().then(() => {
-        res.json("Vehicle Added")
-    }).catch((err) => {
-        console.log(err);
-    })
-
-})
-
+    
+        
 router.route("/").get((req,res) => {
 
     Vehicle.find().then((vehicles) =>{

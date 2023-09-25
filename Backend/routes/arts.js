@@ -10,7 +10,7 @@ router.route("/addart").post((req,res) =>{
     const condition = req.body.condition;
     const location = req.body.location;
     const value = req.body.value;
-    const image = req.body.image;
+    const images = req.body.images;
 
     const newArt = new Art({
 
@@ -21,7 +21,7 @@ router.route("/addart").post((req,res) =>{
         condition,
         location,
         value,
-        image
+        images,
     })
 
     newArt.save().then(() => {

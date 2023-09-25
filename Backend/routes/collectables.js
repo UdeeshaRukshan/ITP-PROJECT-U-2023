@@ -7,7 +7,7 @@ router.route("/addcollectable").post((req,res) =>{
     const name = req.body.name;
     const value = req.body.value;
     const description = req.body.description;
-    const image = req.body.image;
+    const images = req.body.images;
 
     const newCollectable = new Collectable({
 
@@ -15,7 +15,7 @@ router.route("/addcollectable").post((req,res) =>{
         name,
         value,
         description,
-        image
+        images,
     })
 
     newCollectable.save().then(() => {

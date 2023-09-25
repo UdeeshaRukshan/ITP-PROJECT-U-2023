@@ -9,6 +9,14 @@ const propertySchema = new Schema({
         required: true //backend validation
 
     },
+    street: {
+        type : String,
+        require: true
+    },
+    city: {
+        type : String,
+        required: true
+    },
     description: {
         type : String,
         required: true

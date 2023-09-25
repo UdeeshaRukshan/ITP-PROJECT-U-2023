@@ -95,7 +95,7 @@ export default function PersonalDetails() {
   onChange={(e)=>{
     setCity(e.target.value);
   }}>
-    <option selected disabled>City</option>
+    <option value="">City</option>
     <option value="Colombo">Colombo</option>
     <option value="Galle">Galle</option>
     <option value="Matara">Matara</option>
