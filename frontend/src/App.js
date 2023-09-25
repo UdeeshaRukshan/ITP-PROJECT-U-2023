@@ -23,11 +23,19 @@ import Checkout from "./pages/Checkout";
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
+import MyTicketPage from "./pages/MyTickets/myTickets";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
 
 function App() {
+  const queryClient = new QueryClient()
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
       <Notifications position="top-center" />
+      <QueryClientProvider client={queryClient}> 
       <div className="App">
         <Header />
         <Routes>
@@ -41,9 +49,11 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
           <Route path="/support/chatbot" element={<Chatbot />} />
+          <Route path="/ticket/mytickets" element= {<MyTicketPage/>}/>
         </Routes>
         <Footer />
       </div>
+      </QueryClientProvider>
     </MantineProvider>
   );
 }

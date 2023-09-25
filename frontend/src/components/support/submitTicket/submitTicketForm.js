@@ -47,6 +47,10 @@ const SubmitTicketForm = () => {
     axios
       .post("http://localhost:4042/ticket/add", values)
       .then((response) => {
+        //reset current form 
+        ticket.reset()
+
+        //show success notification
         updateNotification({
           id: "submitTicket",
           loading: false,
