@@ -56,7 +56,7 @@ function CollectableForm() {
           type="text"
           id="name"
           name="name"
-          placeholder="Collectible name"        
+          placeholder="e.g., Desert Flower Novel."        
           required
           onChange={(e) =>{
             setName(e.target.value);
@@ -67,7 +67,7 @@ function CollectableForm() {
         <textarea
           id="description"
           name="description"
-          placeholder="Collectible description"
+          placeholder="e.g.,Used book,Only two pages are torn but readable."
           required
           onChange={(e) =>{
             setDescription(e.target.value);
@@ -87,17 +87,24 @@ function CollectableForm() {
         />
 
         <label htmlFor="images">Images:</label>
-        <input
-          type="file"
-          id="images"
-          name="images"
-          accept="image/*"
-          multiple
-          required
-          onChange={(e) =>{
-            setImages(e.target.value);
-          }}
-        />
+          <input
+           type="file"
+           id="images"
+           name="images"
+           accept="image/*"
+           multiple
+           required
+           onChange={(e) => {
+             const selectedFiles = e.target.files;
+              if (selectedFiles.length >= 1 && selectedFiles.length < 10) {
+                setImages(selectedFiles);
+              } else {
+               // Display an alert message
+              alert("Please select at least 1 but fewer than 10 photos.");
+              e.target.value = null;
+              }
+           }}
+         />
 
           <div className="form-group">
           <button type="submit">Submit</button>

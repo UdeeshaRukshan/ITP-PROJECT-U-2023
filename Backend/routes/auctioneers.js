@@ -30,7 +30,7 @@ router.route("/add").post((req,res) =>{
 
 })
 
-router.route("/").get((req,res) => {
+router.route("/getauctioneers").get((req,res) => {
 
     Auctioneer.find().then((auctioneers) =>{
         res.json(auctioneers)

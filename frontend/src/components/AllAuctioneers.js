@@ -10,7 +10,7 @@ export default function AllAuctioneers() {
   useEffect(() => {
     async function fetchAuctioneers() {
       try {
-        const response = await axios.get("http://localhost:8070/auctioneer/");
+        const response = await axios.get("http://localhost:8070/auctioneer/getauctioneers");
         setAuctioneers(response.data);
       } catch (error) {
         alert(error.message);

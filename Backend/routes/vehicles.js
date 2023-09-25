@@ -35,7 +35,7 @@ router.route("/addvehicle").post((req,res) =>{
     })
     
         
-router.route("/").get((req,res) => {
+router.route("/getvehicles").get((req,res) => {
 
     Vehicle.find().then((vehicles) =>{
         res.json(vehicles)

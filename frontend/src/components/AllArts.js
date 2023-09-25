@@ -70,7 +70,7 @@ export default function AllArts() {
             <th>Condition</th>
             <th>Location</th>
             <th>Value</th>
-            <th>Images</th> {/* New column for buttons */}
+            <th>Images</th> 
             <th>Actions</th>
           </tr>
         </thead>

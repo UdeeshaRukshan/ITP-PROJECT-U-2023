@@ -74,7 +74,7 @@ function PropertyForm() {
             setCity(e.target.value);
           }}
         >
-          <option value="">Select Location</option>
+          <option value="">Select City</option>
           <option value="Colombo">Colombo</option>
           <option value="Gampaha">Gampaha</option>
           <option value="Kaduwela">Kaduwela</option>
@@ -95,30 +95,40 @@ function PropertyForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Opening Value (Rs):</label>
-        <input
-          type="number"
-          id="openingValue"
-          name="openingValue"
-          placeholder="e.g., 2.8 lakhs"
-          required
-          onChange={(e) =>{
-            setValue(e.target.value);
-          }}
-        />
+        <label htmlFor="openingValue">Opening Value:(Rs)</label>
+        <input 
+        type="number" 
+        id="openingvalue" 
+        name="openingvalue" 
+        placeholder="e.g., 75lakhs" 
+        required
+             onChange={(e) => {
+              const inputOpeningValue = e.target.value;
+               if (inputOpeningValue > 0) {
+                setValue(inputOpeningValue);
+                } else {
+                alert("Must enter valid value");
+                }
+            }}/>
 
-        <label htmlFor="images">Images:</label>
-        <input
-          type="file"
-          id="images"
-          name="images"
-          accept="image/*"
-          multiple
-          required
-          onChange={(e) =>{
-            setImages(e.target.value);
-          }}
-        />
+<label htmlFor="images">Images:</label>
+<input
+  type="file"
+  id="images"
+  name="images"
+  accept="image/*"
+  multiple
+  required
+  onChange={(e) => {
+    const selectedFiles = e.target.files;
+
+    if (selectedFiles.length <= 10) {
+      setImages(selectedFiles);
+    } else {
+      alert("You can only add up to 10 photos.");
+      e.target.value = null;
+    }
+  }}/>
 
         <div className="form-group">
           <button type="submit">Submit</button>

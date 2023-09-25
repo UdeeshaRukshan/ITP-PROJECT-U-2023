@@ -25,10 +25,12 @@ function App() {
            <Route path="/addvehicle" exact element={<VehiclesForm />} />
            <Route path="/addcollectable" exact element={<CollectableForm />} />
            <Route path="/addproperty" exact element={<PropertiesForm />} />
-           <Route path="/" exact element={<AllAuctioneers/>} />
+           <Route path="/getauctioneers" exact element={<AllAuctioneers/>} />
            <Route path="/getarts" exact element={<AllArts/>} />
            <Route path="/getproperties" exact element={<AllProperties/>} />
            <Route path="/getcollectables" exact element={<AllCollectables/>} />
+           <Route path="/getvehicles" exact element={<AllProperties/>} />
+
 
 
 

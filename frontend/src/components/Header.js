@@ -14,22 +14,26 @@
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/add">PersonalDetails</a>        
+          <a className="nav-link active" aria-current="page" href="/getauctioneers">Users</a>        
+        </li>
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="getvehicles">Vehicles</a>        
         </li>
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" href="/getarts">Arts</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/getproperties">Property</a> 
+          <a className="nav-link active" aria-current="page" href="/getproperties">Properties</a> 
           </li>
           <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/getcollectables">Collectable</a>        
+          <a className="nav-link active" aria-current="page" href="/getcollectables">Collectables</a>        
         </li>       
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sell
+            Forms
           </a>
           <ul className="dropdown-menu">
+          <li><a className="dropdown-item" href="/add">PersonalDetails</a></li>
             <li><a className="dropdown-item" href="/addvehicle">Vehicles</a></li>
             <li><a className="dropdown-item" href="/addproperty">Properties</a></li>
             <li><a className="dropdown-item" href="/addcollectable">Collectables</a></li>        
