@@ -93,7 +93,7 @@ router.get("/generate-report", async (req, res) => {
     // Populate the worksheet with agent data
     agents.forEach((agentss, index) => {
       ws.cell(index + 2, 1).string(agentss.name);
-      ws.cell(index + 2, 2).number(agentss.age);
+      ws.cell(index + 2, 2).string(agentss.age);
       ws.cell(index + 2, 3).string(agentss.address);
       ws.cell(index + 2, 4).string(agentss.jobtype);
     });

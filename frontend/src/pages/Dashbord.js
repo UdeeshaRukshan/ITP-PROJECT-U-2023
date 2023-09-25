@@ -120,7 +120,7 @@ const Dashboard = () => {
     setimgupload(true);
   };
   return (
-    <div>
+    <div className="main-div">
       <div id="mySidenav" class="sidenav">
         <p class="logo">
           <span>User</span> Profile
