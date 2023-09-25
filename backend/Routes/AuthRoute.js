@@ -1,4 +1,11 @@
-const { Signup, Login } = require("../Controllers/AuthController");
+const {
+  Signup,
+  Login,
+  GetUser,
+  UpdateUser,
+  DeleteUser,
+  UserProfile,
+} = require("../Controllers/AuthController");
 const router = require("express").Router();
 const userVerification = require("../Middleware/AuthMiddleware");
 const User = require("../models/UserModel");
@@ -9,6 +16,7 @@ const TOKEN_KEY = "jtx";
 // Define the user verification middleware separately
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
+
   if (!token) {
     return res.json({ status: false });
   }
@@ -27,5 +35,9 @@ const verifyUser = (req, res, next) => {
 router.post("/", verifyUser);
 router.post("/signup", Signup);
 router.post("/login", Login);
+router.get("/dashbord", UserProfile);
+router.put("/update/:id", UpdateUser);
 
+router.put("/user/update/:id", UpdateUser);
+router.delete("/delete/:id", DeleteUser);
 module.exports = router;
