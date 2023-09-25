@@ -75,7 +75,6 @@ module.exports.UserProfile = async (req, res) => {
 
   // Get the username from the cookie
   const usernameFromCookie = req.cookies.username;
-  console.log(usernameFromCookie);
 
   // if (!usernameFromCookie) {
   //   return res.status(401).json({ message: "User not authenticated" });

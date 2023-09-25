@@ -17,6 +17,10 @@ import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
+
+import AddImage from "./pages/AddImage";
+import DisplayImage from "./pages/DisplayImage";
+
 import SubmitTicketPage from './pages/submitTicket/submitTicket';
 import Chatbot from './components/support/chatBot/Chatbot';
 import { Notifications } from '@mantine/notifications';
@@ -39,6 +43,8 @@ function App() {
 {/*<Route path="/support/mytickets" element={<MyTickets/>}/>
 
         <Route path="/home" element={<IndexPage />} />
+        <Route path="/image-add" element={<AddImage />} />
+        <Route path="/image-display" element={<DisplayImage />} />
 
 
         {/* <Route path="/home" element={<Home />} />
