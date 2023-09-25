@@ -482,3 +482,7 @@ button:hover {
   height: 5vh;
   margin-bottom: 2vh;
 }
+.btn-report {
+  margin-left: 65%;
+  margin-top: 5vh;
+}

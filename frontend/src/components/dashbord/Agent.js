@@ -120,6 +120,27 @@ const Agent = () => {
       });
   };
 
+  const handleGenerateReport = () => {
+    // Send a GET request to the server to generate and download the report
+    axios
+      .get("http://localhost:4042/agent/generate-report", {
+        responseType: "blob", // Set the response type to blob for binary data
+      })
+      .then((response) => {
+        // Create a URL for the blob data and trigger a download
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "agent_report.xlsx"); // Set the desired file name
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+      })
+      .catch((error) => {
+        console.error("Error generating report:", error);
+      });
+  };
+
   const toggleAddAgentForm = () => {
     setIsAddAgentFormVisible(!isAddAgentFormVisible);
   };
@@ -372,6 +393,13 @@ const Agent = () => {
               </table>
             </div>
           )}
+          <button
+            className="btn btn-success btn-report
+              "
+            onClick={handleGenerateReport}
+          >
+            Generate report of the Agents
+          </button>
         </div>
       </div>
     </div>
