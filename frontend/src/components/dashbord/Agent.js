@@ -17,7 +17,22 @@ const Agent = () => {
     age: "",
     jobtype: "",
   });
-
+  const handleDelete = (agentId) => {
+    // Show a confirmation dialog before deleting the agent
+    if (window.confirm("Are you sure you want to delete this agent?")) {
+      axios
+        .delete(`http://localhost:4042/agent/delete/${agentId}`)
+        .then((response) => {
+          console.log("Agent deleted successfully");
+          // Optionally, refresh the agent list or remove the deleted agent from the state
+          // Example:
+          setAgents(agents.filter((agent) => agent._id !== agentId));
+        })
+        .catch((error) => {
+          console.error("Error deleting agent:", error);
+        });
+    }
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
