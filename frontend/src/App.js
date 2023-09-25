@@ -41,23 +41,6 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
           <Route path="/support/chatbot" element={<Chatbot />} />
-          {/*<Route path="/support/mytickets" element={<MyTickets/>}/>
-
-        <Route path="/home" element={<IndexPage />} />
-        <Route path="/image-add" element={<AddImage />} />
-        <Route path="/image-display" element={<DisplayImage />} />
-
-
-        {/* <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="/signin" element={<Screen />} />
-          <Route path="/sign" element={<Sign />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/login" element={<Navigate to="/home" />} /> */}
         </Routes>
         <Footer />
       </div>
