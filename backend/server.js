@@ -24,6 +24,9 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
+const wishlistRoutes = require('./routes/wishlistRoutes');
+app.use('/api/wishlist', wishlistRoutes)
+
 app.use(
   cors({
     // origin: ["http://localhost:3000"],
