@@ -17,6 +17,9 @@ import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
+
+import Checkout from "./pages/Checkout";
+
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
@@ -32,20 +35,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashbord" element={<Dashboard />} />
+          <Route path="/home" element={<IndexPage />} />
+          <Route path="/payment" element={<Checkout />} />
+
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
           <Route path="/support/chatbot" element={<Chatbot />} />
-          {/*<Route path="/support/mytickets" element={<MyTickets/>}/>
-        {/* <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="/signin" element={<Screen />} />
-          <Route path="/sign" element={<Sign />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/login" element={<Navigate to="/home" />} /> */}
         </Routes>
         <Footer />
       </div>

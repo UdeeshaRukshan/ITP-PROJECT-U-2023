@@ -45,7 +45,7 @@ const SubmitTicketForm = () => {
       message: "we're trying to submit your ticket",
     });
     axios
-      .post("http://localhost:4041/ticket/add", values)
+      .post("http://localhost:4042/ticket/add", values)
       .then((response) => {
         updateNotification({
           id: "submitTicket",
@@ -137,13 +137,17 @@ const SubmitTicketForm = () => {
           {...ticket.getInputProps("message")}
         />
         <Space h="md" />
-        <Button type="submit" fullWidth color="teal" disabled={Object.keys(ticket.errors).length === 0? false: true}>
+        <Button
+          type="submit"
+          fullWidth
+          color="teal"
+          disabled={Object.keys(ticket.errors).length === 0 ? false : true}
+        >
           Submit
         </Button>
       </form>
     </Paper>
   );
-
 };
 
 export default SubmitTicketForm;
