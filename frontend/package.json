@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mantine/core": "^6.0.20",
@@ -10,6 +11,8 @@
     "@mantine/hooks": "^6.0.20",
     "@mantine/modals": "^6.0.20",
     "@mantine/notifications": "^6.0.20",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.10",
     "@tabler/icons-react": "^2.34.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
