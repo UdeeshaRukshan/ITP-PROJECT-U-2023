@@ -4,7 +4,6 @@ const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-
 dotenv.config();
 
 app.use(cookieParser());
@@ -23,9 +22,6 @@ mongoose
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-const wishlistRoutes = require('./routes/wishlistRoutes');
-app.use('/api/wishlist', wishlistRoutes)
 
 app.use(
   cors({
