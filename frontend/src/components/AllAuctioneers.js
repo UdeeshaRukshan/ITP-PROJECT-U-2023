@@ -32,19 +32,15 @@ export default function AllAuctioneers() {
         <td>{auctioneer.street}</td>
         <td>{auctioneer.city}</td>
         <td>
-          <button
-            className="approve-button"
-            onClick={() => handleApprove(auctioneer._id)}
-          >
-            Approve
+        <div className="button-container">
+          <button className="approve-button" onClick={() => handleApprove(auctioneer._id)}>
+            Update
           </button>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(auctioneer._id)}
-          >
+          <button className="delete-button" onClick={() => handleDelete(auctioneer._id)}>
             Delete
           </button>
-        </td>
+        </div>
+      </td>
       </tr>
     ));
   };

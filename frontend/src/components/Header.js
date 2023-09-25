@@ -14,11 +14,17 @@
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/add">Home</a>        
+          <a className="nav-link active" aria-current="page" href="/add">PersonalDetails</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
+          <a className="nav-link active" aria-current="page" href="/getarts">Arts</a>        
         </li>
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="/getproperties">Property</a> 
+          </li>
+          <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="/getcollectables">Collectable</a>        
+        </li>       
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Sell
@@ -29,9 +35,6 @@
             <li><a className="dropdown-item" href="/addcollectable">Collectables</a></li>        
             <li><a className="dropdown-item" href="/addart">Arts</a></li>
           </ul>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
       <form className="d-flex" role="search">

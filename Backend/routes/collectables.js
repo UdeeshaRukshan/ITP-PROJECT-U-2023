@@ -26,7 +26,7 @@ router.route("/addcollectable").post((req,res) =>{
 
 })
 
-router.route("/").get((req,res) => {
+router.route("/getcollectables").get((req,res) => {
 
     Collectable.find().then((collectables) =>{
         res.json(collectables)
@@ -71,7 +71,7 @@ router.route("/deletecollectable/:collectableid").delete(async (req,res) => {
     })
 })
 
-router.route("/getcollectable/:collectableid").get(async(req,res) => {
+router.route("/getcollectables/:collectableid").get(async(req,res) => {
     let userID = req.params.collectableid;
     await Collectable.findById(userID)
     .then((Collectable) => {

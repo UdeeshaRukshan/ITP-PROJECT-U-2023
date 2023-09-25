@@ -32,7 +32,7 @@ router.route("/addart").post((req,res) =>{
 
 })
 
-router.route("/").get((req,res) => {
+router.route("/getarts").get((req,res) => {
 
     Art.find().then((arts) =>{
         res.json(arts)

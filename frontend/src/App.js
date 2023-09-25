@@ -8,6 +8,9 @@ import VehiclesForm from "./components/VehiclesForm";
 import CollectableForm from "./components/CollectableForm";
 import PropertiesForm from "./components/PropertiesForm";
 import AllAuctioneers  from "./components/AllAuctioneers";
+import AllArts from "./components/AllArts";
+import AllProperties from "./components/AllProperties";
+import AllCollectables from "./components/AllCollectables";
 
 function App() {
   return (
@@ -17,12 +20,16 @@ function App() {
         <Router>
          <Routes>
           
-           <Route path="/" exact element={<AllAuctioneers/>} />
            <Route path="/add" exact element={<PersonalDetails />} /> 
            <Route path="/addart" exact element={<ArtForm />} />      
            <Route path="/addvehicle" exact element={<VehiclesForm />} />
            <Route path="/addcollectable" exact element={<CollectableForm />} />
            <Route path="/addproperty" exact element={<PropertiesForm />} />
+           <Route path="/" exact element={<AllAuctioneers/>} />
+           <Route path="/getarts" exact element={<AllArts/>} />
+           <Route path="/getproperties" exact element={<AllProperties/>} />
+           <Route path="/getcollectables" exact element={<AllCollectables/>} />
+
 
 
           {/* Add other routes if needed */}

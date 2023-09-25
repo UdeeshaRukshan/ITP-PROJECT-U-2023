@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ArtForm.css"; // Import your CSS file for styling
+import "./ArtForm.css"; // Import CSS file for styling
 import axios from "axios";
 
 function ArtForm() {

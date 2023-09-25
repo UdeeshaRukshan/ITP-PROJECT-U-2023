@@ -8,7 +8,7 @@ router.route("/addproperty").post((req,res) =>{
     const city = req.body.city;
     const description = req.body.description;
     const value = req.body.value;
-    const image = req.body.image;
+    const images = req.body.images;
 
     const newProperty = new Property({
 
@@ -17,7 +17,7 @@ router.route("/addproperty").post((req,res) =>{
         city,
         description,
         value,
-        image,
+        images,
     
     })
 
@@ -29,7 +29,7 @@ router.route("/addproperty").post((req,res) =>{
 
 })
 
-router.route("/").get((req,res) => {
+router.route("/getproperties").get((req,res) => {
 
     Property.find().then((properties) =>{
         res.json(properties)
@@ -43,7 +43,7 @@ router.route("/").get((req,res) => {
 
 router.route("/updateproperty/:propertyid").put(async (req,res) => {
     let userID = req.params.propertyid;
-    const { address,street,city,description,value,image,} = req.body;
+    const { address,street,city,description,value,images,} = req.body;
 
     const updateProperty = {
         address,
@@ -51,7 +51,7 @@ router.route("/updateproperty/:propertyid").put(async (req,res) => {
         city,
         description,
         value,
-        image,
+        images,
     }
 
     const update = await Property.findByIdAndUpdate(userID, updateProperty)
