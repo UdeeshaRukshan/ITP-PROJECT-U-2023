@@ -2,6 +2,9 @@ const router = require("express").Router();
 const Excel = require("excel4node");
 
 let agent = require("../models/agent");
+const QRCode = require("qrcode");
+const pdf = require("pdfkit");
+const fs = require("fs");
 
 router.route("/add").post((req, res) => {
   const { name, address, age, jobtype } = req.body;
@@ -117,6 +120,23 @@ router.get("/generate-report", async (req, res) => {
     console.error("Error generating report:", error);
     res.status(500).json({ message: "Internal server error" });
   }
+});
+router.get("/generate-pdf", (req, res) => {
+  // Create a PDF document
+  const doc = new pdf();
+  const fileName = "agent_report.pdf"; // Desired PDF file name
+
+  // Pipe the PDF content to the response
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+  doc.pipe(res);
+
+  // Generate the PDF content here
+  doc.fontSize(14).text("Agent Report", { align: "center" });
+  // Add more content as needed
+
+  // Finalize the PDF and end the response
+  doc.end();
 });
 
 module.exports = router; // Corrected the export statement

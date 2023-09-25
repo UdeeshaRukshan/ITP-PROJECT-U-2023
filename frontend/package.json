@@ -22,6 +22,7 @@
     "feather-icons": "^4.29.1",
     "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-cookie": "^6.1.1",

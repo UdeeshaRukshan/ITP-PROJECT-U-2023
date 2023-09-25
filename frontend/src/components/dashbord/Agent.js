@@ -3,11 +3,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Agent.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import QRCode from "qrcode.react";
 const Agent = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [users, setUsers] = useState([]);
   const [agents, setAgents] = useState([]);
   const [updateAgentId, setUpdateAgentId] = useState(null);
+  const [qrCodeData, setQRCodeData] = useState(null);
+
+  const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);
   const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
   const [isUpdateAgentFormVisible, setIsUpdateAgentFormVisible] =
     useState(false);
@@ -37,6 +41,8 @@ const Agent = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  //handle submit button
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -71,6 +77,7 @@ const Agent = () => {
         // Handle errors
       });
   }, []);
+
   useEffect(() => {
     // Fetch user data from your server
     axios
@@ -95,7 +102,7 @@ const Agent = () => {
         console.error("Error fetching agents:", error);
       });
   }, []);
-
+  //update form
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -119,7 +126,16 @@ const Agent = () => {
         console.error("Error updating agent:", error);
       });
   };
+  //toggle buttton
+  const toggleAddAgentForm = () => {
+    setIsAddAgentFormVisible(!isAddAgentFormVisible);
+  };
+  const toggleUpdateAgentForm = (agentId) => {
+    setIsUpdateAgentFormVisible(!isUpdateAgentFormVisible);
+    setUpdateAgentId(agentId); // Set the agent ID to update
+  };
 
+  //generate download report
   const handleGenerateReport = () => {
     // Send a GET request to the server to generate and download the report
     axios
@@ -135,18 +151,13 @@ const Agent = () => {
         document.body.appendChild(link);
         link.click();
         link.parentNode.removeChild(link);
+
+        // Generate QR code for the report's URL
+        generateQRCodeForReport(url);
       })
       .catch((error) => {
         console.error("Error generating report:", error);
       });
-  };
-
-  const toggleAddAgentForm = () => {
-    setIsAddAgentFormVisible(!isAddAgentFormVisible);
-  };
-  const toggleUpdateAgentForm = (agentId) => {
-    setIsUpdateAgentFormVisible(!isUpdateAgentFormVisible);
-    setUpdateAgentId(agentId); // Set the agent ID to update
   };
 
   //update form
@@ -177,6 +188,31 @@ const Agent = () => {
       });
   }, [updateAgentId]);
 
+  //view qr code function
+  const generateQRCodeForReport = (reportUrl) => {
+    setQRCodeData(reportUrl);
+    setIsQRCodeVisible(true);
+  };
+
+  const downloadPdf = () => {
+    axios
+      .get("http://localhost:4042/generate-pdf", {
+        responseType: "blob", // Set the response type to blob for binary data
+      })
+      .then((response) => {
+        // Create a URL for the blob data and trigger a download
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "agent_report.pdf"); // Set the desired file name
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+      })
+      .catch((error) => {
+        console.error("Error downloading PDF:", error);
+      });
+  };
   return (
     <div className="main-div">
       <div id="mySidenav" class="sidenav">
@@ -391,6 +427,7 @@ const Agent = () => {
                   ))}
                 </tbody>
               </table>
+              {isQRCodeVisible && qrCodeData && <QRCode value={qrCodeData} />}
             </div>
           )}
           <button
@@ -398,8 +435,10 @@ const Agent = () => {
               "
             onClick={handleGenerateReport}
           >
-            Generate report of the Agents
+            Download Excel Sheet
           </button>
+          <button onClick={generateQRCodeForReport}>View QR Code</button>
+          <button onClick={downloadPdf}>Download Pdf</button>
         </div>
       </div>
     </div>
