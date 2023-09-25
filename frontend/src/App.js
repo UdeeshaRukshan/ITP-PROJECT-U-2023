@@ -1,4 +1,3 @@
-import Signin from "./components/profile/signin";
 import "./style.css";
 
 function App() {

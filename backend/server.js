@@ -4,12 +4,7 @@ const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-const authRoute = require("./Routes/AuthRoute");
-const ticketRoute = require("./Routes/TicketRoute");
-const image = require("./models/image");
-const agentRouter = require("./Routes/agentroute");
-const cloudinary = require("cloudinary").v2;
-const Multer = require("multer");
+
 dotenv.config();
 
 app.use(cookieParser());
@@ -45,5 +40,3 @@ app.use(
 );
 
 app.use(express.json());
-
-app.use("/", authRoute);
