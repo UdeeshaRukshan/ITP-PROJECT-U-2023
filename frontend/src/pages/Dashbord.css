@@ -247,21 +247,66 @@ img {
 }
 
 /* Dashboard.css */
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid rgb(0, 0, 4); /* Blue border */
+/* Style for the user profile container */
+.user-profile {
+  background-color: #f4efef;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100vh;
+  max-height: 70vh;
 }
 
-.styled-table th,
-.styled-table td {
-  color: #1b203d;
-  border: 2px solid rgb(8, 8, 15); /* Blue border for table cells */
-  padding: 8px;
-  text-align: left;
+/* Style for the profile title (username) */
+.profile-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.styled-table th {
-  background-color: rgb(0, 0, 0); /* Blue background color for table headers */
-  color: rgb(247, 247, 247); /* Black text color for table headers */
+/* Style for the user information */
+.profile-info p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* Strong text (labels) */
+.profile-info strong {
+  font-weight: bold;
+}
+
+/* You can customize these styles further to match your design */
+.button-container {
+  margin-left: 50vh;
+  justify-content: space-between;
+}
+.profile-info {
+  margin-top: 10px; /* Add margin to separate from other content */
+}
+
+/* Style for individual profile detail items */
+.profile-info div {
+  margin-bottom: 8px; /* Add vertical spacing between detail items */
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+/* Style for strong (labels) */
+.profile-info strong {
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 10px; /* Add vertical spacing between field groups */
+}
+
+/* Style for labels */
+.form-group label {
+  display: block; /* Display labels as block-level elements (one below the other) */
+  font-weight: bold;
+  margin-bottom: 5px; /* Add spacing between labels and inputs */
+}
+/*update input area design */
+.form-group input {
+  width: 40vh;
+  height: 5vh;
 }
