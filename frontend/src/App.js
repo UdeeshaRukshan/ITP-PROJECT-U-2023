@@ -1,69 +1,66 @@
-// client/src/App.js
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Item from './components/Item';
 import Wishlist from './components/Wishlist';
-import axios from 'axios'; // You need to install axios: npm install axios
+
 
 function App() {
   const [items, setItems] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  const [newItem, setNewItem] = useState({ name: '', description: '' });
+  const [userId] = useState('replace_with_actual_user_id');
 
-  const userId = 'replace_with_actual_user_id'; // Replace with the actual user ID
-
-  // Fetch items from the server when the component mounts
   useEffect(() => {
-    async function fetchItems() {
-      try {
-        const response = await axios.get('/api/items'); // Assuming your server is running on the same domain
+    // Fetch items from the server
+    axios.get('/api/items')
+      .then((response) => {
         setItems(response.data);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('Error fetching items:', error);
-      }
-    }
+      });
 
-    fetchItems();
-  }, []);
-
-  // Fetch wishlist when the component mounts
-  useEffect(() => {
-    async function fetchWishlist() {
-      try {
-        const response = await axios.get(`/api/wishlist/${userId}`);
+    // Fetch user's wishlist from the server based on userId
+    axios.get(`/api/wishlist/${userId}`)
+      .then((response) => {
         setWishlist(response.data.items);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('Error fetching wishlist:', error);
-      }
-    }
+      });
+  }, [userId]);
 
-    fetchWishlist();
-  }, [userId]); // Use userId as a dependency
+  // Function to add an item to the wishlist
+  const addToWishlist = (item) => {
+    axios.post(`/api/wishlist/${userId}`, { itemId: item._id })
+      .then((response) => {
+        setWishlist(response.data.items);
+      })
+      .catch((error) => {
+        console.error('Error adding item to wishlist:', error);
+      });
+  };
 
-  // Handle adding an item to the wishlist
-  const addToWishlist = async (itemId) => {
-    try {
-      await axios.post(`/api/wishlist/${userId}`, { itemId });
-      // Refetch wishlist to update the UI
-      const response = await axios.get(`/api/wishlist/${userId}`);
-      setWishlist(response.data.items);
-    } catch (error) {
-      console.error('Error adding item to wishlist:', error);
-    }
+  // Function to remove an item from the wishlist
+  const removeFromWishlist = (item) => {
+    axios.delete(`/api/wishlist/${userId}/${item._id}`)
+      .then((response) => {
+        setWishlist(response.data.items);
+      })
+      .catch((error) => {
+        console.error('Error removing item from wishlist:', error);
+      });
   };
 
   return (
     <div className="App">
-      <h1>Item List</h1>
-      <ul>
+      <h1>Items</h1>
+      <div className="item-list">
         {items.map((item) => (
-          <li key={item._id}>
-            <Item item={item} addToWishlist={addToWishlist} />
-          </li>
+          <Item key={item._id} item={item} onAddToWishlist={addToWishlist} />
         ))}
-      </ul>
+      </div>
 
-      <h1>Wishlist</h1>
-      <Wishlist wishlist={wishlist} />
+      <Wishlist wishlist={wishlist} onRemoveFromWishlist={removeFromWishlist} />
     </div>
   );
 }

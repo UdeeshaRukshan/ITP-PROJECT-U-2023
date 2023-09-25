@@ -1,7 +1,5 @@
-// server/controllers/itemController.js
 const Item = require('../models/Item');
 
-// Get all items
 const getItems = async (req, res) => {
   try {
     const items = await Item.find();
@@ -11,7 +9,6 @@ const getItems = async (req, res) => {
   }
 };
 
-// Add a new item
 const addItem = async (req, res) => {
   try {
     const { name, description } = req.body;
@@ -23,7 +20,6 @@ const addItem = async (req, res) => {
   }
 };
 
-// Update an item
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
@@ -35,7 +31,6 @@ const updateItem = async (req, res) => {
   }
 };
 
-// Delete an item
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;

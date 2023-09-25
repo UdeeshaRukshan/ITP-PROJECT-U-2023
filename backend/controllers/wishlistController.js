@@ -1,8 +1,6 @@
-// server/controllers/wishlistController.js
 const Wishlist = require('../models/Wishlist');
 const Item = require('../models/Item');
 
-// Get a user's wishlist
 const getWishlist = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -13,7 +11,6 @@ const getWishlist = async (req, res) => {
   }
 };
 
-// Add an item to a user's wishlist
 const addToWishlist = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -35,7 +32,6 @@ const addToWishlist = async (req, res) => {
   }
 };
 
-// Remove an item from a user's wishlist
 const removeFromWishlist = async (req, res) => {
   try {
     const { userId, itemId } = req.params;
