@@ -5,6 +5,9 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
+const http = require("http");
+
+
 const PORT = process.env.PORT || 8070;
 
 app.use(cors());
@@ -25,11 +28,11 @@ connection.once('open', () => {
 })
 
 
-const studentRouter = require("./routes/students.js"); //according to the files we created
+const studentRouter = require("./routes/students.js"); 
 
-//http://Localhost:8070/student
 
-app.use("/student",studentRouter); //according to the files we created
+
+app.use("/student",studentRouter); 
 
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number: ${PORT}`)
