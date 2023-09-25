@@ -1,4 +1,3 @@
-import Signin from "./components/profile/signin";
 import Checkout from "./components/payment/Checkout";
 function App() {
   return <Checkout />;
