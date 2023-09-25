@@ -1,20 +1,25 @@
 // frontend/src/components/WishlistPage.js
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function WishlistPage() {
   const [wishlist, setWishlist] = useState([]);
-  const [newItem, setNewItem] = useState({ name: '', description: '', price: 0 });
+  const [newItem, setNewItem] = useState({
+    name: "",
+    description: "",
+    price: 0,
+  });
 
   useEffect(() => {
     // Fetch wishlist items from the backend when the component mounts
-    axios.get('/api/wishlist')
+    axios
+      .get("/api/wishlist")
       .then((response) => {
         setWishlist(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching wishlist items:', error);
+        console.error("Error fetching wishlist items:", error);
       });
   }, []);
 

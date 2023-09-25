@@ -1,15 +1,14 @@
-
 // frontend/src/App.js
 
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import ItemPage from './components/ItemPage';
-import WishlistPage from './components/WishlistPage';
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ItemPage from "./components/ItemPage";
+import WishlistPage from "./components/WishlistPage";
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      {/* <div className="App">
         <nav>
           <ul>
             <li>
@@ -19,12 +18,12 @@ function App() {
               <Link to="/wishlist">Wishlist Page</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
-        {/* Define your routes */}
-        <Route path="/" exact component={ItemPage} />
-        <Route path="/wishlist" component={WishlistPage} />
-      </div>
+      {/* Define your routes */}
+      <Route path="/" exact component={<ItemPage />} />
+      <Route path="/wishlist" component={<WishlistPage />} />
+      {/* </div> */}
     </Router>
   );
 }
