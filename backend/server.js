@@ -1,9 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const itemRoutes = require('./routes/itemRoutes');
+const wishlistRoutes = require('./routes/WishListRoutes');
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+
 dotenv.config();
 
 app.use(cookieParser());
@@ -39,3 +42,17 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use('/api/items', itemRoutes);
+app.use('/api/wishlist', wishlistRoutes);
+
+// Error handling middleware (example)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!' });
+});
+
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
