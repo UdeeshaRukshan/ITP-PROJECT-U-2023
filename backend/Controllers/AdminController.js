@@ -111,10 +111,10 @@ else{
 const sendNotification = asyncHandler(async(req,res)=>{
 
 
-  const{image,description,selectedUser}=req.body;
+  const{image,description,selectedUser,selectedUserName}=req.body;
 
 
-if(!image || !selectedUser || !description){
+if(!image || !selectedUser || !description ||!selectedUserName){
 
     console.log("All data not received");
     res.status(400);
@@ -123,7 +123,7 @@ if(!image || !selectedUser || !description){
 }
 
     const notification = await Notification.create({
-        image,description,selectedUser
+        image,description,selectedUser,selectedUserName
     });
 
     if(notification){
@@ -183,7 +183,6 @@ const getUserById = asyncHandler(async(req,res)=>{
 
   try {
     const {id} = req.body; // Assuming you have a route parameter for the user ID
-    console.log(id);
     const user = await UserModel.findById(id)
     if (!user) {
       return res.status(404).json({ message: "User not found" });

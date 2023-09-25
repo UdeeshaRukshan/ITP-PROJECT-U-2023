@@ -22,6 +22,7 @@ function SendNewAlerts() {
     const fileInput = React.useRef();
 
     const[image,setImage] = React.useState()
+    const[imageName,setImageName] = React.useState()
     const[description,setDescription] = React.useState()
     const[search,setSearch] = React.useState()
     const[searchResult, setSearchResult] = React.useState([]);
@@ -34,7 +35,7 @@ function SendNewAlerts() {
 
         e.preventDefault()
 
-        if(!image || !description || !selectedUser){
+        if(!image || !description || !selectedUser ||!selectedUserName){
             Swal.fire({
               icon: "error",
               title: "Please enter all fields",
@@ -54,6 +55,7 @@ function SendNewAlerts() {
                   image,
                   description,
                   selectedUser,
+                  selectedUserName
                  },
                 config
               );
@@ -127,15 +129,17 @@ function SendNewAlerts() {
           console.log("Plese upload an image!!!");
         }
         if (pic.type === "image/jpeg" || "image.png") {
+          setImageName(pic)
           const data = new FormData();
-    
+          
           data.append("file", pic);
     
-          data.append("upload_preset", "userImages");
+          // Setup your cloudinary detailsn here
+          data.append("upload_preset", "yourfile name");
     
-          data.append("cloud_name", "cake-lounge");
+          data.append("cloud_name", "your cloud name");
     
-          fetch("https://api.cloudinary.com/v1_1/cake-lounge/image/upload", {
+          fetch("your cloudinary upload link here", {
             method: "post",
             body: data,
           })
@@ -168,28 +172,16 @@ function SendNewAlerts() {
             padding: '16px', 
             borderRadius: '4px',
             width:"75%",
+            position: "relative"
             }} >
 
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <input
               ref={fileInput}
               type="file"
-              style={{ display: "none" }}
               accept="image/*"
               onChange={(e) => postDetails(e.target.files[0])}
             />
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Avatar
-                src={image ? image : null}
-                sx={{ width: "300px", height: "300px",borderRadius:"0%"}}
-                variant="square"
-            >
-                Add Image
-            </Avatar>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Button color="success" onClick={() => fileInput.current.click()}>
-                Upload Image
-            </Button>
             </div>
             <TextField
             margin="normal"
@@ -224,6 +216,18 @@ function SendNewAlerts() {
                 <SearchIcon />
             </IconButton>
 
+            <Box
+              sx={{
+                position: "absolute",
+                width: "70%",
+                maxHeight: 200,
+                overflowY: "auto", 
+                bgcolor: "background.paper",
+                ml:"50px",
+                marginTop: "4px",
+                zIndex: 2,
+              }}
+            >
             {search ? (
                 <div>
                 <Box
@@ -276,20 +280,21 @@ function SendNewAlerts() {
             ) : (
                 <div></div>
             )}
+            </Box>
 
             <Divider sx={{ height: 28, m: 0.5 }} orientation="horizontal" />
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'center'}}>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2,width:"50%" }}
+                sx={{ mt: 3, mb: 2,width:"20%",zIndex: 1,backgroundColor:"green",borderRadius:"10px" }}
               >
                 Send
               </Button>
               </div>
-            </Box>
+        </Box>
     </div>
   )
 }

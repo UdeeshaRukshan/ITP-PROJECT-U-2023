@@ -37,6 +37,7 @@ function AlertDetails() {
   const[search,setSearch] = React.useState()
   const[searchResult, setSearchResult] = React.useState([]);
   const[selectedUser,setSelectedUser] = React.useState()
+  const[selectedUserName,setSelectedUserName] = React.useState()
   const[userInfo,setUserInfo]  = useState()
   const[id,setId]  = useState()
   const[selectedUserVisibility,setSelectedUserVisibility] = React.useState(false)
@@ -60,42 +61,22 @@ function AlertDetails() {
         {},
         config
       );
-
       setNotification(data.notification);
+
     } catch (error) {
       console.log(error);
     }
   };
 
   const editNotification=(notification)=>{
-    getUserById(notification.selectedUser)
     setOpenNotification(notification)
     setImage(notification.image)
     setDescription(notification.description)
     setSelectedUser(notification.selectedUser)
+    setSelectedUserName(notification.selectedUserName)
     setId(notification._id)
     setSelectedUserVisibility(true)
     handleOpen()
-  }
-
-  const getUserById=async(id)=>{
-    try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-      const { data } = await axios.post(
-        "http://localhost:4041/admin/get-user-by-id",
-        { 
-          id
-         },
-        config
-      );
-      setUserInfo(data)
-    } catch (error) {
-        console.log(error);
-    }
   }
 
   const handleUpdate=async()=>{
@@ -221,11 +202,12 @@ const postDetails = (pic) => {
 
       data.append("file", pic);
 
-      data.append("upload_preset", "userImages");
+      // Setup your cloudinary detailsn here
+      data.append("upload_preset", "yourfile name");
+    
+      data.append("cloud_name", "your cloud name");
 
-      data.append("cloud_name", "cake-lounge");
-
-      fetch("https://api.cloudinary.com/v1_1/cake-lounge/image/upload", {
+      fetch("your cloudinary upload link here", {
         method: "post",
         body: data,
       })
@@ -254,62 +236,40 @@ const postDetails = (pic) => {
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    <Grid container spacing={3}>
+    <Grid container spacing={3} >
               
-        <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column",border:"1px solid",width:"60%" }}>
 
               <React.Fragment>
 
-                <Grid container spacing={4} sx={{ marginTop: "10px" }}>
+                <Grid container spacing={4} >
                   {notifications?(
                     notifications.map((notification) => (
-                    <Grid item xs={12} md={4}>
-                      <Card sx={{ maxWidth: 345, minHeight: 350,maxHeight:450 }}>
-                        <CardMedia
-                          component="img"
-                          style={{borderRadius:"0%" }}
-                          image={notification.image}
-                          alt="Paella dish"
-                        />
+                    <Grid item xs={12} key={notification._id}>
+                      <Card sx={{ maxWidth:"100%", minHeight: 40,maxHeight:200 }}>
                         <CardContent>
-                          <Typography
-                            variant="p"
-                            color="text.primary"
-                            sx={{ textAlign: "left", display: "flex" }}
-                          >
-                            {notification.description.length <= 35
-                              ? notification.description
-                              : notification.description.substr(0, 35) + "..."}
-                          </Typography>
-                          <br></br>
-                          <Typography
-                            variant="p"
-                            color="text.secondary"
-                            sx={{ display: "flex" }}
-                          >
-                          
-                          {notification.description.length <= 95
-                              ? notification.description
-                              : notification.description.substr(0, 95) + "..."}
-                          </Typography>
-
-                        
+                        <Grid container spacing={2}>
+                            <Grid Grid item xs={8}>
+                              <Typography
+                              variant="p"
+                              color="text.primary"
+                              sx={{ textAlign: "left", display: "flex" }}
+                              >
+                              {notification.selectedUserName}
+                            </Typography>
+                            </Grid>
+                            <Grid Grid item xs={4}sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                              <Button
+                                variant="contained"
+                                onClick={() => editNotification(notification)}
+                                sx={{backgroundColor:"green"}}
+                              >
+                                View
+                              </Button>
+                            </Grid>
+                          </Grid>
                         </CardContent>
-
-                        <CardActions disableSpacing>
-                            <Button
-                              variant="outlined"
-                              startIcon={<EditIcon />}
-                              sx={{
-                                width: "100%",
-                                bottom: 0,
-                              }}
-                              onClick={() => editNotification(notification)}
-                            >
-                              Update
-                            </Button>
-                        </CardActions>
                       </Card>
                     </Grid>
                   ))):(
@@ -366,15 +326,14 @@ const postDetails = (pic) => {
               />
 
               <Stack direction="row" spacing={1} sx={{mb:"10px",display: selectedUserVisibility ? 'block' : 'none',}} >
-                  <Chip label={userInfo?.user.username} variant="outlined" />
+                  <Chip label={selectedUserName?selectedUserName:"no user"} variant="contained" />
               </Stack>
 
-              <Divider sx={{ height: 28, m: 0.5 }} orientation="horizontal" />
             <Button style={{marginRight:"150px"}}onClick={handleClose}>Close</Button>
-            <Button  style={{marginRight:"20px"}} variant="outlined" color="error" onClick={handleDelete}>
+            <Button style={{marginRight:"20px"}} variant="contained" color="success" onClick={handleUpdate} >Save</Button>
+            <Button variant="contained" color="error" onClick={handleDelete}>
               Delete
             </Button>
-            <Button variant="outlined" color="success" onClick={handleUpdate} >Update</Button>
           </Box>
       </Modal>
 

@@ -16,65 +16,24 @@ import ArticleIcon from '@mui/icons-material/Article';
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton to={"/admin"}>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
       <ListItemText primary="Notification & Alerts" />
     </ListItemButton>
 
     <ListItemButton to={"/admin"}>
-      <ListItemIcon>
-        <BookOnlineIcon />
-      </ListItemIcon>
       <ListItemText primary="Auction Management" />
     </ListItemButton>
 
     <ListItemButton to={"/admin"}>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
       <ListItemText primary="Payment Management" />
     </ListItemButton>
 
     <ListItemButton to={"/admin"}>
-      <ListItemIcon>
-        <GradingIcon />
-      </ListItemIcon>
       <ListItemText primary="Customer support & Help" />
     </ListItemButton>
 
     <ListItemButton to={"/admin"}>
-      <ListItemIcon>
-        <ArticleIcon />
-      </ListItemIcon>
       <ListItemText primary="Report Analysis" />
     </ListItemButton>
 
   </React.Fragment>
 );
-
-// export const secondaryListItems = (
-//   <React.Fragment>
-//     <ListSubheader component="div" inset>
-//       Saved reports
-//     </ListSubheader>
-//     <ListItemButton>
-//       <ListItemIcon>
-//         <AssignmentIcon />
-//       </ListItemIcon>
-//       <ListItemText primary="Current month" />
-//     </ListItemButton>
-//     <ListItemButton>
-//       <ListItemIcon>
-//         <AssignmentIcon />
-//       </ListItemIcon>
-//       <ListItemText primary="Last quarter" />
-//     </ListItemButton>
-//     <ListItemButton>
-//       <ListItemIcon>
-//         <AssignmentIcon />
-//       </ListItemIcon>
-//       <ListItemText primary="Year-end sale" />
-//     </ListItemButton>
-//   </React.Fragment>
-// );

@@ -38,25 +38,26 @@ import AlertDetails from "../components/admin/AlertDetails"
 import SendEmail from "../components/admin/SendEmail"
 import LogoutIcon from '@mui/icons-material/Logout';
 
-const drawerWidth = 240;
+const drawerWidth = 0;
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+// const AppBar = styled(MuiAppBar, {
+//   shouldForwardProp: (prop) => prop !== "open",
+// })(({ theme, open }) => ({
+//   zIndex: theme.zIndex.drawer + 1,
+//   transition: theme.transitions.create(["width", "margin"], {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen
+//   }),
+//   ...(open && {
+//     marginLeft: drawerWidth,
+//     backgroundColor:"#232c61",
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     transition: theme.transitions.create(["width", "margin"], {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   }),
+// }));
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -64,7 +65,8 @@ const Drawer = styled(MuiDrawer, {
   "& .MuiDrawer-paper": {
     position: "relative",
     whiteSpace: "nowrap",
-    width: drawerWidth,
+    width: 260,
+    height: "100vh",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -122,10 +124,6 @@ const mdTheme = createTheme();
 function DashboardContent() {
 
   const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -153,104 +151,102 @@ function DashboardContent() {
   }
 
   return (
-    <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar position="absolute" open={open}>
-          <Toolbar
-            sx={{
-              pr: "24px", // keep right padding when drawer closed
-            }}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              sx={{
-                marginRight: "36px",
-                ...(open && { display: "none" }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Dashboard
-            </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
-            }}
-          >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          <List component="nav">
-            {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            <Button component="label" variant="contained" startIcon={<LogoutIcon />} onClick={logout}>
-              LogOut
-              <VisuallyHiddenInput type="file" />
-            </Button>
-          </List>
-        </Drawer>
+
+    <Box sx={{ flexGrow: 1,display:"block" }}>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+            
+              <Drawer variant="permanent" open={open}>
+                <List component="nav">
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <Avatar sx={{width:"100px",height:"100px"}}/>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <Divider sx={{width:"75%",mt:"10px"}}/>
+                  </div>
+                  {mainListItems}
+                  <Divider sx={{ my: 1 }} />
+                  <Button component="label" variant="contained" startIcon={<LogoutIcon />} onClick={logout}>
+                    LogOut
+                    <VisuallyHiddenInput type="file" />
+                  </Button>
+                </List>
+              </Drawer>
+
+        </Grid>
+        <Grid item xs={10}>
+
+                <Box
+                component="main"
+                sx={{
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "light"
+                      ? theme.palette.grey[100]
+                      : theme.palette.grey[900],
+                  flexGrow: 1,
+                  height: "100vh",
+                  overflow: "auto",
+                  width:"100%"
+                }}
+              >
+                  <Box sx={{ borderBottom: 1, borderColor: 'divider',width:"84vw",display:"flex",justifyContent: "center",alignItems: "center",padding: "10px 20px", }}>
+                      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
+                      indicatorColor="primary"
+                      textColor="inherit"
+                      variant="fullWidth"
+                      sx={{mt:"10px",ml:"20px",mr:"20px"}}>
+                          <Tab label="Send New Alerts" {...a11yProps(0)} sx={{backgroundColor:"green",borderRadius:"15px",width:"20vw",mr:"40px"}}/>
+                          <Tab label="Alert Details" {...a11yProps(1)} sx={{backgroundColor:"green",borderRadius:"15px",width:"20vw"}}/>
+                          <Tab label="Send Email" {...a11yProps(2)} sx={{backgroundColor:"green",borderRadius:"15px",width:"20vw",ml:"40px"}}/>                            
+                      </Tabs>
+                  </Box>
+                  <CustomTabPanel value={value} index={0}>
+                      <SendNewAlerts/> 
+                  </CustomTabPanel>
+                  <CustomTabPanel value={value} index={1}>
+                      <AlertDetails/>
+                  </CustomTabPanel>
+                  <CustomTabPanel value={value} index={2}>
+                      <SendEmail/>
+                  </CustomTabPanel>
+                </Box>
+
+        </Grid>
+      </Grid>
+    </Box>
+
+    // <ThemeProvider theme={mdTheme}>
+    //   <CssBaseline />
+    //   {/* <AppBar position="absolute" open={open}>
+    //       <Toolbar>
+    //         <Typography
+    //           component="h1"
+    //           variant="h6"
+    //           color="inherit"
+    //           noWrap
+    //           sx={{ flexGrow: 1 }}
+    //         >
+    //           AuctionPal
+    //         </Typography>
+    //         <IconButton color="inherit">
+    //           <Badge badgeContent={4} color="secondary">
+    //             <NotificationsIcon />
+    //           </Badge>
+    //         </IconButton>
+    //       </Toolbar>
+    //     </AppBar> */}
+
+    //   <Box sx={{ display: "flex" }}>
+
+        
         
 
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-            width:"100%"
-          }}
-        >
-          <Toolbar />
-
-          <Box sx={{ borderBottom: 1, borderColor: 'divider',width:"84vw" }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Send New Alerts" {...a11yProps(0)} />
-                <Tab label="Alert Details" {...a11yProps(1)} />
-                <Tab label="Send Email" {...a11yProps(2)} />
-                </Tabs>
-            </Box>
-            <CustomTabPanel value={value} index={0}>
-                <SendNewAlerts/> 
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-                <AlertDetails/>
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                <SendEmail/>
-            </CustomTabPanel>
-            </Box>
         
-      </Box>
+        
+
+    //   </Box>
       
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 
@@ -449,4 +445,5 @@ const VisuallyHiddenInput = styled('input')({
   whiteSpace: 'nowrap',
   width: 1,
 });
+
 

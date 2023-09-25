@@ -126,7 +126,7 @@ function SendEmail() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2,width:"50%" }}
+                sx={{ mt: 3, mb: 2,width:"50%",backgroundColor:"green" }}
               >
                 Send
               </Button>

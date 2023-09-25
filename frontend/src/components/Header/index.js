@@ -12,11 +12,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import Dropdown from "./Dropdown";
-const Navbar = () => {
+const Navbar = (props) => {
   const [dropdown, setDropdown] = useState(false);
+  const [width,setWidth] = useState(props.width?props.width:"100%")
   return (
     <>
-      <PrimaryNav>
+      <PrimaryNav style={{width}}>
         <Hamburger />
         <LeftAlignedMenuLogo>
           <MenuLink to="/" activeStyle>
