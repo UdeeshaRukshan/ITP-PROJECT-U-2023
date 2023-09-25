@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.get("/", feedback.getFeedbacks);
 router.post("/create", feedback.createFeedback);
+router.put("/update/:id", feedback.updateFeedback);
+router.post("/delete/:id", feedback.deleteFeedbacksById);
 
 module.exports = router;

@@ -19,7 +19,35 @@ const createFeedback = async (req, res, next) => {
     }
 }
 
+const updateFeedback = async (req, res, next) => {
+    try {
+        const updatedFeedback = await Feedback.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true }
+        );
+        res.status(200).json(updatedFeedback);
+    } catch (err) {
+        next(err);
+    }
+};
+
+const deleteFeedbacksById = async (req, res, next) => {
+    const id = req.params.id;
+    const feedback = await Feedback.findByIdAndDelete(id);
+    try {
+        if (feedback) {
+            return res.status(200).json({ error: false, message: "Feedback Deleted!", deletedFeedback: feedback });
+        }
+        return res.status(200).json({ error: true, message: "No Feedback Found!" });
+    } catch (err) {
+        next(err);
+    }
+};
+
 module.exports = {
     getFeedbacks,
-    createFeedback
+    createFeedback,
+    updateFeedback,
+    deleteFeedbacksById
 };
