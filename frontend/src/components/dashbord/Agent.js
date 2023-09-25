@@ -10,6 +10,8 @@ const Agent = () => {
   const [agents, setAgents] = useState([]);
   const [updateAgentId, setUpdateAgentId] = useState(null);
   const [qrCodeData, setQRCodeData] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredAgents, setFilteredAgents] = useState([]);
 
   const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);
   const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
@@ -193,6 +195,7 @@ const Agent = () => {
     setQRCodeData(reportUrl);
     setIsQRCodeVisible(true);
   };
+  //pdf download
 
   const downloadPdf = () => {
     axios
@@ -213,6 +216,19 @@ const Agent = () => {
         console.error("Error downloading PDF:", error);
       });
   };
+
+  //Search function
+
+  const handleSearch = () => {
+    // Filter the agents based on the search input
+    const filtered = agents.filter((agent) =>
+      agent.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+
+    // Update the filteredAgents state with the filtered results
+    setFilteredAgents(filtered);
+  };
+
   return (
     <div className="main-div">
       <div id="mySidenav" class="sidenav">
@@ -266,6 +282,15 @@ const Agent = () => {
       <br />
 
       <div className="col-div-8 displayA" id="displayArea">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Enter Agent Name"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
         <button className="add-agent" onClick={toggleAddAgentForm}>
           Add Agent
         </button>
@@ -394,37 +419,89 @@ const Agent = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {agents.map((agent) => (
-                    <tr key={agent._id}>
-                      <td>{agent.name}</td>
-                      <td>{agent.age}</td>
-                      <td>{agent.address}</td>
-                      <td>{agent.jobtype}</td>
-                      <td>
-                        <button
-                          className="btn btnAssign"
-                          style={{ backgroundColor: "blue", color: "white" }}
-                          onClick={() => handleAssign(agent._id)}
-                        >
-                          Assign
-                        </button>
-                        <button
-                          className="btn btnUpdate"
-                          style={{ backgroundColor: "green", color: "white" }}
-                          onClick={() => toggleUpdateAgentForm(agent._id)}
-                        >
-                          Update
-                        </button>
-                        <button
-                          className="btn btnDelete"
-                          style={{ backgroundColor: "red", color: "white" }}
-                          onClick={() => handleDelete(agent._id)}
-                        >
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  <tbody>
+                    {filteredAgents.map((agent) => (
+                      <tr key={agent._id}>
+                        {/* Agent details rendering code */}
+                      </tr>
+                    ))}
+                  </tbody>
+
+                  {searchInput === ""
+                    ? agents.map((agent) => (
+                        <tr key={agent._id}>
+                          <td>{agent.name}</td>
+                          <td>{agent.age}</td>
+                          <td>{agent.address}</td>
+                          <td>{agent.jobtype}</td>
+                          <td>
+                            <button
+                              className="btn btnAssign"
+                              style={{
+                                backgroundColor: "blue",
+                                color: "white",
+                              }}
+                              onClick={() => handleAssign(agent._id)}
+                            >
+                              Assign
+                            </button>
+                            <button
+                              className="btn btnUpdate"
+                              style={{
+                                backgroundColor: "green",
+                                color: "white",
+                              }}
+                              onClick={() => toggleUpdateAgentForm(agent._id)}
+                            >
+                              Update
+                            </button>
+                            <button
+                              className="btn btnDelete"
+                              style={{ backgroundColor: "red", color: "white" }}
+                              onClick={() => handleDelete(agent._id)}
+                            >
+                              Remove
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    : filteredAgents.map((agent) => (
+                        <tr key={agent._id}>
+                          <td>{agent.name}</td>
+                          <td>{agent.age}</td>
+                          <td>{agent.address}</td>
+                          <td>{agent.jobtype}</td>
+                          <td>
+                            <button
+                              className="btn btnAssign"
+                              style={{
+                                backgroundColor: "blue",
+                                color: "white",
+                              }}
+                              onClick={() => handleAssign(agent._id)}
+                            >
+                              Assign
+                            </button>
+                            <button
+                              className="btn btnUpdate"
+                              style={{
+                                backgroundColor: "green",
+                                color: "white",
+                              }}
+                              onClick={() => toggleUpdateAgentForm(agent._id)}
+                            >
+                              Update
+                            </button>
+                            <button
+                              className="btn btnDelete"
+                              style={{ backgroundColor: "red", color: "white" }}
+                              onClick={() => handleDelete(agent._id)}
+                            >
+                              Remove
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                 </tbody>
               </table>
               {isQRCodeVisible && qrCodeData && <QRCode value={qrCodeData} />}
