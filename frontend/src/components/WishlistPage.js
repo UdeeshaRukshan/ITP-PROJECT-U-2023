@@ -14,7 +14,7 @@ function WishlistPage() {
   useEffect(() => {
     // Fetch wishlist items from the backend when the component mounts
     axios
-      .get("/api/wishlist")
+      .get("http://localhost:4042/api/wishlist/getitem")
       .then((response) => {
         setWishlist(response.data);
       })

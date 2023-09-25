@@ -1,19 +1,24 @@
 // backend/routes/wishlistRoutes.js
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const wishlistController = require('../controllers/wishlistController');
+const {
+  createItem,
+  getAllItems,
+  updateItem,
+  deleteItem,
+} = require("../controllers/wishlistController");
 
 // Create a new wishlist item
-router.post('/', wishlistController.createItem);
+router.post("/create", createItem);
 
 // Get all wishlist items
-router.get('/', wishlistController.getAllItems);
+router.get("/getitem", getAllItems);
 
 // Update a wishlist item by ID
-router.put('/:id', wishlistController.updateItem);
+router.put("/update/:id", updateItem);
 
 // Delete a wishlist item by ID
-router.delete('/:id', wishlistController.deleteItem);
+router.delete("/delete/:id", deleteItem);
 
 module.exports = router;
