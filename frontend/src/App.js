@@ -17,7 +17,7 @@ import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
-
+import Agent from "./components/dashbord/Agent";
 import Checkout from "./pages/Checkout";
 
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
@@ -37,6 +37,7 @@ function App() {
           <Route path="/dashbord" element={<Dashboard />} />
           <Route path="/home" element={<IndexPage />} />
           <Route path="/payment" element={<Checkout />} />
+          <Route path="/dashbord/agent" element={<Agent />} />
 
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
