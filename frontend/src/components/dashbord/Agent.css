@@ -2,7 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
 
-  background-color: #cfc9c9;
+  background-color: #dbd5d5;
 
   font-family: system-ui;
 }
@@ -240,16 +240,19 @@ img {
   color: #ffffff;
   font-weight: 800;
 }
-
+.main-div {
+  background-color: #c9cad5;
+}
 /* Dashboard.css */
 /* Style for the user profile container */
 .user-profile {
-  background-color: #f4efef;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100vh;
   max-height: 70vh;
+  margin-bottom: 10vh;
 }
 
 /* Style for the profile title (username) */
@@ -423,7 +426,22 @@ button:hover {
 .popup-form label {
   color: black; /* Set label text color to black */
 }
+.popup-form {
+  position: absolute;
+  top: 50%; /* Adjust the top position as needed */
+  left: 50%; /* Adjust the left position as needed */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  margin-left: 9vh;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it's above other content */
+}
 
+.button-container {
+  text-align: center; /* Center the buttons */
+  margin-top: 10px; /* Adjust the margin as needed */
+}
 .popup-form input[type="text"],
 .popup-form input[type="number"] {
   width: 100%;
@@ -446,4 +464,21 @@ button:hover {
 .popup-form button[type="submit"]:hover,
 .popup-form button:hover {
   background-color: #0056b3;
+}
+.button-container {
+  display: flex;
+  margin-left: -5px;
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+.user-name {
+  padding-left: 5px;
+  font-size: 20px;
+}
+.add-agent {
+  display: inline;
+  align-items: center;
+  margin-left: 60%;
+  width: 18vh;
+  height: 5vh;
+  margin-bottom: 2vh;
 }

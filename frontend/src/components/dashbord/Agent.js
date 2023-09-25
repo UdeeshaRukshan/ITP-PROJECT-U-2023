@@ -7,13 +7,17 @@ const Agent = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [users, setUsers] = useState([]);
   const [agents, setAgents] = useState([]);
+  const [updateAgentId, setUpdateAgentId] = useState(null);
   const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
+  const [isUpdateAgentFormVisible, setIsUpdateAgentFormVisible] =
+    useState(false);
   const [formData, setFormData] = useState({
     name: "",
     address: "",
     age: "",
     jobtype: "",
   });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -77,11 +81,68 @@ const Agent = () => {
       });
   }, []);
 
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    // Send updated formData to your server using Axios or fetch
+    axios
+      .put(`http://localhost:4042/agent/update/${updateAgentId}`, formData)
+      .then((response) => {
+        console.log("Agent updated successfully");
+        // Optionally, you can reset the form fields
+        setFormData({
+          name: "",
+          address: "",
+          age: "",
+          jobtype: "",
+        });
+        // Optionally, you can hide the update form
+        toggleUpdateAgentForm();
+        // Refresh the agents list or update the specific agent in the list
+      })
+      .catch((error) => {
+        console.error("Error updating agent:", error);
+      });
+  };
+
   const toggleAddAgentForm = () => {
     setIsAddAgentFormVisible(!isAddAgentFormVisible);
   };
+  const toggleUpdateAgentForm = (agentId) => {
+    setIsUpdateAgentFormVisible(!isUpdateAgentFormVisible);
+    setUpdateAgentId(agentId); // Set the agent ID to update
+  };
+
+  //update form
+  useEffect(() => {
+    // Fetch agents from your server
+    axios
+      .get("http://localhost:4042/agent/agents")
+      .then((response) => {
+        setAgents(response.data);
+
+        // If updateAgentId is set, find the matching agent and populate the form
+        if (updateAgentId) {
+          const agentToUpdate = response.data.find(
+            (agent) => agent._id === updateAgentId
+          );
+          if (agentToUpdate) {
+            setFormData({
+              name: agentToUpdate.name,
+              age: agentToUpdate.age,
+              address: agentToUpdate.address,
+              jobtype: agentToUpdate.jobtype,
+            });
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching agents:", error);
+      });
+  }, [updateAgentId]);
+
   return (
-    <div>
+    <div className="main-div">
       <div id="mySidenav" class="sidenav">
         <p class="logo">
           <span>User</span> Profile
@@ -95,7 +156,7 @@ const Agent = () => {
             />
           )}
         </a>
-        <p class="user-name"> {users.username}</p>
+        <p className="user-name"> {users.username}</p>
 
         <a href="/dashbord" class="icon-a" id="btn1">
           <i class="fa fa-users icons"></i> &nbsp;&nbsp;Bidding History
@@ -132,11 +193,68 @@ const Agent = () => {
       <br />
       <br />
 
-      <div className="col-div-8" id="displayArea">
-        <div className="user-profile">
-          <button onClick={toggleAddAgentForm}>Add Agent</button>
+      <div className="col-div-8 displayA" id="displayArea">
+        <button className="add-agent" onClick={toggleAddAgentForm}>
+          Add Agent
+        </button>
 
-          {isAddAgentFormVisible && (
+        <div className="user-profile">
+          {isUpdateAgentFormVisible && (
+            <div className="popup-form">
+              <h3>Update Agent</h3>
+              <form onSubmit={handleUpdate}>
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="age">Age</label>
+                  <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    value={formData.age}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="address">Address</label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="jobtype">Job Type</label>
+                  <input
+                    type="text"
+                    id="jobtype"
+                    name="jobtype"
+                    value={formData.jobtype}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="button-container">
+                  <button type="submit">Update Agent</button>
+                  <button onClick={toggleUpdateAgentForm}>Cancel</button>
+                </div>
+              </form>
+            </div>
+          )}
+          {isAddAgentFormVisible ? (
             <div className="popup-form">
               <h3>Add New Agent</h3>
               <form onSubmit={handleSubmit}>
@@ -184,44 +302,61 @@ const Agent = () => {
                   />
                 </div>
 
-                <button type="submit">Add Agent</button>
+                <div className="button-container">
+                  <button type="submit">Add Agent</button>
+                  <button onClick={toggleAddAgentForm}>Cancel</button>
+                </div>
               </form>
-
-              {/* Add a "Cancel" button or close icon */}
-              <button onClick={toggleAddAgentForm}>Cancel</button>
+            </div>
+          ) : (
+            <div>
+              <h2>Agents</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Job Type</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {agents.map((agent) => (
+                    <tr key={agent._id}>
+                      <td>{agent.name}</td>
+                      <td>{agent.age}</td>
+                      <td>{agent.address}</td>
+                      <td>{agent.jobtype}</td>
+                      <td>
+                        <button
+                          className="btn btnAssign"
+                          style={{ backgroundColor: "blue", color: "white" }}
+                          onClick={() => handleAssign(agent._id)}
+                        >
+                          Assign
+                        </button>
+                        <button
+                          className="btn btnUpdate"
+                          style={{ backgroundColor: "green", color: "white" }}
+                          onClick={() => toggleUpdateAgentForm(agent._id)}
+                        >
+                          Update
+                        </button>
+                        <button
+                          className="btn btnDelete"
+                          style={{ backgroundColor: "red", color: "white" }}
+                          onClick={() => handleDelete(agent._id)}
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
-
-          <h2>Agents</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Address</th>
-                <th>Job Type</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {agents.map((agent) => (
-                <tr key={agent._id}>
-                  <td>{agent.name}</td>
-                  <td>{agent.age}</td>
-                  <td>{agent.address}</td>
-                  <td>{agent.jobtype}</td>
-                  <td>
-                    <button
-                      style={{ backgroundColor: "blue", color: "white" }}
-                      onClick={() => handleAssign(agent._id)}
-                    >
-                      Assign
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
