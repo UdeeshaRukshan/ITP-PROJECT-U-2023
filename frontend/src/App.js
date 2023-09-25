@@ -1,3 +1,4 @@
+import { MantineProvider} from '@mantine/core';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,13 +13,18 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import About from "./pages/About";
-import Products from "./pages/Products";
+import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
+import SubmitTicketPage from './pages/submitTicket/submitTicket';
+import Chatbot from './components/support/chatBot/Chatbot';
+import { Notifications } from '@mantine/notifications';
 
 function App() {
   return (
+    <MantineProvider withGlobalStyles withNormalizeCSS> 
+    <Notifications position='top-center'/>
     <div className="App">
       <Header />
       <Routes>
@@ -26,7 +32,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashbord" element={<Dashboard />} />
+
+        <Route path="/contactUs" element={<ContactUs />} />
+<Route path="/ticket/submit" element={<SubmitTicketPage/>} />
+<Route path="/support/chatbot" element={<Chatbot/>} />
+{/*<Route path="/support/mytickets" element={<MyTickets/>}/>
+
         <Route path="/home" element={<IndexPage />} />
+
 
         {/* <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -41,6 +54,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+    </MantineProvider>
   );
 }
 
