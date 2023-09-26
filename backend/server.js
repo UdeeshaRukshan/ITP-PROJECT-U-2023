@@ -8,6 +8,7 @@ const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
 const image = require("./models/image");
 const agentRouter = require("./Routes/agentroute");
+const WishlistRoute = require("./Routes/wishlistRoute");
 const cloudinary = require("cloudinary").v2;
 const Multer = require("multer");
 dotenv.config();
@@ -111,5 +112,5 @@ app.use(express.json());
 
 app.use("/", authRoute);
 app.use("/ticket", ticketRoute);
-
+app.use("/wishlist", WishlistRoute);
 app.use("/agent", agentRouter);

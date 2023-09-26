@@ -19,7 +19,7 @@ import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
 import Checkout from "./pages/Checkout";
-
+import Wishlist from "./components/wishlist/wishlist";
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
@@ -38,6 +38,7 @@ function App() {
           <Route path="/home" element={<IndexPage />} />
           <Route path="/payment" element={<Checkout />} />
           <Route path="/dashbord/agent" element={<Agent />} />
+          <Route path="/wishlistadd" element={<Wishlist />} />
 
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
