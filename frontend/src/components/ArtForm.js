@@ -81,7 +81,12 @@ function ArtForm() {
               placeholder="e.g., 120"
               required
               onChange={(e) =>{
-                setHeight(e.target.value);
+                const inputHeight = e.target.value;
+               if (inputHeight > 0) {
+                setValue(inputHeight);
+                } else {
+                alert("Must enter valid height");
+                }
               }}/>
           </div>
           <div className="col">
@@ -93,7 +98,12 @@ function ArtForm() {
               placeholder="e.g., 145"
               required
               onChange={(e) =>{
-                setWidth(e.target.value);
+                const inputWidth = e.target.value;
+               if (inputWidth > 0) {
+                setValue(inputWidth);
+                } else {
+                alert("Must enter valid width");
+                }
               }}/>
           </div>
         </div>
@@ -127,7 +137,12 @@ function ArtForm() {
           placeholder="e.g., 12 000"
           required
           onChange={(e) =>{
-            setValue(e.target.value);
+            const inputOpeningValue = e.target.value;
+               if (inputOpeningValue > 0) {
+                setValue(inputOpeningValue);
+                } else {
+                alert("Must enter valid value");
+                }
           }}/><br />
 
         <label htmlFor="images">Images (multiple):</label>

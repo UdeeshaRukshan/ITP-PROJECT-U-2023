@@ -105,9 +105,14 @@ function sendData(e){
   </div>
   <div className="col">
     <label htmlFor="mileage">Mileage:</label>
-    <input type="number" id="mileage" name="mileage" placeholder="e.g., 3200" required min="1"
+    <input type="number" id="mileage" name="mileage" placeholder="e.g., 3200" required 
     onChange={(e) =>{
-      setMileage(e.target.value);
+      const inputMileage = e.target.value;
+               if (inputMileage > 0) {
+                setValue(inputMileage);
+                } else {
+                alert("Must enter valid value");
+                }
     }}/>
   </div>
     </div>
@@ -134,9 +139,14 @@ function sendData(e){
         </select><br />
 
         <label htmlFor="openingValue">Set a opening value to auction your vehicle:(Rs)</label>
-        <input type="number" id="openingValue" name="openingValue" placeholder="e.g., 60lakhs" required min="1"
+        <input type="number" id="openingValue" name="openingValue" placeholder="e.g., 60lakhs" required 
         onChange={(e) =>{
-          setValue(e.target.value);
+          const inputOpeningValue = e.target.value;
+               if (inputOpeningValue > 0) {
+                setValue(inputOpeningValue);
+                } else {
+                alert("Must enter valid value");
+                }
         }}/><br/>
 
         <label htmlFor="image">Images:(Please add at least 6 photos of the interior and exterior of the vehicle) </label>

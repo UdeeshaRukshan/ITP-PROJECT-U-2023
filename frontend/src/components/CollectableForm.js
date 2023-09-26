@@ -82,7 +82,12 @@ function CollectableForm() {
           placeholder="e.g., 100"
           required
           onChange={(e) =>{
-            setValue(e.target.value);
+            const inputOpeningValue = e.target.value;
+               if (inputOpeningValue > 0) {
+                setValue(inputOpeningValue);
+                } else {
+                alert("Must enter valid value");
+                }
           }}
         />
 
