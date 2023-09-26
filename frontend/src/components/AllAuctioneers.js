@@ -34,7 +34,7 @@ export default function AllAuctioneers() {
         <td>
         <div className="button-container">
           <button className="approve-button" onClick={() => handleApprove(auctioneer._id)}>
-            Update
+            Approve
           </button>
           <button className="delete-button" onClick={() => handleDelete(auctioneer._id)}>
             Delete

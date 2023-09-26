@@ -33,7 +33,7 @@ export default function AllProperties() {
         <td>
         <div className="button-container">
           <button className="approve-button" onClick={() => handleApprove(property._id)}>
-            Update
+            Approve
           </button>
           <button className="delete-button" onClick={() => handleDelete(property._id)}>
             Delete

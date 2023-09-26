@@ -47,7 +47,7 @@ export default function AllVehicles() {
         <td>
         <div className="button-container">
           <button className="approve-button" onClick={() => handleApprove(vehicle._id)}>
-            Update
+            Approve
           </button>
           <button className="delete-button" onClick={() => handleDelete(vehicle._id)}>
             Delete

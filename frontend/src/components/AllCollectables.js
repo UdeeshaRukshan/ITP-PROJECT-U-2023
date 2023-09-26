@@ -32,7 +32,7 @@ export default function AllCollectables() {
         <td>
         <div className="button-container">
           <button className="approve-button" onClick={() => handleApprove(collectable._id)}>
-            Update
+            Approve
           </button>
           <button className="delete-button" onClick={() => handleDelete(collectable._id)}>
             Delete

@@ -35,7 +35,7 @@ export default function AllArts() {
         <td>
         <div className="button-container">
           <button className="approve-button" onClick={() => handleApprove(art._id)}>
-            Update
+            Approve
           </button>
           <button className="delete-button" onClick={() => handleDelete(art._id)}>
             Delete
