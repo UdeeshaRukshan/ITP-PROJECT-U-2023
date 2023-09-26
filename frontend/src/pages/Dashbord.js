@@ -120,7 +120,7 @@ const Dashboard = () => {
     setimgupload(true);
   };
   return (
-    <div>
+    <div className="main-div">
       <div id="mySidenav" class="sidenav">
         <p class="logo">
           <span>User</span> Profile
@@ -145,10 +145,15 @@ const Dashboard = () => {
         </button>
         {/* </Link> */}
 
-        <a href="" class="icon-a" id="btn1">
+        <a href="/dashbord" class="icon-a" id="btn1">
           <i class="fa fa-users icons"></i> &nbsp;&nbsp;Bidding History
         </a>
-        <a href="" class="icon-a" id="btn2" onclick="changeContent()">
+        <a
+          href="/dashbord/agent"
+          class="icon-a"
+          id="btn2"
+          onclick="changeContent()"
+        >
           <i class="fa fa-video-camera"></i> &nbsp;&nbsp;Order History
         </a>
         <a href="" class="icon-a" id="btn3">
