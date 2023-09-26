@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Agent.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import QRCode from "qrcode.react";
+
 const Agent = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [users, setUsers] = useState([]);

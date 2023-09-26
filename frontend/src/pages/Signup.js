@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
+import "./SignUp.css";
 function Copyright(props) {
   return (
     <Typography
