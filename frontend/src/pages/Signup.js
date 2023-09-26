@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -10,7 +10,7 @@ import { InputLabel } from "@mui/material";
 import Select from "@mui/material/Select";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -111,9 +111,10 @@ const Signup = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <img
+            class="login-img"
+            src="https://res.cloudinary.com/dkflvz7re/image/upload/v1695736356/ibrezjjiztmfuqduuwox.png"
+          />
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -216,6 +217,7 @@ const Signup = () => {
                   label="Age"
                   name="age"
                   onChange={handleOnChange}
+                  style={{ width: "100%", height: "20px" }}
                 >
                   <MenuItem value={10}>Ten</MenuItem>
                   <MenuItem value={20}>Twenty</MenuItem>

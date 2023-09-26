@@ -212,6 +212,7 @@ const Login = () => {
           </Box>
         </Grid>
       </Grid>
+      <ToastContainer />
     </ThemeProvider>
     // <div className="form_containerr">
     //   <h2>Login Account</h2>
@@ -241,7 +242,7 @@ const Login = () => {
     //       Already have an account? <Link to={"/signup"}>Signup</Link>
     //     </span>
     //   </form>
-    //   <ToastContainer />
+    //
     // </div>
   );
 };
