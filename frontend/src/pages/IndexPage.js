@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./indexPage.css";
 import "react-slideshow-image/dist/styles.css";
 
-import { Fade, Zoom, Slide } from "react-slideshow-image";
+import { Fade } from "react-slideshow-image";
 const slideImages = [
   {
     url: "https://www.tm5properties.com/uploads/unnamed-1.jpg",
@@ -36,10 +36,6 @@ const slideImages = [
   },
 ];
 const IndexPage = () => {
-  // const boxStyle = {
-  //   height: "250px",
-  //   width: "250px", // Adjust the height as needed
-  // };
   const bar = {
     height: "100px",
   };

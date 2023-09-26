@@ -128,12 +128,13 @@ const Dashboard = () => {
         <a>
           {imageUrls.length > 0 && (
             <img
+              className="img-x"
               style={{ width: "20vh", height: "20vh" }}
               src={imageUrls[0].url} // Display the first image from the array
               alt={`Image 0`}
             />
           )}
-          <p class="user-name"> {users.username}</p>
+          <p class="user-name"> {users.firstname}</p>
         </a>
 
         {/* <Link to={"/dashbord"} class="icon-a" id="btn1"> */}
@@ -240,12 +241,22 @@ const Dashboard = () => {
                 />
               </div>
               <div className="form-group">
-                <label>Username:</label>
+                <label>firstname</label>
                 <input
                   type="text"
-                  value={editedUser.username}
+                  value={editedUser.firstname}
                   onChange={(e) =>
-                    setEditedUser({ ...editedUser, username: e.target.value })
+                    setEditedUser({ ...editedUser, firstname: e.target.value })
+                  }
+                />
+              </div>
+              <div className="form-group">
+                <label>lastname</label>
+                <input
+                  type="text"
+                  value={editedUser.lastname}
+                  onChange={(e) =>
+                    setEditedUser({ ...editedUser, lastname: e.target.value })
                   }
                 />
               </div>
@@ -281,7 +292,10 @@ const Dashboard = () => {
                 <strong>Email:</strong> {users.email}
               </p>
               <p>
-                <strong>Username:</strong> {users.username}
+                <strong>Firstname:</strong> {users.firstname}
+              </p>
+              <p>
+                <strong>Lastname:</strong> {users.lastname}
               </p>
               <p>
                 <strong>Age:</strong> {users.age}

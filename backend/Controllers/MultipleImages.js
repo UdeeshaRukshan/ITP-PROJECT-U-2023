@@ -4,7 +4,8 @@ const Image = require("../models/multipleImages");
 module.exports.StoreImages = async (req, res) => {
   try {
     const imageUrl = req.file.path; // This is the temporary path of the uploaded image
-    const image = new Image({ imageUrl });
+    const publicId = req.body.public_id; // Assuming you send the public_id in the request body
+    const image = new Image({ imageUrl, publicId }); // Save the publicId along with the image URL
     await image.save();
     res.status(201).json({ success: true, imageUrl });
   } catch (error) {
