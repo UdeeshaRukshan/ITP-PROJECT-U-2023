@@ -80,6 +80,7 @@ function sendData(e){
             min="1900" // Set the minimum year to allow
             max="2099" // Set the maximum year to allow
             step="1"    // Set the step to 1 to allow whole numbers only
+            placeholder="e.g., 2000"
             required
           onChange={(e) => {
           setModel(e.target.value);
