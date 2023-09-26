@@ -28,7 +28,7 @@ function Copyright() {
   );
 }
 
-const steps = ["User Information", "Payment Details", "Review Your Order"];
+const steps = ["User Info", "Payment Info", "Review "];
 
 function getStepContent(step) {
   switch (step) {
@@ -68,7 +68,7 @@ export default function Checkout() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            AuctionPal
           </Typography>
         </Toolbar>
       </AppBar>
@@ -113,7 +113,7 @@ export default function Checkout() {
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                  {activeStep === steps.length - 1 ? "Pay Now" : "Next"}
                 </Button>
               </Box>
             </React.Fragment>
