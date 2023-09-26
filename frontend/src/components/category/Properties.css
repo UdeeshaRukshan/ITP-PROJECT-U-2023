@@ -27,19 +27,6 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="email"],
-select,
-textarea,
-input[type="file"] {
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
 select {
   appearance: none; /* Remove default styles on select */
 }

@@ -23,12 +23,6 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-  border: 2px solid #ccc;
-}
-
 .submit_button {
   width: 100%;
   padding: 10px;
