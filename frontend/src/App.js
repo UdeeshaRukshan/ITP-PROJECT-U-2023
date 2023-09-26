@@ -1,34 +1,62 @@
+// client/src/App.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import './App.css';
 
-const Wishlist = () => {
-  const [wishlist, setWishlist] = useState([]);
+function App() {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
 
   useEffect(() => {
-    axios.get('/api/wishlist').then((response) => {
-      setWishlist(response.data);
-    });
+    fetch('/api/tasks')
+      .then((res) => res.json())
+      .then((data) => setTasks(data))
+      .catch((error) => console.error(error));
   }, []);
 
-  const handleRemoveItem = (itemId) => {
-    axios.delete(`/api/wishlist/${itemId}`).then(() => {
-      setWishlist(wishlist.filter((item) => item._id !== itemId));
-    });
+  const addTask = () => {
+    fetch('/api/tasks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: newTask }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setTasks([...tasks, data]);
+        setNewTask('');
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const deleteTask = (id) => {
+    fetch(`/api/tasks/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        const updatedTasks = tasks.filter((task) => task._id !== id);
+        setTasks(updatedTasks);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
-    <div>
-      <h1>Wishlist</h1>
+    <div className="App">
+      <h1>Task List</h1>
+      <input
+        type="text"
+        value={newTask}
+        onChange={(e) => setNewTask(e.target.value)}
+      />
+      <button onClick={addTask}>Add Task</button>
       <ul>
-        {wishlist.map((item) => (
-          <li key={item._id}>
-            {item.name} - {item.description}
-            <button onClick={() => handleRemoveItem(item._id)}>Remove</button>
+        {tasks.map((task) => (
+          <li key={task._id}>
+            {task.title}{' '}
+            <button onClick={() => deleteTask(task._id)}>Delete</button>
           </li>
         ))}
       </ul>
     </div>
   );
-};
+}
 
-export default Wishlist;
+export default App;
