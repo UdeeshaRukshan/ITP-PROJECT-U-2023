@@ -19,11 +19,20 @@ import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
 
 import Checkout from "./pages/Checkout";
-
+//madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
-
+//nuwani
+import PersonalDetails from "./components/category/PersonalDetails";
+import ArtForm from "./components/category/ArtForm";
+import VehiclesForm from "./components/category/VehiclesForm";
+import CollectableForm from "./components/category/CollectableForm";
+import PropertiesForm from "./components/category/PropertiesForm";
+import AllAuctioneers from "./components/category/AllAuctioneers";
+import AllArts from "./components/category/AllArts";
+import AllProperties from "./components/category/AllProperties";
+import AllCollectables from "./components/category/AllCollectables";
 function App() {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
@@ -37,10 +46,20 @@ function App() {
           <Route path="/dashbord" element={<Dashboard />} />
           <Route path="/home" element={<IndexPage />} />
           <Route path="/payment" element={<Checkout />} />
-
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
           <Route path="/support/chatbot" element={<Chatbot />} />
+
+          <Route path="/add" exact element={<PersonalDetails />} />
+          <Route path="/addart" exact element={<ArtForm />} />
+          <Route path="/addvehicle" exact element={<VehiclesForm />} />
+          <Route path="/addcollectable" exact element={<CollectableForm />} />
+          <Route path="/addproperty" exact element={<PropertiesForm />} />
+          <Route path="/getauctioneers" exact element={<AllAuctioneers />} />
+          <Route path="/getarts" exact element={<AllArts />} />
+          <Route path="/getproperties" exact element={<AllProperties />} />
+          <Route path="/getcollectables" exact element={<AllCollectables />} />
+          <Route path="/getvehicles" exact element={<AllProperties />} />
         </Routes>
         <Footer />
       </div>
