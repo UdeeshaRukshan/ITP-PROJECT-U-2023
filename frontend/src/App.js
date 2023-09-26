@@ -23,7 +23,7 @@ import Checkout from "./pages/Checkout";
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
-
+import MultiImage from "./cloudinary/multipleimage";
 function App() {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
@@ -38,6 +38,7 @@ function App() {
           <Route path="/home" element={<IndexPage />} />
           <Route path="/payment" element={<Checkout />} />
           <Route path="/dashbord/agent" element={<Agent />} />
+          <Route path="/multiimage" element={<MultiImage />} />
 
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
