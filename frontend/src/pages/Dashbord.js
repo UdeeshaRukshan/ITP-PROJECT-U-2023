@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "./Dashbord.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -18,6 +20,32 @@ const Dashboard = () => {
   const [imgUP, setimgupload] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
+  const [cookies, removeCookie] = useCookies([]);
+  const [username, setUsername] = useState("");
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+      }
+      const { data } = await axios.post(
+        "http://localhost:4042",
+        {},
+        { withCredentials: true }
+      );
+      const { status, user } = data;
+      setUsername(user);
+      return status
+        ? toast(`Hello ${user}`, {
+            position: "top-right",
+          })
+        : (removeCookie("token"), navigate("/login"));
+    };
+    verifyCookie();
+  }, [cookies, navigate, removeCookie]);
+  const Logout = () => {
+    removeCookie("token");
+    navigate("/signup");
+  };
   useEffect(() => {
     axios
       .get("http://localhost:4042/dashbord") // Fix the URL, add "http://"
@@ -121,6 +149,7 @@ const Dashboard = () => {
   };
   return (
     <div className="main-div">
+      <button onClick={Logout}>LOGOUT</button>
       <div id="mySidenav" class="sidenav">
         <p class="logo">
           <span>User</span> Profile
@@ -321,6 +350,7 @@ const Dashboard = () => {
         </div>
       </div>
       {/* ... (remaining code) */}
+      <ToastContainer />
     </div>
   );
 };
