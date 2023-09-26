@@ -289,7 +289,9 @@ const Agent = () => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button className="search-btn" onClick={handleSearch}>
+            Search
+          </button>
         </div>
         <button className="add-agent" onClick={toggleAddAgentForm}>
           Add Agent
@@ -441,7 +443,7 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-                              onClick={() => handleAssign(agent._id)}
+                              //onClick={() => handleAssign(agent._id)}
                             >
                               Assign
                             </button>
@@ -478,7 +480,7 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-                              onClick={() => handleAssign(agent._id)}
+                              //onClick={() => handleAssign(agent._id)}
                             >
                               Assign
                             </button>

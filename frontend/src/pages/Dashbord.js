@@ -134,7 +134,7 @@ const Dashboard = () => {
               alt={`Image 0`}
             />
           )}
-          <p class="user-name"> {users.firstname}</p>
+          <p class="user-name"> {users.firstname + " " + users.lastname}</p>
         </a>
 
         {/* <Link to={"/dashbord"} class="icon-a" id="btn1"> */}
@@ -183,7 +183,7 @@ const Dashboard = () => {
 
       <div className="col-div-8" id="displayArea">
         <div className="user-profile">
-          <h1 className="profile-title">{users.username}'s Profile</h1>
+          <h1 className="profile-title">{users.firstname} 's Profile</h1>
           {imgUP ? (
             <div>
               <input

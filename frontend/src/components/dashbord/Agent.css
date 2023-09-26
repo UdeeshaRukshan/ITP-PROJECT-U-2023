@@ -486,3 +486,12 @@ button:hover {
   margin-left: 65%;
   margin-top: 5vh;
 }
+
+.search-bar {
+  display: flex;
+  width: 50vh;
+}
+
+.search-btn {
+  height: 5.5vh;
+}
