@@ -1,50 +1,70 @@
+const Item = require('../models/Item');
 
-const Item = require('../models/item');
-
-const getItems = async (req, res) => {
+// Get all items
+exports.getAllItems = async (req, res) => {
   try {
     const items = await Item.find();
     res.json(items);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Unable to fetch items' });
   }
 };
 
-const addItem = async (req, res) => {
+// Create a new item
+exports.createItem = async (req, res) => {
+  const { name, description } = req.body;
+  const newItem = new Item({ name, description });
+
   try {
-    const { name, description } = req.body;
-    const newItem = new Item({ name, description });
-    await newItem.save();
-    res.status(201).json(newItem);
+    const savedItem = await newItem.save();
+    res.status(201).json(savedItem);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: 'Unable to create item' });
   }
 };
 
-const updateItem = async (req, res) => {
+// Get a single item by ID
+exports.getItemById = async (req, res) => {
+  const itemId = req.params.itemId;
+
   try {
-    const { id } = req.params;
-    const { name, description } = req.body;
-    const updatedItem = await Item.findByIdAndUpdate(id, { name, description }, { new: true });
+    const item = await Item.findById(itemId);
+    if (!item) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    res.json(item);
+  } catch (err) {
+    res.status(500).json({ error: 'Unable to fetch item' });
+  }
+};
+
+// Update an item by ID
+exports.updateItem = async (req, res) => {
+  const itemId = req.params.itemId;
+  const { name, description } = req.body;
+
+  try {
+    const updatedItem = await Item.findByIdAndUpdate(itemId, { name, description }, { new: true });
+    if (!updatedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
     res.json(updatedItem);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: 'Unable to update item' });
   }
 };
 
-const deleteItem = async (req, res) => {
+// Delete an item by ID
+exports.deleteItem = async (req, res) => {
+  const itemId = req.params.itemId;
+
   try {
-    const { id } = req.params;
-    await Item.findByIdAndRemove(id);
-    res.json({ message: 'Item deleted' });
+    const deletedItem = await Item.findByIdAndRemove(itemId);
+    if (!deletedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    res.json(deletedItem);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: 'Unable to delete item' });
   }
-};
-
-module.exports = {
-  getItems,
-  addItem,
-  updateItem,
-  deleteItem,
 };

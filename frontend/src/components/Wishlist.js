@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Wishlist({ wishlist, onRemoveFromWishlist }) {
+const Wishlist = () => {
+  const [wishlist, setWishlist] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/wishlist').then((response) => {
+      setWishlist(response.data);
+    });
+  }, []);
+
+  const handleRemoveItem = (itemId) => {
+    axios.delete(`/api/wishlist/${itemId}`).then(() => {
+      setWishlist(wishlist.filter((item) => item._id !== itemId));
+    });
+  };
+
   return (
-    <div className="wishlist">
-      <h2>Wishlist</h2>
-      {wishlist.map((item) => (
-        <div key={item._id} className="wishlist-item">
-          <h3>{item.name}</h3>
-          <button onClick={() => onRemoveFromWishlist(item)}>Remove from Wishlist</button>
-        </div>
-      ))}
+    <div>
+      <h1>Wishlist</h1>
+      <ul>
+        {wishlist.map((item) => (
+          <li key={item._id}>
+            {item.name} - {item.description}
+            <button onClick={() => handleRemoveItem(item._id)}>Remove</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
 
 export default Wishlist;

@@ -1,55 +1,39 @@
 const Wishlist = require('../models/Wishlist');
-const Item = require('../models/item');
 
-const getWishlist = async (req, res) => {
+// Get the user's wishlist
+exports.getWishlist = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const wishlist = await Wishlist.findOne({ userId }).populate('items');
-    res.json(wishlist);
+    const wishlist = await Wishlist.findOne(); // Assuming there's only one wishlist
+    res.json(wishlist.items);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Unable to fetch wishlist' });
   }
 };
 
-const addToWishlist = async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const { itemId } = req.body;
-    
-    const wishlist = await Wishlist.findOne({ userId });
+// Add an item to the wishlist
+exports.addToWishlist = async (req, res) => {
+  const itemId = req.body.itemId; // Assuming you send the item ID in the request body
 
-    if (!wishlist) {
-      const newWishlist = new Wishlist({ userId, items: [itemId] });
-      await newWishlist.save();
-      res.status(201).json(newWishlist);
-    } else {
-      wishlist.items.push(itemId);
-      await wishlist.save();
-      res.json(wishlist);
-    }
+  try {
+    const wishlist = await Wishlist.findOne(); // Assuming there's only one wishlist
+    wishlist.items.push(itemId);
+    const updatedWishlist = await wishlist.save();
+    res.json(updatedWishlist.items);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: 'Unable to add item to wishlist' });
   }
 };
 
-const removeFromWishlist = async (req, res) => {
+// Remove an item from the wishlist
+exports.removeFromWishlist = async (req, res) => {
+  const itemId = req.params.itemId;
+
   try {
-    const { userId, itemId } = req.params;
-    const wishlist = await Wishlist.findOne({ userId });
-
-    if (wishlist) {
-      wishlist.items = wishlist.items.filter((item) => item.toString() !== itemId);
-      await wishlist.save();
-    }
-
-    res.json({ message: 'Item removed from wishlist' });
+    const wishlist = await Wishlist.findOne(); // Assuming there's only one wishlist
+    wishlist.items.pull(itemId);
+    const updatedWishlist = await wishlist.save();
+    res.json(updatedWishlist.items);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: 'Unable to remove item from wishlist' });
   }
-};
-
-module.exports = {
-  getWishlist,
-  addToWishlist,
-  removeFromWishlist,
 };
