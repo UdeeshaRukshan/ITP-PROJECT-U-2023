@@ -31,19 +31,15 @@ export default function AllProperties() {
         <td>{property.value}</td>
         <td>{property.images}</td>
         <td>
-          <button
-            className="approve-button"
-            onClick={() => handleApprove(property._id)}
-          >
+        <div className="button-container">
+          <button className="approve-button" onClick={() => handleApprove(property._id)}>
             Update
           </button>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(property._id)}
-          >
+          <button className="delete-button" onClick={() => handleDelete(property._id)}>
             Delete
           </button>
-        </td>
+        </div>
+      </td>
       </tr>
     ));
   };

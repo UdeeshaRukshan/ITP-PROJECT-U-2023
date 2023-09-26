@@ -13,8 +13,6 @@ function VehicleForm() {
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
-
-  let imageURL = '';
   
 function sendData(e){
   e.preventDefault();
@@ -57,7 +55,8 @@ function sendData(e){
       
        <form onSubmit={sendData}>
 
-      <h2>Vehicle Info</h2>
+      <h2>Tell Us About Your Vehicle</h2>
+  
         <label htmlFor="vehicleNumber">Vehicle Number:</label>
         <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="e.g., ABC-2056" required
         onChange={(e) =>{
@@ -66,7 +65,7 @@ function sendData(e){
 
         <div className="row">
           <div className="col">
-            <label htmlFor="model">Model:</label>
+            <label htmlFor="model"> Vehicle Model:</label>
             <input type="text" id="model" name="model" placeholder="e.g., Honda Civic" required
             onChange={(e) =>{
               setYear(e.target.value);
@@ -105,18 +104,11 @@ function sendData(e){
     </select>
   </div>
   <div className="col">
-       <label htmlFor="mileage">Mileage:</label>
-       <input type="number" id="mileage" name="mileage" placeholder="e.g., 3200" required
-         onChange={(e) => {
-          const inputMileage = e.target.value;
-          if (inputMileage > 0) {
-          setMileage(inputMileage);
-          } else {
-          alert("Must enter valid mileage");
-        }
-        }}
-       />
-
+    <label htmlFor="mileage">Mileage:</label>
+    <input type="number" id="mileage" name="mileage" placeholder="e.g., 3200" required min="1"
+    onChange={(e) =>{
+      setMileage(e.target.value);
+    }}/>
   </div>
     </div>
 
@@ -126,7 +118,7 @@ function sendData(e){
           setFeatures(e.target.value);
         }}></textarea><br></br>
 
-        <label htmlFor="location">Location:</label>
+        <label htmlFor="location">Where is this vehicle located:</label>
         <select class="form-select" id="location" name="location" required 
         onChange={(e) =>{
           setLocation(e.target.value);
@@ -141,43 +133,21 @@ function sendData(e){
           <option value="Anuradhapura">Anuradhapura</option>
         </select><br />
 
-        <label htmlFor="openingValue">Opening Value:(Rs)</label>
-           <input type="number" id="openingvalue" name="openingvalue" placeholder="e.g., 75lakhs" required
-             onChange={(e) => {
-              const inputOpeningValue = e.target.value;
-               if (inputOpeningValue > 0) {
-                setValue(inputOpeningValue);
-                } else {
-                alert("Must enter valid value");
-                }
-            }}/>
+        <label htmlFor="openingValue">Set a opening value to auction your vehicle:(Rs)</label>
+        <input type="number" id="openingValue" name="openingValue" placeholder="e.g., 60lakhs" required min="1"
+        onChange={(e) =>{
+          setValue(e.target.value);
+        }}/><br/>
 
-         <label htmlFor="images">Images:(Please add at least 6 photos of the interior and exterior of the vehicle) </label>
+        <label htmlFor="image">Images:(Please add at least 6 photos of the interior and exterior of the vehicle) </label>
+        <input type="file" id="images" name="images" accept="image/*" multiple required
+        onChange={(e) =>{
+          setImages(e.target.value);
+        }}/><br></br>
 
-           <input type="file" id="images" name="images" accept="image/*" multiple required
-
-             onChange={(e) => {
-
-              const selectedFiles = e.target.files;
-              const validImages = [];
-            
-              if (selectedFiles) {
-                for (let i = 0; i < selectedFiles.length; i++) {
-                  const file = selectedFiles[i];
-                  const reader = new FileReader();
-                  reader.onload = (event) => {
-                    const imageURL = event.target.result; // This is the image URL
-                    validImages.push(imageURL);
-                    // Now you can use imageURL or add it to your state as needed.
-                  };
-                  reader.readAsDataURL(file);
-                }
-              }
-              setImages(validImages);
-            }}/><br></br>
-
-         <button type="submit">Submit</button>
-         
+       
+          <button type="submit">Submit</button>
+       
       </form>
     </div>
   );

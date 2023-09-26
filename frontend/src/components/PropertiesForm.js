@@ -39,8 +39,8 @@ function PropertyForm() {
   return (
     <div className="container">
       <form onSubmit={sendData}>
-      <h2>Add a New Property</h2>
-      <h6 className="bold-header">Property Address</h6>
+      <h2>Tell Us About Your Property</h2>
+      <h6 className="bold-header">Property Location</h6>
         <label htmlFor="address">Address:</label>
         <input
           type="text"
@@ -84,18 +84,18 @@ function PropertyForm() {
           <option value="Anuradhapura">Anuradhapura</option>
         </select><br />
 
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="description">Give a description:</label>
         <textarea
           id="description"
           name="description"
-          placeholder="Property description"
+          placeholder="Located on the riverside.A modern two story house.Five bedrooms with attached bathrooms."
           required
           onChange={(e) =>{
             setDescription(e.target.value);
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Opening Value:(Rs)</label>
+        <label htmlFor="openingValue">Set a opening value to auction your property:(Rs)</label>
         <input 
         type="number" 
         id="openingvalue" 

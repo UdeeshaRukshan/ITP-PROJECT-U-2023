@@ -104,6 +104,8 @@ export default function PersonalDetails() {
     <option value="Negambo">Negambo</option>
   </select>
 
+  
+
   <br></br>
       <button type="submit">Submit</button>
     </form>

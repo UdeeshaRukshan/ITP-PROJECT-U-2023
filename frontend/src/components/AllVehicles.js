@@ -25,8 +25,8 @@ export default function AllVehicles() {
     return vehicles.map((vehicle) => (
       <tr key={vehicle._id}>
         <td>{vehicle.vehicleNumber}</td>
-        <td>{vehicle.year}</td>
         <td>{vehicle.model}</td>
+        <td>{vehicle.year}</td>
         <td>{vehicle.fuelType}</td>
         <td>{vehicle.mileage}</td>
         <td>{vehicle.features}</td>
@@ -68,9 +68,10 @@ export default function AllVehicles() {
             <th>Year</th>
             <th>Model</th>
             <th>Fuel Type</th>
-            <th>Condition</th>
+            <th>Mileage</th>
+            <th>Features</th>
             <th>Location</th>
-            <th>Value</th>
+            <th>Value</th> 
             <th>Images</th> 
             <th>Action</th>
           </tr>

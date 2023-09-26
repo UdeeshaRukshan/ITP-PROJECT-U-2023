@@ -37,7 +37,7 @@ function CollectableForm() {
   return (
     <div className="container">
       <form onSubmit={sendData}>
-      <h2>Add a New Collectible</h2>
+      <h2>Tell Us About Your Item</h2>
       <select class="form-select" aria-label="Default select example" required
       onChange={(e) =>{
         setType(e.target.value);
@@ -74,7 +74,7 @@ function CollectableForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Opening Value (Rs):</label>
+        <label htmlFor="openingValue">Give a opening value to auction your item:(Rs)</label>
         <input
           type="number"
           id="openingValue"
@@ -86,21 +86,11 @@ function CollectableForm() {
           }}
         />
 
-<label htmlFor="images">Images:(Please add at least 6 photos of the interior and exterior of the vehicle) </label>
-           <input type="file" id="images" name="images" accept="image/*" multiple required
-             onChange={(e) => {
-              const selectedFiles = e.target.files;
-               
-               if (selectedFiles.length > 10) {
-                // Display an alert for more than 10 photos
-                alert("You can only add upto 10 photos.");
-                e.target.value = null;
-                // Limit the selection to the first 10 photos
-                setImages(Array.from(selectedFiles).slice(1, 10));
-                }else {
-                setImages(selectedFiles);
-                }
-                }}/>
+<label htmlFor="image">Images: </label>
+        <input type="file" id="images" name="images" accept="image/*" multiple required
+        onChange={(e) =>{
+          setImages(e.target.value);
+        }}/><br></br>
               
 
               <button type="submit">Submit</button>

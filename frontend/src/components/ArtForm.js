@@ -49,7 +49,7 @@ function ArtForm() {
   return (
     <div className="container">
       <form onSubmit={sendData}>
-      <h2>Add a New Artwork</h2>
+      <h2>Tell Us About Your Art</h2>
         <label htmlFor="title">Title:</label>
         <textarea
           id="title"
@@ -119,7 +119,7 @@ function ArtForm() {
             setLocation(e.target.value);
           }}/><br />
 
-        <label htmlFor="openingValue">Opening Value (Rs):</label>
+        <label htmlFor="openingValue">Give a opening value to auction your art:(Rs)</label>
         <input
           type="number"
           id="openingValue"

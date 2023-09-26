@@ -30,19 +30,15 @@ export default function AllCollectables() {
         <td>{collectable.description}</td>
         <td>{collectable.images}</td>
         <td>
-          <button
-            className="approve-button"
-            onClick={() => handleApprove(collectable._id)}
-          >
+        <div className="button-container">
+          <button className="approve-button" onClick={() => handleApprove(collectable._id)}>
             Update
           </button>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(collectable._id)}
-          >
+          <button className="delete-button" onClick={() => handleDelete(collectable._id)}>
             Delete
           </button>
-        </td>
+        </div>
+      </td>
       </tr>
     ));
   };
