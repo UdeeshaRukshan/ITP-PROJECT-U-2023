@@ -34,6 +34,11 @@ select {
   padding: 10px;
 }
 
+button {
+  display: block; 
+  margin: 0 auto; 
+}
+
 /* Button styles */
 button[type="submit"] {
   background-color: #007bff;
@@ -77,4 +82,4 @@ input[type="file"] {
   }
 }
 
-/* Optional: Add more styles as needed for your specific design */
+

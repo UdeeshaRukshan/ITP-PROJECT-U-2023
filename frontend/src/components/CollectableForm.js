@@ -86,30 +86,26 @@ function CollectableForm() {
           }}
         />
 
-        <label htmlFor="images">Images:</label>
-          <input
-           type="file"
-           id="images"
-           name="images"
-           accept="image/*"
-           multiple
-           required
-           onChange={(e) => {
-             const selectedFiles = e.target.files;
-              if (selectedFiles.length >= 1 && selectedFiles.length < 10) {
+<label htmlFor="images">Images:(Please add at least 6 photos of the interior and exterior of the vehicle) </label>
+           <input type="file" id="images" name="images" accept="image/*" multiple required
+             onChange={(e) => {
+              const selectedFiles = e.target.files;
+               
+               if (selectedFiles.length > 10) {
+                // Display an alert for more than 10 photos
+                alert("You can only add upto 10 photos.");
+                e.target.value = null;
+                // Limit the selection to the first 10 photos
+                setImages(Array.from(selectedFiles).slice(1, 10));
+                }else {
                 setImages(selectedFiles);
-              } else {
-               // Display an alert message
-              alert("Please select at least 1 but fewer than 10 photos.");
-              e.target.value = null;
-              }
-           }}
-         />
+                }
+                }}/>
+              
 
-          <div className="form-group">
-          <button type="submit">Submit</button>
-          </div>
-</form>
+              <button type="submit">Submit</button>
+              
+        </form>
     </div>
   );
 }

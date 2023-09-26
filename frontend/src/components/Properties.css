@@ -44,6 +44,11 @@ select {
   appearance: none; /* Remove default styles on select */
 }
 
+button {
+  display: block; /* Make the button a block-level element */
+  margin: 0 auto; /* Center horizontally */
+}
+
 .btn-primary {
   background-color: #007bff;
   color: #fff;

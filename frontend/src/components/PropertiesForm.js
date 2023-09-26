@@ -111,28 +111,20 @@ function PropertyForm() {
                 }
             }}/>
 
-<label htmlFor="images">Images:</label>
-<input
-  type="file"
-  id="images"
-  name="images"
-  accept="image/*"
-  multiple
-  required
-  onChange={(e) => {
-    const selectedFiles = e.target.files;
+<label htmlFor="images">Images (multiple):</label>
+        <input
+          type="file"
+          id="images"
+          name="images"
+          multiple
+          accept="image/*"
+          required
+          onChange={(e) =>{
+            setImages(e.target.value);
+          }}/>
 
-    if (selectedFiles.length <= 10) {
-      setImages(selectedFiles);
-    } else {
-      alert("You can only add up to 10 photos.");
-      e.target.value = null;
-    }
-  }}/>
-
-        <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
+         <button type="submit">Submit</button>
+         
       </form>
     </div>
   );

@@ -13,6 +13,8 @@ function VehicleForm() {
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
+
+  let imageURL = '';
   
 function sendData(e){
   e.preventDefault();
@@ -151,28 +153,31 @@ function sendData(e){
             }}/>
 
          <label htmlFor="images">Images:(Please add at least 6 photos of the interior and exterior of the vehicle) </label>
-           <input type="file" id="images" name="images" accept="image/*" multiple required
-             onChange={(e) => {
-              const selectedFiles = e.target.files;
-                if (selectedFiles.length < 6) {
-                 // Display an alert for fewer than 6 photos
-                 alert("At least 6 photos are required.");
-                 // Clear the input to prevent invalid selections
-                 e.target.value = null;
-                } else if (selectedFiles.length > 10) {
-                // Display an alert for more than 10 photos
-                alert("You can only add upto 10 photos.");
-                // Limit the selection to the first 10 photos
-                setImages(Array.from(selectedFiles).slice(0, 10));
-                } else {
-                setImages(selectedFiles);
-                }
-                }}
-               /><br></br>
 
-        <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
+           <input type="file" id="images" name="images" accept="image/*" multiple required
+
+             onChange={(e) => {
+
+              const selectedFiles = e.target.files;
+              const validImages = [];
+            
+              if (selectedFiles) {
+                for (let i = 0; i < selectedFiles.length; i++) {
+                  const file = selectedFiles[i];
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                    const imageURL = event.target.result; // This is the image URL
+                    validImages.push(imageURL);
+                    // Now you can use imageURL or add it to your state as needed.
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }
+              setImages(validImages);
+            }}/><br></br>
+
+         <button type="submit">Submit</button>
+         
       </form>
     </div>
   );

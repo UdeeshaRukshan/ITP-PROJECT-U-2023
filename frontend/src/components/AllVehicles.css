@@ -36,6 +36,11 @@
     color: #333;
   }
   /* AllAuctioneers.css */
+
+  .button-container {
+    display: flex; /* Use flexbox to arrange items horizontally */
+    gap: 10px; /* Adjust the gap between buttons as needed */
+  }
   
   .approve-button {
     background-color: green;
@@ -54,7 +59,6 @@
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
-    margin-right: 5px;
   }
   
   

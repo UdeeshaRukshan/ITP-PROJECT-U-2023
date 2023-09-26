@@ -105,10 +105,8 @@ export default function PersonalDetails() {
   </select>
 
   <br></br>
-  <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
-</form>
+      <button type="submit">Submit</button>
+    </form>
     </div>
   );
     }

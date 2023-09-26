@@ -31,6 +31,11 @@
   .small {
     color: #999;
   }
+
+  button {
+    display: block; /* Make the button a block-level element */
+    margin: 0 auto; /* Center horizontally */
+  }
   
   .btn-primary {
     background-color: #007bff;

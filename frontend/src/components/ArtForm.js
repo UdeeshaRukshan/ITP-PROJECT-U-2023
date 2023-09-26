@@ -142,9 +142,8 @@ function ArtForm() {
             setImages(e.target.value);
           }}/><br />
 
-         <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
+         <button type="submit">Submit</button>
+         
       </form>
     </div>
   );
