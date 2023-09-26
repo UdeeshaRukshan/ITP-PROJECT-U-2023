@@ -83,7 +83,7 @@ function ArtForm() {
               onChange={(e) =>{
                 const inputHeight = e.target.value;
                if (inputHeight > 0) {
-                setValue(inputHeight);
+                setHeight(inputHeight);
                 } else {
                 alert("Must enter valid height");
                 }
@@ -100,7 +100,7 @@ function ArtForm() {
               onChange={(e) =>{
                 const inputWidth = e.target.value;
                if (inputWidth > 0) {
-                setValue(inputWidth);
+                setWidth(inputWidth);
                 } else {
                 alert("Must enter valid width");
                 }
@@ -118,16 +118,24 @@ function ArtForm() {
             setCondition(e.target.value);
           }}></textarea><br />
 
-        <label htmlFor="location">Where is this art located:</label>
-        <input
-          type="text"
+        <label htmlFor="Location">Location:</label>
+        <select class="form-select"
           id="location"
           name="location"
-          placeholder="e.g., Kurunegala"
           required
           onChange={(e) =>{
             setLocation(e.target.value);
-          }}/><br />
+          }}
+        >
+          <option value="">Select Location</option>
+          <option value="Colombo">Colombo</option>
+          <option value="Gampaha">Gampaha</option>
+          <option value="Kaduwela">Kaduwela</option>
+          <option value="Ratnapura">Ratnapura</option>
+          <option value="Trincomalee">Trincomalee</option>
+          <option value="Polonnaruwa">Polonnaruwa</option>
+          <option value="Anuradhapura">Anuradhapura</option>
+        </select><br />
 
         <label htmlFor="openingValue">Give a opening value to auction your art:(Rs)</label>
         <input

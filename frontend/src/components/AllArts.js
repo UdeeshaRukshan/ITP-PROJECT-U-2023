@@ -65,11 +65,11 @@ export default function AllArts() {
           <tr>
             <th>Title</th>
             <th>Medium</th>
-            <th>Height</th>
-            <th>Width</th>
+            <th>Height(cm)</th>
+            <th>Width(cm)</th>
             <th>Condition</th>
             <th>Location</th>
-            <th>Value</th>
+            <th>Value(Rs)</th>
             <th>Images</th> 
             <th>Actions</th>
           </tr>

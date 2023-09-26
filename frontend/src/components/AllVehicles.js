@@ -68,10 +68,10 @@ export default function AllVehicles() {
             <th>Year</th>
             <th>Model</th>
             <th>Fuel Type</th>
-            <th>Mileage</th>
+            <th>Mileage(Km)</th>
             <th>Features</th>
             <th>Location</th>
-            <th>Value</th> 
+            <th>Value(Rs)</th> 
             <th>Images</th> 
             <th>Action</th>
           </tr>

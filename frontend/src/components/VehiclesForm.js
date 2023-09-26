@@ -105,12 +105,12 @@ function sendData(e){
     </select>
   </div>
   <div className="col">
-    <label htmlFor="mileage">Mileage:</label>
+    <label htmlFor="mileage">Mileage:(In killometers)</label>
     <input type="number" id="mileage" name="mileage" placeholder="e.g., 3200" required 
     onChange={(e) =>{
       const inputMileage = e.target.value;
                if (inputMileage > 0) {
-                setValue(inputMileage);
+                setMileage(inputMileage);
                 } else {
                 alert("Must enter valid value");
                 }
@@ -119,7 +119,7 @@ function sendData(e){
     </div>
 
         <label htmlFor="features">Features:</label>
-        <textarea id="features" name="features" placeholder="Mention the condition of your vehicle." required
+        <textarea id="features" name="features" placeholder="Mention the condition of your vehicle. " required
         onChange={(e) =>{
           setFeatures(e.target.value);
         }}></textarea><br></br>
