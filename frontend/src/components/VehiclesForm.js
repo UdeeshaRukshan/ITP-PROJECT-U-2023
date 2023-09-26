@@ -12,26 +12,34 @@ function VehicleForm() {
   const [features, setFeatures] = useState("");
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
   
 function sendData(e){
   e.preventDefault();
 
-    const newVehicle= {
+  if (images.length < 6 || images.length > 10) {
+    alert("Please select between 6 and 10 images.");
+    return;
+  }
 
-      vehicleNumber,
-      year,
-      model,
-      fuelType,
-      mileage,
-      features,
-      location,
-      value,
-      images,
+  const formData = new FormData();
 
-    }
+  // Append each image file to the FormData object
+  for (let i = 0; i < images.length; i++) {
+    formData.append("images", images[i]);
+  }
 
-    axios.post("http://localhost:8070/vehicle/addvehicle", newVehicle).then(() =>{
+  // Append other fields to the FormData object
+  formData.append("vehicleNumber", vehicleNumber);
+  formData.append("year", year);
+  formData.append("model", model);
+  formData.append("fuelType", fuelType);
+  formData.append("mileage", mileage);
+  formData.append("features", features);
+  formData.append("location", location);
+  formData.append("value", value);
+
+    axios.post("http://localhost:8070/vehicle/addvehicle", formData).then(() =>{
       alert("Vehicle Added");
       setVehicleNumber("");
       setYear("");
@@ -41,12 +49,33 @@ function sendData(e){
       setFeatures("");
       setLocation("");
       setValue("");
-      setImages("");
+      setImages([]);
 
     }).catch((err)=>{
         alert(err);
       });
     
+    }
+
+    function handleImageChange(e) {
+      const selectedImages = e.target.files;
+      if (selectedImages.length >= 6 && selectedImages.length <= 10) {
+        // Validate image types
+        for (let i = 0; i < selectedImages.length; i++) {
+          const fileType = selectedImages[i].type;
+          if (fileType !== "image/jpeg" && fileType !== "image/png") {
+            alert("Please select only JPEG and PNG images.");
+            e.target.value = null; // Clear the file input
+            return;
+          }
+        }
+  
+        // Update the images state if the number and types of selected images are valid.
+        setImages([...selectedImages]);
+      } else {
+        alert("Please select between 6 to 10 images.");
+        e.target.value = null; // Clear the file input
+      }
     }
   
   return (
@@ -68,7 +97,7 @@ function sendData(e){
             <label htmlFor="model"> Vehicle Model:</label>
             <input type="text" id="model" name="model" placeholder="e.g., Honda Civic" required
             onChange={(e) =>{
-              setYear(e.target.value);
+              setModel(e.target.value);
             }}/><br></br>
           </div>
           <div className="col">
@@ -83,7 +112,7 @@ function sendData(e){
             placeholder="e.g., 2000"
             required
           onChange={(e) => {
-          setModel(e.target.value);
+          setYear(e.target.value);
           }}
           /><br></br>
           </div>
@@ -150,11 +179,29 @@ function sendData(e){
                 }
         }}/><br/>
 
-        <label htmlFor="image">Images:(Please add at least 6 photos of the interior and exterior of the vehicle) </label>
-        <input type="file" id="images" name="images" accept="image/*" multiple required
-        onChange={(e) =>{
-          setImages(e.target.value);
-        }}/><br></br>
+<label htmlFor="image">
+          Images:(Please add at least 6 photos of the interior and exterior of the vehicle)
+        </label>
+        <input
+          type="file"
+          id="images"
+          name="images"
+          accept="image/*"
+          multiple
+          required
+          onChange={handleImageChange}
+        />
+        <br></br>
+
+        {images.map((image, index) => (
+          <div key={index} className="image-preview">
+            <img
+              src={URL.createObjectURL(image)}
+              alt={`Image ${index}`}
+              className="preview-image"
+            />
+          </div>
+        ))}
 
        
           <button type="submit">Submit</button>

@@ -82,4 +82,16 @@ input[type="file"] {
   }
 }
 
+/* Add this CSS in your VehicleForm.css file or inline styles */
+.image-preview {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.preview-image {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+
 

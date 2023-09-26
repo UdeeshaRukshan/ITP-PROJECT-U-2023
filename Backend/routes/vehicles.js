@@ -1,40 +1,50 @@
 const router = require("express").Router();
 let Vehicle = require("../models/Vehicle");
 
-router.route("/addvehicle").post((req,res) =>{
+const multer = require('multer');
+const mime = require('mime-types'); // Use mime-types
 
-    const vehicleNumber = req.body.vehicleNumber;
-    const year = req.body.year;
-    const model = req.body.model;
-    const fuelType = req.body.fuelType;
-    const mileage = req.body.mileage;
-    const features = req.body.features;
-    const location = req.body.location;
-    const value = req.body.value;
-    const images = req.body.images;
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-    
-        const newVehicle = new Vehicle({
-          vehicleNumber,
-          year,
-          model,
-          fuelType,
-          mileage,
-          features,
-          location,
-          value,
-          images,
-        })
+router.route("/addvehicle").post(upload.array('images', 10), async (req, res) => {
+  const vehicleNumber = req.body.vehicleNumber;
+  const year = req.body.year;
+  const model = req.body.model;
+  const fuelType = req.body.fuelType;
+  const mileage = req.body.mileage;
+  const features = req.body.features;
+  const location = req.body.location;
+  const value = req.body.value;
+  const images = req.files;
 
-        newVehicle.save().then(() => {
-            res.json("Vehicle Added")
-        }).catch((err) => {
-            console.log(err);
-        })
-    
-    })
-    
-        
+  try {
+    const newImages = images.map((image) => ({
+      name: image.originalname,
+      dataUrl: `data:${image.mimetype};base64,${image.buffer.toString("base64")}`,
+    }));
+
+    const newVehicle = new Vehicle({
+      vehicleNumber,
+      year,
+      model,
+      fuelType,
+      mileage,
+      features,
+      location,
+      value,
+      images: newImages,
+    });
+
+    await newVehicle.save();
+    res.json("Vehicle Added");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+       
 router.route("/getvehicles").get((req,res) => {
 
     Vehicle.find().then((vehicles) =>{
@@ -98,4 +108,3 @@ router.route("/getvehicle/:vehicleid").get(async(req,res) => {
 })
 
 module.exports = router;
-

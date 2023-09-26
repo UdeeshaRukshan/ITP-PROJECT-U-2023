@@ -10,7 +10,7 @@ const vehicleSchema = new Schema({
 
     },
     year: {
-        type : String,
+        type : Number,
         required: true
     },
     model: {
@@ -37,8 +37,18 @@ const vehicleSchema = new Schema({
         type : Number,
         required: true
     },
-    images: [{ type: String }], // Store multiple image URLs or file names in an array
-});
+    images: [
+        {
+            name: String,
+            data: Buffer, // Store the image data as binary data
+            contentType: {
+                type: String,
+                enum: ['image/jpeg', 'image/png'], // Allow only JPEG and PNG content types
+            },
+        },
+    ],
+    },// Store multiple image URLs or file names in an array
+);
 
 const Vehicle = mongoose.model("Vehicle",vehicleSchema);
 

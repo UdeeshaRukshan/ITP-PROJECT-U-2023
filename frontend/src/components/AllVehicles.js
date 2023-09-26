@@ -20,6 +20,17 @@ export default function AllVehicles() {
     fectchVehicles();
   }, []);
 
+  const renderImages = (images) => {
+    return images.map((image, index) => (
+      <img
+        key={index}
+        src={image.dataUrl}
+        alt={`Vehicle ${index + 1}`}
+      />
+    ));
+  };
+
+
   // Render vehicle rows
   const renderVehicleRaws = () => {
     return vehicles.map((vehicle) => (
@@ -32,7 +43,7 @@ export default function AllVehicles() {
         <td>{vehicle.features}</td>
         <td>{vehicle.location}</td>
         <td>{vehicle.value}</td>
-        <td>{vehicle.images}</td>
+        <td>{renderImages(vehicle.images)}</td>
         <td>
         <div className="button-container">
           <button className="approve-button" onClick={() => handleApprove(vehicle._id)}>
@@ -81,4 +92,3 @@ export default function AllVehicles() {
     </div>
   );
 }
-
