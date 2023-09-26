@@ -11,7 +11,7 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import AddressForm from "./AddressForm";
+import AddressForm from "./UserInfo";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 
@@ -28,7 +28,7 @@ function Copyright() {
   );
 }
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
+const steps = ["User Information", "Payment Details", "Review Your Order"];
 
 function getStepContent(step) {
   switch (step) {
