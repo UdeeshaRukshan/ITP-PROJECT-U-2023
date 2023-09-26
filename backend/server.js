@@ -8,7 +8,6 @@ const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
 const image = require("./models/image");
 
-
 const auctioneerRouter = require("./routes/auctioneers.js");
 const vehicleRouter = require("./routes/vehicles.js");
 const artRouter = require("./routes/arts.js");
@@ -130,4 +129,3 @@ app.use("/collectable", collectableRouter);
 
 app.use("/wishlist", WishlistRoute);
 app.use("/agent", agentRouter);
-

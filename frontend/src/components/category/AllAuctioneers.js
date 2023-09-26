@@ -10,7 +10,9 @@ export default function AllAuctioneers() {
   useEffect(() => {
     async function fetchAuctioneers() {
       try {
-        const response = await axios.get("http://localhost:8070/auctioneer/getauctioneers");
+        const response = await axios.get(
+          "http://localhost:4042/auctioneer/getauctioneers"
+        );
         setAuctioneers(response.data);
       } catch (error) {
         alert(error.message);
@@ -32,15 +34,21 @@ export default function AllAuctioneers() {
         <td>{auctioneer.street}</td>
         <td>{auctioneer.city}</td>
         <td>
-        <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(auctioneer._id)}>
-            Update
-          </button>
-          <button className="delete-button" onClick={() => handleDelete(auctioneer._id)}>
-            Delete
-          </button>
-        </div>
-      </td>
+          <div className="button-container">
+            <button
+              className="approve-button"
+              onClick={() => handleApprove(auctioneer._id)}
+            >
+              Update
+            </button>
+            <button
+              className="delete-button"
+              onClick={() => handleDelete(auctioneer._id)}
+            >
+              Delete
+            </button>
+          </div>
+        </td>
       </tr>
     ));
   };
