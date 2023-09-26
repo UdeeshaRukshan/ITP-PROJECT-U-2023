@@ -1,5 +1,5 @@
 // server/models/task.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
   title: String,
@@ -7,4 +7,4 @@ const taskSchema = new mongoose.Schema({
   completed: Boolean,
 });
 
-module.exports = mongoose.model('Task', taskSchema);
+module.exports = mongoose.model("Task", taskSchema);

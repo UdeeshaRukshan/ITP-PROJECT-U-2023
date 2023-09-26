@@ -1,36 +1,33 @@
-// client/src/App.js
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import axios from "axios";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
+  const [newTask, setNewTask] = useState("");
 
-  useEffect(() => {
-    fetch('/api/tasks')
-      .then((res) => res.json())
-      .then((data) => setTasks(data))
-      .catch((error) => console.error(error));
-  }, []);
+  // const fetchTasks = () => {
+  //   axios
+  //     .get("http://localhost:4042/api/gettask") // Adjust the URL to match your server
+  //     .then((response) => setTasks(response.data))
+  //     .catch((error) => console.error(error));
+  // };
 
   const addTask = () => {
-    fetch('/api/tasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: newTask }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTasks([...tasks, data]);
-        setNewTask('');
+    axios
+      .post(
+        "http://localhost:4042/api/tasks" // Adjust the URL to match your server
+      )
+      .then((response) => {
+        setTasks([...tasks, response.data]);
+        setNewTask("");
       })
       .catch((error) => console.error(error));
   };
 
   const deleteTask = (id) => {
-    fetch(`/api/tasks/${id}`, {
-      method: 'DELETE',
-    })
+    axios
+      .delete(`http://localhost:4042/api/tasksdelete/${id}`) // Adjust the URL to match your server
       .then(() => {
         const updatedTasks = tasks.filter((task) => task._id !== id);
         setTasks(updatedTasks);
@@ -50,7 +47,7 @@ function App() {
       <ul>
         {tasks.map((task) => (
           <li key={task._id}>
-            {task.title}{' '}
+            {task.title}
             <button onClick={() => deleteTask(task._id)}>Delete</button>
           </li>
         ))}

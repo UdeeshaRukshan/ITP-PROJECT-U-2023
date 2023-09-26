@@ -1,12 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-const taskRoutes = require('./routes/taskRoutes');
-
+const taskRoutes = require("./routes/taskRoutes");
 
 dotenv.config();
 
@@ -22,12 +20,6 @@ mongoose
   })
   .then(() => console.log("MongoDB is connected successfully"))
   .catch((err) => console.error("MongoDB connection error:", err));
-  
-  app.use('/api', taskRoutes);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
 
 app.use(
   cors({
@@ -38,3 +30,9 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use("/api", taskRoutes); // This should come after cors and before express.json()
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
