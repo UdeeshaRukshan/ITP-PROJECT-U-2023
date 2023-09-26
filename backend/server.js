@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
 const image = require("./models/image");
-
+const multipleImages = require("./Routes/multipleImagesRoute");
 const auctioneerRouter = require("./routes/auctioneers.js");
 const vehicleRouter = require("./routes/vehicles.js");
 const artRouter = require("./routes/arts.js");
@@ -15,7 +15,6 @@ const propertyRouter = require("./routes/properties.js");
 const collectableRouter = require("./routes/collectables.js");
 
 const agentRouter = require("./Routes/agentroute");
-const WishlistRoute = require("./Routes/wishlistRoute");
 
 const cloudinary = require("cloudinary").v2;
 const Multer = require("multer");
@@ -120,6 +119,7 @@ app.use(express.json());
 
 app.use("/", authRoute);
 app.use("/ticket", ticketRoute);
+app.use("/api", multipleImages);
 
 app.use("/auctioneer", auctioneerRouter);
 app.use("/vehicle", vehicleRouter);
@@ -127,5 +127,4 @@ app.use("/art", artRouter);
 app.use("/property", propertyRouter);
 app.use("/collectable", collectableRouter);
 
-app.use("/wishlist", WishlistRoute);
 app.use("/agent", agentRouter);

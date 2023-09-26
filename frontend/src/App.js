@@ -19,6 +19,7 @@ import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
 import Checkout from "./pages/Checkout";
+import Vehicle from "../src/components/category/vehicles/vehicle";
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
@@ -53,6 +54,7 @@ function App() {
 
           <Route path="/dashbord/agent" element={<Agent />} />
           <Route path="/multiimage" element={<MultiImage />} />
+          <Route path="/vehicle" element={<Vehicle />} />
 
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
