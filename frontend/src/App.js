@@ -54,12 +54,11 @@ function App() {
           <Route path="/dashbord/agent" element={<Agent />} />
           <Route path="/multiimage" element={<MultiImage />} />
 
-
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
           <Route path="/support/chatbot" element={<Chatbot />} />
 
-          <Route path="/add" exact element={<PersonalDetails />} />
+          {/* <Route path="/add" exact element={<PersonalDetails />} />
           <Route path="/addart" exact element={<ArtForm />} />
           <Route path="/addvehicle" exact element={<VehiclesForm />} />
           <Route path="/addcollectable" exact element={<CollectableForm />} />
@@ -68,7 +67,7 @@ function App() {
           <Route path="/getarts" exact element={<AllArts />} />
           <Route path="/getproperties" exact element={<AllProperties />} />
           <Route path="/getcollectables" exact element={<AllCollectables />} />
-          <Route path="/getvehicles" exact element={<AllProperties />} />
+          <Route path="/getvehicles" exact element={<AllProperties />} /> */}
         </Routes>
         <Footer />
       </div>

@@ -76,7 +76,7 @@ const IndexPage = () => {
             ))}
           </Fade>
         </div>
-        <div className="container">
+        <div className="container-y">
           <div
             className="text-center mx-auto mb-5 wow fadeInUp"
             data-wow-delay="0.1s"
