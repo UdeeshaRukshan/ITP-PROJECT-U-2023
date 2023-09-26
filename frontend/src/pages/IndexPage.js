@@ -91,18 +91,18 @@ const IndexPage = () => {
               data-wow-delay="0.1s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded p-3"
+                className="cat-item d-block bg-light text-center rounded "
                 href=""
               >
-                <div className="rounded p-4">
+                <div className="rounded ">
                   <div className="icon mb-3">
                     <img
-                      class="img-fluid"
-                      src="img/icon-apartment.png"
-                      alt="Icon"
+                      class="img-fluid rounded img-1"
+                      src="https://topauto.co.za/wp-content/uploads/2021/09/2022-Mini-Cooper-S-3-door-Header-1.jpg"
+                      alt="Vehicles"
                     />
                   </div>
-                  <h4>Vehicles</h4>
+                  <h1>Vehicles</h1>
                 </div>
               </a>
             </div>
@@ -111,18 +111,18 @@ const IndexPage = () => {
               data-wow-delay="0.3s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded p-3"
+                className="cat-item d-block bg-light text-center rounded "
                 href=""
               >
-                <div className="rounded p-4">
-                  <div className="icon mb-3">
+                <div className="rounded ">
+                  <div className="icon mb-3 ">
                     <img
-                      class="img-fluid"
-                      src="img/icon-villa.png"
+                      class="img-fluid rounded img-2"
+                      src="https://www.redfin.com/blog/wp-content/uploads/2021/07/3523-Frostleaf-Ct_Fairfax_VA_Ext.jpg"
                       alt="Icon"
                     />
                   </div>
-                  <h4>Properties</h4>
+                  <h1>Properties</h1>
                 </div>
               </a>
             </div>
@@ -131,18 +131,18 @@ const IndexPage = () => {
               data-wow-delay="0.5s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded p-3"
+                className="cat-item d-block bg-light text-center rounded "
                 href=""
               >
-                <div className="rounded p-4">
+                <div className="rounded ">
                   <div className="icon mb-3">
                     <img
-                      className="img-fluid"
-                      src="img/icon-housing.png"
-                      alt="Icon"
+                      className="img-fluid-3 rounded img-3"
+                      src="https://thumbs.dreamstime.com/b/vintage-metal-sign-vector-antiques-collectibles-realistic-used-rusty-effect-can-be-easily-removed-clean-88940749.jpg"
+                      alt="Collectables"
                     />
                   </div>
-                  <h4>Collectables</h4>
+                  <h1>Collectables</h1>
                 </div>
               </a>
             </div>
@@ -151,18 +151,18 @@ const IndexPage = () => {
               data-wow-delay="0.7s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded p-3"
+                className="cat-item d-block bg-light text-center rounded "
                 href=""
               >
-                <div className="rounded p-4">
-                  <div className="icon mb-3">
+                <div className="rounded ">
+                  <div className="icon mb-3 rounded">
                     <img
-                      className="img-fluid"
-                      src="img/icon-housing.png"
-                      alt="Icon"
+                      className="img-fluid rounded img-4"
+                      src="https://d1inegp6v2yuxm.cloudfront.net/royal-academy/image/upload/c_fill,cs_tinysrgb,dn_72,f_auto,fl_progressive.keep_iptc,w_836,h_470,ar_16:9/mcl1whdg3qdd6kweugb4.jpg"
+                      alt="Arts"
                     />
                   </div>
-                  <h4>Arts</h4>
+                  <h1>Arts</h1>
                 </div>
               </a>
             </div>

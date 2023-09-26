@@ -239,6 +239,7 @@ const Agent = () => {
         <a>
           {imageUrls.length > 0 && (
             <img
+              className="image-agent"
               style={{ width: "20vh", height: "20vh" }}
               src={imageUrls[0].url} // Display the first image from the array
               alt={`Image 0`}

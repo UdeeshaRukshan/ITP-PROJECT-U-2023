@@ -227,7 +227,7 @@ th {
 .delete-button input[type="button"] {
   background-color: #f44336;
 }
-img {
+.image-agent {
   margin-left: 2.5vh;
   width: 20vh;
   height: 20vh;
