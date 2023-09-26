@@ -196,13 +196,13 @@ const Signup = () => {
                 <TextField
                   required
                   fullWidth
-                  name="NIC"
-                  label="Nic no"
+                  name="id"
+                  label="Nic No"
                   type="text"
-                  id="nic"
-                  autoComplete="new-nic"
+                  id="Nic"
+                  autoComplete="new-Nic"
                   value={id}
-                  placeholder="Enter your Nic no"
+                  placeholder="Enter your Nic No"
                   onChange={handleOnChange}
                 />
               </Grid>
@@ -214,6 +214,7 @@ const Signup = () => {
                   id="demo-simple-select"
                   value={age}
                   label="Age"
+                  name="age"
                   onChange={handleOnChange}
                 >
                   <MenuItem value={10}>Ten</MenuItem>

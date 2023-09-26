@@ -15,11 +15,11 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
-import Profile from "./pages/Profile";
+
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
 import Checkout from "./pages/Checkout";
-import Vehicle from "../src/components/category/vehicles/vehicle";
+
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
@@ -36,8 +36,6 @@ import AllArts from "./components/category/AllArts";
 import AllProperties from "./components/category/AllProperties";
 import AllCollectables from "./components/category/AllCollectables";
 
-import MultiImage from "./cloudinary/multipleimage";
-
 function App() {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
@@ -53,8 +51,6 @@ function App() {
           <Route path="/payment" element={<Checkout />} />
 
           <Route path="/dashbord/agent" element={<Agent />} />
-          <Route path="/multiimage" element={<MultiImage />} />
-          <Route path="/vehicle" element={<Vehicle />} />
 
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
