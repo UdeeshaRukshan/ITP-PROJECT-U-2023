@@ -4,6 +4,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
+import Checkbox from "@mui/material/Checkbox";
 
 const products = [
   {
@@ -26,7 +27,6 @@ const products = [
     desc: "Best thing of all",
     price: "$14.11",
   },
-  { name: "Shipping", desc: "", price: "Free" },
 ];
 
 const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
@@ -38,10 +38,16 @@ const payments = [
 ];
 
 export default function Review() {
+  const [agreeTerms, setAgreeTerms] = React.useState(false);
+
+  const handleAgreeChange = (event) => {
+    setAgreeTerms(event.target.checked);
+  };
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Order summary
+        Transaction Summary
       </Typography>
       <List disablePadding>
         {products.map((product) => (
@@ -83,6 +89,14 @@ export default function Review() {
           </Grid>
         </Grid>
       </Grid>
+      <Checkbox
+        checked={agreeTerms}
+        onChange={handleAgreeChange}
+        color="primary"
+      />
+      <Typography variant="body2">
+        I have read and agree to the website terms and conditions
+      </Typography>
     </React.Fragment>
   );
 }
