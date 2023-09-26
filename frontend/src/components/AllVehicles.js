@@ -76,8 +76,8 @@ export default function AllVehicles() {
         <thead>
           <tr>
             <th>Vehicle Number</th>
-            <th>Year</th>
             <th>Model</th>
+            <th>Year</th>
             <th>Fuel Type</th>
             <th>Mileage(Km)</th>
             <th>Features</th>
