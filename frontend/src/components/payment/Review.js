@@ -31,10 +31,10 @@ const products = [
 ];
 
 const payments = [
-  { name: "Card type", detail: "Visa" },
-  { name: "Card holder", detail: "Mr John Smith" },
-  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date", detail: "03/04/2024" },
+  { name: "Card Type", detail: "Visa" },
+  { name: "Card Holder", detail: "Mr John Smith" },
+  { name: "Card Number", detail: "xxxx-xxxx-xxxx-1234" },
+  { name: "Expiry Date", detail: "03/04/2024" },
 ];
 
 export default function Review() {

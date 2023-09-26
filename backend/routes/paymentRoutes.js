@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Payment = require("../models/Payment");
 
 // data insert route
-router.route("/add").post((req, res) => {
+router.route("/add/payment").post((req, res) => {
   const cardName = req.body.cardName;
   const cardNumber = req.body.cardNumber;
   const expiryDate = req.body.expiryDate;

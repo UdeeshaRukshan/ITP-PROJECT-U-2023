@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
+const personalDetailsRoutes = require("./routes/personalDetailsRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
-const shippingRoutes = require("./routes/shippingRoutes");
 const http = require("http");
 
 const PORT = process.env.PORT || 8070;
@@ -29,4 +29,4 @@ app.listen(PORT, () => {
   console.log(`Server is up and running on port number: ${PORT}`);
 });
 app.use("/", paymentRoutes);
-app.use("/shipping", shippingRoutes);
+app.use("/personalDetails", personalDetailsRoutes);

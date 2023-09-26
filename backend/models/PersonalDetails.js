@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const shippingSchema = new Schema({
+const personalDetailsSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -11,28 +11,24 @@ const shippingSchema = new Schema({
     type: String,
     required: true,
   },
-  addressLine1: {
+  dateOfBirth: {
+    type: Date,
+    required: true,
+  },
+  gender: {
     type: String,
     required: true,
   },
-  addressLine2: {
+  email: {
     type: String,
     required: true,
   },
-  city: {
-    type: String,
-    required: true,
-  },
-  province: {
-    type: String,
-    required: true,
-  },
-  postalCode: {
+  phone: {
     type: String,
     required: true,
   }
 });
 
-const Shipping = mongoose.model("Shipping", shippingSchema);
+const PersonalDetails = mongoose.model("PersonalDetails", personalDetailsSchema);
 
-module.exports = Shipping;
+module.exports = PersonalDetails;
