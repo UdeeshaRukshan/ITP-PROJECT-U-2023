@@ -88,7 +88,7 @@ function PropertyForm() {
         <textarea
           id="description"
           name="description"
-          placeholder="Located on the riverside.A modern two story house.Five bedrooms with attached bathrooms."
+          placeholder="e.g., Located on the riverside.A modern two story house.Five bedrooms with attached bathrooms."
           required
           onChange={(e) =>{
             setDescription(e.target.value);
@@ -100,7 +100,7 @@ function PropertyForm() {
         type="number" 
         id="openingvalue" 
         name="openingvalue" 
-        placeholder="e.g., 75lakhs" 
+        placeholder="e.g., 75000" 
         required
              onChange={(e) => {
               const inputOpeningValue = e.target.value;

@@ -54,7 +54,7 @@ function ArtForm() {
         <textarea
           id="title"
           name="title"
-          placeholder="Title/or subject"
+          placeholder="e.g., Starry night by vincent van gogh"
           required
           onChange={(e) =>{
             setTitle(e.target.value);

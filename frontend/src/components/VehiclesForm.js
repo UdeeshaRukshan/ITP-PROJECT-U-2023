@@ -140,7 +140,7 @@ function sendData(e){
         </select><br />
 
         <label htmlFor="openingValue">Set a opening value to auction your vehicle:(Rs)</label>
-        <input type="number" id="openingValue" name="openingValue" placeholder="e.g., 60lakhs" required 
+        <input type="number" id="openingValue" name="openingValue" placeholder="e.g., 600000" required 
         onChange={(e) =>{
           const inputOpeningValue = e.target.value;
                if (inputOpeningValue > 0) {

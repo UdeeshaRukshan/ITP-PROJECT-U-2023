@@ -79,7 +79,7 @@ function CollectableForm() {
           type="number"
           id="openingValue"
           name="openingValue"
-          placeholder="e.g., 100"
+          placeholder="e.g., 1500"
           required
           onChange={(e) =>{
             const inputOpeningValue = e.target.value;
