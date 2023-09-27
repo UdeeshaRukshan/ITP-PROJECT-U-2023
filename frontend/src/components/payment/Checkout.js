@@ -16,7 +16,6 @@ import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import Axios from "axios";
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -46,7 +45,6 @@ function getStepContent(step) {
 }
 
 export default function Checkout() {
- 
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -57,9 +55,17 @@ export default function Checkout() {
     setActiveStep(activeStep - 1);
   };
 
-
-
-  const handlePayment = async () => {
+  const handlePayment = async (
+    firstName,
+    lastName,
+    address,
+    email,
+    phone,
+    cardName,
+    cardNumber,
+    expDate,
+    cvv
+  ) => {
     // Create an object with user data
     const userData = {
       firstName,
@@ -73,6 +79,7 @@ export default function Checkout() {
       cvv,
     };
 
+    // Rest of the handlePayment function code
     Axios.post("http://localhost:8070/payment/addpayment", userData)
       .then(() => {
         alert("Payment Added");
@@ -81,7 +88,6 @@ export default function Checkout() {
         alert(err);
       });
   };
-
   return (
     <React.Fragment>
       <CssBaseline />
@@ -121,7 +127,11 @@ export default function Checkout() {
                 Thank You For Your Transaction.
               </Typography>
               <Typography variant="subtitle1">
-              Your item is now ready for pickup. Your winning bid number is #2001539. We have emailed your confirmation, and you can come to our location to collect your item. Please check your email for more details on how to claim your item. Thank you for participating!
+                Your item is now ready for pickup. Your winning bid number is
+                #2001539. We have emailed your confirmation, and you can come to
+                our location to collect your item. Please check your email for
+                more details on how to claim your item. Thank you for
+                participating!
               </Typography>
             </React.Fragment>
           ) : (
@@ -134,14 +144,13 @@ export default function Checkout() {
                   </Button>
                 )}
 
-                  <Button
-                    variant="contained"
-                    onClick={handlePayment} // Call the handlePayment function
-                    sx={{ mt: 3, ml: 1 }}
-                  >
+                <Button
+                  variant="contained"
+                  onClick={handlePayment} // Call the handlePayment function
+                  sx={{ mt: 3, ml: 1 }}
+                >
                   {activeStep === steps.length - 1 ? "Pay Now" : "Next"}
-                  </Button>
-
+                </Button>
               </Box>
             </React.Fragment>
           )}

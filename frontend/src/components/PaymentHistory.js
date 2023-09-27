@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function PaymentHistoryTable() {
+function PaymentHistory() {
   // Mock payment history data
   const [paymentHistory, setPaymentHistory] = useState([
     {
@@ -76,7 +76,9 @@ function PaymentHistoryTable() {
                 ) : (
                   <React.Fragment>
                     <button onClick={() => toggleEdit(payment)}>Edit</button>
-                    <button onClick={() => deletePayment(payment.id)}>Delete</button>
+                    <button onClick={() => deletePayment(payment.id)}>
+                      Delete
+                    </button>
                   </React.Fragment>
                 )}
               </td>
