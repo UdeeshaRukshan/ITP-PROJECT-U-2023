@@ -28,55 +28,33 @@ import {
   QueryClient,
   QueryClientProvider,
   useQuery,
-} from '@tanstack/react-query'
-
-//nuwani
-import PersonalDetails from "./components/category/PersonalDetails";
-import ArtForm from "./components/category/ArtForm";
-import VehiclesForm from "./components/category/VehiclesForm";
-import CollectableForm from "./components/category/CollectableForm";
-import PropertiesForm from "./components/category/PropertiesForm";
-import AllAuctioneers from "./components/category/AllAuctioneers";
-import AllArts from "./components/category/AllArts";
-import AllProperties from "./components/category/AllProperties";
-import AllCollectables from "./components/category/AllCollectables";
+} from "@tanstack/react-query";
 
 function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
       <Notifications position="top-center" />
-      <QueryClientProvider client={queryClient}> 
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/dashbord" element={<Dashboard />} />
-          <Route path="/home" element={<IndexPage />} />
-          <Route path="/payment" element={<Checkout />} />
+      <QueryClientProvider client={queryClient}>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashbord" element={<Dashboard />} />
+            <Route path="/home" element={<IndexPage />} />
+            <Route path="/payment" element={<Checkout />} />
 
-          <Route path="/dashbord/agent" element={<Agent />} />
+            <Route path="/dashbord/agent" element={<Agent />} />
 
-          <Route path="/contactUs" element={<ContactUs />} />
-          <Route path="/ticket/submit" element={<SubmitTicketPage />} />
-          <Route path="/support/chatbot" element={<Chatbot />} />
-          <Route path="/ticket/mytickets" element= {<MyTicketPage/>}/>
-
-          <Route path="/add" exact element={<PersonalDetails />} />
-          <Route path="/addart" exact element={<ArtForm />} />
-          <Route path="/addvehicle" exact element={<VehiclesForm />} />
-          <Route path="/addcollectable" exact element={<CollectableForm />} />
-          <Route path="/addproperty" exact element={<PropertiesForm />} />
-          <Route path="/getauctioneers" exact element={<AllAuctioneers />} />
-          <Route path="/getarts" exact element={<AllArts />} />
-          <Route path="/getproperties" exact element={<AllProperties />} />
-          <Route path="/getcollectables" exact element={<AllCollectables />} />
-          <Route path="/getvehicles" exact element={<AllProperties />} />
-        </Routes>
-        <Footer />
-      </div>
+            <Route path="/contactUs" element={<ContactUs />} />
+            <Route path="/ticket/submit" element={<SubmitTicketPage />} />
+            <Route path="/support/chatbot" element={<Chatbot />} />
+            <Route path="/ticket/mytickets" element={<MyTicketPage />} />
+          </Routes>
+          <Footer />
+        </div>
       </QueryClientProvider>
     </MantineProvider>
   );
