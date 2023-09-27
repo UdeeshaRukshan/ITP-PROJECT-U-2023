@@ -5,8 +5,38 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
+const phonePattern = /^[0-9]{10}$/;
+const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i;
+
+const isPhoneNumberValid = (phoneNumber) => {
+  return phonePattern.test(phoneNumber);
+};
+
+const isEmailValid = (email) => {
+  return emailPattern.test(email);
+};
+
+export function sendData(
+  firstName,
+  lastName,
+  address,
+  email,
+  phone,
+  cardName,
+  cardNumber,
+  expiryDate,
+  cvv
+) {
+  alert("insert");
+}
+
 export default function UserInfo() {
- 
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -22,6 +52,11 @@ export default function UserInfo() {
             fullWidth
             autoComplete="given-name"
             variant="outlined"
+            onChange={(e) => {
+              
+              setFirstName(e.target.value);
+              
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -33,34 +68,33 @@ export default function UserInfo() {
             fullWidth
             autoComplete="family-name"
             variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="dateOfBirth"
-            name="dateOfBirth"
-            label="Date of Birth"
-            fullWidth
-            type="date"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
+            onChange={(e) => {
+              
+              setLastName(e.target.value);
+              
             }}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="gender"
-            name="gender"
-            label="Gender"
-            fullWidth
-            variant="outlined"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
+            required
+            id="address"
+            name="address"
+            label="Address"
+            fullWidth
+            autoComplete="address"
+            variant="outlined"
+            multiline  // This enables multiline input
+            rows={4}   // Set the number of visible rows
+            onChange={(e) => {
+              
+              setAddress(e.target.value);
+              
+            }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+        <TextField
             required
             id="email"
             name="email"
@@ -68,10 +102,21 @@ export default function UserInfo() {
             fullWidth
             autoComplete="email"
             variant="outlined"
-          />
+            error={!isEmailValid(email)}
+            helperText={
+              !isEmailValid(email)
+                ? "Please enter a valid Gmail address (e.g., yourname@gmail.com)"
+                : ""
+            }
+            onChange={(e) => {
+              
+              setEmail(e.target.value);
+              
+            }}
+        />
         </Grid>
         <Grid item xs={12}>
-          <TextField
+        <TextField
             required
             id="phone"
             name="phone"
@@ -79,7 +124,18 @@ export default function UserInfo() {
             fullWidth
             autoComplete="tel"
             variant="outlined"
-          />
+            error={!isPhoneNumberValid(phone)}
+            helperText={
+              !isPhoneNumberValid(phone)
+                ? "Please enter a valid 10-digit phone number"
+                : ""
+            }
+            onChange={(e) => {
+              
+              setPhone(e.target.value);
+              
+            }}
+        />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel

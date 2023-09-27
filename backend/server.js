@@ -6,7 +6,6 @@ const app = express();
 require("dotenv").config();
 
 //import route files
-const personalDetailRoutes = require("./routes/personalDetailRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 
 
@@ -35,7 +34,6 @@ connection.once("open", () => {
 
 //Define routes
 app.use("/payment", paymentRoutes);
-app.use("/personalDetail", personalDetailRoutes);
 
 //start the server
 app.listen(PORT, () => {

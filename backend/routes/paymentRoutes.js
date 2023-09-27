@@ -3,12 +3,22 @@ let Payment = require("../models/Payment");
 
 // data insert route
 router.route("/addpayment").post((req, res) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const address = req.body.address;
+  const email = req.body.email;
+  const phone = req.body.phone;
   const cardName = req.body.cardName;
   const cardNumber = req.body.cardNumber;
   const expiryDate = req.body.expiryDate;
   const cvv = req.body.cvv;
 
   const newPayment = new Payment({
+    firstName,
+    lastName,
+    address,
+    email,
+    phone,
     cardName,
     cardNumber,
     expiryDate,
@@ -34,9 +44,14 @@ router.route("/getpayments").get((req, res) => {
 // data update route
 router.route("/updatepayment/:paymentid").put(async (req, res) => {
   let userId = req.params.paymentid;
-  const { cardName, cardNumber, expiryDate, cvv } = req.body;
+  const { firstName, lastName, address, email, phone, cardName, cardNumber, expiryDate, cvv } = req.body;
 
   const updatePayment = {
+    firstName,
+    lastName,
+    address,
+    email,
+    phone,
     cardName,
     cardNumber,
     expiryDate,
