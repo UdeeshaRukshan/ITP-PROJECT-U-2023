@@ -10,7 +10,9 @@ export default function AllVehicles() {
   useEffect(() => {
     async function fectchVehicles() {
       try {
-        const response = await axios.get("http://localhost:8070/vehicle/getvehicles");
+        const response = await axios.get(
+          "http://localhost:4042/vehicle/getvehicles"
+        );
         setVehicles(response.data);
       } catch (error) {
         alert(error.message);
@@ -34,15 +36,21 @@ export default function AllVehicles() {
         <td>{vehicle.value}</td>
         <td>{vehicle.images}</td>
         <td>
-        <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(vehicle._id)}>
-            Update
-          </button>
-          <button className="delete-button" onClick={() => handleDelete(vehicle._id)}>
-            Delete
-          </button>
-        </div>
-      </td>
+          <div className="button-container">
+            <button
+              className="approve-button"
+              onClick={() => handleApprove(vehicle._id)}
+            >
+              Update
+            </button>
+            <button
+              className="delete-button"
+              onClick={() => handleDelete(vehicle._id)}
+            >
+              Delete
+            </button>
+          </div>
+        </td>
       </tr>
     ));
   };
@@ -71,7 +79,7 @@ export default function AllVehicles() {
             <th>Condition</th>
             <th>Location</th>
             <th>Value</th>
-            <th>Images</th> 
+            <th>Images</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -80,4 +88,3 @@ export default function AllVehicles() {
     </div>
   );
 }
-

@@ -10,7 +10,9 @@ export default function AllAuctioneers() {
   useEffect(() => {
     async function fetchAuctioneers() {
       try {
-        const response = await axios.get("http://localhost:8070/auctioneer/getauctioneers");
+        const response = await axios.get(
+          "http://localhost:4042/auctioneer/getauctioneers"
+        );
         setAuctioneers(response.data);
       } catch (error) {
         alert(error.message);
@@ -20,28 +22,32 @@ export default function AllAuctioneers() {
     fetchAuctioneers();
   }, []);
 
-  // Render auctioneer rows
-  const renderAuctioneerRows = () => {
+  // Render auctioneer items in a catalog-like box
+  const renderAuctioneerItems = () => {
     return auctioneers.map((auctioneer) => (
-      <tr key={auctioneer._id}>
-        <td>{auctioneer.firstName}</td>
-        <td>{auctioneer.lastName}</td>
-        <td>{auctioneer.email}</td>
-        <td>{auctioneer.contactNumber}</td>
-        <td>{auctioneer.address}</td>
-        <td>{auctioneer.street}</td>
-        <td>{auctioneer.city}</td>
-        <td>
-        <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(auctioneer._id)}>
+      <div key={auctioneer._id} className="catalog-item">
+        <div className="item-details">
+          <img
+            className="img-fluid"
+            src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+          />
+          <h3>{`${auctioneer.firstName} ${auctioneer.lastName}`}</h3>
+        </div>
+        <div className="item-actions">
+          <button
+            className="approve-button"
+            onClick={() => handleApprove(auctioneer._id)}
+          >
             Update
           </button>
-          <button className="delete-button" onClick={() => handleDelete(auctioneer._id)}>
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(auctioneer._id)}
+          >
             Delete
           </button>
         </div>
-      </td>
-      </tr>
+      </div>
     ));
   };
 
@@ -57,23 +63,5 @@ export default function AllAuctioneers() {
     alert(`Deleted Auctioneer with ID: ${auctioneerId}`);
   };
 
-  return (
-    <div className="container">
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Contact Number</th>
-            <th>Address</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Actions</th> {/* New column for buttons */}
-          </tr>
-        </thead>
-        <tbody>{renderAuctioneerRows()}</tbody>
-      </table>
-    </div>
-  );
+  return <div className="catalog-container">{renderAuctioneerItems()}</div>;
 }

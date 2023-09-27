@@ -7,7 +7,16 @@ const app = express();
 app.use(cookieParser());
 module.exports.Signup = async (req, res, next) => {
   try {
-    const { email, password, username, address, age, id, createdAt } = req.body;
+    const {
+      email,
+      password,
+      firstname,
+      lastname,
+      address,
+      age,
+      id,
+      createdAt,
+    } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.json({ message: "User already exists" });
@@ -15,7 +24,8 @@ module.exports.Signup = async (req, res, next) => {
     const user = await User.create({
       email,
       password,
-      username,
+      firstname,
+      lastname,
       address,
       age,
       id,
@@ -103,11 +113,12 @@ module.exports.UserProfile = async (req, res) => {
 module.exports.UpdateUser = async (req, res, next) => {
   try {
     const userId = req.params.id; // Assuming you have a route parameter for the user ID
-    const { email, password, username, address, age } = req.body; // Assuming you send the updates in the request body
+    const { email, password, firstname, lastname, address, age } = req.body; // Assuming you send the updates in the request body
     const updates = {
       email,
       password,
-      username,
+      firstname,
+      lastname,
       address,
       age,
     };
