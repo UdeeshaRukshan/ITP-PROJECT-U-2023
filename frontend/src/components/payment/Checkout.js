@@ -11,9 +11,11 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import UserInfo from "./UserInfo";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
-import UserInfo, { sendData } from "./UserInfo";
+import Axios from "axios";
+
 
 function Copyright() {
   return (
@@ -98,30 +100,23 @@ export default function Checkout() {
             </React.Fragment>
           ) : (
             <React.Fragment>
-            {getStepContent(activeStep)}
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              {activeStep !== 0 && (
-                <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                  Back
+              {getStepContent(activeStep)}
+              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                {activeStep !== 0 && (
+                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                    Back
+                  </Button>
+                )}
+
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  sx={{ mt: 3, ml: 1 }}
+                >
+                  {activeStep === steps.length - 1 ? "Pay Now" : "Next"}
                 </Button>
-              )}
-    
-              <Button
-                variant="contained"
-                onClick={() => {
-                  if (activeStep === steps.length - 1) {
-                    // Call sendData function when "Pay Now" button is clicked
-                    sendData();
-                  } else {
-                    handleNext();
-                  }
-                }}
-                sx={{ mt: 3, ml: 1 }}
-              >
-                {activeStep === steps.length - 1 ? "Pay Now" : "Next"}
-              </Button>
-            </Box>
-          </React.Fragment>
+              </Box>
+            </React.Fragment>
           )}
         </Paper>
         <Copyright />
