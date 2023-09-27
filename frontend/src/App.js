@@ -23,6 +23,12 @@ import Checkout from "./pages/Checkout";
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
+import MyTicketPage from "./pages/MyTickets/myTickets";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
 
 //nuwani
 import PersonalDetails from "./components/category/PersonalDetails";
@@ -36,9 +42,11 @@ import AllProperties from "./components/category/AllProperties";
 import AllCollectables from "./components/category/AllCollectables";
 
 function App() {
+  const queryClient = new QueryClient()
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
       <Notifications position="top-center" />
+      <QueryClientProvider client={queryClient}> 
       <div className="App">
         <Header />
         <Routes>
@@ -54,6 +62,7 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
           <Route path="/support/chatbot" element={<Chatbot />} />
+          <Route path="/ticket/mytickets" element= {<MyTicketPage/>}/>
 
           <Route path="/add" exact element={<PersonalDetails />} />
           <Route path="/addart" exact element={<ArtForm />} />
@@ -68,6 +77,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+      </QueryClientProvider>
     </MantineProvider>
   );
 }
