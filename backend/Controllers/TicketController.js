@@ -27,3 +27,14 @@ module.exports.getAllTickets = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+//delete submited ticket
+module.exports.DeleteTicket = async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const ticket = await Ticket.findByIdAndDelete(_id);
+    res.status(200).json(ticket);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

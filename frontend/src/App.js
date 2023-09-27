@@ -27,7 +27,6 @@ import MyTicketPage from "./pages/MyTickets/myTickets";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from '@tanstack/react-query'
 
 function App() {
