@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 const { MONGO_URL, PORT } = process.env; // Correct the destructuring
 
-const port = PORT || 3000; // Provide a default value for PORT
+const port = PORT || 4000; // Provide a default value for PORT
 
 mongoose
   .connect(MONGO_URL, {
