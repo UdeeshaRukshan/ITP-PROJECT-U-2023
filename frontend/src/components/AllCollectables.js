@@ -55,7 +55,7 @@ export default function AllCollectables() {
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:8070/collectable/deletecollectable/${collectableId}`);
-        // Update the arts state to remove the deleted art piece
+
         setCollectables((prevCollectables) => prevCollectables.filter((collectable) => collectable._id !== collectableId));
       } catch (error) {
         alert(error.message);

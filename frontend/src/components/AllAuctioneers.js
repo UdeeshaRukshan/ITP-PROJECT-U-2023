@@ -36,7 +36,7 @@ export default function AllAuctioneers() {
           <button className="approve-button" onClick={() => handleApprove(auctioneer._id)}>
             Approve
           </button>
-          <button className="delete-button" onClick={() => handleDelete(auctioneer._id)}>
+          <button className="delete-button" onClick={() => handleDeleteClick(auctioneer._id)}>
             Delete
           </button>
         </div>
@@ -51,10 +51,18 @@ export default function AllAuctioneers() {
     alert(`Approved Auctioneer with ID: ${auctioneerId}`);
   };
 
-  // Handle "Delete" button click
-  const handleDelete = (auctioneerId) => {
-    // Add your delete logic here
-    alert(`Deleted Auctioneer with ID: ${auctioneerId}`);
+  const handleDeleteClick = async (auctioneerId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8070/auctioneer/delete/${auctioneerId}`);
+        // Update the arts state to remove the deleted art piece
+        setAuctioneers((prevAuctioneers) => prevAuctioneers.filter((auctioneer) => auctioneer._id !== auctioneerId));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   };
 
   return (
