@@ -22,6 +22,7 @@ const personalDetailsSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   phone: {
     type: String,

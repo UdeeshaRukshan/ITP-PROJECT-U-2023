@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const Payment = require("../models/Payment");
+let Payment = require("../models/Payment");
 
 // data insert route
-router.route("/add").post((req, res) => {
+router.route("/addpayment").post((req, res) => {
   const cardName = req.body.cardName;
   const cardNumber = req.body.cardNumber;
   const expiryDate = req.body.expiryDate;
@@ -12,86 +12,69 @@ router.route("/add").post((req, res) => {
     cardName,
     cardNumber,
     expiryDate,
-    cvv,
-  });
+    cvv
+  })
 
-  newPayment
-    .save()
-    .then(() => {
-      res.json("Payment details Added");
-    })
-    .catch((err) => {
+  newPayment.save().then(() => {
+      res.json("Payment details Added")
+    }).catch((err) => {
       console.log(err);
-    });
-});
+    })
+})
 
 // data read route
-router.route("/").get((req, res) => {
-  Payment.find()
-    .then((paymentRoutes) => {
+router.route("/getpayments").get((req, res) => {
+  Payment.find().then((paymentRoutes) => {
       res.json(paymentRoutes);
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err);
-    });
-});
+    })
+})
 
 // data update route
-router.route("/update/:id").put(async (req, res) => {
-  let userId = req.params.id;
+router.route("/updatepayment/:paymentid").put(async (req, res) => {
+  let userId = req.params.paymentid;
   const { cardName, cardNumber, expiryDate, cvv } = req.body;
 
   const updatePayment = {
     cardName,
     cardNumber,
     expiryDate,
-    cvv,
-  };
+    cvv
+  }
 
-  const update = await Payment.findByIdAndUpdate(userId, updatePayment)
+  const updatepayment = await Payment.findByIdAndUpdate(userId, updatePayment)
     .then(() => {
       res.status(200).send({ status: "Payment details updated" });
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err);
-      res
-        .status(500)
-        .send({ status: "Error with updating data", error: err.message });
-    });
-});
+      res.status(500).send({ status: "Error with updating data", error: err.message });
+    })
+})
 
 // data delete route
-router.route("/delete/:id").delete(async (req, res) => {
-  let userId = req.params.id;
+router.route("/deletepayment/:paymentid").delete(async (req, res) => {
+  let userId = req.params.paymentid;
 
   await Payment.findByIdAndDelete(userId)
     .then(() => {
       res.status(200).send({ status: "Payment details deleted" });
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err.message);
-      res
-        .status(500)
-        .send({ status: "Error with delete details", error: err.message });
-    });
-});
+      res.status(500).send({ status: "Error with delete details", error: err.message });
+    })
+})
 
 // fetch data route
-router.route("/get/:id").get(async (req, res) => {
-  let userId = req.params.id;
-  const user = await Payment.findById(userId)
-    .then((payment) => {
-      res.status(200).send({ status: "Payment details fetched", payment });
-    })
-    .catch((err) => {
+router.route("/getpayment/:paymentid").get(async (req, res) => {
+  let userId = req.params.paymentid;
+  await Payment.findById(userId)
+    .then((Payment) => {
+      res.status(200).send({ status: "Payment details fetched", Payment});
+    }).catch((err) => {
       console.log(err.message);
-      res
-        .status(500)
-        .send({
-          status: "Error with getting Payment details",
-          error: err.message,
-        });
-    });
-});
+      res.status(500).send({status: "Error with getting Payment details", error: err.message});
+    })
+})
 
 module.exports = router;

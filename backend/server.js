@@ -4,15 +4,18 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
+
+//import route files
 const personalDetailsRoutes = require("./routes/personalDetailsRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
-const http = require("http");
+
 
 const PORT = process.env.PORT || 8070;
 
 app.use(cors());
 app.use(bodyParser.json());
 
+//MongoDB connection
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
@@ -21,12 +24,20 @@ mongoose.connect(URL, {
 });
 
 const connection = mongoose.connection;
+
+connection.on("error", (err) => {
+  console.error("MongoDB connection error:", err);
+});
+
 connection.once("open", () => {
   console.log("Mongodb Connection success!");
 });
 
+//Define routes
+app.use("/payment", paymentRoutes);
+app.use("/personalDetails", personalDetailsRoutes);
+
+//start the server
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number: ${PORT}`);
 });
-app.use("/", paymentRoutes);
-app.use("/personalDetails", personalDetailsRoutes);
