@@ -91,7 +91,7 @@ export default function AllVehicles() {
             <th>Mileage(Km)</th>
             <th>Features</th>
             <th>Location</th>
-            <th>Value(Rs)</th> 
+            <th>Value($)</th> 
             <th>Images</th> 
             <th>Action</th>
           </tr>

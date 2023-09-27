@@ -78,7 +78,7 @@ export default function AllArts() {
             <th>Width(cm)</th>
             <th>Condition</th>
             <th>Location</th>
-            <th>Value(Rs)</th>
+            <th>Value($)</th>
             <th>Images</th> 
             <th>Actions</th>
           </tr>

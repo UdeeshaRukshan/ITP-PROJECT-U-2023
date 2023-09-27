@@ -74,12 +74,12 @@ function CollectableForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Give a opening value to auction your item:(Rs)</label>
+        <label htmlFor="openingValue">Give a opening value to auction your item:($)</label>
         <input
           type="number"
           id="openingValue"
           name="openingValue"
-          placeholder="e.g., 1500"
+          placeholder="e.g., 15"
           required
           onChange={(e) =>{
             const inputOpeningValue = e.target.value;

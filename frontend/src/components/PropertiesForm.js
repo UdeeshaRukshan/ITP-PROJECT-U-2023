@@ -97,7 +97,7 @@ function PropertyForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Set a opening value to auction your property:(Rs)</label>
+        <label htmlFor="openingValue">Set a opening value to auction your property:($)</label>
         <input 
         type="number" 
         id="openingvalue" 

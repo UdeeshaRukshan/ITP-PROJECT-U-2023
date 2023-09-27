@@ -70,7 +70,7 @@ export default function AllCollectables() {
           <tr>
             <th>Type</th>
             <th>Name</th>
-            <th>Value(Rs)</th>
+            <th>Value($)</th>
             <th>Description</th>
             <th>Images</th> 
             <th>Action</th>

@@ -73,7 +73,7 @@ export default function AllProperties() {
             <th>Street</th>
             <th>City</th>
             <th>Description</th>
-            <th>Value(Rs)</th>
+            <th>Value($)</th>
             <th>Images</th> 
             <th>Action</th>
           </tr>

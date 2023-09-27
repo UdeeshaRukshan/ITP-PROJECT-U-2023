@@ -137,12 +137,12 @@ function ArtForm() {
           <option value="Anuradhapura">Anuradhapura</option>
         </select><br />
 
-        <label htmlFor="openingValue">Give a opening value to auction your art:(Rs)</label>
+        <label htmlFor="openingValue">Give a opening value to auction your art:($)</label>
         <input
           type="number"
           id="openingValue"
           name="openingValue"
-          placeholder="e.g., 12 000"
+          placeholder="e.g., 120"
           required
           onChange={(e) =>{
             const inputOpeningValue = e.target.value;
