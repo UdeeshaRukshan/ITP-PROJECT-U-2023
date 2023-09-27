@@ -46,7 +46,6 @@ function getStepContent(step) {
 }
 
 export default function Checkout() {
- 
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -55,31 +54,6 @@ export default function Checkout() {
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
-  };
-
-
-
-  const handlePayment = async () => {
-    // Create an object with user data
-    const userData = {
-      firstName,
-      lastName,
-      address,
-      email,
-      phone,
-      cardName,
-      cardNumber,
-      expDate,
-      cvv,
-    };
-
-    Axios.post("http://localhost:8070/payment/addpayment", userData)
-      .then(() => {
-        alert("Payment Added");
-      })
-      .catch((err) => {
-        alert(err);
-      });
   };
 
   return (
@@ -134,14 +108,13 @@ export default function Checkout() {
                   </Button>
                 )}
 
-                  <Button
-                    variant="contained"
-                    onClick={handlePayment} // Call the handlePayment function
-                    sx={{ mt: 3, ml: 1 }}
-                  >
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  sx={{ mt: 3, ml: 1 }}
+                >
                   {activeStep === steps.length - 1 ? "Pay Now" : "Next"}
-                  </Button>
-
+                </Button>
               </Box>
             </React.Fragment>
           )}
