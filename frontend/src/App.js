@@ -15,11 +15,10 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
-
+import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
 import Checkout from "./pages/Checkout";
-
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";

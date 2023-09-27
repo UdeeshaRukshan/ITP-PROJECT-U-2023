@@ -10,9 +10,7 @@ export default function AllProperties() {
   useEffect(() => {
     async function fetchProperties() {
       try {
-        const response = await axios.get(
-          "http://localhost:4042/property/getproperties"
-        );
+        const response = await axios.get("http://localhost:8070/property/getproperties");
         setProperties(response.data);
       } catch (error) {
         alert(error.message);
@@ -72,7 +70,7 @@ export default function AllProperties() {
             <th>City</th>
             <th>Description</th>
             <th>Value</th>
-            <th>Images</th>
+            <th>Images</th> 
             <th>Action</th>
           </tr>
         </thead>

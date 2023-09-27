@@ -22,7 +22,7 @@ label {
   font-weight: bold;
 }
 
-/* input[type="text"],
+input[type="text"],
 textarea {
   width: 100%;
   padding: 8px;
@@ -30,7 +30,7 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-} */
+}
 
 button {
   background-color: #007bff;
