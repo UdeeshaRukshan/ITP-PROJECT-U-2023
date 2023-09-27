@@ -21,7 +21,7 @@ body {
 }
 .sidenav {
   margin-top: 9.5vh;
-  height: 100%;
+  height: 300vh;
   width: 300px;
   position: fixed;
   z-index: 1;
@@ -52,6 +52,7 @@ body {
 }
 .main-div {
   background-color: #c9cad5;
+  height: 120vh;
 }
 
 #main {
@@ -265,8 +266,9 @@ th {
 
 /* Style for the user information */
 .profile-info p {
-  margin: 10px 0;
+  margin: 15px 0;
   font-size: 16px;
+  margin: 5px 0;
 }
 
 /* Strong text (labels) */
@@ -279,6 +281,11 @@ th {
   margin-left: 50vh;
   justify-content: space-between;
 }
+.profile-info {
+  font-size: 22px; /* Adjust the font size as needed */
+  color: #333; /* Text color */
+}
+
 .profile-info {
   margin-top: 10px; /* Add margin to separate from other content */
 }
@@ -324,4 +331,7 @@ th {
   margin-right: 10vh;
   margin-top: 2vh;
   border-color: #333;
+}
+
+.btn-editA {
 }
