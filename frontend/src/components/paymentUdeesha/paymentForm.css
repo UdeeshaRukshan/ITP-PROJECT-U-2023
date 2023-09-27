@@ -1,0 +1,106 @@
+/* PaymentForm.css */
+
+.payment-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payment-form h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Flexbox for alignment */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add margin to the label for spacing */
+.label {
+  margin-bottom: 10px;
+}
+
+.card-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-field {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.expiry-cvv-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.expiry-field,
+.cvv-field {
+  flex: 1;
+  margin-right: 10px;
+}
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff; /* Change to your desired button color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: center; /* Center button text */
+  text-decoration: none; /* Remove underline */
+}
+
+.checkout-button:hover {
+  background-color: #0056b3; /* Change to your desired button hover color */
+}
+
+.error-message {
+  color: #f00;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.success-message {
+  color: #008000;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}

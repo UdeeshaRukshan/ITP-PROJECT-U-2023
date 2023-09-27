@@ -6,11 +6,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import InputMask from "react-input-mask";
 
-export default function PaymentForm() {
-  const [cardName, setCardName] = React.useState("");
-  const [cardNumber, setCardNumber] = React.useState("");
-  const [cvv, setCvv] = React.useState("");
-  const [expDate, setExpDate] = React.useState("");
+import { useState } from "react";
+export default function PaymentForm({ onPaymentInfoSubmit }) {
+  const [cardName, setCardName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [expDate, setExpDate] = useState("");
 
   const isCardNumberValid = (cardNumber) => {
     const cardNumberPattern = /^\d{16}$/;
@@ -24,12 +25,36 @@ export default function PaymentForm() {
 
   const isCardExpired = (expDate) => {
     const currentDate = new Date();
-    const [expMonth, expYear] = expDate.split('/').map((val) => parseInt(val));
+    const [expMonth, expYear] = expDate.split("/").map((val) => parseInt(val));
     if (expMonth >= 1 && expMonth <= 12 && expYear >= 0) {
       const expirationDate = new Date(expYear + 2000, expMonth - 1, 1);
       return expirationDate < currentDate;
     }
     return true; // Invalid date
+  };
+  const handlePaymentSubmit = (e) => {
+    e.preventDefault(); // Prevent the form from submitting via HTTP request
+
+    // Create an object to hold the payment information
+    const paymentInfo = {
+      cardName,
+      cardNumber,
+      cvv,
+      expDate,
+    };
+
+    // Check if the payment information is valid
+    if (
+      isCardNumberValid(cardNumber) &&
+      isCvvValid(cvv) &&
+      !isCardExpired(expDate)
+    ) {
+      // Call the callback function to submit the payment information
+      onPaymentInfoSubmit(paymentInfo);
+    } else {
+      // Handle invalid input, e.g., show an error message
+      console.error("Invalid payment information");
+    }
   };
 
   return (
@@ -82,9 +107,7 @@ export default function PaymentForm() {
                 variant="standard"
                 error={isCardExpired(expDate)}
                 helperText={
-                  isCardExpired(expDate)
-                    ? "Card has already expired"
-                    : ""
+                  isCardExpired(expDate) ? "Card has already expired" : ""
                 }
               />
             )}
@@ -100,21 +123,18 @@ export default function PaymentForm() {
             variant="standard"
             error={!isCvvValid(cvv)}
             helperText={
-              !isCvvValid(cvv)
-                ? "Please enter a valid 3-digit CVV"
-                : ""
+              !isCvvValid(cvv) ? "Please enter a valid 3-digit CVV" : ""
             }
             onChange={(e) => setCvv(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={
-              <Checkbox color="secondary" name="saveCard" value="yes" />
-            }
+            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
           />
         </Grid>
+        <button type="submit">Submit Payment</button>
       </Grid>
     </React.Fragment>
   );
