@@ -34,7 +34,7 @@ export default function AllCollectables() {
           <button className="approve-button" onClick={() => handleApprove(collectable._id)}>
             Approve
           </button>
-          <button className="delete-button" onClick={() => handleDelete(collectable._id)}>
+          <button className="delete-button" onClick={() => handleDeleteClick(collectable._id)}>
             Delete
           </button>
         </div>
@@ -49,10 +49,18 @@ export default function AllCollectables() {
     alert(`Approved Auctioneer with ID: ${collectableId}`);
   };
 
-  // Handle "Delete" button click
-  const handleDelete = (collectableId) => {
-    // Add your delete logic here
-    alert(`Deleted Auctioneer with ID: ${collectableId}`);
+  const handleDeleteClick = async (collectableId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8070/collectable/deletecollectable/${collectableId}`);
+        // Update the arts state to remove the deleted art piece
+        setCollectables((prevCollectables) => prevCollectables.filter((collectable) => collectable._id !== collectableId));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   };
 
   return (

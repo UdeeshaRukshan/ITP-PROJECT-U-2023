@@ -40,6 +40,18 @@
             <li><a className="dropdown-item" href="/addart">Arts</a></li>
           </ul>
         </li>
+        <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Edit Forms
+          </a>
+          <ul className="dropdown-menu">
+          <li><a className="dropdown-item" href="/updateart">Edit Art</a></li>
+            <li><a className="dropdown-item" href="">Edit Collectables</a></li>
+            <li><a className="dropdown-item" href="">Edit Vehicles</a></li>
+            <li><a className="dropdown-item" href="">Edit Properties</a></li>        
+            <li><a className="dropdown-item" href="">Arts</a></li>
+          </ul>
+        </li>
       </ul>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

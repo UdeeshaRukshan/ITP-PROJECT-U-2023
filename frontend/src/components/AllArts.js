@@ -20,7 +20,7 @@ export default function AllArts() {
     fetchArts();
   }, []);
 
-  // Render auctioneer rows
+  
   const renderArtsRows = () => {
     return arts.map((art) => (
       <tr key={art._id}>
@@ -37,7 +37,7 @@ export default function AllArts() {
           <button className="approve-button" onClick={() => handleApprove(art._id)}>
             Approve
           </button>
-          <button className="delete-button" onClick={() => handleDelete(art._id)}>
+          <button className="delete-button" onClick={() => handleDeleteClick(art._id)}>
             Delete
           </button>
         </div>
@@ -52,10 +52,19 @@ export default function AllArts() {
     alert(`Approved Auctioneer with ID: ${artId}`);
   };
 
-  // Handle "Delete" button click
-  const handleDelete = (artId) => {
-    // Add your delete logic here
-    alert(`Deleted Auctioneer with ID: ${artId}`);
+  // Function to handle delete button click
+  const handleDeleteClick = async (artId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8070/art/deleteart/${artId}`);
+        // Update the arts state to remove the deleted art piece
+        setArts((prevArts) => prevArts.filter((art) => art._id !== artId));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   };
 
   return (

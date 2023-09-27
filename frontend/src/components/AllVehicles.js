@@ -49,7 +49,7 @@ export default function AllVehicles() {
           <button className="approve-button" onClick={() => handleApprove(vehicle._id)}>
             Approve
           </button>
-          <button className="delete-button" onClick={() => handleDelete(vehicle._id)}>
+          <button className="delete-button" onClick={() => handleDeleteClick(vehicle._id)}>
             Delete
           </button>
         </div>
@@ -64,10 +64,19 @@ export default function AllVehicles() {
     alert(`Approved vehicle with ID: ${vehicleid}`);
   };
 
-  // Handle "Delete" button click
-  const handleDelete = (vehicleid) => {
-    // Add delete logic here
-    alert(`Deleted vehicle with ID: ${vehicleid}`);
+  // Function to handle delete button click
+  const handleDeleteClick = async (vehicleid) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8070/vehicle/deletevehicle/${vehicleid}`);
+        // Update the arts state to remove the deleted art piece
+        setVehicles((prevVehicles) => prevVehicles.filter((vehicle) => vehicle._id !== vehicleid));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   };
 
   return (

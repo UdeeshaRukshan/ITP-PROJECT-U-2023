@@ -35,7 +35,7 @@ export default function AllProperties() {
           <button className="approve-button" onClick={() => handleApprove(property._id)}>
             Approve
           </button>
-          <button className="delete-button" onClick={() => handleDelete(property._id)}>
+          <button className="delete-button" onClick={() => handleDeleteClick(property._id)}>
             Delete
           </button>
         </div>
@@ -50,12 +50,20 @@ export default function AllProperties() {
     alert(`Approved Auctioneer with ID: ${propertyId}`);
   };
 
-  // Handle "Delete" button click
-  const handleDelete = (propertyId) => {
-    // Add your delete logic here
-    alert(`Deleted Auctioneer with ID: ${propertyId}`);
+   // Function to handle delete button click
+   const handleDeleteClick = async (propertyId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this property?");
+    
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8070/property/deleteproperty/${propertyId}`);
+        // Update the arts state to remove the deleted art piece
+        setProperties((prevProperty) => prevProperty.filter((property) => property._id !== propertyId));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   };
-
   return (
     <div className="container">
       <table>

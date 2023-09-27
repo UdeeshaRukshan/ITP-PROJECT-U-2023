@@ -13,6 +13,7 @@ import AllProperties from "./components/AllProperties";
 import AllCollectables from "./components/AllCollectables";
 import AllVehicles from "./components/AllVehicles";
 
+
 function App() {
   return (
     <div>
@@ -31,7 +32,8 @@ function App() {
            <Route path="/getproperties" exact element={<AllProperties/>} />
            <Route path="/getcollectables" exact element={<AllCollectables/>} />
            <Route path="/getvehicles" exact element={<AllVehicles/>} />
-
+           
+ 
 
 
 
