@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const personalDetailsSchema = new Schema({
+const personalDetailSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -30,6 +30,6 @@ const personalDetailsSchema = new Schema({
   }
 });
 
-const PersonalDetails = mongoose.model("PersonalDetails", personalDetailsSchema);
+const PersonalDetail = mongoose.model("PersonalDetail", personalDetailSchema);
 
-module.exports = PersonalDetails;
+module.exports = PersonalDetail;
