@@ -35,8 +35,6 @@ import AllArts from "./components/category/AllArts";
 import AllProperties from "./components/category/AllProperties";
 import AllCollectables from "./components/category/AllCollectables";
 
-import MultiImage from "./cloudinary/multipleimage";
-
 function App() {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
@@ -52,8 +50,6 @@ function App() {
           <Route path="/payment" element={<Checkout />} />
 
           <Route path="/dashbord/agent" element={<Agent />} />
-          <Route path="/multiimage" element={<MultiImage />} />
-
 
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/ticket/submit" element={<SubmitTicketPage />} />
