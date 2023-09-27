@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import "./Dashbord.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -20,33 +18,6 @@ const Dashboard = () => {
   const [imgUP, setimgupload] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
-  const [cookies, removeCookie] = useCookies([]);
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    const verifyCookie = async () => {
-      if (!cookies.token) {
-        navigate("/login");
-      }
-      const { data } = await axios.post(
-        "http://localhost:4042",
-        {},
-        { withCredentials: true }
-      );
-      const { status, user } = data;
-      setUsername(user);
-      return status
-        ? toast(`Hello ${user}`, {
-            position: "top-right",
-          })
-        : (removeCookie("token"), navigate("/login"));
-    };
-    verifyCookie();
-  }, [cookies, navigate, removeCookie]);
-  const Logout = () => {
-    removeCookie("token");
-    navigate("/signup");
-  };
   useEffect(() => {
     axios
       .get("http://localhost:4042/dashbord") // Fix the URL, add "http://"
@@ -132,7 +103,6 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     axios
       .get("http://localhost:4042/image") // Fix the URL, add "http://"
@@ -149,12 +119,8 @@ const Dashboard = () => {
   const handleImgUpload = () => {
     setimgupload(true);
   };
-
   return (
     <div className="main-div">
-      <button className="logoutbtn" onClick={Logout}>
-        LOGOUT
-      </button>
       <div id="mySidenav" class="sidenav">
         <p class="logo">
           <span>User</span> Profile
@@ -162,13 +128,12 @@ const Dashboard = () => {
         <a>
           {imageUrls.length > 0 && (
             <img
-              className="img-x"
               style={{ width: "20vh", height: "20vh" }}
               src={imageUrls[0].url} // Display the first image from the array
               alt={`Image 0`}
             />
           )}
-          <p class="user-name"> {users.firstname + " " + users.lastname}</p>
+          <p class="user-name"> {users.username}</p>
         </a>
 
         {/* <Link to={"/dashbord"} class="icon-a" id="btn1"> */}
@@ -217,7 +182,7 @@ const Dashboard = () => {
 
       <div className="col-div-8" id="displayArea">
         <div className="user-profile">
-          <h1 className="profile-title">{users.firstname} 's Profile</h1>
+          <h1 className="profile-title">{users.username}'s Profile</h1>
           {imgUP ? (
             <div>
               <input
@@ -275,22 +240,12 @@ const Dashboard = () => {
                 />
               </div>
               <div className="form-group">
-                <label>firstname</label>
+                <label>Username:</label>
                 <input
                   type="text"
-                  value={editedUser.firstname}
+                  value={editedUser.username}
                   onChange={(e) =>
-                    setEditedUser({ ...editedUser, firstname: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>lastname</label>
-                <input
-                  type="text"
-                  value={editedUser.lastname}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, lastname: e.target.value })
+                    setEditedUser({ ...editedUser, username: e.target.value })
                   }
                 />
               </div>
@@ -318,12 +273,6 @@ const Dashboard = () => {
               <button className="btn btn-success" onClick={handleSaveClick}>
                 Save Changes
               </button>
-              <button
-                className="btn btn-secondary"
-                onClick={() => setIsEditing(false)}
-              >
-                Cancel
-              </button>
             </div>
           ) : (
             // Display user details when not editing
@@ -332,10 +281,7 @@ const Dashboard = () => {
                 <strong>Email:</strong> {users.email}
               </p>
               <p>
-                <strong>Firstname:</strong> {users.firstname}
-              </p>
-              <p>
-                <strong>Lastname:</strong> {users.lastname}
+                <strong>Username:</strong> {users.username}
               </p>
               <p>
                 <strong>Age:</strong> {users.age}

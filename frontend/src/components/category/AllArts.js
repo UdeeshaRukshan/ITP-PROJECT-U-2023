@@ -33,21 +33,15 @@ export default function AllArts() {
         <td>{art.value}</td>
         <td>{art.images}</td>
         <td>
-          <div className="button-container">
-            <button
-              className="approve-button"
-              onClick={() => handleApprove(art._id)}
-            >
-              Update
-            </button>
-            <button
-              className="delete-button"
-              onClick={() => handleDelete(art._id)}
-            >
-              Delete
-            </button>
-          </div>
-        </td>
+        <div className="button-container">
+          <button className="approve-button" onClick={() => handleApprove(art._id)}>
+            Update
+          </button>
+          <button className="delete-button" onClick={() => handleDelete(art._id)}>
+            Delete
+          </button>
+        </div>
+      </td>
       </tr>
     ));
   };
@@ -76,7 +70,7 @@ export default function AllArts() {
             <th>Condition</th>
             <th>Location</th>
             <th>Value</th>
-            <th>Images</th>
+            <th>Images</th> 
             <th>Actions</th>
           </tr>
         </thead>

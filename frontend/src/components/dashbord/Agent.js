@@ -4,7 +4,6 @@ import axios from "axios";
 import "./Agent.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import QRCode from "qrcode.react";
-
 const Agent = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [users, setUsers] = useState([]);
@@ -239,7 +238,6 @@ const Agent = () => {
         <a>
           {imageUrls.length > 0 && (
             <img
-              className="image-agent"
               style={{ width: "20vh", height: "20vh" }}
               src={imageUrls[0].url} // Display the first image from the array
               alt={`Image 0`}
@@ -291,9 +289,7 @@ const Agent = () => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
-          <button className="search-btn" onClick={handleSearch}>
-            Search
-          </button>
+          <button onClick={handleSearch}>Search</button>
         </div>
         <button className="add-agent" onClick={toggleAddAgentForm}>
           Add Agent
@@ -445,11 +441,7 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-
-                              //onClick={() => handleAssign(agent._id)}
-
                               // onClick={() => handleAssign(agent._id)}
-
                             >
                               Assign
                             </button>
@@ -486,11 +478,7 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-
-                              //onClick={() => handleAssign(agent._id)}
-
                               // onClick={() => handleAssign(agent._id)}
-
                             >
                               Assign
                             </button>

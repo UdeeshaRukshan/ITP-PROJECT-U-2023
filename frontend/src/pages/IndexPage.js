@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { Link } from "react-router-dom";
 import "./indexPage.css";
 import "react-slideshow-image/dist/styles.css";
 
-import { Fade } from "react-slideshow-image";
+import { Fade, Zoom, Slide } from "react-slideshow-image";
 const slideImages = [
   {
     url: "https://www.tm5properties.com/uploads/unnamed-1.jpg",
@@ -36,6 +36,10 @@ const slideImages = [
   },
 ];
 const IndexPage = () => {
+  // const boxStyle = {
+  //   height: "250px",
+  //   width: "250px", // Adjust the height as needed
+  // };
   const bar = {
     height: "100px",
   };
@@ -55,29 +59,6 @@ const IndexPage = () => {
     indicators: true, // Show slide indicators
     arrows: true, // Show arrow navigation
   };
-  const AnimatedNumber = ({ start, end, duration }) => {
-    const [currentValue, setCurrentValue] = useState(start);
-
-    useEffect(() => {
-      let animationInterval;
-      const step = (end - start) / (duration * 6);
-      const intervalDuration = 200; // Decreased interval duration for faster increment
-
-      const animateNumbers = () => {
-        if (currentValue < end) {
-          setCurrentValue((prevValue) => prevValue + step);
-        } else {
-          setCurrentValue(end);
-          clearInterval(animationInterval);
-        }
-      };
-
-      animationInterval = setInterval(animateNumbers, intervalDuration);
-      return () => clearInterval(animationInterval);
-    }, [currentValue, start, end, duration]);
-
-    return <span>{Math.round(currentValue)}</span>;
-  };
   return (
     <div className="bg-white">
       <div className="container-xxl py-5">
@@ -95,7 +76,7 @@ const IndexPage = () => {
             ))}
           </Fade>
         </div>
-        <div className="container-y">
+        <div className="container">
           <div
             className="text-center mx-auto mb-5 wow fadeInUp"
             data-wow-delay="0.1s"
@@ -114,18 +95,18 @@ const IndexPage = () => {
               data-wow-delay="0.1s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded "
+                className="cat-item d-block bg-light text-center rounded p-3"
                 href=""
               >
-                <div className="rounded ">
+                <div className="rounded p-4">
                   <div className="icon mb-3">
                     <img
-                      class="img-fluid rounded img-1"
-                      src="https://topauto.co.za/wp-content/uploads/2021/09/2022-Mini-Cooper-S-3-door-Header-1.jpg"
-                      alt="Vehicles"
+                      class="img-fluid"
+                      src="img/icon-apartment.png"
+                      alt="Icon"
                     />
                   </div>
-                  <h1>Vehicles</h1>
+                  <h4>Vehicles</h4>
                 </div>
               </a>
             </div>
@@ -134,18 +115,18 @@ const IndexPage = () => {
               data-wow-delay="0.3s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded "
+                className="cat-item d-block bg-light text-center rounded p-3"
                 href=""
               >
-                <div className="rounded ">
-                  <div className="icon mb-3 ">
+                <div className="rounded p-4">
+                  <div className="icon mb-3">
                     <img
-                      class="img-fluid rounded img-2"
-                      src="https://www.redfin.com/blog/wp-content/uploads/2021/07/3523-Frostleaf-Ct_Fairfax_VA_Ext.jpg"
+                      class="img-fluid"
+                      src="img/icon-villa.png"
                       alt="Icon"
                     />
                   </div>
-                  <h1>Properties</h1>
+                  <h4>Properties</h4>
                 </div>
               </a>
             </div>
@@ -154,18 +135,18 @@ const IndexPage = () => {
               data-wow-delay="0.5s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded "
+                className="cat-item d-block bg-light text-center rounded p-3"
                 href=""
               >
-                <div className="rounded ">
+                <div className="rounded p-4">
                   <div className="icon mb-3">
                     <img
-                      className="img-fluid-3 rounded img-3"
-                      src="https://thumbs.dreamstime.com/b/vintage-metal-sign-vector-antiques-collectibles-realistic-used-rusty-effect-can-be-easily-removed-clean-88940749.jpg"
-                      alt="Collectables"
+                      className="img-fluid"
+                      src="img/icon-housing.png"
+                      alt="Icon"
                     />
                   </div>
-                  <h1>Collectables</h1>
+                  <h4>Collectables</h4>
                 </div>
               </a>
             </div>
@@ -174,18 +155,18 @@ const IndexPage = () => {
               data-wow-delay="0.7s"
             >
               <a
-                className="cat-item d-block bg-light text-center rounded "
+                className="cat-item d-block bg-light text-center rounded p-3"
                 href=""
               >
-                <div className="rounded ">
-                  <div className="icon mb-3 rounded">
+                <div className="rounded p-4">
+                  <div className="icon mb-3">
                     <img
-                      className="img-fluid rounded img-4 "
-                      src="https://d1inegp6v2yuxm.cloudfront.net/royal-academy/image/upload/c_fill,cs_tinysrgb,dn_72,f_auto,fl_progressive.keep_iptc,w_836,h_470,ar_16:9/mcl1whdg3qdd6kweugb4.jpg"
-                      alt="Arts"
+                      className="img-fluid"
+                      src="img/icon-housing.png"
+                      alt="Icon"
                     />
                   </div>
-                  <h1>Arts</h1>
+                  <h4>Arts</h4>
                 </div>
               </a>
             </div>
@@ -200,34 +181,10 @@ const IndexPage = () => {
           className="text-center d-flex justify-content-center align-items-center text-white bg-white my-5 "
           style={bar}
         >
-          <div
-            className="col-lg-9  text-center row col-main rounded"
-            style={bar}
-          >
-            <div className="col">
-              <div className="number-container">
-                <span className="animated-number-large">
-                  <AnimatedNumber start={0} end={1000} duration={5} />+
-                </span>
-                <span className="number-text-large">Live Auctions Count</span>
-              </div>
-            </div>
-            <div className="col">
-              <div className="number-container">
-                <span className="animated-number-large">
-                  <AnimatedNumber start={0} end={10000} duration={5} />+
-                </span>
-                <span className="number-text-large">Live Users Count</span>
-              </div>
-            </div>
-            <div className="col">
-              <div className="number-container">
-                <span className="animated-number-large">
-                  <AnimatedNumber start={0} end={85} duration={5} />+
-                </span>
-                <span className="number-text-large">Sell Through Rate</span>
-              </div>
-            </div>
+          <div className="col-lg-8 bg-black text-center row" style={bar}>
+            <div className="col">1</div>
+            <div className="col">2</div>
+            <div className="col">3</div>
           </div>
         </div>
         <h2 className="text-center">

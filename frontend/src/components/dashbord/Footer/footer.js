@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer class="footer">
-      <div class="container-g bottom_border">
+      <div class="container bottom_border">
         <div class="row">
           <div class=" col-sm-4 col-md col-sm-4  col-12 col">
             <h1 class="headin5_amrc col_white_amrc pt2">AuctionPal</h1>
@@ -97,7 +97,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div class="container-x">
+      <div class="container">
         <ul class="foote_bottom_ul_amrc">
           <li>
             <a href="http://webenlance.com">Home</a>

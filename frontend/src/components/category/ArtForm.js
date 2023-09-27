@@ -3,6 +3,7 @@ import "./ArtForm.css"; // Import CSS file for styling
 import axios from "axios";
 
 function ArtForm() {
+
   const [title, setTitle] = useState("");
   const [medium, setMedium] = useState("");
   const [height, setHeight] = useState("");
@@ -12,10 +13,11 @@ function ArtForm() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
 
-  function sendData(e) {
+  function sendData(e){
     e.preventDefault();
 
-    const newArt = {
+    const newArt= {
+
       title,
       medium,
       height,
@@ -24,41 +26,39 @@ function ArtForm() {
       location,
       value,
       images,
-    };
 
-    axios
-      .post("http://localhost:4042/art/addart", newArt)
-      .then(() => {
-        alert("Art Added");
-        setTitle("");
-        setMedium("");
-        setHeight("");
-        setWidth("");
-        setCondition("");
-        setLocation("");
-        setValue("");
-        setImages("");
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    }
+
+    axios.post("http://localhost:8070/art/addart", newArt).then(() =>{
+      alert("Art Added");
+      setTitle("");
+      setMedium("");
+      setHeight("");
+      setWidth("");
+      setCondition("");
+      setLocation("");
+      setValue("");
+      setImages("");
+      
+    }).catch((err)=>{
+      alert(err);
+    });
+
   }
 
   return (
     <div className="container">
       <form onSubmit={sendData}>
-        <h2>Add a New Artwork</h2>
+      <h2>Add a New Artwork</h2>
         <label htmlFor="title">Title:</label>
         <textarea
           id="title"
           name="title"
           placeholder="Title/or subject"
           required
-          onChange={(e) => {
+          onChange={(e) =>{
             setTitle(e.target.value);
-          }}
-        ></textarea>
-        <br />
+          }}></textarea><br />
 
         <label htmlFor="medium">Medium:</label>
         <input
@@ -67,11 +67,9 @@ function ArtForm() {
           name="medium"
           placeholder="e.g., canvas,wood,clay,paint etc."
           required
-          onChange={(e) => {
+          onChange={(e) =>{
             setMedium(e.target.value);
-          }}
-        />
-        <br />
+          }}/><br />
 
         <div className="row">
           <div className="col">
@@ -82,10 +80,9 @@ function ArtForm() {
               name="height"
               placeholder="e.g., 120"
               required
-              onChange={(e) => {
+              onChange={(e) =>{
                 setHeight(e.target.value);
-              }}
-            />
+              }}/>
           </div>
           <div className="col">
             <label htmlFor="width">Width (cm):</label>
@@ -95,10 +92,9 @@ function ArtForm() {
               name="width"
               placeholder="e.g., 145"
               required
-              onChange={(e) => {
+              onChange={(e) =>{
                 setWidth(e.target.value);
-              }}
-            />
+              }}/>
           </div>
         </div>
 
@@ -108,11 +104,9 @@ function ArtForm() {
           name="condition"
           placeholder="e.g., Minor crease at lower left corner"
           required
-          onChange={(e) => {
+          onChange={(e) =>{
             setCondition(e.target.value);
-          }}
-        ></textarea>
-        <br />
+          }}></textarea><br />
 
         <label htmlFor="location">Where is this art located:</label>
         <input
@@ -121,11 +115,9 @@ function ArtForm() {
           name="location"
           placeholder="e.g., Kurunegala"
           required
-          onChange={(e) => {
+          onChange={(e) =>{
             setLocation(e.target.value);
-          }}
-        />
-        <br />
+          }}/><br />
 
         <label htmlFor="openingValue">Opening Value (Rs):</label>
         <input
@@ -134,11 +126,9 @@ function ArtForm() {
           name="openingValue"
           placeholder="e.g., 12 000"
           required
-          onChange={(e) => {
+          onChange={(e) =>{
             setValue(e.target.value);
-          }}
-        />
-        <br />
+          }}/><br />
 
         <label htmlFor="images">Images (multiple):</label>
         <input
@@ -148,13 +138,11 @@ function ArtForm() {
           multiple
           accept="image/*"
           required
-          onChange={(e) => {
+          onChange={(e) =>{
             setImages(e.target.value);
-          }}
-        />
-        <br />
+          }}/><br />
 
-        <div className="form-group">
+         <div className="form-group">
           <button type="submit">Submit</button>
         </div>
       </form>

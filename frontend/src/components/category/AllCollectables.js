@@ -10,9 +10,7 @@ export default function AllCollectables() {
   useEffect(() => {
     async function fetchCollectables() {
       try {
-        const response = await axios.get(
-          "http://localhost:4042/collectable/getcollectables"
-        );
+        const response = await axios.get("http://localhost:8070/collectable/getcollectables");
         setCollectables(response.data);
       } catch (error) {
         alert(error.message);
@@ -70,7 +68,7 @@ export default function AllCollectables() {
             <th>Name</th>
             <th>Value</th>
             <th> Description</th>
-            <th>Images</th>
+            <th>Images</th> 
             <th>Action</th>
           </tr>
         </thead>
