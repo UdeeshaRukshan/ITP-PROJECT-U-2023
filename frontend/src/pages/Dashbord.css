@@ -21,7 +21,7 @@ body {
 }
 .sidenav {
   margin-top: 9.5vh;
-  height: 300vh;
+  height: 130%;
   width: 300px;
   position: fixed;
   z-index: 1;
@@ -279,7 +279,6 @@ th {
 /* You can customize these styles further to match your design */
 .button-container {
   margin-left: 50vh;
-  justify-content: space-between;
 }
 .profile-info {
   font-size: 22px; /* Adjust the font size as needed */
@@ -334,4 +333,5 @@ th {
 }
 
 .btn-editA {
+  margin-left: 50vh;
 }

@@ -21,7 +21,7 @@ body {
 }
 .sidenav {
   margin-top: 9.5vh;
-  height: 100%;
+  height: 130%;
   width: 300px;
   position: fixed;
   z-index: 1;
@@ -496,4 +496,8 @@ button:hover {
 }
 .search-area {
   height: 5.5vh;
+}
+
+#displayArea {
+  padding-bottom: 30vh;
 }

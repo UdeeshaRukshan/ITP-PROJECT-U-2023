@@ -259,6 +259,20 @@ const Dashboard = () => {
               >
                 Save Changes
               </button>
+              <button
+                className="btn btn-danger"
+                style={{
+                  marginTop: "10px",
+                  backgroundColor: "red",
+                  color: "white",
+                }}
+                onClick={() => {
+                  console.log("Cancel clicked");
+                  setimgupload(false); // Set imgUP back to false to cancel the image upload
+                }}
+              >
+                Cancel
+              </button>
             </div>
           ) : isEditing ? (
             // Display the edit form when isEditing is true
@@ -319,7 +333,7 @@ const Dashboard = () => {
                 Save Changes
               </button>
               <button
-                className="btn btn-secondary"
+                className="btn btn-danger"
                 onClick={() => setIsEditing(false)}
               >
                 Cancel
@@ -350,7 +364,10 @@ const Dashboard = () => {
 
           {!isEditing && !imgUP && (
             <div className="button-container">
-              <button className="btn btn-primary" onClick={handleEditClick}>
+              <button
+                className="btn btn-primary btn-editA"
+                onClick={handleEditClick}
+              >
                 Edit Profile
               </button>
               <button className="btn btn-danger" onClick={handleDeleteClick}>
