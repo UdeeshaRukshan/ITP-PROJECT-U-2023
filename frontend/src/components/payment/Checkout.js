@@ -14,39 +14,30 @@ import Typography from "@mui/material/Typography";
 import UserInfo from "./UserInfo";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
-import Axios from "axios";
 
+import { useState } from "react";
+import axios from "axios";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+function Checkout() {
+  const [activeStep, setActiveStep] = useState(0);
+  const [userInfo, setUserInfo] = useState({});
+  const [paymentInfo, setPaymentInfo] = useState({});
+  const [reviewInfo, setReviewInfo] = useState({});
 
-const steps = ["User Info", "Payment Info", "Review "];
+  const handleUserInfoSubmit = (data) => {
+    setUserInfo(data);
+    handleNext();
+  };
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <UserInfo />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error("Unknown step");
-  }
-}
+  const handlePaymentInfoSubmit = (data) => {
+    setPaymentInfo(data);
+    handleNext();
+  };
 
-export default function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const handleReviewInfoSubmit = (data) => {
+    setReviewInfo(data);
+    handleNext();
+  };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -54,6 +45,45 @@ export default function Checkout() {
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+
+  const handlePayNow = () => {
+    // Combine all the collected data
+    const allData = {
+      userInfo,
+      paymentInfo,
+      reviewInfo,
+    };
+
+    // Send the data to your server or perform other actions as needed
+    console.log("All Data:", allData);
+    axios
+      .post("http://localhost:8070/payment/addpayment", allData)
+      .then((response) => {
+        // Handle success, e.g., show a success message, redirect, etc.
+        console.log("Data submitted successfully:", response.data);
+      })
+      .catch((error) => {
+        // Handle errors, e.g., display an error message
+        console.error("Error submitting data:", error);
+      });
+
+    // Reset the form or redirect to a thank-you page
+  };
+
+  const steps = ["User Info", "Payment Info", "Review "];
+
+  const getStepContent = (step) => {
+    switch (step) {
+      case 0:
+        return <UserInfo onUserInfoSubmit={handleUserInfoSubmit} />;
+      case 1:
+        return <PaymentForm onPaymentInfoSubmit={handlePaymentInfoSubmit} />;
+      case 2:
+        return <Review onReviewInfoSubmit={handleReviewInfoSubmit} />;
+      default:
+        throw new Error("Unknown step");
+    }
   };
 
   return (
@@ -95,7 +125,11 @@ export default function Checkout() {
                 Thank You For Your Transaction.
               </Typography>
               <Typography variant="subtitle1">
-              Your item is now ready for pickup. Your winning bid number is #2001539. We have emailed your confirmation, and you can come to our location to collect your item. Please check your email for more details on how to claim your item. Thank you for participating!
+                Your item is now ready for pickup. Your winning bid number is
+                #2001539. We have emailed your confirmation, and you can come to
+                our location to collect your item. Please check your email for
+                more details on how to claim your item. Thank you for
+                participating!
               </Typography>
             </React.Fragment>
           ) : (
@@ -110,7 +144,9 @@ export default function Checkout() {
 
                 <Button
                   variant="contained"
-                  onClick={handleNext}
+                  onClick={
+                    activeStep === steps.length - 1 ? handlePayNow : handleNext
+                  }
                   sx={{ mt: 3, ml: 1 }}
                 >
                   {activeStep === steps.length - 1 ? "Pay Now" : "Next"}
@@ -119,8 +155,9 @@ export default function Checkout() {
             </React.Fragment>
           )}
         </Paper>
-        <Copyright />
       </Container>
     </React.Fragment>
   );
 }
+
+export default Checkout;

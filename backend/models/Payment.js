@@ -13,16 +13,14 @@ const paymentSchema = new Schema({
   },
   address: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
-    required: true,
+
     unique: true,
   },
   phone: {
     type: String,
-    required: true,
   },
   cardName: {
     type: String,
@@ -30,17 +28,13 @@ const paymentSchema = new Schema({
   },
   cardNumber: {
     type: String,
-    required: true,
   },
   expiryDate: {
     type: String,
-    required: true,
   },
   cvv: {
     type: String,
-    required: true,
-  }
-  
+  },
 });
 
 const Payment = mongoose.model("Payment", paymentSchema);

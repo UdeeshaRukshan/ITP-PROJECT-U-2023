@@ -8,7 +8,6 @@ import Checkbox from "@mui/material/Checkbox";
 const phonePattern = /^[0-9]{10}$/;
 const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i;
 
-
 const isPhoneNumberValid = (phoneNumber) => {
   return phonePattern.test(phoneNumber);
 };
@@ -23,7 +22,7 @@ export default function UserInfo() {
   const [address, setAddress] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
-  
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -39,6 +38,7 @@ export default function UserInfo() {
             fullWidth
             autoComplete="given-name"
             variant="outlined"
+            onChange={(e) => setFirstName(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -50,6 +50,7 @@ export default function UserInfo() {
             fullWidth
             autoComplete="family-name"
             variant="outlined"
+            onChange={(e) => setLastName(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -61,12 +62,13 @@ export default function UserInfo() {
             fullWidth
             autoComplete="address"
             variant="outlined"
-            multiline  // This enables multiline input
-            rows={4}   // Set the number of visible rows
+            multiline // This enables multiline input
+            rows={4} // Set the number of visible rows
+            onChange={(e) => setAddress(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
-        <TextField
+          <TextField
             required
             id="email"
             name="email"
@@ -81,10 +83,10 @@ export default function UserInfo() {
                 : ""
             }
             onChange={(e) => setEmail(e.target.value)}
-            />
+          />
         </Grid>
         <Grid item xs={12}>
-        <TextField
+          <TextField
             required
             id="phone"
             name="phone"
@@ -104,7 +106,11 @@ export default function UserInfo() {
         <Grid item xs={12}>
           <FormControlLabel
             control={
-              <Checkbox color="secondary" name="sendAuctionUpdates" value="yes" />
+              <Checkbox
+                color="secondary"
+                name="sendAuctionUpdates"
+                value="yes"
+              />
             }
             label="Send me auction updates"
           />
@@ -113,5 +119,3 @@ export default function UserInfo() {
     </React.Fragment>
   );
 }
-
-
