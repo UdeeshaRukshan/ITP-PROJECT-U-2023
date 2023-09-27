@@ -9,7 +9,7 @@
   background-color: #f0f0f0;
 }
 
-form {
+.form-prop {
   width: 80%; /* Set the width to 90% of the viewport width */
   max-width: 600px; /* Set the maximum width for the form */
   padding: 20px;

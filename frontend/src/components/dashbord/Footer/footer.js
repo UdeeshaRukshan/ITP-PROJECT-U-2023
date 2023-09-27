@@ -12,7 +12,7 @@ const Footer = () => {
     <footer class="footer">
       <div class="container-g bottom_border">
         <div class="row">
-          <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+          <div class=" col-sm-4 col-md col-sm-4  col-12 col first-div">
             <h1 class="headin5_amrc col_white_amrc pt2">AuctionPal</h1>
 
             <p class="mb10">

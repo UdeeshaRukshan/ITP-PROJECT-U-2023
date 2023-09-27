@@ -488,10 +488,12 @@ button:hover {
 }
 
 .search-bar {
-  display: flex;
   width: 50vh;
 }
 
 .search-btn {
+  height: 5.5vh;
+}
+.search-area {
   height: 5.5vh;
 }

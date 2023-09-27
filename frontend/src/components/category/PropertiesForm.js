@@ -38,7 +38,7 @@ function PropertyForm() {
 
   return (
     <div className="container">
-      <form onSubmit={sendData}>
+      <form className="form-prop" onSubmit={sendData}>
         <h2>Add a New Property</h2>
         <h6 className="bold-header">Property Address</h6>
         <label htmlFor="address">Address:</label>

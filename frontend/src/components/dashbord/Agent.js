@@ -286,6 +286,7 @@ const Agent = () => {
       <div className="col-div-8 displayA" id="displayArea">
         <div className="search-bar">
           <input
+            className="search-area"
             type="text"
             placeholder="Enter Agent Name"
             value={searchInput}
@@ -449,7 +450,6 @@ const Agent = () => {
                               //onClick={() => handleAssign(agent._id)}
 
                               // onClick={() => handleAssign(agent._id)}
-
                             >
                               Assign
                             </button>
@@ -490,7 +490,6 @@ const Agent = () => {
                               //onClick={() => handleAssign(agent._id)}
 
                               // onClick={() => handleAssign(agent._id)}
-
                             >
                               Assign
                             </button>
