@@ -441,7 +441,7 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-                              // onClick={() => handleAssign(agent._id)}
+                              onClick={() => handleAssign(agent._id)}
                             >
                               Assign
                             </button>
@@ -478,7 +478,7 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-                              // onClick={() => handleAssign(agent._id)}
+                              onClick={() => handleAssign(agent._id)}
                             >
                               Assign
                             </button>
