@@ -50,6 +50,10 @@ body {
   right: 25px;
   font-size: 36px;
 }
+.main-div {
+  background-color: #c9cad5;
+}
+
 #main {
   transition: margin-left 0.5s;
   padding: 16px;
