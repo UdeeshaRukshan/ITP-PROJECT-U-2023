@@ -5,7 +5,7 @@ import "./Dashbord.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ const Dashboard = () => {
 
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
@@ -131,6 +132,7 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     axios
       .get("http://localhost:4042/image") // Fix the URL, add "http://"
@@ -147,9 +149,12 @@ const Dashboard = () => {
   const handleImgUpload = () => {
     setimgupload(true);
   };
+
   return (
     <div className="main-div">
-      <button onClick={Logout}>LOGOUT</button>
+      <button className="logoutbtn" onClick={Logout}>
+        LOGOUT
+      </button>
       <div id="mySidenav" class="sidenav">
         <p class="logo">
           <span>User</span> Profile
@@ -313,6 +318,12 @@ const Dashboard = () => {
               <button className="btn btn-success" onClick={handleSaveClick}>
                 Save Changes
               </button>
+              <button
+                className="btn btn-secondary"
+                onClick={() => setIsEditing(false)}
+              >
+                Cancel
+              </button>
             </div>
           ) : (
             // Display user details when not editing
@@ -350,7 +361,6 @@ const Dashboard = () => {
         </div>
       </div>
       {/* ... (remaining code) */}
-      <ToastContainer />
     </div>
   );
 };

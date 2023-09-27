@@ -313,3 +313,15 @@ th {
 .btn-update {
   margin-left: 4vh;
 }
+
+.logoutbtn {
+  float: right;
+  width: 15vh;
+  height: 7vh;
+  color: white;
+  font-size: large;
+  background-color: #363753;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  border-color: #333;
+}

@@ -35,6 +35,21 @@ function Copyright(props) {
     </Typography>
   );
 }
+function isValidEmail(email) {
+  // Simple email validation regex
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  return emailRegex.test(email);
+}
+
+function isValidPassword(password) {
+  // Password validation criteria (customize as needed)
+  return password.length >= 8;
+}
+
+function isValidAge(age) {
+  // Age validation criteria (customize as needed)
+  return age >= 18;
+}
 
 const defaultTheme = createTheme();
 const Signup = () => {
@@ -68,6 +83,23 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Perform form validation
+    if (!isValidEmail(email)) {
+      handleError("Invalid email address");
+      return;
+    }
+
+    if (!isValidPassword(password)) {
+      handleError("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (!isValidAge(age)) {
+      handleError("You must be at least 18 years old");
+      return;
+    }
+
     try {
       const { data } = await axios.post(
         "http://localhost:4042/signup",
@@ -76,11 +108,13 @@ const Signup = () => {
         },
         { withCredentials: true }
       );
+
       const { success, message } = data;
+
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/dashbord");
+          navigate("/login");
         }, 1000);
       } else {
         handleError(message);
@@ -88,8 +122,8 @@ const Signup = () => {
     } catch (error) {
       console.log(error);
     }
+
     setInputValue({
-      ...inputValue,
       email: "",
       password: "",
       firstname: "",
@@ -254,78 +288,7 @@ const Signup = () => {
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
-      <ToastContainer />
     </ThemeProvider>
-    // <div className="form_containerr">
-    //   <h2>Signup Account</h2>
-    //   <form onSubmit={handleSubmit}>
-    //     <div>
-    //       <label htmlFor="email">Email</label>
-    //       <input
-    //         type="email"
-    //         name="email"
-    //         value={email}
-    //         placeholder="Enter your email"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="email">Username</label>
-    //       <input
-    //         type="text"
-    //         name="username"
-    //         value={username}
-    //         placeholder="Enter your username"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="password">Password</label>
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         value={password}
-    //         placeholder="Enter your password"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="address">Address</label>
-    //       <input
-    //         type="text"
-    //         name="address"
-    //         value={address}
-    //         placeholder="Enter your address"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="age">Age</label>
-    //       <input
-    //         type="text"
-    //         name="age"
-    //         value={age}
-    //         placeholder="Enter your age"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="id">Id</label>
-    //       <input
-    //         type="text"
-    //         name="id"
-    //         value={id}
-    //         placeholder="Enter your id number"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <button type="submit">Submit</button>
-    //     <span>
-    //       Already have an account? <Link to={"/login"}>Login</Link>
-    //     </span>
-    //   </form>
-    //   <ToastContainer />
-    // </div>
   );
 };
 
