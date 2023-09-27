@@ -17,7 +17,7 @@ const isEmailValid = (email) => {
   return emailPattern.test(email);
 };
 
-export default function UserInfo() {
+export default function UserInfo({ formData, onChange }) {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [address, setAddress] = React.useState("");
