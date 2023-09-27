@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { Link } from "react-router-dom";
 import "./indexPage.css";
@@ -54,6 +54,29 @@ const IndexPage = () => {
     infinite: true, // Enable infinite loop
     indicators: true, // Show slide indicators
     arrows: true, // Show arrow navigation
+  };
+  const AnimatedNumber = ({ start, end, duration }) => {
+    const [currentValue, setCurrentValue] = useState(start);
+
+    useEffect(() => {
+      let animationInterval;
+      const step = (end - start) / (duration * 6);
+      const intervalDuration = 200; // Decreased interval duration for faster increment
+
+      const animateNumbers = () => {
+        if (currentValue < end) {
+          setCurrentValue((prevValue) => prevValue + step);
+        } else {
+          setCurrentValue(end);
+          clearInterval(animationInterval);
+        }
+      };
+
+      animationInterval = setInterval(animateNumbers, intervalDuration);
+      return () => clearInterval(animationInterval);
+    }, [currentValue, start, end, duration]);
+
+    return <span>{Math.round(currentValue)}</span>;
   };
   return (
     <div className="bg-white">
@@ -157,7 +180,7 @@ const IndexPage = () => {
                 <div className="rounded ">
                   <div className="icon mb-3 rounded">
                     <img
-                      className="img-fluid rounded img-4"
+                      className="img-fluid rounded img-4 "
                       src="https://d1inegp6v2yuxm.cloudfront.net/royal-academy/image/upload/c_fill,cs_tinysrgb,dn_72,f_auto,fl_progressive.keep_iptc,w_836,h_470,ar_16:9/mcl1whdg3qdd6kweugb4.jpg"
                       alt="Arts"
                     />
@@ -177,10 +200,34 @@ const IndexPage = () => {
           className="text-center d-flex justify-content-center align-items-center text-white bg-white my-5 "
           style={bar}
         >
-          <div className="col-lg-8 bg-black text-center row" style={bar}>
-            <div className="col">1</div>
-            <div className="col">2</div>
-            <div className="col">3</div>
+          <div
+            className="col-lg-9  text-center row col-main rounded"
+            style={bar}
+          >
+            <div className="col">
+              <div className="number-container">
+                <span className="animated-number-large">
+                  <AnimatedNumber start={0} end={1000} duration={5} />+
+                </span>
+                <span className="number-text-large">Live Auctions Count</span>
+              </div>
+            </div>
+            <div className="col">
+              <div className="number-container">
+                <span className="animated-number-large">
+                  <AnimatedNumber start={0} end={10000} duration={5} />+
+                </span>
+                <span className="number-text-large">Live Users Count</span>
+              </div>
+            </div>
+            <div className="col">
+              <div className="number-container">
+                <span className="animated-number-large">
+                  <AnimatedNumber start={0} end={85} duration={5} />+
+                </span>
+                <span className="number-text-large">Sell Through Rate</span>
+              </div>
+            </div>
           </div>
         </div>
         <h2 className="text-center">

@@ -36,3 +36,38 @@
 .cat-item:hover .rounded img {
   filter: grayscale(100%); /* Convert the image to grayscale on hover */
 }
+
+.img-4 {
+  margin-left: 4vh;
+}
+.img-4 h1 {
+  margin-left: 4vh;
+}
+.col-main {
+  color: black;
+  background-color: rgb(174, 172, 170);
+}
+
+/* AnimatedNumber.css */
+
+/* Style for the number container */
+/* CSS for larger numbers, bold text, and number on top */
+/* CSS for larger numbers, bold text, and number above text */
+.number-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center elements horizontally */
+  justify-content: center; /* Center elements vertically */
+  padding: 10px; /* Add padding for spacing */
+  text-align: center; /* Center-align text */
+}
+
+.animated-number-large {
+  font-size: 2em; /* Increase font size for numbers */
+  font-weight: bold; /* Make numbers bold */
+}
+
+.number-text-large {
+  font-weight: bold; /* Make text bold */
+  font-size: 1.2em; /* Adjust text font size as needed */
+}

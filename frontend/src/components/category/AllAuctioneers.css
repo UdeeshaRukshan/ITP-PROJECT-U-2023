@@ -2,13 +2,15 @@
 
 /* Style for the container */
 .container {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
   padding: 20px;
 }
 
 /* Style for the catalog container */
 .catalog-container {
+  margin-top: 5vh;
+  justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -16,7 +18,7 @@
 
 /* Style for each catalog item */
 .catalog-item {
-  background-color: #f2f2f2;
+  background-color: #cac8c8;
   border: 1px solid #ccc;
   padding: 20px;
   width: 30%; /* Adjust the width as needed */
