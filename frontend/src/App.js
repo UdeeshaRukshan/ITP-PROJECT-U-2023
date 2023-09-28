@@ -18,7 +18,7 @@ import Blog from "./pages/Blog";
 
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
-import Checkout from "./pages/Checkout";
+import paymentHistory from "./components/dashbord/paymentHistory/paymentHistory";
 
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
@@ -56,7 +56,6 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-            <Route path="/payment" element={<Checkout />} />
 
             <Route path="/dashbord/agent" element={<Agent />} />
 

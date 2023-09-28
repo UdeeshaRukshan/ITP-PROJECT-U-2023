@@ -3,24 +3,10 @@ import axios from "axios";
 
 import "../paymentHistory/paymentHistory.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
-const paymentHistory = () => {
-  const navigate = useNavigate();
+const PaymentHistory = () => {
   const [users, setUsers] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedUser, setEditedUser] = useState({});
-  const [file, setFile] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [res, setRes] = useState({});
-  const handleSelectFile = (e) => setFile(e.target.files[0]);
   const [imageUrls, setImageUrls] = useState([]);
-  const [imgUP, setimgupload] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-
-  const [cookies, removeCookie] = useCookies([]);
-  const [username, setUsername] = useState("");
 
   useEffect(() => {
     axios
@@ -49,65 +35,6 @@ const paymentHistory = () => {
       });
   }, []);
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-    // Set the edited user data to the current user's data
-    setEditedUser(users);
-  };
-
-  const handleSaveClick = () => {
-    // Send a PUT request to update the user data on the server
-    axios
-      .put(`http://localhost:4042/update/${users._id}`, editedUser)
-      .then((response) => {
-        // Update the state with the updated user data
-        setUsers(response.data);
-        setIsEditing(false);
-      })
-      .catch((error) => {
-        console.error("Error updating user data:", error);
-      });
-  };
-
-  const handleDeleteClick = () => {
-    // Show a confirmation dialog before deleting the account
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete your account?"
-    );
-    if (confirmDelete) {
-      // Send a DELETE request to delete the user account
-      axios
-        .delete(`http://localhost:4042/delete/${users._id}`)
-        .then(() => {
-          // Redirect to the login page or perform any other necessary action
-          // after the account is deleted
-          // Example: history.push("/login");
-        })
-        .catch((error) => {
-          console.error("Error deleting user account:", error);
-        });
-    }
-  };
-
-  const handleUpload = async () => {
-    try {
-      setLoading(true);
-      const data = new FormData();
-      data.append("my_file", file);
-      const res = await axios.post("http://localhost:4042/upload", data, {
-        withCredentials: true,
-      });
-      setRes(res.data);
-      setUploadSuccess(true); // Image upload successful
-      navigate("/home"); // Navigate to the dashboard
-    } catch (error) {
-      alert(error.message);
-      console.log("There is an error!");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     axios
       .get("http://localhost:4042/image") // Fix the URL, add "http://"
@@ -121,9 +48,6 @@ const paymentHistory = () => {
         // Handle errors
       });
   }, []);
-  const handleImgUpload = () => {
-    setimgupload(true);
-  };
 
   return (
     <div className="main-div">
@@ -186,4 +110,4 @@ const paymentHistory = () => {
     </div>
   );
 };
-export default paymentHistory;
+export default PaymentHistory;

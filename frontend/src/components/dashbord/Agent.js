@@ -295,12 +295,12 @@ const Agent = () => {
           <button className="search-btn" onClick={handleSearch}>
             Search
           </button>
+          <button className="add-agent" onClick={toggleAddAgentForm}>
+            Add Agent
+          </button>
         </div>
-        <button className="add-agent" onClick={toggleAddAgentForm}>
-          Add Agent
-        </button>
 
-        <div className="user-profile">
+        <div className="user-profilee">
           {isUpdateAgentFormVisible && (
             <div className="popup-form">
               <h3>Update Agent</h3>
@@ -500,9 +500,7 @@ const Agent = () => {
                                 color: "white",
                               }}
                               onClick={() => toggleUpdateAgentForm(agent._id)}
-                            >
-                              Update
-                            </button>
+                            ></button>
                             <button
                               className="btn btnDelete"
                               style={{ backgroundColor: "red", color: "white" }}
@@ -525,8 +523,12 @@ const Agent = () => {
           >
             Download Excel Sheet
           </button>
-          <button onClick={generateQRCodeForReport}>View QR Code</button>
-          <button onClick={downloadPdf}>Download Pdf</button>
+          <button className="view-qr" onClick={generateQRCodeForReport}>
+            View QR Code
+          </button>
+          <button className="down-qr" onClick={downloadPdf}>
+            Download Pdf
+          </button>
         </div>
       </div>
     </div>

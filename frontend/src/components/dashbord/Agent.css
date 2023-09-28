@@ -119,8 +119,6 @@ body {
 }
 .col-div-8 {
   margin-left: 50vh;
-  width: 70%;
-  height: 70vh;
 }
 .col-div-4 {
   width: 30%;
@@ -245,13 +243,13 @@ th {
 }
 /* Dashboard.css */
 /* Style for the user profile container */
-.user-profile {
+.user-profilee {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100vh;
-  max-height: 70vh;
+  height: 100%;
   margin-bottom: 10vh;
 }
 
@@ -475,16 +473,11 @@ button:hover {
   font-size: 20px;
 }
 .add-agent {
-  display: inline;
-  align-items: center;
-  margin-left: 60%;
+  margin-left: 60vh;
   width: 18vh;
   height: 5vh;
-  margin-bottom: 2vh;
 }
 .btn-report {
-  margin-left: 65%;
-  margin-top: 5vh;
 }
 
 .search-bar {
@@ -499,5 +492,17 @@ button:hover {
 }
 
 #displayArea {
+  margin-bottom: 30vh;
   padding-bottom: 30vh;
+  position: sticky;
+  height: 120vh;
+}
+
+.btnUpdate {
+  margin: 2vh;
+}
+
+.view-qr,
+.down-qr {
+  margin-bottom: 10vh;
 }

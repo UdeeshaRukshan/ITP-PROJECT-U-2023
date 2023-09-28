@@ -136,7 +136,11 @@ const Signup = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" style={{ maxWidth: "sm" }}>
+      <Container
+        component="main"
+        style={{ maxWidth: "sm" }}
+        className="small-container"
+      >
         <CssBaseline />
         <Box
           sx={{
