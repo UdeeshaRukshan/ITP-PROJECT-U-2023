@@ -20,6 +20,16 @@ export default function AllProperties() {
     fetchProperties();
   }, []);
 
+  const renderImages = (images) => {
+    return images.map((image, index) => (
+      <img
+        key={index}
+        src={image.dataUrl}
+        alt={`Property ${index + 1}`}
+      />
+    ));
+  };
+
   // Render properties rows
   const renderPropertiesRows = () => {
     return properties.map((property) => (
@@ -29,7 +39,7 @@ export default function AllProperties() {
         <td>{property.city}</td>
         <td>{property.description}</td>
         <td>{property.value}</td>
-        <td>{property.images}</td>
+        <td>{renderImages(property.images)}</td>
         <td>
         <div className="button-container">
           <button className="delete-button" onClick={() => handleDeleteClick(property._id)}>
