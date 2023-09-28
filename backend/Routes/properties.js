@@ -9,10 +9,7 @@ const path = require("path");
 // Define the storage location and file naming for uploaded images
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(
-      null,
-      "/Users/udeesharukshan/Documents/MERN STACK 2022(GITHUB)/ITP-PROJECT-U-2023/frontend/src/components/images/"
-    ); // Set the folder where uploaded files will be stored
+    cb(null, "../images/"); // Set the folder where uploaded files will be stored
   },
   filename: function (req, file, cb) {
     const extname = path.extname(file.originalname);

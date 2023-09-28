@@ -36,20 +36,7 @@ export default function AllArts() {
           {/* Add image display logic here */}
           <img src={art.images} alt={art.title} />
         </div>
-        <div className="art-actions">
-          <button
-            className="update-button"
-            onClick={() => handleUpdate(art._id)}
-          >
-            Update
-          </button>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(art._id)}
-          >
-            Delete
-          </button>
-        </div>
+        <div className="art-actions"></div>
       </div>
     ));
   };

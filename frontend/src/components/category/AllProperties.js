@@ -32,14 +32,13 @@ export default function AllProperties() {
           <h3>{property.address}</h3>
 
           {/* Display the property description */}
-          <p>{property.description}</p>
         </div>
         <div className="item-image">
           {/* Display the property images */}
           {property.images.map((image, index) => (
             <img
               key={index}
-              src={`${image.path}`} // Assuming 'url' is the property containing the image URL
+              src={`${image.path}`}
               alt={`Property Image ${image.path}`}
             />
           ))}
