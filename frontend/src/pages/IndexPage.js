@@ -49,7 +49,7 @@ const IndexPage = () => {
   };
 
   const properties = {
-    duration: 2000, // Set the duration for each slide (in milliseconds)
+    duration: 1000, // Set the duration for each slide (in milliseconds)
     transitionDuration: 1000, // Set the transition duration between slides (in milliseconds)
     infinite: true, // Enable infinite loop
     indicators: true, // Show slide indicators

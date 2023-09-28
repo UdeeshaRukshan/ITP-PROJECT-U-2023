@@ -1,40 +1,94 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Properties.css";
+import { Link } from "react-router-dom";
+import "./AllProperties.css";
 
 function PropertyForm() {
+  // State to store properties data
+  const [properties, setProperties] = useState([]);
+
+  // State for property form data
   const [address, setAddress] = useState("");
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
 
-  function sendData(e) {
+  // Fetch properties data from the server
+  useEffect(() => {
+    async function fetchProperties() {
+      try {
+        const response = await axios.get(
+          "http://localhost:4042/property/getproperties"
+        );
+        setProperties(response.data);
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    fetchProperties();
+  }, []);
+
+  // Function to handle property form submission
+  const sendData = async (e) => {
     e.preventDefault();
 
-    const newProperty = {
-      address,
-      street,
-      city,
-      description,
-      value,
-      images,
-    };
+    const formData = new FormData();
+    formData.append("address", address);
+    formData.append("street", street);
+    formData.append("city", city);
+    formData.append("description", description);
+    formData.append("value", value);
 
-    axios
-      .post("http://localhost:4042/property/addproperty", newProperty)
-      .then(() => {
-        alert("Property Added");
-        setAddress("");
-        setDescription("");
-        setValue("");
-        setImages("");
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }
+    // Append all selected image files
+    for (let i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4042/property/addproperty",
+        formData
+      );
+      alert("Property Added");
+      setAddress("");
+      setDescription("");
+      setValue("");
+      setImages([]);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  // Render property items in a catalog-like box
+  const renderPropertyItems = () => {
+    return properties.map((property) => (
+      <div key={property._id} className="catalog-item">
+        <div className="item-details">
+          <h3>{property.address}</h3>
+        </div>
+        <div className="item-actions">
+          <Link to={`/property/${property._id}`} className="detail-link">
+            View Details
+          </Link>
+        </div>
+      </div>
+    ));
+  };
+
+  // Handle "Approve" button click
+  const handleApprove = (propertyId) => {
+    // Add your approval logic here
+    alert(`Approved Property with ID: ${propertyId}`);
+  };
+
+  // Handle "Delete" button click
+  const handleDelete = (propertyId) => {
+    // Add your delete logic here
+    alert(`Deleted Property with ID: ${propertyId}`);
+  };
 
   return (
     <div className="container">
@@ -97,19 +151,19 @@ function PropertyForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Opening Value:(Rs)</label>
+        <label htmlFor="openingValue">Opening Value (Rs):</label>
         <input
           type="number"
           id="openingvalue"
           name="openingvalue"
-          placeholder="e.g., 75lakhs"
+          placeholder="e.g., 75 lakhs"
           required
           onChange={(e) => {
             const inputOpeningValue = e.target.value;
-            if (inputOpeningValue > 0) {
+            if (!isNaN(inputOpeningValue) && inputOpeningValue > 0) {
               setValue(inputOpeningValue);
             } else {
-              alert("Must enter valid value");
+              alert("Please enter a valid positive number.");
             }
           }}
         />

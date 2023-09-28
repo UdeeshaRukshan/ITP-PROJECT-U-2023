@@ -81,7 +81,7 @@ function App() {
               path="/collectables/:auctioneerId"
               component={CollectableDetails}
             />
-            <Route path="/property/:auctioneerId" component={PropertyDetails} />
+            <Route path="/property/:propertyId" element={<PropertyDetails />} />
           </Routes>
           <Footer />
         </div>

@@ -10,8 +10,8 @@ const image = require("./models/image");
 const auctioneerRouter = require("./Routes/auctioneers");
 const vehicleRouter = require("./routes/vehicles.js");
 const artRouter = require("./routes/arts.js");
-const propertyRouter = require("./routes/properties.js");
-const collectableRouter = require("./routes/collectables.js");
+const propertyRouter = require("./Routes/properties");
+const collectableRouter = require("./routes/collectables");
 
 const agentRouter = require("./Routes/agentroute");
 

@@ -28,12 +28,23 @@ export default function AllProperties() {
     return properties.map((property) => (
       <div key={property._id} className="catalog-item">
         <div className="item-details">
-          {/* Customize the content inside the catalog item as needed */}
+          {/* Display the property address */}
           <h3>{property.address}</h3>
+
+          {/* Display the property description */}
           <p>{property.description}</p>
         </div>
+        <div className="item-image">
+          {/* Display the property images */}
+          {property.images.map((image, index) => (
+            <img
+              key={index}
+              src={`${image.path}`} // Assuming 'url' is the property containing the image URL
+              alt={`Property Image ${image.path}`}
+            />
+          ))}
+        </div>
         <div className="item-actions">
-          {/* Use Link component to navigate to property item page */}
           <Link to={`/property/${property._id}`} className="detail-link">
             View Details
           </Link>
@@ -42,17 +53,6 @@ export default function AllProperties() {
     ));
   };
 
-  // Handle "Approve" button click
-  const handleApprove = (propertyId) => {
-    // Add your approval logic here
-    alert(`Approved Property with ID: ${propertyId}`);
-  };
-
-  // Handle "Delete" button click
-  const handleDelete = (propertyId) => {
-    // Add your delete logic here
-    alert(`Deleted Property with ID: ${propertyId}`);
-  };
-
+  // Return the JSX for rendering
   return <div className="catalog-container">{renderPropertyItems()}</div>;
 }

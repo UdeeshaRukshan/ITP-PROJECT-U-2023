@@ -10,7 +10,7 @@ export default function AllArts() {
   useEffect(() => {
     async function fetchArts() {
       try {
-        const response = await axios.get("http://localhost:8070/art/getarts");
+        const response = await axios.get("http://localhost:4042/art/getarts");
         setArts(response.data);
       } catch (error) {
         alert(error.message);

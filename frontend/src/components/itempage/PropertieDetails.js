@@ -8,6 +8,7 @@ export default function PropertyDetails() {
 
   // State to store property details
   const [property, setProperty] = useState(null);
+  const [propertty, setPropertty] = useState([]);
 
   // Fetch property details from the server based on the propertyId
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function PropertyDetails() {
           `http://localhost:4042/property/getproperty/${propertyId}`
         );
         setProperty(response.data);
+        setPropertty(response.data);
       } catch (error) {
         alert(error.message);
       }
@@ -28,11 +30,12 @@ export default function PropertyDetails() {
   return (
     <div>
       <h2>Property Details</h2>
+
       {property ? (
         <div>
-          <p>Property ID: {property._id}</p>
-          <p>Address: {property.address}</p>
-          <p>Description: {property.description}</p>
+          <p>Property ID: {propertty._id}</p>
+          <p>Address: {propertty.address}</p>
+          <p>Description: {propertty.description}</p>
           {/* Display other property details here */}
         </div>
       ) : (
