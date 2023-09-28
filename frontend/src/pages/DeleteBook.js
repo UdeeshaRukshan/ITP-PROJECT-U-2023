@@ -4,6 +4,7 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
+import "./DeleteWishlist.css";
 
 const DeleteBook = () => {
   const [loading, setLoading] = useState(false);

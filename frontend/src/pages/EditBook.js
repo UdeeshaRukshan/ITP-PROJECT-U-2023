@@ -4,6 +4,7 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
+import "./EditWishlist.css";
 
 const EditBook = () => {
   const [title, setTitle] = useState("");
@@ -29,7 +30,7 @@ const EditBook = () => {
         alert("An error happened. Please Chack console");
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   const handleEditBook = () => {
     const data = {
