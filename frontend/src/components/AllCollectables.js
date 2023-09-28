@@ -25,7 +25,7 @@ export default function AllCollectables() {
       <img
         key={index}
         src={image.dataUrl}
-        alt={`Art ${index + 1}`}
+        alt={`Item ${index + 1}`}
       />
     ));
   };
