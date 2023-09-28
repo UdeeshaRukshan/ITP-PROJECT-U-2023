@@ -1,0 +1,53 @@
+/* Login.css */
+.form_containerr {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+
+  background-color: #f8f8f8;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form_group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.submit_button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+
+  cursor: pointer;
+}
+
+.submit_button:hover {
+  background-color: #0056b3;
+}
+
+.signup_link {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.signup_link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup_link a:hover {
+  text-decoration: underline;
+}
