@@ -1,7 +1,7 @@
-// PaymentList.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../paymentUdeesha/PaymentList.css";
+import "../payments/PaymentList.css";
+
 const PaymentList = () => {
   const [payments, setPayments] = useState([]);
 

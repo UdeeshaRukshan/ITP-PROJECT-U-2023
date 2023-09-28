@@ -1,0 +1,47 @@
+/* Transaction.css */
+
+/* Container styles */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Heading styles for the first text */
+h1 {
+  font-size: 24px;
+  color: #333; /* Dark gray color for the heading */
+  margin-bottom: 10px;
+}
+
+/* Paragraph styles */
+p {
+  font-size: 18px;
+  line-height: 1.4;
+  color: #333; /* Dark gray color for the text */
+  margin-bottom: 30px; /* Increased margin to add more space */
+}
+
+/* Button styles */
+.card-details-button {
+  background-color: #007bff; /* Blue color for the button */
+  color: #fff; /* White text color */
+  padding: 12px 24px; /* Increased padding for a larger button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.card-details-button:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Add more styles as needed */
+
+
+  
+  

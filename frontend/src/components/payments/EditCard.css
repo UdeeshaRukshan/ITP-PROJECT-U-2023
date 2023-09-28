@@ -1,0 +1,56 @@
+/* Container styles */
+/*.edit-card-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}*/
+
+/* Edit and Delete button styles */
+button.edit-button,
+button.delete-button {
+  background-color: #007bff; /* Blue color for Edit button */
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button.delete-button {
+  background-color: #dc3545; /* Red color for Delete button */
+}
+
+button.edit-button:hover,
+button.delete-button:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Save and Cancel button styles */
+button.save-button,
+button.cancel-button {
+  background-color: #28a745; /* Green color for Save button */
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button.cancel-button {
+  background-color: #ccc; /* Gray color for Cancel button */
+  color: #333;
+}
+
+button.save-button:hover,
+button.cancel-button:hover {
+  background-color: #218838; /* Darker green color on hover for Save button */
+}
+
+
+  
