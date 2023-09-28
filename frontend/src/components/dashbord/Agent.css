@@ -519,3 +519,15 @@ button:hover {
 .btn-compartment {
   margin-top: 4vh;
 }
+.button-container {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+}
+
+.spacer {
+  flex-grow: 1; /* Allow the spacer to grow and push the buttons apart */
+}
+
+.button-container button {
+  margin: 0 5px; /* Add horizontal margin to separate buttons */
+}
