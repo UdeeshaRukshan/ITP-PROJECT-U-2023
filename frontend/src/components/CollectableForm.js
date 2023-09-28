@@ -113,6 +113,7 @@ function CollectableForm() {
           id="images"
           name="images"
           multiple
+          required
           accept="image/*"
           onChange={handleImageChange}
         /><br />
