@@ -277,7 +277,8 @@ th {
 }
 
 /* You can customize these styles further to match your design */
-.button-container {
+.button-containerr {
+  display: inline;
   margin-left: 50vh;
 }
 .profile-info {
@@ -331,7 +332,16 @@ th {
   margin-top: 2vh;
   border-color: #333;
 }
+.button-containerr {
+  /* Ensure the container doesn't break onto a new line */
+  white-space: nowrap;
+}
 
-.btn-editA {
-  margin-left: 50vh;
+.button-containerr button {
+  /* Style the buttons */
+  display: inline-block; /* Display buttons in a line */
+  margin-right: 10px; /* Add some space between buttons (adjust as needed) */
+}
+.btn-deleteA {
+  height: 5.5vh;
 }

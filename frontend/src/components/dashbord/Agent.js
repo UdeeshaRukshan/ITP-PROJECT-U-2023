@@ -351,7 +351,12 @@ const Agent = () => {
 
                 <div className="button-container">
                   <button type="submit">Update Agent</button>
-                  <button onClick={toggleUpdateAgentForm}>Cancel</button>
+                  <button
+                    className="btnn-cancel"
+                    onClick={toggleUpdateAgentForm}
+                  >
+                    Cancel
+                  </button>
                 </div>
               </form>
             </div>
@@ -516,19 +521,21 @@ const Agent = () => {
               {isQRCodeVisible && qrCodeData && <QRCode value={qrCodeData} />}
             </div>
           )}
-          <button
-            className="btn btn-success btn-report
+          <div className="btn-compartment">
+            <button
+              className="btn btn-success btn-report
               "
-            onClick={handleGenerateReport}
-          >
-            Download Excel Sheet
-          </button>
-          <button className="view-qr" onClick={generateQRCodeForReport}>
-            View QR Code
-          </button>
-          <button className="down-qr" onClick={downloadPdf}>
-            Download Pdf
-          </button>
+              onClick={handleGenerateReport}
+            >
+              Download Excel Sheet
+            </button>
+            <button className="view-qr" onClick={generateQRCodeForReport}>
+              View QR Code
+            </button>
+            <button className="down-qr" onClick={downloadPdf}>
+              Download Pdf
+            </button>
+          </div>
         </div>
       </div>
     </div>

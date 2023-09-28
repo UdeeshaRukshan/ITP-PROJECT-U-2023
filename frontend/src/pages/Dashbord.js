@@ -363,14 +363,17 @@ const Dashboard = () => {
           )}
 
           {!isEditing && !imgUP && (
-            <div className="button-container">
+            <div className="button-containerr">
               <button
                 className="btn btn-primary btn-editA"
                 onClick={handleEditClick}
               >
                 Edit Profile
               </button>
-              <button className="btn btn-danger" onClick={handleDeleteClick}>
+              <button
+                className="btn btn-danger btn-deleteA"
+                onClick={handleDeleteClick}
+              >
                 Delete my account
               </button>
             </div>
