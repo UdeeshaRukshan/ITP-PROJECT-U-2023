@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllProperties.css"; // Import CSS file
+import "./AllProperties.css"; 
 
 export default function AllProperties() {
   // State to store properties data
@@ -32,9 +32,6 @@ export default function AllProperties() {
         <td>{property.images}</td>
         <td>
         <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(property._id)}>
-            Approve
-          </button>
           <button className="delete-button" onClick={() => handleDeleteClick(property._id)}>
             Delete
           </button>
@@ -44,12 +41,6 @@ export default function AllProperties() {
     ));
   };
 
-  // Handle "Approve" button click
-  const handleApprove = (propertyId) => {
-    // Add your approval logic here
-    alert(`Approved Auctioneer with ID: ${propertyId}`);
-  };
-
    // Function to handle delete button click
    const handleDeleteClick = async (propertyId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this property?");
@@ -57,7 +48,7 @@ export default function AllProperties() {
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:8070/property/deleteproperty/${propertyId}`);
-        // Update the arts state to remove the deleted art piece
+
         setProperties((prevProperty) => prevProperty.filter((property) => property._id !== propertyId));
       } catch (error) {
         alert(error.message);

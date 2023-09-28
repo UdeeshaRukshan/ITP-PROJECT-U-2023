@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllAuctioneers.css"; // Import your CSS file
+import "./AllAuctioneers.css"; 
 
 export default function AllAuctioneers() {
   // State to store auctioneer data
@@ -33,9 +33,6 @@ export default function AllAuctioneers() {
         <td>{auctioneer.city}</td>
         <td>
         <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(auctioneer._id)}>
-            Approve
-          </button>
           <button className="delete-button" onClick={() => handleDeleteClick(auctioneer._id)}>
             Delete
           </button>
@@ -45,19 +42,12 @@ export default function AllAuctioneers() {
     ));
   };
 
-  // Handle "Approve" button click
-  const handleApprove = (auctioneerId) => {
-    // Add your approval logic here
-    alert(`Approved Auctioneer with ID: ${auctioneerId}`);
-  };
-
   const handleDeleteClick = async (auctioneerId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    const confirmDelete = window.confirm("Are you sure you want to delete your details?");
     
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:8070/auctioneer/delete/${auctioneerId}`);
-        // Update the arts state to remove the deleted art piece
         setAuctioneers((prevAuctioneers) => prevAuctioneers.filter((auctioneer) => auctioneer._id !== auctioneerId));
       } catch (error) {
         alert(error.message);
@@ -77,7 +67,7 @@ export default function AllAuctioneers() {
             <th>Address</th>
             <th>Street</th>
             <th>City</th>
-            <th>Actions</th> {/* New column for buttons */}
+            <th>Actions</th> 
           </tr>
         </thead>
         <tbody>{renderAuctioneerRows()}</tbody>

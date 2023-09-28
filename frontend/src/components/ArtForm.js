@@ -30,7 +30,7 @@ function ArtForm() {
     }
 
     axios.post("http://localhost:8070/art/addart", newArt).then(() =>{
-      alert("Art Added");
+      alert("Your Art Added");
       setTitle("");
       setMedium("");
       setHeight("");

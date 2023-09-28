@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllVehicles.css"; // Import your CSS file
+import "./AllVehicles.css"; 
 
 export default function AllVehicles() {
   // State to store vehicle data
@@ -46,9 +46,6 @@ export default function AllVehicles() {
         <td>{renderImages(vehicle.images)}</td>
         <td>
         <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(vehicle._id)}>
-            Approve
-          </button>
           <button className="delete-button" onClick={() => handleDeleteClick(vehicle._id)}>
             Delete
           </button>
@@ -58,20 +55,16 @@ export default function AllVehicles() {
     ));
   };
 
-  // Handle "Update" button click
-  const handleApprove = (vehicleid) => {
-    // Add update logic here
-    alert(`Approved vehicle with ID: ${vehicleid}`);
-  };
+ 
 
   // Function to handle delete button click
   const handleDeleteClick = async (vehicleid) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    const confirmDelete = window.confirm("Are you sure you want to delete this?");
     
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:8070/vehicle/deletevehicle/${vehicleid}`);
-        // Update the arts state to remove the deleted art piece
+
         setVehicles((prevVehicles) => prevVehicles.filter((vehicle) => vehicle._id !== vehicleid));
       } catch (error) {
         alert(error.message);

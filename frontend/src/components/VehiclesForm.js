@@ -40,7 +40,7 @@ function sendData(e){
   formData.append("value", value);
 
     axios.post("http://localhost:8070/vehicle/addvehicle", formData).then(() =>{
-      alert("Vehicle Added");
+      alert("Your Vehicle Added ");
       setVehicleNumber("");
       setYear("");
       setModel("");

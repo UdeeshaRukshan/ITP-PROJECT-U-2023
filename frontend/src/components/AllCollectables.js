@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllCollectables.css"; // Import CSS file
+import "./AllCollectables.css"; 
 
 export default function AllCollectables() {
   // State to store collectable data
@@ -31,9 +31,6 @@ export default function AllCollectables() {
         <td>{collectable.images}</td>
         <td>
         <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(collectable._id)}>
-            Approve
-          </button>
           <button className="delete-button" onClick={() => handleDeleteClick(collectable._id)}>
             Delete
           </button>
@@ -43,14 +40,8 @@ export default function AllCollectables() {
     ));
   };
 
-  // Handle "Approve" button click
-  const handleApprove = (collectableId) => {
-    // Add your approval logic here
-    alert(`Approved Auctioneer with ID: ${collectableId}`);
-  };
-
   const handleDeleteClick = async (collectableId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    const confirmDelete = window.confirm("Are you sure you want to delete this item?");
     
     if (confirmDelete) {
       try {

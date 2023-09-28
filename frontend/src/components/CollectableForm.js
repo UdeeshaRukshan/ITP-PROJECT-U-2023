@@ -21,7 +21,7 @@ function CollectableForm() {
     }
 
     axios.post("http://localhost:8070/collectable/addcollectable", newCollectable).then(() =>{
-      alert("Collectable Added");
+      alert("Your Item Added");
       setType("");
       setName("");
       setValue("");

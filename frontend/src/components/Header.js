@@ -17,7 +17,7 @@
           <a className="nav-link active" aria-current="page" href="/getauctioneers">Users</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="getvehicles">Vehicles</a>        
+          <a className="nav-link active" aria-current="page" href="/getvehicles">Vehicles</a>        
         </li>
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" href="/getarts">Arts</a>        
@@ -38,18 +38,6 @@
             <li><a className="dropdown-item" href="/addproperty">Properties</a></li>
             <li><a className="dropdown-item" href="/addcollectable">Collectables</a></li>        
             <li><a className="dropdown-item" href="/addart">Arts</a></li>
-          </ul>
-        </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Edit Forms
-          </a>
-          <ul className="dropdown-menu">
-          <li><a className="dropdown-item" href="/updateart">Edit Art</a></li>
-            <li><a className="dropdown-item" href="">Edit Collectables</a></li>
-            <li><a className="dropdown-item" href="">Edit Vehicles</a></li>
-            <li><a className="dropdown-item" href="">Edit Properties</a></li>        
-            <li><a className="dropdown-item" href="">Arts</a></li>
           </ul>
         </li>
       </ul>

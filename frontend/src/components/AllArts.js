@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllArts.css"; // Import your CSS file
+import "./AllArts.css"; 
 
 export default function AllArts() {
-  // State to store auctioneer data
+  // State to store art data
   const [arts, setArts] = useState([]);
 
-  // Fetch auctioneer data from the server
+  // Fetch art data from the server
   useEffect(() => {
     async function fetchArts() {
       try {
@@ -34,9 +34,6 @@ export default function AllArts() {
         <td>{art.images}</td>
         <td>
         <div className="button-container">
-          <button className="approve-button" onClick={() => handleApprove(art._id)}>
-            Approve
-          </button>
           <button className="delete-button" onClick={() => handleDeleteClick(art._id)}>
             Delete
           </button>
@@ -46,11 +43,7 @@ export default function AllArts() {
     ));
   };
 
-  // Handle "Approve" button click
-  const handleApprove = (artId) => {
-    // Add your approval logic here
-    alert(`Approved Auctioneer with ID: ${artId}`);
-  };
+  
 
   // Function to handle delete button click
   const handleDeleteClick = async (artId) => {
@@ -59,7 +52,7 @@ export default function AllArts() {
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:8070/art/deleteart/${artId}`);
-        // Update the arts state to remove the deleted art piece
+
         setArts((prevArts) => prevArts.filter((art) => art._id !== artId));
       } catch (error) {
         alert(error.message);
