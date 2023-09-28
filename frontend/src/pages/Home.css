@@ -1,0 +1,23 @@
+/* CustomHome.css */
+.custom-home-container {
+  padding: 1rem;
+  /* Add any other styles you want for your container here */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.create-link {
+  text-decoration: none;
+}
+
+/* Add more styles as needed */
