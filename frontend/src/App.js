@@ -2,14 +2,13 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-
 import React from "react";
-
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Feedback from "./pages/Feedback";
+import FeedbackView from "./pages/FeedbackView";
 
 function App() {
   return (
@@ -20,13 +19,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/feedback" element={<Feedback />} />
-
+        <Route path="/feedback/all" element={<FeedbackView />} />
         {/* <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/profile" element={<Profile />} />
-
           <Route path="/signin" element={<Screen />} />
           <Route path="/sign" element={<Sign />} />
           <Route path="/login" element={<Login />} />

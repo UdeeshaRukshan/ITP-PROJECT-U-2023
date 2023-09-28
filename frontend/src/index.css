@@ -207,3 +207,57 @@ hr {
   background-color: #28a745;
   color: #fff;
 }
+
+.review_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  filter: drop-shadow(0 0 5px #00000027);
+}
+.review_container .feedback_card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+}
+.review_container .rate {
+  font-size: 18px;
+  font-weight: 500;
+}
+.review_container .name_wrap {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.review_container .name_wrap .letter {
+  width: 60px;
+  height: 60px;
+  background-color: #d3e90e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+}
+.review_container .name_wrap .customer_name {
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 10px;
+}
+.review_container .name_wrap .email {
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 10px;
+  color: #656262;
+  font-style: italic;
+}
+.review_container .comment {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: #656262;
+  height: 80px;
+  overflow: hidden;
+}

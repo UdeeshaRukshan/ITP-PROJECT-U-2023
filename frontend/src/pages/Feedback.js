@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Feedback = () => {
+    const navigate = useNavigate();
 
     const [alertColor, setAlertColor] = useState("");
     const [showAlert, setShowAlert] = useState("");
@@ -43,6 +45,7 @@ const Feedback = () => {
             .then((data) => {
                 setAlertColor("success");
                 setShowAlert("Feedback Added Successfully");
+                navigate("/feedback/all");
             })
             .catch((error) => {
                 console.log("Error:", error);
@@ -107,7 +110,7 @@ const Feedback = () => {
 
                     <div class="data_set">
                         <label for="customerName" class="form-label">Customer Name:</label>
-                        <input type="text" class="form-control" id="customerName" placeholder="John Smith" value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
+                        <input type="text" class="form-control" id="customerName" placeholder="name@example.com" value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
                     </div>
                     <div class="data_set">
                         <label for="email" class="form-label">Email address:</label>
