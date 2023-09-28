@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 import React from "react";
 import Footer from "./components/dashbord/Footer/footer";
-import React from "react";
 import IndexPage from "./pages/IndexPage";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -53,6 +52,9 @@ function App() {
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
+
+            <Route path="/feedback" element={<Feedback />} />
+        <Route path="/feedback/all" element={<FeedbackView />} />
           </Routes>
           <Footer />
         </div>
