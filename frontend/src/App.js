@@ -41,7 +41,9 @@ import AllAuctioneers from "./components/category/AllAuctioneers";
 import AllArts from "./components/category/AllArts";
 import AllProperties from "./components/category/AllProperties";
 import AllCollectables from "./components/category/AllCollectables";
-
+import CollectableDetails from "./components/itempage/CollectableDetail";
+import AllVehicles from "./components/category/AllVehicles";
+import PropertyDetails from "./components/itempage/PropertieDetails";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -70,14 +72,16 @@ function App() {
             <Route path="/addcollectable" exact element={<CollectableForm />} />
             <Route path="/addproperty" exact element={<PropertiesForm />} />
             <Route path="/getauctioneers" exact element={<AllAuctioneers />} />
-            <Route path="/getarts" exact element={<AllArts />} />
-            <Route path="/getproperties" exact element={<AllProperties />} />
+            <Route path="/arts" exact element={<AllArts />} />
+            <Route path="/properties" exact element={<AllProperties />} />
+            <Route path="/collectables" exact element={<AllCollectables />} />
+            <Route path="/vehicle" exact element={<AllVehicles />} />
+
             <Route
-              path="/getcollectables"
-              exact
-              element={<AllCollectables />}
+              path="/collectables/:auctioneerId"
+              component={CollectableDetails}
             />
-            <Route path="/getvehicles" exact element={<AllProperties />} />
+            <Route path="/property/:auctioneerId" component={PropertyDetails} />
           </Routes>
           <Footer />
         </div>

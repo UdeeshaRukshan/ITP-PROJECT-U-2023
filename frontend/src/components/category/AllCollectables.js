@@ -1,81 +1,54 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllCollectables.css"; // Import CSS file
+import "./AllAuctioneers.css"; // Import your CSS file
+import { Link } from "react-router-dom";
+export default function AllAuctioneers() {
+  // State to store auctioneer data
+  const [auctioneers, setAuctioneers] = useState([]);
 
-export default function AllCollectables() {
-  // State to store collectable data
-  const [collectables, setCollectables] = useState([]);
-
-  // Fetch collectable data from the server
+  // Fetch auctioneer data from the server
   useEffect(() => {
-    async function fetchCollectables() {
+    async function fetchAuctioneers() {
       try {
         const response = await axios.get(
-          "http://localhost:4042/collectable/getcollectables"
+          "http://localhost:4042/auctioneer/getauctioneers"
         );
-        setCollectables(response.data);
+        setAuctioneers(response.data);
       } catch (error) {
         alert(error.message);
       }
     }
 
-    fetchCollectables();
+    fetchAuctioneers();
   }, []);
 
-  // Render collectable rows
-  const renderCollectableRows = () => {
-    return collectables.map((collectable) => (
-      <tr key={collectable._id}>
-        <td>{collectable.type}</td>
-        <td>{collectable.name}</td>
-        <td>{collectable.value}</td>
-        <td>{collectable.description}</td>
-        <td>{collectable.images}</td>
-        <td>
-          <button
-            className="approve-button"
-            onClick={() => handleApprove(collectable._id)}
-          >
-            Update
-          </button>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(collectable._id)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
+  // Render auctioneer items in a catalog-like box
+  const renderAuctioneerItems = () => {
+    return auctioneers.map((auctioneer) => (
+      <div key={auctioneer._id} className="catalog-item">
+        <div className="item-details">
+          <h3>{`${auctioneer.firstName} ${auctioneer.lastName}`}</h3>
+        </div>
+        <div className="item-actions">
+          <Link to={`/collectables/${auctioneer._id}`} className="detail-link">
+            View Details
+          </Link>
+        </div>
+      </div>
     ));
   };
 
   // Handle "Approve" button click
-  const handleApprove = (collectableId) => {
+  const handleApprove = (auctioneerId) => {
     // Add your approval logic here
-    alert(`Approved Auctioneer with ID: ${collectableId}`);
+    alert(`Approved Auctioneer with ID: ${auctioneerId}`);
   };
 
   // Handle "Delete" button click
-  const handleDelete = (collectableId) => {
+  const handleDelete = (auctioneerId) => {
     // Add your delete logic here
-    alert(`Deleted Auctioneer with ID: ${collectableId}`);
+    alert(`Deleted Auctioneer with ID: ${auctioneerId}`);
   };
 
-  return (
-    <div className="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Value</th>
-            <th> Description</th>
-            <th>Images</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{renderCollectableRows()}</tbody>
-      </table>
-    </div>
-  );
+  return <div className="catalog-container">{renderAuctioneerItems()}</div>;
 }

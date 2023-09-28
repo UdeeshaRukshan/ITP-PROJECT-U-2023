@@ -8,7 +8,7 @@ export default function AllVehicles() {
 
   // Fetch vehicle data from the server
   useEffect(() => {
-    async function fectchVehicles() {
+    async function fetchVehicles() {
       try {
         const response = await axios.get(
           "http://localhost:4042/vehicle/getvehicles"
@@ -19,72 +19,49 @@ export default function AllVehicles() {
       }
     }
 
-    fectchVehicles();
+    fetchVehicles();
   }, []);
 
-  // Render vehicle rows
-  const renderVehicleRaws = () => {
+  // Render vehicle items in a catalog-like box
+  const renderVehicleItems = () => {
     return vehicles.map((vehicle) => (
-      <tr key={vehicle._id}>
-        <td>{vehicle.vehicleNumber}</td>
-        <td>{vehicle.year}</td>
-        <td>{vehicle.model}</td>
-        <td>{vehicle.fuelType}</td>
-        <td>{vehicle.mileage}</td>
-        <td>{vehicle.features}</td>
-        <td>{vehicle.location}</td>
-        <td>{vehicle.value}</td>
-        <td>{vehicle.images}</td>
-        <td>
-          <div className="button-container">
-            <button
-              className="approve-button"
-              onClick={() => handleApprove(vehicle._id)}
-            >
-              Update
-            </button>
-            <button
-              className="delete-button"
-              onClick={() => handleDelete(vehicle._id)}
-            >
-              Delete
-            </button>
-          </div>
-        </td>
-      </tr>
+      <div key={vehicle._id} className="catalog-item">
+        <div className="item-details">
+          {/* Customize the content inside the catalog item as needed */}
+          <h3>{`${vehicle.year} ${vehicle.model}`}</h3>
+          <p>{`Vehicle Number: ${vehicle.vehicleNumber}`}</p>
+          <p>{`Fuel Type: ${vehicle.fuelType}`}</p>
+          <p>{`Mileage: ${vehicle.mileage}`}</p>
+        </div>
+        <div className="item-actions">
+          <button
+            className="approve-button"
+            onClick={() => handleApprove(vehicle._id)}
+          >
+            Update
+          </button>
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(vehicle._id)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
     ));
   };
 
   // Handle "Update" button click
-  const handleApprove = (vehicleid) => {
+  const handleApprove = (vehicleId) => {
     // Add update logic here
-    alert(`Approved vehicle with ID: ${vehicleid}`);
+    alert(`Approved vehicle with ID: ${vehicleId}`);
   };
 
   // Handle "Delete" button click
-  const handleDelete = (vehicleid) => {
+  const handleDelete = (vehicleId) => {
     // Add delete logic here
-    alert(`Deleted vehicle with ID: ${vehicleid}`);
+    alert(`Deleted vehicle with ID: ${vehicleId}`);
   };
 
-  return (
-    <div className="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Vehicle Number</th>
-            <th>Year</th>
-            <th>Model</th>
-            <th>Fuel Type</th>
-            <th>Condition</th>
-            <th>Location</th>
-            <th>Value</th>
-            <th>Images</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{renderVehicleRaws()}</tbody>
-      </table>
-    </div>
-  );
+  return <div className="catalog-container">{renderVehicleItems()}</div>;
 }

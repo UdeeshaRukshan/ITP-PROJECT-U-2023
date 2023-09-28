@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./AllProperties.css"; // Import CSS file
 
 export default function AllProperties() {
@@ -22,62 +23,36 @@ export default function AllProperties() {
     fetchProperties();
   }, []);
 
-  // Render properties rows
-  const renderPropertiesRows = () => {
+  // Render property items in a catalog-like box
+  const renderPropertyItems = () => {
     return properties.map((property) => (
-      <tr key={property._id}>
-        <td>{property.address}</td>
-        <td>{property.street}</td>
-        <td>{property.city}</td>
-        <td>{property.description}</td>
-        <td>{property.value}</td>
-        <td>{property.images}</td>
-        <td>
-          <button
-            className="approve-button"
-            onClick={() => handleApprove(property._id)}
-          >
-            Update
-          </button>
-          <button
-            className="delete-button"
-            onClick={() => handleDelete(property._id)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
+      <div key={property._id} className="catalog-item">
+        <div className="item-details">
+          {/* Customize the content inside the catalog item as needed */}
+          <h3>{property.address}</h3>
+          <p>{property.description}</p>
+        </div>
+        <div className="item-actions">
+          {/* Use Link component to navigate to property item page */}
+          <Link to={`/property/${property._id}`} className="detail-link">
+            View Details
+          </Link>
+        </div>
+      </div>
     ));
   };
 
   // Handle "Approve" button click
   const handleApprove = (propertyId) => {
     // Add your approval logic here
-    alert(`Approved Auctioneer with ID: ${propertyId}`);
+    alert(`Approved Property with ID: ${propertyId}`);
   };
 
   // Handle "Delete" button click
   const handleDelete = (propertyId) => {
     // Add your delete logic here
-    alert(`Deleted Auctioneer with ID: ${propertyId}`);
+    alert(`Deleted Property with ID: ${propertyId}`);
   };
 
-  return (
-    <div className="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Address</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Description</th>
-            <th>Value</th>
-            <th>Images</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{renderPropertiesRows()}</tbody>
-      </table>
-    </div>
-  );
+  return <div className="catalog-container">{renderPropertyItems()}</div>;
 }

@@ -1,53 +1,61 @@
-/* Container styles */
+/* AllArts.css */
 
-/* Table styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.art-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* Table header styles */
-thead {
+.art-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 300px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.art-details {
+  margin-bottom: 10px;
+}
+
+.art-details h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.art-details p {
+  margin: 5px 0;
+}
+
+.art-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.update-button,
+.delete-button {
+  padding: 5px 10px;
   background-color: #007bff;
   color: #fff;
-}
-
-th,
-td {
-  padding: 12px 15px;
-  text-align: left;
-}
-
-/* Alternating row colors for better readability */
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-/* Specific styling for table cells */
-td {
-  font-size: 16px;
-  color: #333;
-}
-/* AllAuctioneers.css */
-
-.approve-button {
-  background-color: green;
-  color: white;
   border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
   cursor: pointer;
-  margin-right: 5px;
 }
 
 .delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+  background-color: #dc3545;
+}
+
+.update-button:hover,
+.delete-button:hover {
+  background-color: #0056b3;
+}
+
+/* Add any additional styling as needed */
+
+/* Image styling */
+img {
+  max-width: 100%;
+  height: auto;
 }
