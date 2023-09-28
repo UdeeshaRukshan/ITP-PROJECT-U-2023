@@ -6,12 +6,12 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
-const adminRoute = require("./Routes/AdminRoutes")
+const adminRoute = require("./Routes/AdminRoutes");
 
 dotenv.config();
 
 const { MONGO_URL } = process.env;
-const PORT = 4041;
+const PORT = 4042;
 
 mongoose
   .connect(MONGO_URL, {

@@ -13,7 +13,7 @@ const Dashboard = () => {
   useEffect(() => {
     // Fetch user data from your server
     axios
-      .get("http://localhost:4041/dashbord")
+      .get("http://localhost:4042/dashbord")
       .then((response) => {
         setUsers(response.data);
       })

@@ -9,9 +9,9 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import BookOnlineIcon from '@mui/icons-material/BookOnline';
-import GradingIcon from '@mui/icons-material/Grading';
-import ArticleIcon from '@mui/icons-material/Article';
+import BookOnlineIcon from "@mui/icons-material/BookOnline";
+import GradingIcon from "@mui/icons-material/Grading";
+import ArticleIcon from "@mui/icons-material/Article";
 
 export const mainListItems = (
   <React.Fragment>
@@ -19,21 +19,24 @@ export const mainListItems = (
       <ListItemText primary="Notification & Alerts" />
     </ListItemButton>
 
-    <ListItemButton to={"/admin"}>
+    <ListItemButton to={"/auctionmanagement"}>
       <ListItemText primary="Auction Management" />
     </ListItemButton>
 
-    <ListItemButton to={"/admin"}>
+    <ListItemButton to={"/paymentmanagement"}>
       <ListItemText primary="Payment Management" />
     </ListItemButton>
 
-    <ListItemButton to={"/admin"}>
+    <ListItemButton to={"/customersupport"}>
       <ListItemText primary="Customer support & Help" />
     </ListItemButton>
 
-    <ListItemButton to={"/admin"}>
-      <ListItemText primary="Report Analysis" />
+    <ListItemButton to={"/agent"}>
+      <ListItemText primary="Agent Management" />
     </ListItemButton>
 
+    <ListItemButton to={"/report"}>
+      <ListItemText primary="Report Analysis" />
+    </ListItemButton>
   </React.Fragment>
 );
