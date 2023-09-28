@@ -2,12 +2,14 @@ import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 export const PrimaryNav = styled.nav`
+  margin: 0;
+  padding: 0;
   z-index: 10;
-  width: 110%;
+  width: 180vh;
   height: 80px;
   display: flex;
+  justify-content: center;
   background: #363753;
-  margin-right: 11vh;
 `;
 export const MenuLink = styled(Link)`
   color: #fff;
@@ -26,24 +28,13 @@ export const MenuLink = styled(Link)`
 export const Hamburger = styled(FaBars)`
   display: none;
   color: #ffffff;
-  @media screen and (max-width: 768px) {
-    display: block;
-    font-size: 1.9rem;
-    top: 0;
-    right: 0;
-    position: absolute;
-    cursor: pointer;
-    transform: translate(-100%, 75%);
-  }
 `;
 export const Menu = styled.div`
   display: flex;
 
   align-items: center;
   margin-right: -14px;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+
   gap: 20px; /* Adjust the gap between menu items */
 `;
 export const RightAlignedMenuLink = styled(MenuLink)`

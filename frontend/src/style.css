@@ -3,7 +3,7 @@
   margin: 0;
 }
 .index {
-  background-color: #ffffff;
+  background-color: #d1c7c7;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,8 +11,8 @@
 }
 
 .index .div {
-  background-color: #ffffff;
-  height: 100%;
+  background-color: #b9b2b2;
+  height: 110%;
   position: relative;
   width: 100%;
 }
@@ -26,7 +26,7 @@
 }
 
 .index .rectangle {
-  background-color: #363753;
+  background-color: #c1c1cd;
   height: 100px;
   left: 0;
   position: absolute;

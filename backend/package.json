@@ -2,16 +2,26 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "cloudinary": "^1.40.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "excel4node": "^1.8.2",
     "express": "^4.18.2",
+    "filepond-plugin-image-exif-orientation": "^1.0.11",
+    "filepond-plugin-image-preview": "^4.6.11",
+    "fs": "^0.0.1-security",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.0",
-    "nodemon": "^3.0.1"
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.0.1",
+    "pdfkit": "^0.13.0",
+    "qrcode": "^1.5.3",
+    "uuid": "^9.0.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "name": "backend",
   "version": "1.0.0",

@@ -36,7 +36,7 @@ const Navbar = () => {
             Category
             {dropdown && <Dropdown />}
           </MenuLink>
-          <MenuLink to="/products" activeStyle>
+          <MenuLink to="/contactUs" activeStyle>
             Contact us
           </MenuLink>
           <RightAlignedMenuLink to="/blog" activeStyle>
@@ -45,7 +45,7 @@ const Navbar = () => {
               style={{ color: "#ffffff", width: "30px", height: "30px" }}
             />
           </RightAlignedMenuLink>
-          <MenuLink to="/signup" activeStyle>
+          <MenuLink to="/dashbord" activeStyle>
             <FontAwesomeIcon
               icon={faUser}
               style={{ color: "#ffffff", width: "30px", height: "30px" }}
