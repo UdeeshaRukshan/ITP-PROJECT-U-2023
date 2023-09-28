@@ -350,7 +350,9 @@ const Agent = () => {
                 </div>
 
                 <div className="button-container">
-                  <button type="submit">Update Agent</button>
+                  <button className="btnn-update" type="submit">
+                    Update Agent
+                  </button>
                   <button
                     className="btnn-cancel"
                     onClick={toggleUpdateAgentForm}

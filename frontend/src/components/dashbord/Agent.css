@@ -437,9 +437,12 @@ button:hover {
 .btnn-cancel {
   margin-left: -20vh;
 }
+
 .button-container {
   margin-top: 10px; /* Adjust the margin as needed */
+  padding-left: -80vh;
 }
+
 .popup-form input[type="text"],
 .popup-form input[type="number"] {
   width: 100%;
@@ -457,18 +460,20 @@ button:hover {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 40vh;
 }
 
 .popup-form button[type="submit"]:hover,
 .popup-form button:hover {
   background-color: #0056b3;
 }
-.button-container {
-  display: inline;
-
-  margin-top: 10px;
+/* .button-container {
+  display: flex;
 }
+
+.button-container button {
+  margin-right: 10px;
+  margin-left: -30vh;
+} */
 
 .user-name {
   padding-left: 5px;
@@ -503,11 +508,14 @@ button:hover {
 .btnUpdate {
   margin: 2vh;
 }
+/* .btnn-update {
+  margin-left: -40vh;
+} */
 
 .view-qr,
 .down-qr {
   margin-bottom: 10vh;
 }
 .btn-compartment {
-  margin-top: 5vh;
+  margin-top: 4vh;
 }
