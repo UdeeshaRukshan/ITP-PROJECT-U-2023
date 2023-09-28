@@ -12,6 +12,11 @@ function CollectableForm() {
   function sendData(e) {
     e.preventDefault();
 
+    if (images.length > 10) {
+      alert("You can only upload up to 10 images.");
+      return;
+    }
+
     const newCollectable= {
       type,
       name,
@@ -32,6 +37,17 @@ function CollectableForm() {
       alert(err);
     });
     
+  }
+
+  function handleImageChange(e) {
+    const selectedImages = e.target.files;
+    const imageArray = [];
+
+    for (let i = 0; i < selectedImages.length; i++) {
+      imageArray.push(URL.createObjectURL(selectedImages[i]));
+    }
+
+    setImages(imageArray);
   }
  
   return (
@@ -91,11 +107,27 @@ function CollectableForm() {
           }}
         />
 
-<label htmlFor="image">Images: </label>
-        <input type="file" id="images" name="images" accept="image/*" multiple required
-        onChange={(e) =>{
-          setImages(e.target.value);
-        }}/><br></br>
+         <label htmlFor="images">Images (up to 10):</label>
+         <input
+          type="file"
+          id="images"
+          name="images"
+          multiple
+          accept="image/*"
+          onChange={handleImageChange}
+        /><br />
+
+        {images.length > 0 && (
+          <div>
+            <p>Selected Images:</p>
+            {images.map((image, index) => (
+              <img key={index}
+              className="image-preview" 
+              src={image} 
+              alt={`Image ${index}`} />
+            ))}
+          </div>
+        )}
               
 
               <button type="submit">Submit</button>

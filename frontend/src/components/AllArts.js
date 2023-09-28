@@ -20,6 +20,16 @@ export default function AllArts() {
     fetchArts();
   }, []);
 
+  const renderImages = (images) => {
+    return images.map((image, index) => (
+      <img
+        key={index}
+        src={image.dataUrl}
+        alt={`Art ${index + 1}`}
+      />
+    ));
+  };
+
   
   const renderArtsRows = () => {
     return arts.map((art) => (
@@ -31,8 +41,10 @@ export default function AllArts() {
         <td>{art.condition}</td>
         <td>{art.location}</td>
         <td>{art.value}</td>
-        <td>{art.images}</td>
         <td>
+        <td>{renderImages(art.images)}</td>
+      </td>
+      <td>
         <div className="button-container">
           <button className="delete-button" onClick={() => handleDeleteClick(art._id)}>
             Delete

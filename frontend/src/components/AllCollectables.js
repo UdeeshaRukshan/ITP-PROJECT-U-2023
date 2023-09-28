@@ -20,6 +20,16 @@ export default function AllCollectables() {
     fetchCollectables();
   }, []);
 
+  const renderImages = (images) => {
+    return images.map((image, index) => (
+      <img
+        key={index}
+        src={image.dataUrl}
+        alt={`Art ${index + 1}`}
+      />
+    ));
+  };
+
   // Render collectable rows
   const renderCollectableRows = () => {
     return collectables.map((collectable) => (
@@ -28,7 +38,7 @@ export default function AllCollectables() {
         <td>{collectable.name}</td>
         <td>{collectable.value}</td>
         <td>{collectable.description}</td>
-        <td>{collectable.images}</td>
+        <td>{renderImages(collectable.images)}</td>
         <td>
         <div className="button-container">
           <button className="delete-button" onClick={() => handleDeleteClick(collectable._id)}>

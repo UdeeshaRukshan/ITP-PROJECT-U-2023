@@ -63,3 +63,12 @@ button {
 .btn-primary:hover {
   background-color: #0056b3;
 }
+.image-preview {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.image-preview {
+  max-width: 100px;
+  max-height: 100px;
+}

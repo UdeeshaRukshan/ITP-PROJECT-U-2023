@@ -14,6 +14,11 @@ function PropertyForm() {
   function sendData(e){
     e.preventDefault();
 
+    if (images.length > 10) {
+      alert("You can only upload up to 10 images.");
+      return;
+    }
+
     const newProperty= {
 
       address,
@@ -36,6 +41,17 @@ function PropertyForm() {
     }).catch((err)=>{
       alert(err);
     });
+  }
+
+  function handleImageChange(e) {
+    const selectedImages = e.target.files;
+    const imageArray = [];
+
+    for (let i = 0; i < selectedImages.length; i++) {
+      imageArray.push(URL.createObjectURL(selectedImages[i]));
+    }
+
+    setImages(imageArray);
   }
 
   return (
@@ -113,17 +129,28 @@ function PropertyForm() {
                 }
             }}/>
 
-<label htmlFor="images">Images (multiple):</label>
+        <label htmlFor="images">Images (up to 10):</label>
         <input
           type="file"
           id="images"
           name="images"
           multiple
           accept="image/*"
-          required
-          onChange={(e) =>{
-            setImages(e.target.value);
-          }}/>
+          onChange={handleImageChange}
+        /><br />
+
+        {images.length > 0 && (
+          <div>
+            <p>Selected Images:</p>
+            {images.map((image, index) => (
+              <img key={index}
+              className="image-preview" 
+              src={image} 
+              alt={`Image ${index}`} />
+            ))}
+          </div>
+        )}
+
 
          <button type="submit">Submit</button>
          
