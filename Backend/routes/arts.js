@@ -44,9 +44,27 @@ router.route("/getarts").get((req,res) => {
 
 })
 
+// fetch data route
+router.route("/getarts/:artid").get(async (req, res) => {
+    let userId = req.params.artid;
+    await Art.findById(userId)
+      .then((Art) => {
+        res.status(200).send({ status: "Art details fetched", Art });
+      })
+      .catch((err) => {
+        console.log(err.message);
+        res
+          .status(500)
+          .send({
+            status: "Error with getting Payment details",
+            error: err.message,
+          });
+      });
+  });
+
 router.route("/updateart/:artid").put(async (req,res) => {
     let userID = req.params.artid;
-    const {title,medium,height,width,condition,location,value,image} = req.body;
+    const {title,medium,height,width,condition,location,value,images} = req.body;
 
     const updateArt = {
         title,
@@ -56,7 +74,7 @@ router.route("/updateart/:artid").put(async (req,res) => {
         condition,
         location,
         value,
-        image
+        images
     }
 
     const updateart = await Art.findByIdAndUpdate(userID, updateArt)
