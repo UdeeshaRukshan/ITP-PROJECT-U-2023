@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "./Review.css";
 
 const Review = () => {
-
-  
   const navigate = useNavigate()
   // You can fetch review details and payment details from your data source or props here
   const reviewDetails = {
