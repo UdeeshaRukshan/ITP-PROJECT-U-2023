@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import BrowserRouter and Routes
-import PaymentForm from "./components/payment/paymentForm";
+import PaymentForm from "./components/payment/PaymentForm";
 import PaymentList from "./components/payment/PaymentList";
 import Review from "./components/payment/Review";
 import Transaction from "./components/payment/Transaction";

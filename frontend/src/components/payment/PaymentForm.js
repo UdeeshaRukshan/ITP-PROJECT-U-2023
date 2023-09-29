@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./paymentForm.css";
+import "./PaymentForm.css";
 import axios from "axios";
 
 const PaymentForm = () => {
@@ -18,7 +18,6 @@ const PaymentForm = () => {
 
   const navigate = useNavigate()
 
-  const [saveCardDetails, setSaveCardDetails] = useState(false);
 
   const isEmailValid = (email) => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@gmail.com$/;
