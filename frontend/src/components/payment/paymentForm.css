@@ -50,8 +50,7 @@
   height: 100px; /* Adjust the height as needed */
   resize: vertical;
   position: relative;
-
-} 
+}
 
 .textarea[name="address"] {
   height: auto; /* Allow the textarea to expand vertically as needed */
@@ -124,4 +123,3 @@
   font-weight: bold;
   margin-top: 10px;
 }
-

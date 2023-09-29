@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./PaymentForm.css";
+import "../payment/paymentForm.css";
 import axios from "axios";
 
 const PaymentForm = () => {
@@ -16,8 +16,7 @@ const PaymentForm = () => {
     cvv: "",
   });
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const isEmailValid = (email) => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@gmail.com$/;
@@ -50,20 +49,23 @@ const PaymentForm = () => {
     if (!datePattern.test(expiryDate)) {
       return false; // Invalid format
     }
-  
-    const [expMonth, expYear] = expiryDate.split("/").map((val) => parseInt(val));
+
+    const [expMonth, expYear] = expiryDate
+      .split("/")
+      .map((val) => parseInt(val));
     const currentYear = new Date().getFullYear() % 100;
     const currentMonth = new Date().getMonth() + 1;
-  
+
     // Check if the card is expired
-    if (expYear < currentYear || (expYear === currentYear && expMonth < currentMonth)) {
+    if (
+      expYear < currentYear ||
+      (expYear === currentYear && expMonth < currentMonth)
+    ) {
       return false; // Card has already expired
     }
-  
+
     return true; // Valid date
   };
-  
-  
 
   const isCVVValid = (cvv) => {
     const cvvRegex = /^\d{3}$/;
@@ -72,19 +74,20 @@ const PaymentForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
+
     // Check if the input is the "expiryDate" field
     if (name === "expiryDate") {
       // Ensure only numbers are entered
       const cleanedValue = value.replace(/\D/g, "");
-  
+
       if (cleanedValue.length <= 4) {
         let formattedValue = cleanedValue;
         if (cleanedValue.length >= 2) {
           // Add a "/" after the first 2 digits (MM)
-          formattedValue = cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
+          formattedValue =
+            cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
         }
-  
+
         setFormData({
           ...formData,
           [name]: formattedValue,
@@ -136,8 +139,8 @@ const PaymentForm = () => {
   const main = (e) => {
     e.preventDefault(); // Prevent the form from submitting
     handleSubmit(e); // Pass the event object to handleChange
-    navigate('/review');
-  }
+    navigate(`/review`);
+  };
 
   return (
     <div className="payment-form">
@@ -189,7 +192,9 @@ const PaymentForm = () => {
             required
           />
           {!isEmailValid(formData.email) && (
-            <div className="error-message">Please enter a valid email address</div>
+            <div className="error-message">
+              Please enter a valid email address
+            </div>
           )}
         </div>
         <div className="form-group">
@@ -202,7 +207,9 @@ const PaymentForm = () => {
             onChange={handleChange}
           />
           {!isPhoneNumberValid(formData.phone) && (
-            <div className="error-message">Please enter a valid phone number</div>
+            <div className="error-message">
+              Please enter a valid phone number
+            </div>
           )}
         </div>
         <div className="subheading">Payment Information</div>
@@ -245,9 +252,7 @@ const PaymentForm = () => {
               onChange={handleChange}
             />
             {!isExpiryDateValid(formData.expiryDate) && (
-              <div className="error-message">
-                Card has already expired
-              </div>
+              <div className="error-message">Card has already expired</div>
             )}
           </div>
           <div className="form-group">

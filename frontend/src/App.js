@@ -6,7 +6,6 @@ import Review from "./components/payment/Review";
 import Transaction from "./components/payment/Transaction";
 import EditCard from "./components/payment/EditCard";
 
-
 function App() {
   return (
     <Router>
@@ -17,9 +16,9 @@ function App() {
         {/* Use "element" */}
         <Route path="/paymentlist" element={<PaymentList />} />{" "}
         {/* Use "element" */}
-        <Route path="/review" element={<Review/>} />{" "}
-        <Route path="/transaction" exact element={<Transaction/>} />{" "}
-        <Route path="/edit-card" element={<EditCard/>} />{" "}
+        <Route path="/review" element={<Review />} />{" "}
+        <Route path="/transaction" element={<Transaction />} />{" "}
+        <Route path="/edit-card" element={<EditCard />} />{" "}
       </Routes>
     </Router>
   );
