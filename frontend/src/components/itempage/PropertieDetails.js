@@ -5,7 +5,7 @@ import "./PropertieDetails.css";
 
 export default function PropertyDetails() {
   const { propertyId } = useParams();
-  const [property, setProperty] = useState({}); // Initialize as an empty object
+  const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,41 +13,39 @@ export default function PropertyDetails() {
     axios
       .get(`http://localhost:4042/property/getproperty/${propertyId}`)
       .then((response) => {
-        console.log(response.data);
         setProperty(response.data);
-        setLoading(false); // Set loading to false when data is received
+        setLoading(false);
       })
       .catch((error) => {
         setError(error.message);
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
       });
-  }, [propertyId]); // Include propertyId in the dependency array to fetch data when it changes
+  }, [propertyId]);
 
   return (
     <div className="property-details">
       <h2>Property Details</h2>
-
       {loading ? (
         <p>Loading property details...</p>
       ) : error ? (
         <p>Error: {error}</p>
       ) : (
         <div className="details">
-          <div className="detail">
-            <span className="label">Property ID:</span>
-            <span className="value">{property._id}</span>
-          </div>
-          <div className="detail">
-            <span className="label">Address:</span>
-            <span className="value">{property.address}</span>
-          </div>
-          <div className="detail">
-            <span className="label">Description:</span>
-            <span className="value">{property.description}</span>
-          </div>
+          <PropertyDetail label="Property ID" value={property._id} />
+          <PropertyDetail label="Address" value={property.address} />
+          <PropertyDetail label="Description" value={property.description} />
           {/* Add more details as needed */}
         </div>
       )}
+    </div>
+  );
+}
+
+function PropertyDetail({ label, value }) {
+  return (
+    <div className="detail">
+      <span className="label">{label}:</span>
+      <span className="value">{value}</span>
     </div>
   );
 }
