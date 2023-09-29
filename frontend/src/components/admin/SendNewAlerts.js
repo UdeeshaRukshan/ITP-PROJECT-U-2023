@@ -34,7 +34,7 @@ function SendNewAlerts() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!image || !description || !selectedUser || !selectedUserName) {
+    if (!image || !description) {
       Swal.fire({
         icon: "error",
         title: "Please enter all fields",
@@ -82,7 +82,7 @@ function SendNewAlerts() {
 
   const setUser = (user) => {
     setSelectedUser(user._id);
-    setSelectedUserName(user.username);
+    setSelectedUserName(user.firstname);
     setSelectedUserVisibility(true);
     setSearch("");
     setSearchResult(null);
@@ -128,13 +128,17 @@ function SendNewAlerts() {
       const data = new FormData();
 
       data.append("file", pic);
+      const uploadPreset = "Unsigned";
+      const cloudName = "bhdnazx0";
+      const cloudinaryUploadURL =
+        "https://api.cloudinary.com/v1_1/bhdnazx0/image/upload";
 
       // Setup your cloudinary detailsn here
-      data.append("upload_preset", "yourfile name");
+      data.append("upload_preset", uploadPreset);
 
-      data.append("cloud_name", "your cloud name");
+      data.append("cloud_name", cloudName);
 
-      fetch("your cloudinary upload link here", {
+      fetch(cloudinaryUploadURL, {
         method: "post",
         body: data,
       })
@@ -283,12 +287,12 @@ function SendNewAlerts() {
                           >
                             <ListItemAvatar>
                               <Avatar
-                                alt={user.username.charAt(0).toUpperCase()}
+                                alt={user.firstname.charAt(0).toUpperCase()}
                                 src={user.userImage}
                               />
                             </ListItemAvatar>
                             <ListItemText
-                              primary={user.username}
+                              primary={user.firstname}
                               secondary={user.email}
                               sx={{ marginTop: "5px" }}
                             />
