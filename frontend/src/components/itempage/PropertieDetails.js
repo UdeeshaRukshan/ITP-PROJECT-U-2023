@@ -2,34 +2,36 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./PropertieDetails.css";
+
 export default function PropertyDetails() {
-  // Get the property ID from the URL using useParams
   const { propertyId } = useParams();
+  const [property, setProperty] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // State to store property details
-  const [property, setProperty] = useState([]);
-
-  // Fetch property details from the server based on the propertyId
   useEffect(() => {
-    async function fetchPropertyDetails() {
-      try {
-        const response = await axios.get(
-          `http://localhost:4042/property/getproperty/${propertyId}`
-        );
+    axios
+      .get(`http://localhost:4042/property/getproperty/${propertyId}`)
+      .then((response) => {
+        console.log(response.data);
         setProperty(response.data);
-      } catch (error) {
-        alert(error.message);
-      }
-    }
-
-    fetchPropertyDetails();
+        setLoading(false); // Set loading to false when data is received
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false); // Set loading to false in case of an error
+      });
   }, [propertyId]);
 
   return (
     <div className="property-details">
       <h2>Property Details</h2>
 
-      {property ? (
+      {loading ? (
+        <p>Loading property details...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : property ? (
         <div className="details">
           <div className="detail">
             <span className="label">Property ID:</span>
@@ -46,7 +48,7 @@ export default function PropertyDetails() {
           {/* Add more details as needed */}
         </div>
       ) : (
-        <p>Loading property details...</p>
+        <p>No property details available.</p>
       )}
     </div>
   );
