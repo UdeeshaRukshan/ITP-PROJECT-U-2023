@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./AllProperties.css"; // Import CSS file
-
+import { useCart } from "../wishlistcom/CartContext";
 export default function AllProperties() {
   // State to store properties data
   const [properties, setProperties] = useState([]);
-
+  const { addToCart } = useCart();
   // Fetch properties data from the server
   useEffect(() => {
     async function fetchProperties() {
@@ -47,6 +47,7 @@ export default function AllProperties() {
           <button
             className="view-details-button
           "
+            onClick={() => addToCart(property)}
           >
             Add to Cart
           </button>{" "}

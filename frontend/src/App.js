@@ -15,7 +15,7 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
-
+import Wishlist from "./pages/wishlist";
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
 import paymentHistory from "./components/dashbord/paymentHistory/paymentHistory";
@@ -58,7 +58,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-
+            <Route path="/wishlist" component={Wishlist} />
             <Route path="/dashbord/agent" element={<Agent />} />
 
             <Route path="/contactUs" element={<ContactUs />} />

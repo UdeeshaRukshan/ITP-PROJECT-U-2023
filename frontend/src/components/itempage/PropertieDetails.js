@@ -5,7 +5,7 @@ import "./PropertieDetails.css";
 
 export default function PropertyDetails() {
   const { propertyId } = useParams();
-  const [property, setProperty] = useState(null);
+  const [property, setProperty] = useState({}); // Initialize as an empty object
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -21,7 +21,7 @@ export default function PropertyDetails() {
         setError(error.message);
         setLoading(false); // Set loading to false in case of an error
       });
-  }, [propertyId]);
+  }, [propertyId]); // Include propertyId in the dependency array to fetch data when it changes
 
   return (
     <div className="property-details">
@@ -31,7 +31,7 @@ export default function PropertyDetails() {
         <p>Loading property details...</p>
       ) : error ? (
         <p>Error: {error}</p>
-      ) : property ? (
+      ) : (
         <div className="details">
           <div className="detail">
             <span className="label">Property ID:</span>
@@ -47,8 +47,6 @@ export default function PropertyDetails() {
           </div>
           {/* Add more details as needed */}
         </div>
-      ) : (
-        <p>No property details available.</p>
       )}
     </div>
   );

@@ -39,7 +39,7 @@ const Navbar = () => {
           <MenuLink to="/contactUs" activeStyle>
             Contact us
           </MenuLink>
-          <RightAlignedMenuLink to="/blog" activeStyle>
+          <RightAlignedMenuLink to="/wishlist" activeStyle>
             <FontAwesomeIcon
               icon={faStar}
               style={{ color: "#ffffff", width: "30px", height: "30px" }}
