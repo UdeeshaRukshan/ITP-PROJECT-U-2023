@@ -1,141 +1,278 @@
-import * as React from "react";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import InputMask from "react-input-mask";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./paymentForm.css";
+import axios from "axios";
 
-import { useState } from "react";
-export default function PaymentForm({ onPaymentInfoSubmit }) {
-  const [cardName, setCardName] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [cvv, setCvv] = useState("");
-  const [expDate, setExpDate] = useState("");
+const PaymentForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    email: "",
+    phone: "",
+    cardName: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+  });
+
+  const navigate = useNavigate()
+
+  const [saveCardDetails, setSaveCardDetails] = useState(false);
+
+  const isEmailValid = (email) => {
+    const emailRegex = /^[A-Za-z0-9._%+-]+@gmail.com$/;
+    return emailRegex.test(email);
+  };
+
+  const isPhoneNumberValid = (phone) => {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+  };
 
   const isCardNumberValid = (cardNumber) => {
-    const cardNumberPattern = /^\d{16}$/;
-    return cardNumberPattern.test(cardNumber);
+    const cardNumberWithoutSpaces = cardNumber.replace(/\s/g, "");
+    const cardNumberRegex = /^\d{16}$/;
+    return cardNumberRegex.test(cardNumberWithoutSpaces);
   };
 
-  const isCvvValid = (cvv) => {
-    const cvvPattern = /^\d{3}$/;
-    return cvvPattern.test(cvv);
+  const formatCardNumber = (cardNumber) => {
+    const cardNumberWithoutSpaces = cardNumber.replace(/\s/g, "");
+    const formattedCardNumber = cardNumberWithoutSpaces.replace(
+      /(.{4})/g,
+      "$1 "
+    );
+    return formattedCardNumber.trim();
   };
 
-  const isCardExpired = (expDate) => {
-    const currentDate = new Date();
-    const [expMonth, expYear] = expDate.split("/").map((val) => parseInt(val));
-    if (expMonth >= 1 && expMonth <= 12 && expYear >= 0) {
-      const expirationDate = new Date(expYear + 2000, expMonth - 1, 1);
-      return expirationDate < currentDate;
+  const isExpiryDateValid = (expiryDate) => {
+    // Check if the input matches the MM/YY format
+    const datePattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    if (!datePattern.test(expiryDate)) {
+      return false; // Invalid format
     }
-    return true; // Invalid date
+  
+    const [expMonth, expYear] = expiryDate.split("/").map((val) => parseInt(val));
+    const currentYear = new Date().getFullYear() % 100;
+    const currentMonth = new Date().getMonth() + 1;
+  
+    // Check if the card is expired
+    if (expYear < currentYear || (expYear === currentYear && expMonth < currentMonth)) {
+      return false; // Card has already expired
+    }
+  
+    return true; // Valid date
   };
-  const handlePaymentSubmit = (e) => {
-    e.preventDefault(); // Prevent the form from submitting via HTTP request
+  
+  
 
-    // Create an object to hold the payment information
-    const paymentInfo = {
-      cardName,
-      cardNumber,
-      cvv,
-      expDate,
-    };
+  const isCVVValid = (cvv) => {
+    const cvvRegex = /^\d{3}$/;
+    return cvvRegex.test(cvv);
+  };
 
-    // Check if the payment information is valid
-    if (
-      isCardNumberValid(cardNumber) &&
-      isCvvValid(cvv) &&
-      !isCardExpired(expDate)
-    ) {
-      // Call the callback function to submit the payment information
-      onPaymentInfoSubmit(paymentInfo);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    // Check if the input is the "expiryDate" field
+    if (name === "expiryDate") {
+      // Ensure only numbers are entered
+      const cleanedValue = value.replace(/\D/g, "");
+  
+      if (cleanedValue.length <= 4) {
+        let formattedValue = cleanedValue;
+        if (cleanedValue.length >= 2) {
+          // Add a "/" after the first 2 digits (MM)
+          formattedValue = cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
+        }
+  
+        setFormData({
+          ...formData,
+          [name]: formattedValue,
+        });
+      }
     } else {
-      // Handle invalid input, e.g., show an error message
-      console.error("Invalid payment information");
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (
+      isEmailValid(formData.email) &&
+      isPhoneNumberValid(formData.phone) &&
+      isCardNumberValid(formData.cardNumber) &&
+      isExpiryDateValid(formData.expiryDate) &&
+      isCVVValid(formData.cvv)
+    ) {
+      try {
+        const response = await axios.post(
+          "http://localhost:8070/payment/addpayment",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log("Payment data saved successfully");
+          navigate("/review");
+        } else {
+          console.error("Error saving payment data");
+        }
+      } catch (error) {
+        console.error("Error saving payment data:", error);
+      }
+    } else {
+      console.error("Form data is not valid. Please check your inputs.");
+    }
+  };
+
+  const main = (e) => {
+    e.preventDefault(); // Prevent the form from submitting
+    handleSubmit(e); // Pass the event object to handleChange
+    navigate('/review');
+  }
 
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Card Details
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            label="Name on card"
-            fullWidth
-            autoComplete="cc-name"
-            variant="standard"
-            onChange={(e) => setCardName(e.target.value)}
+    <div className="payment-form">
+      <h2>Checkout</h2>
+      <div className="subheading">Personal Information</div>
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="form-group">
+            <input
+              type="text"
+              className="input-field"
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="input-field"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="input-field"
+            name="address"
+            placeholder="Address"
+            value={formData.address}
+            onChange={handleChange}
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
+        </div>
+        <div className="form-group">
+          <input
+            type="email"
+            className="input-field"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
             required
-            id="cardNumber"
-            label="Card number"
-            fullWidth
-            autoComplete="cc-number"
-            variant="standard"
-            error={!isCardNumberValid(cardNumber)}
-            helperText={
-              !isCardNumberValid(cardNumber)
-                ? "Please enter a valid 16-digit card number"
-                : ""
-            }
-            onChange={(e) => setCardNumber(e.target.value)}
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <InputMask
-            mask="99/99"
-            maskChar={null}
-            onChange={(e) => setExpDate(e.target.value)}
-          >
-            {() => (
-              <TextField
-                required
-                id="expDate"
-                label="Expiry date (MM/YY)"
-                fullWidth
-                autoComplete="cc-exp"
-                variant="standard"
-                error={isCardExpired(expDate)}
-                helperText={
-                  isCardExpired(expDate) ? "Card has already expired" : ""
-                }
-              />
+          {!isEmailValid(formData.email) && (
+            <div className="error-message">Please enter a valid email address</div>
+          )}
+        </div>
+        <div className="form-group">
+          <input
+            type="tel"
+            className="input-field"
+            name="phone"
+            placeholder="Phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+          {!isPhoneNumberValid(formData.phone) && (
+            <div className="error-message">Please enter a valid phone number</div>
+          )}
+        </div>
+        <div className="subheading">Payment Information</div>
+        <div className="row">
+          <div className="form-group">
+            <input
+              type="text"
+              className="input-field card-field"
+              name="cardName"
+              placeholder="Card Name"
+              value={formData.cardName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="input-field card-field"
+              name="cardNumber"
+              placeholder="Card Number"
+              value={formatCardNumber(formData.cardNumber)}
+              onChange={handleChange}
+            />
+            {!isCardNumberValid(formData.cardNumber) && (
+              <div className="error-message">
+                Please enter a valid 16-digit card number
+              </div>
             )}
-          </InputMask>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cvv"
-            label="CVV"
-            fullWidth
-            autoComplete="cc-csc"
-            variant="standard"
-            error={!isCvvValid(cvv)}
-            helperText={
-              !isCvvValid(cvv) ? "Please enter a valid 3-digit CVV" : ""
-            }
-            onChange={(e) => setCvv(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
-          />
-        </Grid>
-        <button type="submit">Submit Payment</button>
-      </Grid>
-    </React.Fragment>
+          </div>
+        </div>
+        <div className="row">
+          <div className="form-group">
+            <input
+              type="text"
+              className="input-field date-field"
+              name="expiryDate"
+              placeholder="Expiry Date (MM/YY)"
+              value={formData.expiryDate}
+              onChange={handleChange}
+            />
+            {!isExpiryDateValid(formData.expiryDate) && (
+              <div className="error-message">
+                Card has already expired
+              </div>
+            )}
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="input-field cvv-field"
+              name="cvv"
+              placeholder="CVV"
+              value={formData.cvv}
+              onChange={handleChange}
+            />
+            {!isCVVValid(formData.cvv) && (
+              <div className="error-message">
+                Please enter a valid 3-digit CVV
+              </div>
+            )}
+          </div>
+        </div>
+        <button className="checkout-button" type="submit" onClick={main}>
+          Submit Details
+        </button>
+      </form>
+    </div>
   );
-}
+};
+
+export default PaymentForm;

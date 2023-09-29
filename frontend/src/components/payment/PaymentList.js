@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../payments/PaymentList.css";
+import "./PaymentList.css";
 
 const PaymentList = () => {
+  //create a state for storing payments details
   const [payments, setPayments] = useState([]);
 
+  // Fetch payment data from API
   useEffect(() => {
-    // Fetch payment data from your API
     axios.get("http://localhost:8070/payment/getpayments").then((response) => {
-      setPayments(response.data); // Assuming your API returns an array of payment data
-    });
+      setPayments(response.data); // Assuming API returns an array of payment data
+    }).catch((err)=>{
+      alert(err.message);
+    })
   }, []);
 
   return (

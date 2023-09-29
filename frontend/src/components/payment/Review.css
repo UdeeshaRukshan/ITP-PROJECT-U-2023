@@ -64,9 +64,14 @@ h4 {
   background-color: #ff5733; /* Make "Pay Now" button more prominent */
 }
 
-.back-button:hover,
-.pay-now-button:hover {
+
+.back-button:hover {
   background-color: #0056b3;
+  opacity: 1; /* Full opacity on hover for "Back" button */
+}
+
+.pay-now-button:hover {
+  background-color: #b93201;
   opacity: 1; /* Full opacity on hover for "Back" button */
 }
 
