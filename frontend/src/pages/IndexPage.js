@@ -15,15 +15,15 @@ const slideImages = [
     caption: "image 2",
   },
   {
-    url: "https://www.builderboost.com/austin/wp-content/uploads/2019/11/villa_montana_high_001-1024x683.jpg",
+    url: "https://images.unsplash.com/photo-1546614042-7df3c24c9e5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80",
     caption: "image 3",
   },
   {
-    url: "https://i0.wp.com/www.collegestationhomes.com/wp-content/uploads/2021/08/Looking-for-a-Home-in-College-Station.jpeg?ssl=1",
+    url: "https://westobserver.com/wp-content/uploads/2023/07/4cac263_504d3ed2b4df4eaabb75a8cea16e74d9-0-13ff63bcebb94f3eac359b8a667fdbd5.jpg",
     caption: "image 2",
   },
   {
-    url: "https://www.builderboost.com/austin/wp-content/uploads/2019/11/villa_montana_high_001-1024x683.jpg",
+    url: "https://thumbs.dreamstime.com/b/vintage-metal-sign-vector-antiques-collectibles-realistic-used-rusty-effect-can-be-easily-removed-clean-88940749.jpg",
     caption: "image 3",
   },
   {
@@ -44,8 +44,9 @@ const IndexPage = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: "400px",
+    height: "530px",
     backgroundSize: "cover",
+    overflow: "hidden",
   };
 
   const properties = {
@@ -89,6 +90,8 @@ const IndexPage = () => {
                   style={{
                     ...divStyle,
                     backgroundImage: `url(${image.url})`,
+                    backgroundSize: "cover", // Ensure the image covers the div
+                    backgroundPosition: "center",
                   }}
                 ></div>
               </div>
@@ -99,7 +102,7 @@ const IndexPage = () => {
           <div
             className="text-center mx-auto mb-5 wow fadeInUp"
             data-wow-delay="0.1s"
-            style={{ maxWidth: "600px" }}
+            style={{ maxWidth: "650px" }}
           >
             <h1 className="mb-3">AuctionPal Categories</h1>
             <p>
@@ -115,7 +118,7 @@ const IndexPage = () => {
             >
               <a
                 className="cat-item d-block bg-light text-center rounded "
-                href=""
+                href="/vehicle"
               >
                 <div className="rounded ">
                   <div className="icon mb-3">
@@ -135,7 +138,7 @@ const IndexPage = () => {
             >
               <a
                 className="cat-item d-block bg-light text-center rounded "
-                href=""
+                href="/properties"
               >
                 <div className="rounded ">
                   <div className="icon mb-3 ">
@@ -155,7 +158,7 @@ const IndexPage = () => {
             >
               <a
                 className="cat-item d-block bg-light text-center rounded "
-                href=""
+                href="/collectables"
               >
                 <div className="rounded ">
                   <div className="icon mb-3">
@@ -175,7 +178,7 @@ const IndexPage = () => {
             >
               <a
                 className="cat-item d-block bg-light text-center rounded "
-                href=""
+                href="/arts"
               >
                 <div className="rounded ">
                   <div className="icon mb-3 rounded">

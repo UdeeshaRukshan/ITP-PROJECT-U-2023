@@ -2,12 +2,12 @@
 
 /* Styles for the catalog container */
 .catalog-container {
-  background-color: rgb(115, 131, 154);
+  background-color: rgb(162, 175, 193);
   display: inline-block;
   flex-wrap: wrap;
   gap: 20px; /* Spacing between catalog items */
   justify-content: center; /* Center align items horizontally */
-  padding: 20px; /* Padding around the catalog */
+  padding: 10px; /* Padding around the catalog */
 }
 
 /* Styles for each catalog item */

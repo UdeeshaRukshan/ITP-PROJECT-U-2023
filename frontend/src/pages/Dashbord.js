@@ -359,25 +359,28 @@ const Dashboard = () => {
                 />
               </div>
               <div className="form-group">
-                <label>Address:</label>
+                <label>Current Password:</label>
                 <input
-                  type="text"
-                  value={editedUser.address}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, address: e.target.value })
-                  }
+                  type="password"
+                  value={currentPassword}
+                  onChange={handleCurrentPasswordChange}
                 />
               </div>
               <div className="form-group">
-                <label>password</label>
+                <label>New Password:</label>
                 <input
-                  type="text"
-                  value={editedUser.password}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, password: e.target.value })
-                  }
-                />{" "}
+                  type="password"
+                  value={newPassword}
+                  onChange={handleNewPasswordChange}
+                />
               </div>
+              <button
+                className="btn btn-success"
+                onClick={handleChangePassword}
+              >
+                Change Password
+              </button>
+
               {/* Add similar fields for other user properties (address, age, etc.) */}
               <button className="btn btn-success" onClick={handleSaveClick}>
                 Save Changes

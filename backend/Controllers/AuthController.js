@@ -113,10 +113,9 @@ module.exports.UserProfile = async (req, res) => {
 module.exports.UpdateUser = async (req, res, next) => {
   try {
     const userId = req.params.id; // Assuming you have a route parameter for the user ID
-    const { email, password, firstname, lastname, address, age } = req.body; // Assuming you send the updates in the request body
+    const { email, firstname, lastname, address, age } = req.body; // Assuming you send the updates in the request body
     const updates = {
       email,
-      password,
       firstname,
       lastname,
       address,
@@ -165,10 +164,10 @@ module.exports.UpdatePassword = async (req, res) => {
     // Retrieve the user from the database
     const user = await User.findById(userId);
 
-    // Check if the current password is correct
+    // Check if the provided current password matches the hashed password in the database
     const isPasswordValid = await bcrypt.compare(
-      currentPassword,
-      user.password
+      currentPassword, // Plain text current password from the request
+      user.password // Hashed password from the database
     );
 
     if (!isPasswordValid) {
