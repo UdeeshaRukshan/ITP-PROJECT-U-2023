@@ -48,7 +48,8 @@ function isValidPassword(password) {
 
 function isValidAge(age) {
   // Age validation criteria (customize as needed)
-  return age >= 18;
+  age = age.replace(/[^0-9]/g, "");
+  return age >= 18 && age <= 85;
 }
 
 const defaultTheme = createTheme();
@@ -249,19 +250,20 @@ const Signup = () => {
 
               <Grid item xs={12}>
                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={age}
+                <TextField
+                  required
+                  id="outlined-number"
+                  fullWidth
                   label="Age"
+                  type="number"
                   name="age"
+                  value={age}
+                  placeholder="Age"
                   onChange={handleOnChange}
-                  style={{ width: "100%", height: "20px" }}
-                >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
               </Grid>
 
               <Grid item xs={12}>

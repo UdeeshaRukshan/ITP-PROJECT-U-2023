@@ -22,6 +22,44 @@ const Dashboard = () => {
 
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [changePasswordSuccess, setChangePasswordSuccess] = useState(false);
+
+  const handleCurrentPasswordChange = (e) => {
+    setCurrentPassword(e.target.value);
+  };
+
+  // Event handler for new password input
+  const handleNewPasswordChange = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  // Event handler for password change request
+  const handleChangePassword = () => {
+    // Send a request to the backend to change the password
+    axios
+      .put(`http://localhost:4042/change-password/${users._id}`, {
+        currentPassword,
+        newPassword,
+      })
+      .then((response) => {
+        setChangePasswordSuccess(true);
+        // Clear the password fields
+        setCurrentPassword("");
+        setNewPassword("");
+        // Display a success message
+        toast("Password changed successfully.", {
+          position: "top-right",
+        });
+      })
+      .catch((error) => {
+        // Handle password change error (e.g., invalid current password)
+        toast.error("Password change failed. Please try again.", {
+          position: "top-right",
+        });
+      });
+  };
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -164,7 +202,9 @@ const Dashboard = () => {
             <img
               className="img-x"
               style={{ width: "20vh", height: "20vh" }}
-              src={imageUrls[0].url} // Display the first image from the array
+              src={
+                imageUrls.length > 0 ? imageUrls[imageUrls.length - 1].url : ""
+              } // Display the first image from the array
               alt={`Image 0`}
             />
           )}
@@ -327,6 +367,16 @@ const Dashboard = () => {
                     setEditedUser({ ...editedUser, address: e.target.value })
                   }
                 />
+              </div>
+              <div className="form-group">
+                <label>password</label>
+                <input
+                  type="text"
+                  value={editedUser.password}
+                  onChange={(e) =>
+                    setEditedUser({ ...editedUser, password: e.target.value })
+                  }
+                />{" "}
               </div>
               {/* Add similar fields for other user properties (address, age, etc.) */}
               <button className="btn btn-success" onClick={handleSaveClick}>

@@ -13,7 +13,7 @@ const Agent = () => {
   const [qrCodeData, setQRCodeData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [filteredAgents, setFilteredAgents] = useState([]);
-
+  const [selectedItem, setSelectedItem] = useState("");
   const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);
   const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
   const [isUpdateAgentFormVisible, setIsUpdateAgentFormVisible] =

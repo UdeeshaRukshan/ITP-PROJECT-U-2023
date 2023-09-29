@@ -298,6 +298,11 @@ th {
 /* Style for strong (labels) */
 .profile-info strong {
   font-weight: bold;
+  margin: 20px;
+}
+.profile-info p {
+  font-weight: bold;
+  margin: 20px;
 }
 
 .form-group {

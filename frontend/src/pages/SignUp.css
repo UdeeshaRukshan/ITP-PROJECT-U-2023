@@ -11,8 +11,8 @@
 }
 
 /* Apply the media query for screens with a minimum width of 600px */
-@media (min-width: 600px) {
+@media (min-width: 500px) {
   .small-container {
-    max-width: 300px; /* Change the maximum width to 300px for larger screens */
+    max-width: 500px; /* Change the maximum width to 300px for larger screens */
   }
 }

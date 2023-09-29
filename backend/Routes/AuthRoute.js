@@ -5,6 +5,7 @@ const {
   UpdateUser,
   DeleteUser,
   UserProfile,
+  UpdatePassword,
 } = require("../Controllers/AuthController");
 const router = require("express").Router();
 const userVerification = require("../Middleware/AuthMiddleware");
@@ -37,7 +38,7 @@ router.post("/signup", Signup);
 router.post("/login", Login);
 router.get("/dashbord", UserProfile);
 router.put("/update/:id", UpdateUser);
-
+router.put("/change-password/:id", UpdatePassword);
 router.put("/user/update/:id", UpdateUser);
 router.delete("/delete/:id", DeleteUser);
 module.exports = router;
