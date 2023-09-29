@@ -36,30 +36,30 @@ const Dashboard = () => {
   };
 
   // Event handler for password change request
-  const handleChangePassword = () => {
-    // Send a request to the backend to change the password
-    axios
-      .put(`http://localhost:4042/change-password/${users._id}`, {
-        currentPassword,
-        newPassword,
-      })
-      .then((response) => {
-        setChangePasswordSuccess(true);
-        // Clear the password fields
-        setCurrentPassword("");
-        setNewPassword("");
-        // Display a success message
-        toast("Password changed successfully.", {
-          position: "top-right",
-        });
-      })
-      .catch((error) => {
-        // Handle password change error (e.g., invalid current password)
-        toast.error("Password change failed. Please try again.", {
-          position: "top-right",
-        });
-      });
-  };
+  // const handleChangePassword = () => {
+  //   // Send a request to the backend to change the password
+  //   axios
+  //     .put(`http://localhost:4042/change-password/${users._id}`, {
+  //       currentPassword,
+  //       newPassword,
+  //     })
+  //     .then((response) => {
+  //       setChangePasswordSuccess(true);
+  //       // Clear the password fields
+  //       setCurrentPassword("");
+  //       setNewPassword("");
+  //       // Display a success message
+  //       toast("Password changed successfully.", {
+  //         position: "top-right",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       // Handle password change error (e.g., invalid current password)
+  //       toast.error("Password change failed. Please try again.", {
+  //         position: "top-right",
+  //       });
+  //     });
+  // };
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -358,7 +358,7 @@ const Dashboard = () => {
                   }
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Current Password:</label>
                 <input
                   type="password"
@@ -379,7 +379,7 @@ const Dashboard = () => {
                 onClick={handleChangePassword}
               >
                 Change Password
-              </button>
+              </button> */}
 
               {/* Add similar fields for other user properties (address, age, etc.) */}
               <button className="btn btn-success" onClick={handleSaveClick}>
