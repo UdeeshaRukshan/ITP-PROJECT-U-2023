@@ -1,115 +1,147 @@
-const router = require("express").Router();
-let Art = require("../models/Art");
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./AllArts.css"; 
 
-router.route("/addart").post((req,res) =>{
-
-    const title = req.body.title;
-    const medium = req.body.medium;
-    const height = req.body.height;
-    const width = req.body.width;
-    const condition = req.body.condition;
-    const location = req.body.location;
-    const value = req.body.value;
-    const images = req.body.images;
-
-    const newArt = new Art({
-
-        title,
-        medium,
-        height,
-        width,
-        condition,
-        location,
-        value,
-        images,
-    })
-
-    newArt.save().then(() => {
-        res.json("Art Added")
-    }).catch((err) => {
-        console.log(err);
-    })
-
-})
-
-router.route("/getarts").get((req,res) => {
-
-    Art.find().then((arts) =>{
-        res.json(arts)
-    }).catch((err) =>{
-        console.log(err) 
-
-    })
-           
-
-})
-
-// fetch data route
-router.route("/getarts/:artid").get(async (req, res) => {
-    let userId = req.params.artid;
-    await Art.findById(userId)
-      .then((Art) => {
-        res.status(200).send({ status: "Art details fetched", Art });
-      })
-      .catch((err) => {
-        console.log(err.message);
-        res
-          .status(500)
-          .send({
-            status: "Error with getting Payment details",
-            error: err.message,
-          });
-      });
+export default function AllArts() {
+  const [arts, setArts] = useState([]);
+  const [selectedArtId, setSelectedArtId] = useState(null);
+  const [updateFormData, setUpdateFormData] = useState({
+    title: "",
+    medium: "",
+    height: "",
+    width: "",
+    condition: "",
+    location: "",
+    value: "",
+    images: []
   });
 
-router.route("/updateart/:artid").put(async (req,res) => {
-    let userID = req.params.artid;
-    const {title,medium,height,width,condition,location,value,images} = req.body;
-
-    const updateArt = {
-        title,
-        medium,
-        height,
-        width,
-        condition,
-        location,
-        value,
-        images
+  useEffect(() => {
+    async function fetchArts() {
+      try {
+        const response = await axios.get("http://localhost:8070/art/getarts");
+        setArts(response.data);
+      } catch (error) {
+        alert(error.message);
+      }
     }
+    fetchArts();
+  }, []);
 
-    const updateart = await Art.findByIdAndUpdate(userID, updateArt)
-    .then(() =>{
-        res.status(200).send({status: "Art updated"})   
-    }).catch((err) =>{
-        console.log(err);
-        res.status(500).send({status: "Error with updating art", error: err.message});
-    })
+  const renderImages = (images) => {
+    return images.map((image, index) => (
+      <img
+        key={index}
+        src={image.dataUrl}
+        alt={`Art ${index + 1}`}
+      />
+    ));
+  };
 
-})
+  const renderArtsRows = () => {
+    return arts.map((art) => (
+      <tr key={art._id}>
+        <td>{art.title}</td>
+        <td>{art.medium}</td>
+        <td>{art.height}</td>
+        <td>{art.width}</td>
+        <td>{art.condition}</td>
+        <td>{art.location}</td>
+        <td>{art.value}</td>
+        <td>{renderImages(art.images)}</td>
+        <td>
+          <div className="button-container">
+            <button
+              className="delete-button"
+              onClick={() => handleDeleteClick(art._id)}
+            >
+              Delete
+            </button>
+            <button
+              className="update-button"
+              onClick={() => handleUpdateClick(art)}
+            >
+              Update
+            </button>
+          </div>
+        </td>
+      </tr>
+    ));
+  };
 
-router.route("/deleteart/:artid").delete(async (req,res) => {
-    let userID = req.params.artid;
+  const handleUpdateClick = (art) => {
+    setSelectedArtId(art._id);
+    setUpdateFormData({
+      title: art.title,
+      medium: art.medium,
+      height: art.height,
+      width: art.width,
+      condition: art.condition,
+      location: art.location,
+      value: art.value,
+      images: art.images
+    });
+  };
 
-    await Art.findByIdAndDelete(userID)
-    .then(() => {
-        res.status(200).send({status: "Art Deleted"});  
-    }).catch((err) => {
-        console.log(err.message);
-        res.status(500).send({status: "Error with delete art", error:err.message});
-    })
-})
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setUpdateFormData({
+      ...updateFormData,
+      [name]: value
+    });
+  };
 
-router.route("/getart/:artid").get(async(req,res) => {
-    let userID = req.params.artid;
-    await Art.findById(userID)
-    .then((Art) => {
-        res.status(200).send({status: "Art fetched", Art})   
-    }).catch(() => {
-        console.log(err.message);
-        res.status(500).send({status: "Error with get art", error:err.message});
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:8070/art/updateart/${selectedArtId}`, updateFormData);
+      setSelectedArtId(null);
+      // Optionally, you can refresh the art data to display the updated art list.
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
-    })
-})
+  const handleDeleteClick = async (artId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this art piece?");
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8070/art/deleteart/${artId}`);
+        setArts((prevArts) => prevArts.filter((art) => art._id !== artId));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  };
 
-module.exports = router;
+  return (
+    <div className="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Medium</th>
+            <th>Height(cm)</th>
+            <th>Width(cm)</th>
+            <th>Condition</th>
+            <th>Location</th>
+            <th>Value($)</th>
+            <th>Images</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>{renderArtsRows()}</tbody>
+      </table>
 
+      {/* Modal for updating art details */}
+      {selectedArtId && (
+        <div className="modal">
+          <div className="modal-content">
+            <span
+              className="close"
+              onClick={() => setSelectedArtId(null)}
+            >
+              &times;
+            </span>
+            <h3>Update Art Details</h3>
+            <form

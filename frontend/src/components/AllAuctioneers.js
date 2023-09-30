@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllAuctioneers.css"; 
+import "./AllAuctioneers.css";
+// Import the update form component
 
 export default function AllAuctioneers() {
   // State to store auctioneer data
   const [auctioneers, setAuctioneers] = useState([]);
+  const [selectedAuctioneer, setSelectedAuctioneer] = useState(null);
 
   // Fetch auctioneer data from the server
   useEffect(() => {
     async function fetchAuctioneers() {
       try {
-        const response = await axios.get("http://localhost:8070/auctioneer/getauctioneers");
+        const response = await axios.get(
+          "http://localhost:8070/auctioneer/getauctioneers"
+        );
         setAuctioneers(response.data);
       } catch (error) {
         alert(error.message);
@@ -32,46 +36,66 @@ export default function AllAuctioneers() {
         <td>{auctioneer.street}</td>
         <td>{auctioneer.city}</td>
         <td>
-        <div className="button-container">
-          <button className="delete-button" onClick={() => handleDeleteClick(auctioneer._id)}>
-            Delete
-          </button>
-        </div>
-      </td>
+          <div className="button-container">
+            <button
+              className="delete-button"
+              onClick={() => handleDeleteClick(auctioneer._id)}
+            >
+              Delete
+            </button>
+            <button
+              className="update-button"
+              onClick={() => handleUpdateClick(auctioneer)}
+            >
+              Update
+            </button>
+          </div>
+        </td>
       </tr>
     ));
   };
 
   const handleDeleteClick = async (auctioneerId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete your details?");
-    
-    if (confirmDelete) {
-      try {
-        await axios.delete(`http://localhost:8070/auctioneer/delete/${auctioneerId}`);
-        setAuctioneers((prevAuctioneers) => prevAuctioneers.filter((auctioneer) => auctioneer._id !== auctioneerId));
-      } catch (error) {
-        alert(error.message);
-      }
-    }
+    // ... Your delete logic
+  };
+
+  const handleUpdateClick = (auctioneer) => {
+    setSelectedAuctioneer(auctioneer); // Set the selected auctioneer for updating
+  };
+
+  const handleCancelUpdate = () => {
+    setSelectedAuctioneer(null); // Reset the selected auctioneer
   };
 
   return (
     <div className="container">
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Contact Number</th>
-            <th>Address</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Actions</th> 
-          </tr>
-        </thead>
-        <tbody>{renderAuctioneerRows()}</tbody>
-      </table>
+      {selectedAuctioneer ? (
+        <UpdateAuctioneerForm
+          selectedAuctioneer={selectedAuctioneer}
+          onUpdate={(updatedAuctioneer) => {
+            // Handle the update logic here, e.g., send a PUT request to update the data
+            // Then reset the selectedAuctioneer state
+            setSelectedAuctioneer(null);
+          }}
+          onCancel={handleCancelUpdate}
+        />
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Contact Number</th>
+              <th>Address</th>
+              <th>Street</th>
+              <th>City</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>{renderAuctioneerRows()}</tbody>
+        </table>
+      )}
     </div>
   );
 }

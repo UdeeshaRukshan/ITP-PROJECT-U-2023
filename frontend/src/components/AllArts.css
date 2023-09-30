@@ -21,7 +21,8 @@ thead {
 }
 
 /* Table header and cell styles */
-th, td {
+th,
+td {
   padding: 12px 15px;
   text-align: left;
 }
@@ -93,4 +94,41 @@ button.delete-button {
   padding: 5px 10px;
   cursor: pointer;
   margin-right: 5px;
+}
+
+/* Modal styles */
+.modal {
+  display: none; /* Hide the modal by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Overlay background */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* Close button style */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
