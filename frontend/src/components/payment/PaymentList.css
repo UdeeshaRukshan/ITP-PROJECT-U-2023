@@ -1,47 +1,53 @@
 /* PaymentList.css */
 
-/* Container for the payment list */
-.container {
-  margin: 0 auto;
+.payment-list-container {
+  margin: 50px auto; /* Center the container */
+  max-width: 1350px; /* Set a max width for better readability */
   padding: 20px;
-  max-width: 800px;
+  background-color: #ffffff; /* Background color of the container */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+  align-items: center;
 }
 
-/* Table styles */
+h2 {
+  color: #363753;
+  margin-bottom: 20px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Add space between header and table */
 }
 
-thead th {
-  background-color: #333; /* Dark gray color for header */
-  color: #fff;
-  font-weight: bold;
-  padding: 10px;
+th, td {
+  padding: 12px;
   text-align: left;
+  border-bottom: 1px solid #e0e0e0; /* Border color for rows */
 }
 
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+th {
+  background-color: #363753; /* Header background color */
+  color: #ffffff; /* Header text color */
 }
 
-tbody td {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  text-align: left;
+tr:hover {
+  background-color: #f5f5f5; /* Hover effect color */
 }
 
-/* Header styles */
-h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
+
+tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed */
 }
 
-/* Add more styles as needed */
+
+
+
+
+
+
+
+
 
 

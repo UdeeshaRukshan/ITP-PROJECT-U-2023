@@ -15,8 +15,20 @@ const PaymentList = () => {
     })
   }, []);
 
+  const maskCardNumber = (cardNumber) => {
+    // Mask all but the last four digits
+    const visibleDigits = cardNumber.slice(-4);
+    const maskedDigits = '*'.repeat(cardNumber.length - 4);
+    return maskedDigits + visibleDigits;
+  };
+
+  const maskCVV = (cvv) => {
+    // Mask CVV with asterisks
+    return '*'.repeat(cvv.length);
+  };
+
   return (
-    <div>
+    <div className="payment-list-container">
       <h2>Payment List</h2>
       <table>
         <thead>
@@ -41,9 +53,9 @@ const PaymentList = () => {
               <td>{payment.email}</td>
               <td>{payment.phone}</td>
               <td>{payment.cardName}</td>
-              <td>{payment.cardNumber}</td>
+              <td>{maskCardNumber(payment.cardNumber)}</td>
               <td>{payment.expiryDate}</td>
-              <td>{payment.cvv}</td>
+              <td>{maskCVV(payment.cvv)}</td>
             </tr>
           ))}
         </tbody>

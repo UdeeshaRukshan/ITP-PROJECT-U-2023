@@ -1,6 +1,4 @@
 /* paymentForm.css */
-/* Add a vertical line separator */
-/* paymentForm.css */
 
 .payment-form {
   max-width: 400px;
@@ -12,9 +10,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.payment-form h2 {
-  font-size: 24px;
+h2 {
+  text-align: center;
   color: #333;
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
@@ -27,6 +26,8 @@
 
 .form-group {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .label {
@@ -43,20 +44,13 @@
   border-radius: 4px;
   font-size: 16px;
   color: #333;
+  transition: border-color 0.2s;
 }
 
-/* Increase the height of the Address input field */
 .input-field[name="address"] {
-  height: 100px; /* Adjust the height as needed */
+  height: 100px;
   resize: vertical;
   position: relative;
-}
-
-.textarea[name="address"] {
-  height: auto; /* Allow the textarea to expand vertically as needed */
-  min-height: 100px; /* Set a minimum height for the textarea */
-  resize: vertical; /* Allow vertical resizing */
-  padding: 10px; /* Add padding for better readability */
 }
 
 .input-field:focus {
@@ -65,14 +59,14 @@
 }
 
 /* Flexbox for alignment */
-.form-group {
-  display: flex;
-  flex-direction: column;
+.form-group.inline {
+  flex-direction: row;
+  align-items: baseline;
 }
 
 /* Add margin to the label for spacing */
-.label {
-  margin-bottom: 10px;
+.label.inline {
+  margin-right: 10px;
 }
 
 .card-group {
@@ -81,11 +75,7 @@
   margin-bottom: 20px;
 }
 
-.card-field {
-  flex: 1;
-  margin-right: 10px;
-}
-
+.card-field,
 .date-field,
 .cvv-field {
   flex: 1;
@@ -123,3 +113,6 @@
   font-weight: bold;
   margin-top: 10px;
 }
+
+
+

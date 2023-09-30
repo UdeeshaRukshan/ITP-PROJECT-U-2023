@@ -103,7 +103,7 @@ const PaymentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (
       isEmailValid(formData.email) &&
       isPhoneNumberValid(formData.phone) &&
@@ -121,7 +121,7 @@ const PaymentForm = () => {
             },
           }
         );
-
+  
         if (response.status === 200) {
           console.log("Payment data saved successfully");
           navigate("/review");
@@ -135,12 +135,7 @@ const PaymentForm = () => {
       console.error("Form data is not valid. Please check your inputs.");
     }
   };
-
-  const main = (e) => {
-    e.preventDefault(); // Prevent the form from submitting
-    handleSubmit(e); // Pass the event object to handleChange
-    navigate(`/review`);
-  };
+  
 
   return (
     <div className="payment-form">
@@ -271,7 +266,7 @@ const PaymentForm = () => {
             )}
           </div>
         </div>
-        <button className="checkout-button" type="submit" onClick={main}>
+        <button className="checkout-button" type="submit" onClick={handleSubmit}>
           Submit Details
         </button>
       </form>

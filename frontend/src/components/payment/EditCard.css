@@ -1,56 +1,74 @@
-/* Container styles */
-/*.edit-card-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-}*/
+/* EditCard.css */
 
-/* Edit and Delete button styles */
-button.edit-button,
-button.delete-button {
-  background-color: #007bff; /* Blue color for Edit button */
+.edit-card-container {
+  max-width: 1170px;
+  margin: 80px auto; /* Increased space at the top */
+}
+
+h2 {
+  color: #363753;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead th {
+  background-color: #363753;
   color: #fff;
-  padding: 5px 10px;
+  padding: 15px; /* Increased padding for header cells */
+  text-align: left;
+}
+
+tbody td {
+  border: 1px solid #ddd;
+  padding: 15px; /* Increased padding for data cells */
+}
+
+input {
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.save-button,
+.cancel-button,
+.edit-button,
+.delete-button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px;
+  font-size: 14px;
 }
 
-button.delete-button {
-  background-color: #dc3545; /* Red color for Delete button */
-}
-
-button.edit-button:hover,
-button.delete-button:hover {
-  background-color: #0056b3; /* Darker blue color on hover */
-}
-
-/* Save and Cancel button styles */
-button.save-button,
-button.cancel-button {
-  background-color: #28a745; /* Green color for Save button */
+.save-button {
+  background-color: #4caf50; /* Changed save button color */
   color: #fff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px;
 }
 
-button.cancel-button {
-  background-color: #ccc; /* Gray color for Cancel button */
-  color: #333;
+.cancel-button {
+  background-color: #ddd;
+  color: #363753;
 }
 
-button.save-button:hover,
-button.cancel-button:hover {
-  background-color: #218838; /* Darker green color on hover for Save button */
+.edit-button {
+  background-color: #2196f3; /* Changed edit button color */
+  color: #fff;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed */
 }
 
 
-  
+

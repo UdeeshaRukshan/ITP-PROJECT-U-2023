@@ -1,5 +1,3 @@
-/* Assuming you have a CSS file, e.g., Review.css */
-
 /* Container for the transaction summary */
 .transaction-summary-container {
   display: flex;
@@ -80,5 +78,4 @@ h4 {
   content: "←"; /* Unicode arrow character */
   margin-right: 5px;
 }
-
 
