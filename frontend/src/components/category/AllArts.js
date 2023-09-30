@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./AllArts.css"; // Import your CSS file
 
@@ -35,7 +36,9 @@ export default function AllArts() {
           <p>Value: {art.value}</p>
           {/* Add image display logic here */}
           <img src={art.images} alt={art.title} />
+          <Link to={`/arts/${art._id}`}>View Item</Link>
         </div>
+
         <div className="art-actions"></div>
       </div>
     ));

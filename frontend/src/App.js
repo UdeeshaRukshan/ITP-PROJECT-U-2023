@@ -44,6 +44,7 @@ import AllCollectables from "./components/category/AllCollectables";
 import CollectableDetails from "./components/itempage/CollectableDetail";
 import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
+import ArtDetails from "./components/itempage/ArtDetails";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -79,10 +80,13 @@ function App() {
 
             <Route
               path="/collectables/:auctioneerId"
-              component={CollectableDetails}
+              element={CollectableDetails}
             />
             <Route path="/property/:propertyId" element={<PropertyDetails />} />
+
+            <Route path="/arts/:artid" element={<ArtDetails />} />
           </Routes>
+
           <Footer />
         </div>
       </QueryClientProvider>
