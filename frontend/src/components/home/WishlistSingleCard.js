@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BiGift } from "react-icons/bi"; // Use a suitable icon for wishlists
+import { BiGift } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
@@ -12,7 +12,9 @@ const WishlistSingleCard = ({ wishlist }) => {
 
   return (
     <div className="wishlist-card"> {/* Adjust the class name for your styles */}
-      <h2 className="wishlist-title">{wishlist.title}</h2>
+      <h2 className="wishlist-title">Name: {wishlist.title}</h2>
+      <h2 className="wishlist-title">Author: {wishlist.author}</h2>
+      <h2 className="wishlist-title">publish Year: {wishlist.publishYear}</h2>
       {/* You can customize the content based on your wishlist data */}
       <div className="action-icons">
         <BiGift
