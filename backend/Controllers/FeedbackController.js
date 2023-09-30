@@ -9,6 +9,15 @@ const getFeedbacks = async (req, res, next) => {
     }
 };
 
+const getFeedback = async (req, res, next) => {
+    try {
+        const feedback = await Feedback.findById(req.params.id);
+        res.status(200).json(feedback);
+    } catch (err) {
+        next(err);
+    }
+};
+
 const createFeedback = async (req, res, next) => {
     const newFeedback = new Feedback(req.body);
     try {

@@ -6,6 +6,7 @@ const feedbackSchema = new mongoose.Schema({
     satisfied: { type: String, required: true, enum: ['YES', 'NO'] },
     rate: { type: String, required: true, enum: ['EXCELLENT', 'VERY GOOD', 'GOOD', 'AVERAGE', 'POOR'] },
     recommendation: { type: String },
+    username: { type: String, required: true },
     createdAt: { type: Date, default: new Date() },
 });
 
