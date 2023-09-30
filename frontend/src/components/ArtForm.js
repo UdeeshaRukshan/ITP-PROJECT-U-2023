@@ -63,24 +63,31 @@ function ArtForm() {
   }
 
   return (
-    <div className="container">
+    
+    <div className="art-form-container">
       <form onSubmit={sendData}>
-      <h2>Tell Us About Your Art</h2>
-        <label htmlFor="title">Title:</label>
+      <h2 className="art-form-title">Tell Us About Your Art</h2>
+      <label className="art-form-label" htmlFor="title">
+      Title:
+      </label>
         <textarea
           id="title"
           name="title"
+          className="art-form-textarea"
           placeholder="e.g., Starry night by vincent van gogh"
           required
           onChange={(e) =>{
             setTitle(e.target.value);
           }}></textarea><br />
 
-        <label htmlFor="medium">Medium:</label>
+        <label className="art-form-label" htmlFor="medium">
+          Medium:
+        </label>
         <input
           type="text"
           id="medium"
           name="medium"
+          className="art-form-input"
           placeholder="e.g., canvas,wood,clay,paint etc."
           required
           onChange={(e) =>{
@@ -89,11 +96,14 @@ function ArtForm() {
 
         <div className="row">
           <div className="col">
-            <label htmlFor="height">Height (cm):</label>
+          <label className="art-form-label" htmlFor="height">
+              Height (cm):
+            </label>
             <input
               type="number"
               id="height"
               name="height"
+              className="art-form-input"
               placeholder="e.g., 120"
               required
               onChange={(e) =>{
@@ -106,11 +116,14 @@ function ArtForm() {
               }}/>
           </div>
           <div className="col">
-            <label htmlFor="width">Width (cm):</label>
+          <label className="art-form-label" htmlFor="width">
+              Width (cm):
+            </label>
             <input
               type="number"
               id="width"
               name="width"
+              className="art-form-input"
               placeholder="e.g., 145"
               required
               onChange={(e) =>{
@@ -124,18 +137,24 @@ function ArtForm() {
           </div>
         </div>
 
-        <label htmlFor="condition">Describe the condition of the art:</label>
+        <label className="art-form-label" htmlFor="condition">
+          Describe the condition of the art:
+        </label>
         <textarea
           id="condition"
           name="condition"
+          className="art-form-textarea"
           placeholder="e.g., Minor crease at lower left corner"
           required
           onChange={(e) =>{
             setCondition(e.target.value);
           }}></textarea><br />
 
-        <label htmlFor="Location">Location:</label>
-        <select class="form-select"
+      <label className="art-form-label" htmlFor="location">
+          Location:
+        </label>
+        <select
+          className="form-select"
           id="location"
           name="location"
           required
@@ -153,11 +172,14 @@ function ArtForm() {
           <option value="Anuradhapura">Anuradhapura</option>
         </select><br />
 
-        <label htmlFor="openingValue">Give a opening value to auction your art:($)</label>
+        <label className="art-form-label" htmlFor="openingValue">
+          Give an opening value to auction your art: ($)
+        </label>
         <input
           type="number"
           id="openingValue"
           name="openingValue"
+          className="art-form-input"
           placeholder="e.g., 120"
           required
           onChange={(e) =>{
@@ -169,7 +191,9 @@ function ArtForm() {
                 }
           }}/><br />
 
-        <label htmlFor="images">Images (up to 10):</label>
+        <label className="art-form-label" htmlFor="images">
+          Images (up to 10):
+        </label>
         <input
           type="file"
           id="images"
@@ -185,17 +209,20 @@ function ArtForm() {
             <p>Selected Images:</p>
             {images.map((image, index) => (
               <img key={index}
-              className="image-preview" 
+              className="art-form-image-preview"
               src={image} 
               alt={`Image ${index}`} />
             ))}
           </div>
         )}
 
-         <button type="submit">Submit</button>
+        <button type="submit" className="art-form-button">
+          Submit
+        </button>
          
       </form>
     </div>
+   
   );
 }
 

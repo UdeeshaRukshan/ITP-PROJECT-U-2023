@@ -32,8 +32,8 @@ export default function AllAuctioneers() {
         <td>{auctioneer.street}</td>
         <td>{auctioneer.city}</td>
         <td>
-        <div className="button-container">
-          <button className="delete-button" onClick={() => handleDeleteClick(auctioneer._id)}>
+        <div className="all-auc-button-container">
+          <button className="all-auc-delete-button" onClick={() => handleDeleteClick(auctioneer._id)}>
             Delete
           </button>
         </div>
@@ -56,9 +56,9 @@ export default function AllAuctioneers() {
   };
 
   return (
-    <div className="container">
-      <table>
-        <thead>
+    <div className="all-auc-container">
+      <table className="all-auc-table">
+        <thead className="all-auc-thead">
           <tr>
             <th>First Name</th>
             <th>Last Name</th>

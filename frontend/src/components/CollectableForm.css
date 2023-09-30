@@ -1,5 +1,5 @@
 
-.vehicle-form-container {
+.collectable-form-container {
     max-width: 800px; /* Increase the maximum width */
     margin: 0 auto;
     padding: 40px; /* Increase padding */
@@ -8,19 +8,19 @@
     background-color: #f9f9f9;
   }
   
-  .vehicle-form-title {
+  .collectable-form-title {
     font-size: 36px; /* Increase font size */
     margin-bottom: 30px; /* Increase margin */
   }
   
-  .vehicle-form-label {
+  .collectable-form-label {
     display: block;
     font-weight: bold;
     font-size: 18px; /* Increase font size */
   }
   
-  .vehicle-form-input[type="text"],
-  .vehicle-form-textarea {
+  .collectable-form-input[type="text"],
+  .collectable-form-textarea {
     width: 100%;
     padding: 12px; /* Increase padding */
     margin-top: 10px; /* Increase margin-top */
@@ -30,7 +30,7 @@
     font-size: 16px; /* Increase font size */
   }
   
-  .vehicle-form-button {
+  .collectable-form-button {
     display: block;
     margin: 0 auto;
     background-color: #007bff;
@@ -42,11 +42,11 @@
     font-size: 18px; /* Increase font size */
   }
   
-  .vehicle-form-button:hover {
+  .collectable-form-button:hover {
     background-color: #0056b3;
   }
   
-  .vehicle-form-image-preview {
+  .collectable-form-image-preview {
     display: inline-block;
     margin-right: 20px; /* Increase margin-right */
     max-width: 200px; /* Increase max-width */

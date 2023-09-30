@@ -1,5 +1,5 @@
 
-.vehicle-form-container {
+.property-form-container {
     max-width: 800px; /* Increase the maximum width */
     margin: 0 auto;
     padding: 40px; /* Increase padding */
@@ -8,19 +8,19 @@
     background-color: #f9f9f9;
   }
   
-  .vehicle-form-title {
+  .property-form-title {
     font-size: 36px; /* Increase font size */
     margin-bottom: 30px; /* Increase margin */
   }
   
-  .vehicle-form-label {
+  .property-form-label {
     display: block;
     font-weight: bold;
     font-size: 18px; /* Increase font size */
   }
   
-  .vehicle-form-input[type="text"],
-  .vehicle-form-textarea {
+  .property-form-input[type="text"],
+  .property-form-textarea {
     width: 100%;
     padding: 12px; /* Increase padding */
     margin-top: 10px; /* Increase margin-top */
@@ -30,7 +30,7 @@
     font-size: 16px; /* Increase font size */
   }
   
-  .vehicle-form-button {
+  .property-form-button {
     display: block;
     margin: 0 auto;
     background-color: #007bff;
@@ -42,11 +42,11 @@
     font-size: 18px; /* Increase font size */
   }
   
-  .vehicle-form-button:hover {
+  .property-form-button:hover {
     background-color: #0056b3;
   }
   
-  .vehicle-form-image-preview {
+  .property-form-image-preview {
     display: inline-block;
     margin-right: 20px; /* Increase margin-right */
     max-width: 200px; /* Increase max-width */

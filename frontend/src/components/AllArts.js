@@ -45,8 +45,8 @@ export default function AllArts() {
         <td>{renderImages(art.images)}</td>
       </td>
       <td>
-        <div className="button-container">
-          <button className="delete-button" onClick={() => handleDeleteClick(art._id)}>
+        <div className="all-arts-button-container">
+          <button className="all-arts-delete-button" onClick={() => handleDeleteClick(art._id)}>
             Delete
           </button>
         </div>
@@ -73,9 +73,9 @@ export default function AllArts() {
   };
 
   return (
-    <div className="container">
-      <table>
-        <thead>
+    <div className="all-arts-container">
+      <table className="all-arts-table">
+        <thead className="all-arts-thead">
           <tr>
             <th>Title</th>
             <th>Medium</th>
