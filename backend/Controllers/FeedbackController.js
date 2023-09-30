@@ -55,6 +55,7 @@ const deleteFeedbacksById = async (req, res, next) => {
 };
 
 module.exports = {
+    getFeedback,
     getFeedbacks,
     createFeedback,
     updateFeedback,
