@@ -132,9 +132,10 @@ const PaymentForm = () => {
         console.error("Error saving payment data:", error);
       }
     } else {
-      console.error("Form data is not valid. Please check your inputs.");
+      alert("Form data is not valid. Please check your inputs.");
     }
   };
+  
   
 
   return (
