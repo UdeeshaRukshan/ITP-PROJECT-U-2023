@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 const FeedbackEdit = () => {
-
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [cookies] = useCookies([]);
@@ -53,11 +52,7 @@ const FeedbackEdit = () => {
         .catch((error) => {
           console.log("Error:", error);
         });
-    }
-
-
-
-
+    };
 
     verifyCookie();
   }, [cookies.token, id, navigate]);
