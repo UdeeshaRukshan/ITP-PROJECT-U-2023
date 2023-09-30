@@ -7,12 +7,13 @@ const pdf = require("pdfkit");
 const fs = require("fs");
 
 router.route("/add").post((req, res) => {
-  const { name, address, age, jobtype } = req.body;
+  const { name, address, age, jobtype, assign } = req.body;
   const newAgent = new agent({
     name,
     age,
     address,
     jobtype,
+    assign,
   });
 
   newAgent
@@ -39,13 +40,14 @@ router.route("/agents").get((req, res) => {
 router.route("/update/:id").put(async (req, res) => {
   let agentId = req.params.id;
 
-  const { name, address, age, jobtype } = req.body;
+  const { name, address, age, jobtype, assign } = req.body;
 
   const updateAgent = {
     name,
     age,
     address,
     jobtype,
+    assign,
   };
   const update = await agent
     .findByIdAndUpdate(agentId, updateAgent)
@@ -92,6 +94,7 @@ router.get("/generate-report", async (req, res) => {
     ws.cell(1, 2).string("Age").style(headerStyle);
     ws.cell(1, 3).string("Address").style(headerStyle);
     ws.cell(1, 4).string("Job Type").style(headerStyle);
+    ws.cell(1, 5).string("Assign to").style(headerStyle);
 
     // Populate the worksheet with agent data
     agents.forEach((agentss, index) => {
@@ -99,6 +102,7 @@ router.get("/generate-report", async (req, res) => {
       ws.cell(index + 2, 2).string(agentss.age);
       ws.cell(index + 2, 3).string(agentss.address);
       ws.cell(index + 2, 4).string(agentss.jobtype);
+      ws.cell(index + 2, 5).string(agentss.assign);
     });
 
     // Generate the Excel file in memory
