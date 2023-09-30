@@ -1,8 +1,51 @@
 import React, { useEffect, useState } from "react";
-
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const FeedbackView = () => {
-  useEffect(() => handleSearch(), []);
+
   const [reviews, setReviews] = useState([]);
+  const [username, setUsername] = useState("");
+  const [cookies, removeCookie] = useCookies([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+      }
+      const { data } = await axios.post(
+        "http://localhost:4042",
+        {},
+        { withCredentials: true }
+      );
+      const { user } = data;
+      setUsername(user);
+    };
+    verifyCookie();
+    handleSearch();
+  }, [cookies, navigate, removeCookie]);
+
+  function handleDelete(id) {
+    fetch("http://localhost:4042/api/feedback/delete/" + id, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        handleSearch();
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  }
+  function handleEdit(id) {
+    navigate("/feedback/edit/" + id);
+  }
+
   function handleSearch() {
     fetch("http://localhost:4042/api/feedback", {
       method: "GET",
@@ -36,6 +79,17 @@ const FeedbackView = () => {
               </div>
               <div className="rate">{review.rate}</div>
               <div class="comment">{review.recommendation}</div>
+              {review.username === username ? (
+                <div className="btn-right">
+                  <button class="feed_delete" onClick={() => handleDelete(review._id)}>Delete</button>
+                  <button class="feed_edit" onClick={() => handleEdit(review._id)}>Edit</button>
+                </div>
+              ) : (
+                <div>
+
+                </div>
+              )}
+
             </div>
           ))}
       </div>

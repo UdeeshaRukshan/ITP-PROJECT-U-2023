@@ -211,7 +211,7 @@ hr {
 .review_container .name_wrap .letter {
   width: 60px;
   height: 60px;
-  background-color: #d3e90e;
+  background-color: #0c90f1;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -239,4 +239,26 @@ hr {
   color: #656262;
   height: 80px;
   overflow: hidden;
+}
+.feed_edit {
+  background-color: #7597fc;
+  color: #000;
+  margin-left: 20px;
+}
+.feed_delete {
+  background-color: #fa8080;
+  color: #000;
+}
+.feed_edit:hover {
+  background-color: #3769ff;
+  color: #fff;
+  margin-left: 20px;
+}
+.feed_delete:hover {
+  background-color: #ff4141;
+  color: #fff;
+}
+.btn-right{
+  display: flex;
+  justify-content: end;
 }

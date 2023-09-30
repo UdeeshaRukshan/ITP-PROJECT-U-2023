@@ -29,6 +29,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import FeedbackEdit from "./pages/FeedbackEdit";
 
 function App() {
   const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ function App() {
 
             <Route path="/feedback" element={<Feedback />} />
         <Route path="/feedback/all" element={<FeedbackView />} />
+        <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
           </Routes>
           <Footer />
         </div>

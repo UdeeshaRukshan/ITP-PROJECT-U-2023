@@ -2,21 +2,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-const Feedback = () => {
+const FeedbackEdit = () => {
+
   const navigate = useNavigate();
-
   const [username, setUsername] = useState("");
-  const [cookies, removeCookie] = useCookies([]);
-
+  const [cookies] = useCookies([]);
   const [alertColor, setAlertColor] = useState("");
   const [showAlert, setShowAlert] = useState("");
-
   const [customerName, setCustomerName] = useState("");
   const [email, setEmail] = useState("");
   const [satisfied, setSatisfied] = useState("");
   const [rate, setRate] = useState("");
   const [recommendation, setRecommendation] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -30,9 +30,37 @@ const Feedback = () => {
       );
       const { user } = data;
       setUsername(user);
+      getReview();
     };
+
+    const getReview = async () => {
+      fetch("http://localhost:4042/api/feedback/" + id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.error) {
+            setCustomerName(data.customerName);
+            setEmail(data.email);
+            setSatisfied(data.satisfied);
+            setRate(data.rate);
+            setRecommendation(data.recommendation);
+          }
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+        });
+    }
+
+
+
+
+
     verifyCookie();
-  }, [cookies, navigate, removeCookie]);
+  }, [cookies.token, id, navigate]);
 
   const handleSatisfiedChange = (event) => {
     setSatisfied(event.target.value);
@@ -57,8 +85,8 @@ const Feedback = () => {
       username: username,
     };
 
-    fetch("http://localhost:4042/api/feedback/create", {
-      method: "POST",
+    fetch("http://localhost:4042/api/feedback/update/" + id, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -163,6 +191,7 @@ const Feedback = () => {
               value="YES"
               name="satisfied"
               id="satisfied_yes"
+              checked={satisfied === "YES"}
               onChange={handleSatisfiedChange}
             />
             <label class="form-check-label" for="satisfied_yes">
@@ -174,6 +203,7 @@ const Feedback = () => {
               value="NO"
               name="satisfied"
               id="satisfied_no"
+              checked={satisfied === "NO"}
               onChange={handleSatisfiedChange}
             />
             <label class="form-check-label" for="satisfied_no">
@@ -191,6 +221,7 @@ const Feedback = () => {
                 value="EXCELLENT"
                 name="rate"
                 id="rate_excellent"
+                checked={rate === "EXCELLENT"}
                 onChange={handleRateChange}
               />
               <label class="form-check-label" for="rate_excellent">
@@ -204,6 +235,7 @@ const Feedback = () => {
                 value="VERY GOOD"
                 name="rate"
                 id="rate_very_good"
+                checked={rate === "VERY GOOD"}
                 onChange={handleRateChange}
               />
               <label class="form-check-label" for="rate_very_good">
@@ -217,6 +249,7 @@ const Feedback = () => {
                 value="GOOD"
                 name="rate"
                 id="rate_good"
+                checked={rate === "GOOD"}
                 onChange={handleRateChange}
               />
               <label class="form-check-label" for="rate_good">
@@ -230,6 +263,7 @@ const Feedback = () => {
                 value="AVERAGE"
                 name="rate"
                 id="rate_average"
+                checked={rate === "AVERAGE"}
                 onChange={handleRateChange}
               />
               <label class="form-check-label" for="rate_average">
@@ -243,6 +277,7 @@ const Feedback = () => {
                 value="POOR"
                 name="rate"
                 id="rate_poor"
+                checked={rate === "POOR"}
                 onChange={handleRateChange}
               />
               <label class="form-check-label" for="rate_poor">
@@ -256,6 +291,7 @@ const Feedback = () => {
             </label>
             <textarea
               placeholder="Enter your suggestions"
+              value={recommendation}
               onChange={(e) => setRecommendation(e.target.value)}
             ></textarea>
           </div>
@@ -272,4 +308,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback;
+export default FeedbackEdit;
