@@ -21,10 +21,10 @@ const WishlistTable = ({ wishlists }) => {
         {wishlists.map((wishlist, index) => (
           <tr key={wishlist._id}>
             <td className="table-cell">{index + 1}</td>
-            <td className="table-cell">{wishlist.name}</td>
-            <td className="table-cell hidden md:table-cell">{wishlist.owner}</td>
+            <td className="table-cell">{wishlist.title}</td>
+            <td className="table-cell hidden md:table-cell">{wishlist.author}</td>
             <td className="table-cell hidden md:table-cell">
-              {wishlist.creationDate}
+              {wishlist.publishYear}
             </td>
             <td className="table-cell">
               <div className="operation-icons">
