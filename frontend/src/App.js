@@ -17,8 +17,6 @@ import ContactUs from "./pages/ContactUs";
 
 import Dashboard from "./pages/Dashbord";
 
-import Checkout from "./pages/Checkout";
-
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
@@ -39,7 +37,6 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-            <Route path="/payment" element={<Checkout />} />
 
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
