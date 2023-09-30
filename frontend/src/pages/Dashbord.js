@@ -35,6 +35,89 @@ const Dashboard = () => {
     setNewPassword(e.target.value);
   };
 
+  const [errors, setErrors] = useState({});
+
+  const validateEmail = (email) => {
+    // Basic email validation regex
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  };
+
+  const validateName = (name) => {
+    const nameRegex = /^[a-zA-Z]+$/; // Only alphabetic characters allowed
+    return nameRegex.test(name);
+  };
+
+  const validateAge = (age) => {
+    const parsedAge = parseInt(age);
+    return !isNaN(parsedAge) && parsedAge >= 18; // Age validation: must be a number and at least 18 years old
+  };
+  const validateSriLankanNIC = (nic) => {
+    // Sri Lankan NIC format: 123456789V or 123456789X
+    const nicRegex = /^\d{9}[VX]$/;
+    return nicRegex.test(nic.toUpperCase());
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // Copy the previous errors and remove the error for the current field
+    const updatedErrors = { ...errors };
+    delete updatedErrors[name];
+
+    // Update the editedUser state
+    setEditedUser({ ...editedUser, [name]: value });
+
+    // Validate the field and update errors if necessary
+    if (name === "email" && !validateEmail(value)) {
+      updatedErrors[name] = "Invalid email format";
+    } else if (
+      (name === "firstname" || name === "lastname") &&
+      !validateName(value)
+    ) {
+      updatedErrors[name] = "Only alphabetic characters allowed";
+    } else if (name === "age" && !validateAge(value)) {
+      updatedErrors[name] = "Age must be a number and at least 18";
+    } else if (name === "id" && !validateSriLankanNIC(value)) {
+      updatedErrors[name] = "Invalid Sri Lankan NIC format";
+    }
+
+    // Update the errors state
+    setErrors(updatedErrors);
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate the form before submitting
+    const newErrors = {};
+    if (!validateEmail(editedUser.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (!validateName(editedUser.firstname)) {
+      newErrors.firstname = "Only alphabetic characters allowed";
+    }
+    if (!validateName(editedUser.lastname)) {
+      newErrors.lastname = "Only alphabetic characters allowed";
+    }
+    if (!validateAge(editedUser.age)) {
+      newErrors.age = "Age must be a number and at least 18";
+    }
+
+    if (!validateSriLankanNIC(editedUser.id)) {
+      newErrors.id = "Invalid Sri Lankan NIC format";
+    }
+
+    if (Object.keys(newErrors).length === 0) {
+      // Form is valid, you can proceed with submitting the data
+      // Add your submission logic here
+      console.log("Form is valid:", editedUser);
+    } else {
+      // Form is not valid, update the errors state
+      setErrors(newErrors);
+    }
+  };
+
   // Event handler for password change request
   // const handleChangePassword = () => {
   //   // Send a request to the backend to change the password
@@ -317,47 +400,64 @@ const Dashboard = () => {
           ) : isEditing ? (
             // Display the edit form when isEditing is true
             <div className="edit-profile-form">
-              {/* Edit form fields */}
-              <div className="form-group">
-                <label>Email:</label>
-                <input
-                  type="text"
-                  value={editedUser.email}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, email: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>firstname</label>
-                <input
-                  type="text"
-                  value={editedUser.firstname}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, firstname: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>lastname</label>
-                <input
-                  type="text"
-                  value={editedUser.lastname}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, lastname: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Age:</label>
-                <input
-                  type="text"
-                  value={editedUser.age}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, age: e.target.value })
-                  }
-                />
-              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="text"
+                    name="email"
+                    value={editedUser.email}
+                    onChange={handleInputChange}
+                  />
+                  {errors.email && <div className="error">{errors.email}</div>}
+                </div>
+                <div className="form-group">
+                  <label>Firstname:</label>
+                  <input
+                    type="text"
+                    name="firstname"
+                    value={editedUser.firstname}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Lastname:</label>
+                  <input
+                    type="text"
+                    name="lastname"
+                    value={editedUser.lastname}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Age:</label>
+                  <input
+                    type="text"
+                    name="age"
+                    value={editedUser.age}
+                    onChange={handleInputChange}
+                  />
+                  {errors.age && <div className="error">{errors.age}</div>}
+                </div>
+                <div className="form-group">
+                  <label>Address:</label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={editedUser.address}
+                    onChange={handleInputChange}
+                  />
+                </div>{" "}
+                <div className="form-group">
+                  <label>Nic No:</label>
+                  <input
+                    type="text"
+                    name="id"
+                    value={editedUser.id}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </form>
               {/* <div className="form-group">
                 <label>Current Password:</label>
                 <input
@@ -406,6 +506,9 @@ const Dashboard = () => {
               </p>
               <p>
                 <strong>Age:</strong> {users.age}
+              </p>
+              <p>
+                <strong>Nic No:</strong> {users.id}
               </p>
               <p>
                 <strong>Address:</strong> {users.address}

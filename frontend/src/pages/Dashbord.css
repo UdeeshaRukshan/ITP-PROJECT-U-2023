@@ -265,11 +265,6 @@ th {
 }
 
 /* Style for the user information */
-.profile-info p {
-  margin: 15px 0;
-  font-size: 16px;
-  margin: 5px 0;
-}
 
 /* Strong text (labels) */
 .profile-info strong {

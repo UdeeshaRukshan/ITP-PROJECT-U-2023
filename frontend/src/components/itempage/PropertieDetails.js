@@ -5,16 +5,16 @@ import "./PropertieDetails.css";
 
 export default function PropertyDetails() {
   const { propertyId } = useParams();
-  const [property, setProperty] = useState(null);
+  const [property, setProperty] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(false);
     axios
       .get(`http://localhost:4042/property/getproperty/${propertyId}`)
       .then((response) => {
         setProperty(response.data);
-        setLoading(false);
       })
       .catch((error) => {
         setError(error.message);
