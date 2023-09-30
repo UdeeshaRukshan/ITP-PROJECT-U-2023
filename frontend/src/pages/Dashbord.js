@@ -86,11 +86,11 @@ const Dashboard = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSaveClick = () => {
     // Validate the form before submitting
     const newErrors = {};
+
+    // Add your validation logic for each field
     if (!validateEmail(editedUser.email)) {
       newErrors.email = "Invalid email format";
     }
@@ -103,21 +103,27 @@ const Dashboard = () => {
     if (!validateAge(editedUser.age)) {
       newErrors.age = "Age must be a number and at least 18";
     }
-
     if (!validateSriLankanNIC(editedUser.id)) {
       newErrors.id = "Invalid Sri Lankan NIC format";
     }
 
     if (Object.keys(newErrors).length === 0) {
       // Form is valid, you can proceed with submitting the data
-      // Add your submission logic here
-      console.log("Form is valid:", editedUser);
+      axios
+        .put(`http://localhost:4042/update/${users._id}`, editedUser)
+        .then((response) => {
+          // Update the state with the updated user data
+          setUsers(response.data);
+          setIsEditing(false);
+        })
+        .catch((error) => {
+          console.error("Error updating user data:", error);
+        });
     } else {
       // Form is not valid, update the errors state
       setErrors(newErrors);
     }
   };
-
   // Event handler for password change request
   // const handleChangePassword = () => {
   //   // Send a request to the backend to change the password
@@ -199,20 +205,6 @@ const Dashboard = () => {
     setIsEditing(true);
     // Set the edited user data to the current user's data
     setEditedUser(users);
-  };
-
-  const handleSaveClick = () => {
-    // Send a PUT request to update the user data on the server
-    axios
-      .put(`http://localhost:4042/update/${users._id}`, editedUser)
-      .then((response) => {
-        // Update the state with the updated user data
-        setUsers(response.data);
-        setIsEditing(false);
-      })
-      .catch((error) => {
-        console.error("Error updating user data:", error);
-      });
   };
 
   const handleDeleteClick = () => {
@@ -400,64 +392,69 @@ const Dashboard = () => {
           ) : isEditing ? (
             // Display the edit form when isEditing is true
             <div className="edit-profile-form">
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label>Email:</label>
-                  <input
-                    type="text"
-                    name="email"
-                    value={editedUser.email}
-                    onChange={handleInputChange}
-                  />
-                  {errors.email && <div className="error">{errors.email}</div>}
-                </div>
-                <div className="form-group">
-                  <label>Firstname:</label>
-                  <input
-                    type="text"
-                    name="firstname"
-                    value={editedUser.firstname}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Lastname:</label>
-                  <input
-                    type="text"
-                    name="lastname"
-                    value={editedUser.lastname}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Age:</label>
-                  <input
-                    type="text"
-                    name="age"
-                    value={editedUser.age}
-                    onChange={handleInputChange}
-                  />
-                  {errors.age && <div className="error">{errors.age}</div>}
-                </div>
-                <div className="form-group">
-                  <label>Address:</label>
-                  <input
-                    type="text"
-                    name="address"
-                    value={editedUser.address}
-                    onChange={handleInputChange}
-                  />
-                </div>{" "}
-                <div className="form-group">
-                  <label>Nic No:</label>
-                  <input
-                    type="text"
-                    name="id"
-                    value={editedUser.id}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </form>
+              <div className="form-group">
+                <label>Email:</label>
+                <input
+                  type="text"
+                  name="email"
+                  value={editedUser.email}
+                  onChange={handleInputChange}
+                />
+                {errors.email && <div className="error">{errors.email}</div>}
+              </div>
+              <div className="form-group">
+                <label>Firstname:</label>
+                <input
+                  type="text"
+                  name="firstname"
+                  value={editedUser.firstname}
+                  onChange={handleInputChange}
+                />
+                {errors.firstname && (
+                  <div className="error">{errors.firstname}</div>
+                )}
+              </div>
+              <div className="form-group">
+                <label>Lastname:</label>
+                <input
+                  type="text"
+                  name="lastname"
+                  value={editedUser.lastname}
+                  onChange={handleInputChange}
+                />
+                {errors.lastname && (
+                  <div className="error">{errors.lastname}</div>
+                )}
+              </div>
+              <div className="form-group">
+                <label>Age:</label>
+                <input
+                  type="text"
+                  name="age"
+                  value={editedUser.age}
+                  onChange={handleInputChange}
+                />
+                {errors.age && <div className="error">{errors.age}</div>}
+              </div>
+              <div className="form-group">
+                <label>Address:</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={editedUser.address}
+                  onChange={handleInputChange}
+                />
+              </div>{" "}
+              <div className="form-group">
+                <label>Nic No:</label>
+                <input
+                  type="text"
+                  name="id"
+                  value={editedUser.id}
+                  onChange={handleInputChange}
+                />
+                {errors.id && <div className="error">{errors.id}</div>}
+              </div>
               {/* <div className="form-group">
                 <label>Current Password:</label>
                 <input
@@ -480,7 +477,6 @@ const Dashboard = () => {
               >
                 Change Password
               </button> */}
-
               {/* Add similar fields for other user properties (address, age, etc.) */}
               <button className="btn btn-success" onClick={handleSaveClick}>
                 Save Changes
