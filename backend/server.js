@@ -3,16 +3,16 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
-const booksRoute = require("./routes/booksRoute"); // Import the route for books
+const wishlistRoute = require("./routes/wishlistRoute"); // Import the route for wishlists
 const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
 app.use(cookieParser());
 
-const { MONGO_URL, PORT } = process.env; // Correct the destructuring
+const { MONGO_URL, PORT } = process.env;
 
-const port = PORT || 4000; // Provide a default value for PORT
+const port = PORT || 4000;
 
 mongoose
   .connect(MONGO_URL, {
@@ -37,10 +37,9 @@ app.use(
 // Middleware for parsing request body
 app.use(express.json());
 
-// Define routes
-app.use("/books", booksRoute); // Use the books route for '/books' path
+// Define routes for wishlists
+app.use("/wishlists", wishlistRoute); // Use the wishlist route for '/wishlists' path
 
 app.get("/", (request, response) => {
-  console.log(request);
-  return response.status(200).send("Welcome To MERN Stack Tutorial"); // Changed status code to 200
+  return response.status(200).send("Welcome To MERN Stack Tutorial");
 });

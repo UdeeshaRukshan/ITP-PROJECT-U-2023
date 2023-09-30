@@ -2,23 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
-
-
-import BooksTable from "../components/home/BooksTable";
-import BooksCard from "../components/home/BooksCard";
+import WishlistsTable from "../components/home/WishlistTable"; // Import the appropriate component for wishlists
+import WishlistsCard from "../components/home/WishlistCard"; // Import the appropriate component for wishlists
 import "./Home.css"; // Import your custom CSS file
 
 const Home = () => {
-  const [books, setBooks] = useState([]);
+  const [wishlists, setWishlists] = useState([]); // Update state variable name to wishlists
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:4000/books")
+      .get("http://localhost:4000/wishlists") // Updated URL to "/wishlists"
       .then((response) => {
-        setBooks(response.data.data);
+        setWishlists(response.data.data); // Updated state variable to wishlists
         setLoading(false);
       })
       .catch((error) => {
@@ -44,19 +42,19 @@ const Home = () => {
         </button>
       </div>
       <div className="flex justify-between items-center">
-        <h1 className="title">Books List</h1>
-        <Link to="/books/create" className="create-link">
-  <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg">
-    Create
-  </button>
-</Link>
+        <h1 className="title">WishList</h1> {/* Updated title */}
+        <Link to="/wishlists/create" className="create-link"> {/* Updated create URL */}
+          <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg">
+            Create
+          </button>
+        </Link>
       </div>
       {loading ? (
         <Spinner />
       ) : showType === "table" ? (
-        <BooksTable books={books} />
+        <WishlistsTable wishlists={wishlists} />
       ) : (
-        <BooksCard books={books} />
+        <WishlistsCard wishlists={wishlists} /> 
       )}
     </div>
   );

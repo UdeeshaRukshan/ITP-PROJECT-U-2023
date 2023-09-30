@@ -4,9 +4,9 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import "./EditWishlist.css";
+import "./EditWishlist.css"; // Update CSS file name if necessary
 
-const EditBook = () => {
+const EditWishlist = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
@@ -18,7 +18,7 @@ const EditBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/books/${id}`)
+      .get(`http://localhost:4000/wishlists/${id}`) // Updated URL to "/wishlists"
       .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear);
@@ -27,12 +27,13 @@ const EditBook = () => {
       })
       .catch((error) => {
         setLoading(false);
-        alert("An error happened. Please Chack console");
+        // Handle the error or display a message
+        enqueueSnackbar("Error loading wishlist", { variant: "error" });
         console.log(error);
       });
-  }, [id]);
+  }, [id] );
 
-  const handleEditBook = () => {
+  const handleEditWishlist = () => {
     const data = {
       title,
       author,
@@ -40,16 +41,16 @@ const EditBook = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/books/${id}`, data)
+      .put(`http://localhost:4000/wishlists/${id}`, data) // Updated URL to "/wishlists"
       .then(() => {
         setLoading(false);
-        enqueueSnackbar("Book Edited successfully", { variant: "success" });
+        enqueueSnackbar("Wishlist Edited successfully", { variant: "success" });
         navigate("/");
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
-        enqueueSnackbar("Error", { variant: "error" });
+        // Handle the error or display a message
+        enqueueSnackbar("Error editing wishlist", { variant: "error" });
         console.log(error);
       });
   };
@@ -57,7 +58,7 @@ const EditBook = () => {
   return (
     <div className="p-4">
       <BackButton />
-      <h1 className="text-3xl my-4">Edit Book</h1>
+      <h1 className="text-3xl my-4">Edit Wishlist</h1> {/* Updated title */}
       {loading ? <Spinner /> : ""}
       <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
         <div className="my-4">
@@ -87,7 +88,7 @@ const EditBook = () => {
             className="border-2 border-gray-500 px-4 py-2  w-full "
           />
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={handleEditBook}>
+        <button className="p-2 bg-sky-300 m-8" onClick={handleEditWishlist}>
           Save
         </button>
       </div>
@@ -95,4 +96,4 @@ const EditBook = () => {
   );
 };
 
-export default EditBook;
+export default EditWishlist; // Updated component name

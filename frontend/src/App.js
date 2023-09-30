@@ -1,19 +1,19 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import CreateBook from "./pages/CreateBooks";
-import ShowBook from "./pages/ShowBook";
-import EditBook from "./pages/EditBook";
-import DeleteBook from "./pages/DeleteBook";
+import CreateWishlist from "./pages/CreateWishlist"; // Updated import
+import ShowWishlist from "./pages/ShowWishlist"; // Updated import
+import EditWishlist from "./pages/EditWishlist"; // Updated import
+import DeleteWishlist from "./pages/DeleteWishlist"; // Updated import
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/books/create" element={<CreateBook />} />
-      <Route path="/books/details/:id" element={<ShowBook />} />
-      <Route path="/books/edit/:id" element={<EditBook />} />
-      <Route path="/books/delete/:id" element={<DeleteBook />} />
+      <Route path="/wishlists/create" element={<CreateWishlist />} /> {/* Updated route path */}
+      <Route path="/wishlists/details/:id" element={<ShowWishlist />} /> {/* Updated route path */}
+      <Route path="/wishlists/edit/:id" element={<EditWishlist />} /> {/* Updated route path */}
+      <Route path="/wishlists/delete/:id" element={<DeleteWishlist />} /> {/* Updated route path */}
     </Routes>
   );
 };

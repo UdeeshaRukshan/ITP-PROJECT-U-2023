@@ -3,38 +3,38 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
-import "./BooksTable.css";
+import "./WishlistTable.css"; // Update the CSS file name accordingly
 
-const BooksTable = ({ books }) => {
+const WishlistTable = ({ wishlists }) => {
   return (
     <table className="table1">
       <thead>
         <tr>
           <th className="table-header">No</th>
-          <th className="table-header">Title</th>
-          <th className="table-header hidden md:table-cell">Author</th>
-          <th className="table-header hidden md:table-cell">Publish Year</th>
+          <th className="table-header">Name</th>
+          <th className="table-header hidden md:table-cell">Owner</th>
+          <th className="table-header hidden md:table-cell">Creation Date</th>
           <th className="table-header">Operations</th>
         </tr>
       </thead>
       <tbody>
-        {books.map((book, index) => (
-          <tr key={book._id}>
+        {wishlists.map((wishlist, index) => (
+          <tr key={wishlist._id}>
             <td className="table-cell">{index + 1}</td>
-            <td className="table-cell">{book.title}</td>
-            <td className="table-cell hidden md:table-cell">{book.author}</td>
+            <td className="table-cell">{wishlist.name}</td>
+            <td className="table-cell hidden md:table-cell">{wishlist.owner}</td>
             <td className="table-cell hidden md:table-cell">
-              {book.publishYear}
+              {wishlist.creationDate}
             </td>
             <td className="table-cell">
               <div className="operation-icons">
-                <Link to={`/books/details/${book._id}`}>
+                <Link to={`/wishlists/details/${wishlist._id}`}>
                   <BsInfoCircle className="icon info-icon" />
                 </Link>
-                <Link to={`/books/edit/${book._id}`}>
+                <Link to={`/wishlists/edit/${wishlist._id}`}>
                   <AiOutlineEdit className="icon edit-icon" />
                 </Link>
-                <Link to={`/books/delete/${book._id}`}>
+                <Link to={`/wishlists/delete/${wishlist._id}`}>
                   <MdOutlineDelete className="icon delete-icon" />
                 </Link>
               </div>
@@ -46,4 +46,4 @@ const BooksTable = ({ books }) => {
   );
 };
 
-export default BooksTable;
+export default WishlistTable;

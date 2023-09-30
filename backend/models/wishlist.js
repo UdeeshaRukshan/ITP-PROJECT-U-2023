@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const bookSchema = mongoose.Schema(
+const WishListSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -20,6 +20,6 @@ const bookSchema = mongoose.Schema(
   }
 );
 
-const Book = mongoose.model("Book", bookSchema);
+const WishList = mongoose.model("WishList", WishListSchema);
 
-module.exports = { Book };
+module.exports = { WishList };
