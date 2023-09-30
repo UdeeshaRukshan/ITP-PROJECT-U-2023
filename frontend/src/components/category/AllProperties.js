@@ -2,11 +2,32 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./AllProperties.css"; // Import CSS file
-import { useCart } from "../wishlistcom/CartContext";
+
 export default function AllProperties() {
   // State to store properties data
   const [properties, setProperties] = useState([]);
-  const { addToCart } = useCart();
+  const [wishlist, setWishlist] = useState([]);
+  const [message, setMessage] = useState("");
+  const handleAddToWishlist = async () => {
+    try {
+      const response = await axios.post(
+        "/http://localhost:4042/api/add-to-wishlist",
+        {
+          name: name,
+          itemid: itemid,
+        }
+      );
+
+      if (response.status === 200) {
+        setMessage("Item added to wishlist successfully.");
+      } else {
+        setMessage("Error adding item to wishlist.");
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage("Server error");
+    }
+  };
   // Fetch properties data from the server
   useEffect(() => {
     async function fetchProperties() {
@@ -22,6 +43,10 @@ export default function AllProperties() {
 
     fetchProperties();
   }, []);
+  const addToWishlist = (property) => {
+    // Step 2: Function to add to wishlist
+    setWishlist([...wishlist, property]);
+  };
 
   // Render property items in a catalog-like box
   const renderPropertyItems = () => {
@@ -45,9 +70,8 @@ export default function AllProperties() {
             View Details
           </Link>
           <button
-            className="view-details-button
-          "
-            onClick={() => addToCart(property)}
+            className="view-details-button"
+            onClick={() => addToWishlist(property)}
           >
             Add to Cart
           </button>{" "}

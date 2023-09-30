@@ -2,8 +2,9 @@ const WishListItem = require("../models/wishlist");
 
 module.exports.WishlistAdd = async (req, res) => {
   try {
-    const { name, description, price } = req.body;
-    const newItem = new WishListItem({ name, description, price });
+    const { pId } = req.params;
+    const { name, itemid } = req.body;
+    const newItem = new WishListItem({ name, itemid });
     await newItem.save();
     res.json(newItem);
   } catch (error) {

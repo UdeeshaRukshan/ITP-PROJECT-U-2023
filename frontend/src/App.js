@@ -15,10 +15,9 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
-import Wishlist from "./pages/wishlist";
+
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
-import paymentHistory from "./components/dashbord/paymentHistory/paymentHistory";
 
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
@@ -45,6 +44,7 @@ import CollectableDetails from "./components/itempage/CollectableDetail";
 import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
+import Wishlist from "./pages/wishlist";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -53,13 +53,14 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <div className="App">
           <Header />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-            <Route path="/wishlist" component={Wishlist} />
+
             <Route path="/dashbord/agent" element={<Agent />} />
 
             <Route path="/contactUs" element={<ContactUs />} />
@@ -85,6 +86,7 @@ function App() {
             <Route path="/property/:propertyId" element={<PropertyDetails />} />
 
             <Route path="/arts/:artid" element={<ArtDetails />} />
+            <Route path="/wishlist" element={<Wishlist />} />
           </Routes>
 
           <Footer />

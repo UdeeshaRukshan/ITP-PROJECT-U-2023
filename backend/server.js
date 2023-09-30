@@ -13,6 +13,8 @@ const artRouter = require("./routes/arts.js");
 const propertyRouter = require("./Routes/properties");
 const collectableRouter = require("./routes/collectables");
 
+const wishlistRoutes = require("./Routes/WishlistRoutes");
+
 const agentRouter = require("./Routes/agentroute");
 
 const cloudinary = require("cloudinary").v2;
@@ -116,7 +118,7 @@ app.use(express.json());
 
 app.use("/", authRoute);
 app.use("/ticket", ticketRoute);
-
+app.use("/api", wishlistRoutes);
 app.use("/auctioneer", auctioneerRouter);
 app.use("/vehicle", vehicleRouter);
 app.use("/art", artRouter);
