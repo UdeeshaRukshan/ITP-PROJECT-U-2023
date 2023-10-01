@@ -321,6 +321,7 @@ th {
 }
 
 .logoutbtn {
+  margin-top:20vh;
   float: right;
   width: 15vh;
   height: 7vh;
@@ -328,7 +329,7 @@ th {
   font-size: large;
   background-color: #363753;
   margin-right: 10vh;
-  margin-top: 2vh;
+
   border-color: #333;
 }
 .button-containerr {
@@ -343,4 +344,7 @@ th {
 }
 .btn-deleteA {
   height: 5.5vh;
+}
+#displayArea{
+  margin-top:-10vh
 }
