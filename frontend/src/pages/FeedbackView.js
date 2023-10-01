@@ -79,7 +79,7 @@ const FeedbackView = () => {
               </div>
               <div className="rate">{review.rate}</div>
               <div class="comment">{review.recommendation}</div>
-              {review.username === username ? (
+              {review.user === username ? (
                 <div className="btn-right">
                   <button class="feed_delete" onClick={() => handleDelete(review._id)}>Delete</button>
                   <button class="feed_edit" onClick={() => handleEdit(review._id)}>Edit</button>

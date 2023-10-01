@@ -77,7 +77,7 @@ const FeedbackEdit = () => {
       satisfied: satisfied,
       rate: rate,
       recommendation: recommendation,
-      username: username,
+      user: username,
     };
 
     fetch("http://localhost:4042/api/feedback/update/" + id, {
