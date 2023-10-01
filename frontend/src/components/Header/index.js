@@ -43,7 +43,7 @@ const Navbar = (props) => {
       <PrimaryNav style={{'width':width,position: "absolute"}}>
         <Hamburger />
         <LeftAlignedMenuLogo>
-          <MenuLink to="/home" activeStyle>
+          <MenuLink to="/" activeStyle>
             AuctionPal
           </MenuLink>
         </LeftAlignedMenuLogo>
