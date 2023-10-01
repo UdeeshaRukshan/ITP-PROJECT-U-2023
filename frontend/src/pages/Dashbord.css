@@ -21,7 +21,7 @@ body {
 }
 .sidenav {
   margin-top: 9.5vh;
-  height: 100%;
+  height: 130%;
   width: 300px;
   position: fixed;
   z-index: 1;
@@ -50,6 +50,11 @@ body {
   right: 25px;
   font-size: 36px;
 }
+.main-div {
+  background-color: #c9cad5;
+  height: 120vh;
+}
+
 #main {
   transition: margin-left 0.5s;
   padding: 16px;
@@ -193,14 +198,6 @@ th {
   transform: rotate(126deg);
 }
 
-@keyframes fill {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(126deg);
-  }
-}
 .circle-wrap .inside-circle {
   width: 130px;
   height: 130px;
@@ -235,33 +232,115 @@ th {
 .delete-button input[type="button"] {
   background-color: #f44336;
 }
-img {
+.img-x {
   margin-left: 2.5vh;
   width: 20vh;
   height: 20vh;
-  background: lightblue;
+  background: rgb(250, 250, 250);
   border-radius: 50%;
 }
 .user-name {
-  margin-left: 2.5vh;
+  margin-left: 2.2vh;
+  font-family: "Georgia", Serif, monospace;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 /* Dashboard.css */
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid rgb(0, 0, 4); /* Blue border */
+/* Style for the user profile container */
+.user-profile {
+  background-color: #f4efef;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100vh;
+  max-height: 70vh;
 }
 
-.styled-table th,
-.styled-table td {
-  color: #1b203d;
-  border: 2px solid rgb(8, 8, 15); /* Blue border for table cells */
-  padding: 8px;
-  text-align: left;
+/* Style for the profile title (username) */
+.profile-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.styled-table th {
-  background-color: rgb(0, 0, 0); /* Blue background color for table headers */
-  color: rgb(247, 247, 247); /* Black text color for table headers */
+/* Style for the user information */
+
+/* Strong text (labels) */
+.profile-info strong {
+  font-weight: bold;
+}
+
+/* You can customize these styles further to match your design */
+.button-containerr {
+  display: inline;
+}
+.profile-info {
+  font-size: 22px; /* Adjust the font size as needed */
+  color: #333; /* Text color */
+}
+
+.profile-info {
+  margin-top: 10px; /* Add margin to separate from other content */
+}
+
+/* Style for individual profile detail items */
+.profile-info div {
+  margin-bottom: 8px; /* Add vertical spacing between detail items */
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+/* Style for strong (labels) */
+.profile-info strong {
+  font-weight: bold;
+  margin: 20px;
+}
+.profile-info p {
+  font-weight: bold;
+  margin: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px; /* Add vertical spacing between field groups */
+}
+
+/* Style for labels */
+.form-group label {
+  display: block; /* Display labels as block-level elements (one below the other) */
+  font-weight: bold;
+  margin-bottom: 5px; /* Add spacing between labels and inputs */
+}
+/*update input area design */
+.form-group input {
+  width: 40vh;
+  height: 5vh;
+}
+
+.btn-update {
+  margin-left: 4vh;
+}
+
+.logoutbtn {
+  float: right;
+  width: 15vh;
+  height: 7vh;
+  color: white;
+  font-size: large;
+  background-color: #363753;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  border-color: #333;
+}
+.button-containerr {
+  /* Ensure the container doesn't break onto a new line */
+  white-space: nowrap;
+}
+
+.button-containerr button {
+  /* Style the buttons */
+  display: inline-block; /* Display buttons in a line */
+  margin-right: 10px; /* Add some space between buttons (adjust as needed) */
+}
+.btn-deleteA {
+  height: 5.5vh;
 }

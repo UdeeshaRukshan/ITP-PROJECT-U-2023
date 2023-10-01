@@ -10,6 +10,8 @@ export const PrimaryNav = styled.nav`
   display: flex;
   justify-content: center;
   background: #363753;
+  top: 0;
+  position: sticky;
 `;
 export const MenuLink = styled(Link)`
   color: #fff;
@@ -28,24 +30,13 @@ export const MenuLink = styled(Link)`
 export const Hamburger = styled(FaBars)`
   display: none;
   color: #ffffff;
-  @media screen and (max-width: 768px) {
-    display: block;
-    font-size: 1.9rem;
-    top: 0;
-    right: 0;
-    position: absolute;
-    cursor: pointer;
-    transform: translate(-100%, 75%);
-  }
 `;
 export const Menu = styled.div`
   display: flex;
 
   align-items: center;
   margin-right: -14px;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+
   gap: 20px; /* Adjust the gap between menu items */
 `;
 export const RightAlignedMenuLink = styled(MenuLink)`

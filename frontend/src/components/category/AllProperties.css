@@ -1,0 +1,45 @@
+/* Catalog.css */
+
+/* Styles for the catalog container */
+.catalog-container {
+  background-color: rgb(162, 175, 193);
+  display: inline-block;
+  flex-wrap: wrap;
+  gap: 20px; /* Spacing between catalog items */
+  justify-content: center; /* Center align items horizontally */
+  padding: 10px; /* Padding around the catalog */
+}
+
+/* Styles for each catalog item */
+.catalog-item {
+  border: 1px solid #ddd; /* Border around each item */
+  width: 300px; /* Width of each item box */
+  padding: 10px; /* Padding inside each item */
+  background-color: #fff; /* Item background color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+  text-align: center; /* Center align item content */
+}
+
+/* Styles for item images */
+.item-image img {
+  max-width: 100%; /* Ensure images don't exceed their container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Styles for the "View Item" button */
+
+.view-details-button {
+  background-color: #081ade; /* Red background color */
+  color: #fff; /* Button text color */
+  border: none;
+  height: 5vh;
+  padding: 10px 20px;
+  margin-top: 10px; /* Spacing between image and button */
+  cursor: pointer;
+}
+
+/* Hover effect for the "View Item" button */
+.view-item-button:hover {
+  background-color: #d48c05; /* Darker red background color on hover */
+}
+/* Add any additional styles or overrides as needed */
