@@ -14,6 +14,8 @@ import { faUser, faStar,faMessage } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./Dropdown";
 import Notification from "../notification/Notification";
 
+import Wishlist from "../../pages/wishlist";
+
 const Navbar = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [width,setWidth] = useState(props.width?props.width:"100%")
