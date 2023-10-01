@@ -8,17 +8,14 @@ export default function AllProperties() {
   const [properties, setProperties] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [message, setMessage] = useState("");
-  const handleAddToWishlist = async () => {
+  const handleAddToWishlist = async (propertyId) => {
+    console.log(propertyId);
+
     try {
       const response = await axios.post(
-        "/http://localhost:4042/api/add-to-wishlist",
-        {
-          // name: name,
-          // itemid: itemid,
-        }
-      );
+        "http://localhost:4042/api/add-to-wishlist",{itemId : propertyId},{withCredentials:true});
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setMessage("Item added to wishlist successfully.");
       } else {
         setMessage("Error adding item to wishlist.");
@@ -71,7 +68,7 @@ export default function AllProperties() {
           </Link>
           <button
             className="view-details-button"
-            onClick={() => addToWishlist(property)}
+            onClick={() => handleAddToWishlist(property._id)}
           >
             Add to Cart
           </button>{" "}

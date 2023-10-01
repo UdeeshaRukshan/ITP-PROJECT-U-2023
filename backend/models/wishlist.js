@@ -1,20 +1,16 @@
 const mongoose = require("mongoose");
 
 const wishlistItemSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+  userId : {
+    type : String,
   },
-  itemid: {
-    type: String,
-  },
-  // You can add more fields to your wishlist item model as needed
-  // Example:
-  // description: String,
-  // price: Number,
-  // imageUrl: String,
-  // ...
-});
+  itemId: [
+    {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "Property"
+    }
+  ]
+},{timestamps : true});
 
 const WishlistItem = mongoose.model("WishlistItem", wishlistItemSchema);
 
