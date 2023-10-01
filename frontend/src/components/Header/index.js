@@ -9,15 +9,38 @@ import {
   LeftAlignedMenuLogo,
 } from "./NavElement";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faStar,faMessage } from "@fortawesome/free-solid-svg-icons";
 
 import Dropdown from "./Dropdown";
+import Notification from "../notification/Notification";
+
 const Navbar = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [width,setWidth] = useState(props.width?props.width:"100%")
+  const [notificationDisplay, setNotficationDisplay] = useState('none')
+  const [userId, setUserId] = useState(null)
+
+  function getCookie(name) {
+    const cookieValue = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith(`${name}=`));
+
+    if (cookieValue) {
+        setNotficationDisplay('flex')
+        setUserId(cookieValue.split('=')[1])
+        return cookieValue.split('=')[1];
+    }
+
+    return null;
+    }
+
+    React.useEffect(() => {
+      getCookie('userId')
+  }, [notificationDisplay])
+
   return (
     <>
-      <PrimaryNav style={{width}}>
+      <PrimaryNav style={{'width':width,position: "absolute"}}>
         <Hamburger />
         <LeftAlignedMenuLogo>
           <MenuLink to="/" activeStyle>
@@ -52,6 +75,9 @@ const Navbar = (props) => {
               style={{ color: "#ffffff", width: "30px", height: "30px" }}
             />
           </MenuLink>
+          <MenuLink activeStyle style={{display:notificationDisplay}}>
+          <Notification userId={userId}/>
+            </MenuLink>
         </Menu>
       </PrimaryNav>
     </>

@@ -10,6 +10,7 @@ const image = require("./models/image");
 const auctioneerRouter = require("./Routes/auctioneers");
 const vehicleRouter = require("./routes/vehicles.js");
 const artRouter = require("./routes/arts.js");
+const adminRoute = require("./Routes/AdminRoutes");
 const propertyRouter = require("./Routes/properties");
 const collectableRouter = require("./routes/collectables");
 
@@ -124,5 +125,6 @@ app.use("/vehicle", vehicleRouter);
 app.use("/art", artRouter);
 app.use("/property", propertyRouter);
 app.use("/collectable", collectableRouter);
+app.use("/admin", adminRoute);
 
 app.use("/agent", agentRouter);

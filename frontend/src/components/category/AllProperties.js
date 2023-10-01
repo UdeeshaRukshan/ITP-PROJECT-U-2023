@@ -13,8 +13,8 @@ export default function AllProperties() {
       const response = await axios.post(
         "/http://localhost:4042/api/add-to-wishlist",
         {
-          name: name,
-          itemid: itemid,
+          // name: name,
+          // itemid: itemid,
         }
       );
 

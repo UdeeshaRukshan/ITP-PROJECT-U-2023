@@ -59,6 +59,7 @@ module.exports.Login = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email" });
     }
     const token = createSecretToken(user._id);
+    
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
@@ -71,7 +72,12 @@ module.exports.Login = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false, // Make the cookie accessible only on the server-side
     });
-
+    res.cookie("userId", user._id.toString(), {
+      maxAge: 3600000, // Cookie expiration time in milliseconds
+      path: "/",
+      withCredentials: true,
+      httpOnly: false, // Make the cookie accessible only on the server-side
+    });
     res
       .status(201)
       .json({ message: "User logged in successfully", success: true });

@@ -14,8 +14,8 @@ export default function PropertyDetails() {
       const response = await axios.post(
         "/http://localhost:4042//add-to-wishlist",
         {
-          name: name,
-          itemid: itemid,
+          // name: name,
+          // itemid: itemid,
         }
       );
 
