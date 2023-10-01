@@ -21,6 +21,7 @@ const Agent = () => {
   const [isAssignFormVisible, setIsAssignFormVisible] = useState(false);
 
   const [items, setItems] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
   const [isUpdateAgentFormVisible, setIsUpdateAgentFormVisible] =
     useState(false);
   const [formData, setFormData] = useState({
@@ -30,6 +31,35 @@ const Agent = () => {
     jobtype: "",
     assign: "",
   });
+
+  //validation
+  const validateForm = () => {
+    const errors = {};
+  
+    // Check if the name field is empty
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    }
+  
+    // Check if the age is a positive number between 18 and 80
+    if (!formData.age || isNaN(formData.age) || formData.age < 18 || formData.age > 80) {
+      errors.age = "Age must be a number between 18 and 80";
+    }
+  
+    // Check if address is empty
+    if (!formData.address.trim()) {
+      errors.address = "Address is required";
+    }
+  
+    // Check if jobtype is empty
+    if (!formData.jobtype.trim()) {
+      errors.jobtype = "Job Type is required";
+    }
+  
+    // Check other form fields as needed
+  
+    return errors;
+  };
 
   const handleDelete = (agentId) => {
     // Show a confirmation dialog before deleting the agent
@@ -72,24 +102,35 @@ const Agent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Send formData to your server using Axios or fetch
-    axios
-      .post("http://localhost:4042/agent/add", formData)
-      .then((response) => {
-        console.log("Agent added successfully");
-        // Optionally, you can reset the form fields
-        setFormData({
-          name: "",
-          address: "",
-          age: "",
-          jobtype: "",
-          assign: "",
+    // Validate the form
+    const errors = validateForm();
+
+    if (Object.keys(errors).length === 0) {
+      // No validation errors, proceed with form submission
+      axios
+        .post("http://localhost:4042/agent/add", formData)
+        .then((response) => {
+          console.log("Agent added successfully");
+          // Optionally, you can reset the form fields
+          setFormData({
+            name: "",
+            address: "",
+            age: "",
+            jobtype: "",
+            assign: "",
+          });
+          // Clear any previous form errors
+          setFormErrors({});
+        })
+        .catch((error) => {
+          console.error("Error adding agent:", error);
         });
-      })
-      .catch((error) => {
-        console.error("Error adding agent:", error);
-      });
+    } else {
+      // Validation errors found, update the formErrors state
+      setFormErrors(errors);
+    }
   };
+  
 
   useEffect(() => {
     axios
@@ -356,6 +397,7 @@ const Agent = () => {
 
         <div className="user-profilee">
           {isAssignFormVisible && (
+            
             <div className="popup-form">
               <h3>Assign Item</h3>
               <div className="form-group">
@@ -447,6 +489,7 @@ const Agent = () => {
           {isAddAgentFormVisible ? (
             <div className="popup-form">
               <h3>Add New Agent</h3>
+             
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
@@ -457,6 +500,8 @@ const Agent = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                   />
+                   {formErrors.name && <p className="error">{formErrors.name}</p>}
+    
                 </div>
 
                 <div className="form-group">
@@ -468,6 +513,7 @@ const Agent = () => {
                     value={formData.age}
                     onChange={handleInputChange}
                   />
+                    {formErrors.age && <p className="error">{formErrors.age}</p>}
                 </div>
 
                 <div className="form-group">
@@ -479,6 +525,7 @@ const Agent = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                   />
+                   {formErrors.address && <p className="error">{formErrors.address}</p>}
                 </div>
 
                 <div className="form-group">
@@ -490,6 +537,7 @@ const Agent = () => {
                     value={formData.jobtype}
                     onChange={handleInputChange}
                   />
+                  {formErrors.jobtype && <p className="error">{formErrors.type}</p>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="item">Select Item:</label>
