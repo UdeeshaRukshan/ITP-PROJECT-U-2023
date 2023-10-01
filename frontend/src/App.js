@@ -83,8 +83,7 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
-            <Route path="/feedback" exact element={<Feedback />} />
-
+          
 
             <Route path="/dashbord/payment" exact element={<Payment />} />
             <Route
