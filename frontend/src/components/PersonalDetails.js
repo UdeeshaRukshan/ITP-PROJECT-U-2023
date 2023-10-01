@@ -73,9 +73,11 @@ export default function PersonalDetails() {
       </div>
   <div className="mb-3">
     <label htmlFor="exampleInputNo" className="user-form-label">Contact Number</label>
-    <input type="text" className="user-form-input" id="exampleInputContactNo1" placeholder="Mobile Number" required pattern="[0-9]{10}" 
+    <input type="tel" className="user-form-input" id="exampleInputContactNo1" placeholder="Mobile Number" required pattern="[0-9]{10}" 
     onChange={(e)=>{
+      if (/^[0-9]{10}$/.test(e.target.value)) {
       setContact(e.target.value);
+      }
     }}/>
     <small className="text-muted">Please enter a 10-digit mobile number.</small>
   </div>
