@@ -12,6 +12,7 @@ import AllArts from "./components/AllArts";
 import AllProperties from "./components/AllProperties";
 import AllCollectables from "./components/AllCollectables";
 import AllVehicles from "./components/AllVehicles";
+import EditArtForm from "./components/EditArtForm";
 
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
            <Route path="/getproperties" exact element={<AllProperties/>} />
            <Route path="/getcollectables" exact element={<AllCollectables/>} />
            <Route path="/getvehicles" exact element={<AllVehicles/>} />
+           <Route path="/updateart/:artid" exact element={<EditArtForm />} />
+
            
  
 

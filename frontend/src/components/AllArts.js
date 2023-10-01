@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AllArts.css"; 
+import EditArtForm from "./EditArtForm"; // Replace "./EditArtForm" with the correct path to your EditArtForm component file.
+
 
 export default function AllArts() {
   // State to store art data
   const [arts, setArts] = useState([]);
+  const [editingArt, setEditingArt] = useState(null);
 
   // Fetch art data from the server
   useEffect(() => {
@@ -46,6 +49,12 @@ export default function AllArts() {
       </td>
       <td>
         <div className="all-arts-button-container">
+        <button
+              className="all-arts-edit-button"
+              onClick={() => handleEditClick(art)}
+            >
+              Edit
+            </button>
           <button className="all-arts-delete-button" onClick={() => handleDeleteClick(art._id)}>
             Delete
           </button>
@@ -55,7 +64,19 @@ export default function AllArts() {
     ));
   };
 
-  
+  const handleUpdateArt = async (updatedArt) => {
+    try {
+      await axios.put(`http://localhost:8070/art/updateart/${updatedArt._id}`, updatedArt);
+      setArts((prevArts) =>
+        prevArts.map((art) =>
+          art._id === updatedArt._id ? updatedArt : art
+        )
+      );
+      setEditingArt(null); // Close the edit form/modal
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   // Function to handle delete button click
   const handleDeleteClick = async (artId) => {
@@ -71,6 +92,11 @@ export default function AllArts() {
       }
     }
   };
+
+  const handleEditClick = (art) => {
+    setEditingArt(art);
+  };
+  
 
   return (
     <div className="all-arts-container">
@@ -90,6 +116,13 @@ export default function AllArts() {
         </thead>
         <tbody>{renderArtsRows()}</tbody>
       </table>
+      {editingArt && (
+        <EditArtForm
+          art={editingArt}
+          onUpdateArt={handleUpdateArt}
+          onCancel={() => setEditingArt(null)}
+        />
+      )}
     </div>
   );
 }
