@@ -46,7 +46,7 @@ export default function PersonalDetails() {
   return (
     <div className="user-form-container">
       <form onSubmit={sendData}>
-
+      <h2 className="art-form-title">Personal Details</h2>
       <div className="row">
        <label htmlFor="exampleInputName" className="user-form-label">Full Name</label>
        <div className="col">

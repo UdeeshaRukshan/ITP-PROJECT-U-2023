@@ -55,7 +55,7 @@ export default function AllArts() {
             >
               Edit
             </button>
-          <button className="all-arts-delete-button" onClick={() => handleDeleteClick(art._id)}>
+          <button className="delete-button-allarts" onClick={() => handleDeleteClick(art._id)}>
             Delete
           </button>
         </div>
@@ -100,21 +100,22 @@ export default function AllArts() {
 
   return (
     <div className="all-arts-container">
+      <h2 className="all-arts-header">All Arts</h2>
       <table className="all-arts-table">
-        <thead className="all-arts-thead">
-          <tr>
-            <th>Title</th>
-            <th>Medium</th>
-            <th>Height(cm)</th>
-            <th>Width(cm)</th>
-            <th>Condition</th>
-            <th>Location</th>
-            <th>Value($)</th>
-            <th>Images</th> 
-            <th>Actions</th>
+        <thead className="all-arts-thread">
+          <tr className="tr-all-arts">
+            <th className="all-arts-th">Title</th>
+            <th className="all-arts-th">Medium</th>
+            <th className="all-arts-th">Height(cm)</th>
+            <th className="all-arts-th">Width(cm)</th>
+            <th className="all-arts-th">Condition</th>
+            <th className="all-arts-th">Location</th>
+            <th className="all-arts-th">Value($)</th>
+            <th className="all-arts-th">Images</th> 
+            <th className="all-arts-th">Actions</th>
           </tr>
         </thead>
-        <tbody>{renderArtsRows()}</tbody>
+        <tbody className="all-arts-tbody">{renderArtsRows()}</tbody>
       </table>
       {editingArt && (
         <EditArtForm

@@ -1,43 +1,75 @@
-/* Container styles */
+
 .all-collec-container {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
+  max-width: 1300px;
+  margin: 80px auto; /* Increased space at the top */
 }
 
-/* Table styles */
+.all-collec-header {
+  color: #000000;
+}
+
 .all-collec-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-/* Table header styles */
-.all-collec-thead {
-  background-color: #007bff;
+.all-collec-thread .all-collec-th {
+  background-color: #363753;
+  color: #fff;
+  padding: 15px; /* Increased padding for header cells */
+  text-align: left;
+}
+
+.all-collec-tbody td {
+  border: 1px solid #ddd;
+  padding: 10px; /* Increased padding for data cells */
+}
+
+/* Alternate row colors */
+.all-collec-tbody tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed for even rows */
+}
+
+.all-collec-tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Change this color as needed for odd rows */
+}
+
+.all-collec-input {
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.save-button-allcollec,
+.cancel-button-allcollec,
+.all-button-allcollec,
+.delete-button-allcollec {
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.save-button-allcollec {
+  background-color: #4caf50; /* Changed save button color */
   color: #fff;
 }
 
-/* Edit button styles */
-.all-collec-edit-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.cancel-button-allcollec {
+  background-color: #ddd;
+  color: #363753;
 }
 
-/* Delete button styles */
-.all-collec-delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.all-button-allcollec {
+  background-color: #2196f3; /* Changed all button color */
+  color: #fff;
+}
+
+.delete-button-allcollec {
+  background-color: #f44336;
+  color: #fff;
 }

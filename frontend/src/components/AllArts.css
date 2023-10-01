@@ -1,44 +1,94 @@
-/* Container styles */
+
 .all-arts-container {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
+  max-width: 1400px;
+  margin: 80px auto; /* Increased space at the top */
 }
 
-/* Table styles */
+.all-arts-header {
+  color: #000000;
+}
+
 .all-arts-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-/* Table header styles */
-.all-arts-thead {
-  background-color: #007bff;
+.all-arts-thread .all-arts-th {
+  background-color: #363753;
+  color: #fff;
+  padding: 15px; /* Increased padding for header cells */
+  text-align: left;
+}
+
+.all-arts-tbody td {
+  border: 1px solid #ddd;
+  padding: 10px; /* Increased padding for data cells */
+}
+
+/* Alternate row colors */
+.all-arts-tbody tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed for even rows */
+}
+
+.all-arts-tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Change this color as needed for odd rows */
+}
+
+.all-arts-input {
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.save-button-allarts,
+.cancel-button-allarts,
+.all-button-allarts,
+.delete-button-allarts {
+  padding: 10px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.save-button-allarts {
+  background-color: #4caf50; /* Changed save button color */
   color: #fff;
 }
 
+.cancel-button-allarts {
+  background-color: #ddd;
+  color: #363753;
+}
 
-/* Edit button styles */
+.all-button-allarts {
+  background-color: #2196f3; /* Changed all button color */
+  color: #fff;
+}
+
+.delete-button-allarts {
+  background-color: #f44336;
+  color: #fff;
+}
 .all-arts-edit-button {
-  background-color: #007bff;
+  background-color: #4934e4; /* Change the background color to your desired color */
   color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
+  padding: 8px 16px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 5px; /* Adjust the margin as needed */
 }
 
-/* Delete button styles */
-.all-arts-delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.all-arts-edit-button:hover {
+  background-color: #0056b3; /* Change the hover background color to your desired color */
+}
+
+.all-arts-button-container {
+  display: flex; /* Display its children (buttons) in a row */
+  gap: 5px; /* Reduce the gap between buttons to your preferred value */
+  justify-content: flex-end; /* Align buttons to the right within the container */
 }

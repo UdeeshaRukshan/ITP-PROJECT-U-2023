@@ -1,43 +1,88 @@
-/* Container styles */
+
 .all-prop-container {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
+  max-width: 1400px;
+  margin: 80px auto; /* Increased space at the top */
 }
 
-/* Table styles */
+.all-prop-header {
+  color: #000000;
+}
+
 .all-prop-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-/* Table header styles */
-.all-prop-thead {
-  background-color: #007bff;
+.all-prop-thread .all-prop-th {
+  background-color: #363753;
+  color: #fff;
+  padding: 15px; /* Increased padding for header cells */
+  text-align: left;
+}
+
+.all-prop-tbody td {
+  border: 1px solid #ddd;
+  padding: 10px; /* Increased padding for data cells */
+}
+
+/* Alternate row colors */
+.all-prop-tbody tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed for even rows */
+}
+
+.all-prop-tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Change this color as needed for odd rows */
+}
+
+.all-prop-input {
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.save-button-allprop,
+.cancel-button-allprop,
+.all-button-allprop,
+.delete-button-allprop {
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.save-button-allprop {
+  background-color: #4caf50; /* Changed save button color */
   color: #fff;
 }
 
-/* Edit button styles */
-.all-prop-edit-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.cancel-button-allprop {
+  background-color: #ddd;
+  color: #363753;
 }
 
-/* Delete button styles */
-.all-prop-delete-button {
-  background-color: red;
-  color: white;
+.all-button-allprop {
+  background-color: #2196f3; /* Changed all button color */
+  color: #fff;
+}
+
+.delete-button-allprop {
+  background-color: #f44336;
+  color: #fff;
+}
+.all-arts-edit-button {
+  background-color: #4934e4; /* Change the background color to your desired color */
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
+  padding: 8px 16px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 5px; /* Adjust the margin as needed */
+}
+
+.all-arts-edit-button:hover {
+  background-color: #0056b3; /* Change the hover background color to your desired color */
 }

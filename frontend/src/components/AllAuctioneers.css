@@ -1,45 +1,75 @@
-/* Container styles */
+
 .all-auc-container {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
+  max-width: 1300px;
+  margin: 80px auto; /* Increased space at the top */
 }
 
-/* Table styles */
+.all-auc-header {
+  color: #000000;
+}
+
 .all-auc-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-/* Table header styles */
-.all-auc-thead {
+.all-auc-thread .all-auc-th {
   background-color: #363753;
+  color: #fff;
+  padding: 15px; /* Increased padding for header cells */
+  text-align: left;
+}
+
+.all-auc-tbody td {
+  border: 1px solid #ddd;
+  padding: 10px; /* Increased padding for data cells */
+}
+
+/* Alternate row colors */
+.all-auc-tbody tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed for even rows */
+}
+
+.all-auc-tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Change this color as needed for odd rows */
+}
+
+.all-auc-input {
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.save-button-allauc,
+.cancel-button-allauc,
+.all-button-allauc,
+.delete-button-allauc {
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.save-button-allauc {
+  background-color: #4caf50; /* Changed save button color */
   color: #fff;
 }
 
-
-/* AllAuctioneers.css */
-
-.all-auc-edit-button {
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.cancel-button-allauc {
+  background-color: #ddd;
+  color: #363753;
 }
 
-.all-auc-delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.all-button-allauc {
+  background-color: #2196f3; /* Changed all button color */
+  color: #fff;
 }
 
+.delete-button-allauc {
+  background-color: #f44336;
+  color: #fff;
+}

@@ -1,43 +1,75 @@
-/* Container styles */
+
 .all-vehicle-container {
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
+  max-width: 1300px;
+  margin: 80px auto; /* Increased space at the top */
 }
 
-/* Table styles */
+.all-vehicle-header {
+  color: #000000;
+}
+
 .all-vehicle-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-/* Table header styles */
-.all-vehicle-thead {
-  background-color: #007bff;
+.all-vehicle-thread .all-vehicle-th {
+  background-color: #363753;
+  color: #fff;
+  padding: 15px; /* Increased padding for header cells */
+  text-align: left;
+}
+
+.all-vehicle-tbody td {
+  border: 1px solid #ddd;
+  padding: 10px; /* Increased padding for data cells */
+}
+
+/* Alternate row colors */
+.all-vehicle-tbody tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed for even rows */
+}
+
+.all-vehicle-tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Change this color as needed for odd rows */
+}
+
+.all-vehicle-input {
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.save-button-allvehicle,
+.cancel-button-allvehicle,
+.all-button-allvehicle,
+.delete-button-allvehicle {
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.save-button-allvehicle {
+  background-color: #4caf50; /* Changed save button color */
   color: #fff;
 }
 
-/* Edit button styles */
-.all-vehicle-edit-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.cancel-button-allvehicle {
+  background-color: #ddd;
+  color: #363753;
 }
 
-/* Delete button styles */
-.all-vehicle-delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
+.all-button-allvehicle {
+  background-color: #2196f3; /* Changed all button color */
+  color: #fff;
+}
+
+.delete-button-allvehicle {
+  background-color: #f44336;
+  color: #fff;
 }

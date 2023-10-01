@@ -46,7 +46,7 @@ export default function AllVehicles() {
         <td>{renderImages(vehicle.images)}</td>
         <td>
         <div className="all-vehicle-button-container">
-          <button className="all-vehicle-delete-button" onClick={() => handleDeleteClick(vehicle._id)}>
+          <button className="delete-button-allvehicle" onClick={() => handleDeleteClick(vehicle._id)}>
             Delete
           </button>
         </div>
@@ -73,23 +73,24 @@ export default function AllVehicles() {
   };
 
   return (
-    <div className="all-vehicle-container">
+  <div className="all-vehicle-container">
+    <h2 className="all-vehicle-header">All Vehicles</h2>
     <table className="all-vehicle-table">
-      <thead className="all-vehicle-thead">
-          <tr>
-            <th>Vehicle Number</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Fuel Type</th>
-            <th>Mileage(Km)</th>
-            <th>Features</th>
-            <th>Location</th>
-            <th>Value($)</th> 
-            <th>Images</th> 
-            <th>Action</th>
+      <thead className="all-vehicle-thread">
+          <tr className="tr-all-vehicle">
+            <th className="all-vehicle-th">Vehicle Number</th>
+            <th className="all-vehicle-th">Model</th>
+            <th className="all-vehicle-th">Year</th>
+            <th className="all-vehicle-th">Fuel Type</th>
+            <th className="all-vehicle-th">Mileage(Km)</th>
+            <th className="all-vehicle-th">Features</th>
+            <th className="all-vehicle-th">Location</th>
+            <th className="all-vehicle-th">Value($)</th> 
+            <th className="all-vehicle-th">Images</th> 
+            <th className="all-vehicle-th">Action</th>
           </tr>
         </thead>
-        <tbody>{renderVehicleRaws()}</tbody>
+        <tbody className="all-vehicle-tbody">{renderVehicleRaws()}</tbody>
       </table>
     </div>
   );

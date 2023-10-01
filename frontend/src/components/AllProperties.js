@@ -42,7 +42,7 @@ export default function AllProperties() {
         <td>{renderImages(property.images)}</td>
         <td>
         <div className="all-prop-button-container">
-          <button className="all-prop-delete-button" onClick={() => handleDeleteClick(property._id)}>
+          <button className="delete-button-allprop" onClick={() => handleDeleteClick(property._id)}>
             Delete
           </button>
         </div>
@@ -67,19 +67,20 @@ export default function AllProperties() {
   };
   return (
     <div className="all-prop-container">
+      <h2 className="all-prop-header">All Properties</h2>
       <table className="all-prop-table">
-        <thead className="all-prop-thead">
-          <tr>
-            <th>Address</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Description</th>
-            <th>Value($)</th>
-            <th>Images</th> 
-            <th>Action</th>
+        <thead className="all-prop-thread">
+          <tr className="tr-all-prop">
+            <th className="all-prop-th">Address</th>
+            <th className="all-prop-th">Street</th>
+            <th className="all-prop-th">City</th>
+            <th className="all-prop-th">Description</th>
+            <th className="all-prop-th">Value($)</th>
+            <th className="all-prop-th">Images</th> 
+            <th className="all-prop-th">Actions</th>
           </tr>
         </thead>
-        <tbody>{renderPropertiesRows()}</tbody>
+        <tbody className="all-prop-tbody">{renderPropertiesRows()}</tbody>
       </table>
     </div>
   );

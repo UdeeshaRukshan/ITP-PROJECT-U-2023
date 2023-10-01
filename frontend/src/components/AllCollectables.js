@@ -41,7 +41,7 @@ export default function AllCollectables() {
         <td>{renderImages(collectable.images)}</td>
         <td>
         <div className="all-collec-button-container">
-          <button className="all-collec-delete-button" onClick={() => handleDeleteClick(collectable._id)}>
+          <button className="delete-button-allcollec" onClick={() => handleDeleteClick(collectable._id)}>
             Delete
           </button>
         </div>
@@ -66,18 +66,19 @@ export default function AllCollectables() {
 
   return (
     <div className="all-collec-container">
+      <h2 className="all-collec-header">All Items</h2>
       <table className="all-collec-table">
-        <thead className="all-collec-thead">
-          <tr>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Value($)</th>
-            <th>Description</th>
-            <th>Images</th> 
-            <th>Action</th>
+        <thead className="all-collec-thread">
+          <tr className="all-collec-tr">
+            <th className="all-collec-th">Type</th>
+            <th className="all-collec-th">Name</th>
+            <th className="all-collec-th">Value($)</th>
+            <th className="all-collec-th">Description</th>
+            <th className="all-collec-th">Images</th> 
+            <th className="all-collec-th">Action</th>
           </tr>
         </thead>
-        <tbody>{renderCollectableRows()}</tbody>
+        <tbody className="all-collec-tbody">{renderCollectableRows()}</tbody>
       </table>
     </div>
   );

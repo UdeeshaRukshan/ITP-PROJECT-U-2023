@@ -22,8 +22,8 @@ export default function AllAuctioneers() {
 
   // Render auctioneer rows
   const renderAuctioneerRows = () => {
-    return auctioneers.map((auctioneer) => (
-      <tr key={auctioneer._id}>
+    return auctioneers.map((auctioneer, index) => (
+      <tr key={auctioneer._id} className={index % 2 === 0 ? "all-auc-even-row" : "all-auc-odd-row"}>
         <td>{auctioneer.firstName}</td>
         <td>{auctioneer.lastName}</td>
         <td>{auctioneer.email}</td>
@@ -32,12 +32,12 @@ export default function AllAuctioneers() {
         <td>{auctioneer.street}</td>
         <td>{auctioneer.city}</td>
         <td>
-        <div className="all-auc-button-container">
-          <button className="all-auc-delete-button" onClick={() => handleDeleteClick(auctioneer._id)}>
-            Delete
-          </button>
-        </div>
-      </td>
+          <div className="all-auc-button-container">
+            <button className="delete-button-allauc" onClick={() => handleDeleteClick(auctioneer._id)}>
+              Delete
+            </button>
+          </div>
+        </td>
       </tr>
     ));
   };
@@ -57,20 +57,21 @@ export default function AllAuctioneers() {
 
   return (
     <div className="all-auc-container">
+      <h2 className="all-auc-header">All Auctioneers</h2>
       <table className="all-auc-table">
-        <thead className="all-auc-thead">
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Contact Number</th>
-            <th>Address</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Actions</th> 
+        <thead className="all-auc-thread">
+          <tr className="tr-all-auc">
+            <th className="all-auc-th">First Name</th>
+            <th className="all-auc-th">Last Name</th>
+            <th className="all-auc-th">Email</th>
+            <th className="all-auc-th">Contact Number</th>
+            <th className="all-auc-th">Address</th>
+            <th className="all-auc-th">Street</th>
+            <th className="all-auc-th">City</th>
+            <th className="all-auc-th">Actions</th> 
           </tr>
         </thead>
-        <tbody>{renderAuctioneerRows()}</tbody>
+        <tbody className="all-auc-tbody">{renderAuctioneerRows()}</tbody>
       </table>
     </div>
   );
