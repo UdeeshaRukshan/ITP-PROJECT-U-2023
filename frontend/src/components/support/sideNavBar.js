@@ -21,7 +21,7 @@ const SideNavBar = ({ activeIndex }) => {
         w={350}
         mt={20}
         h={"110vh"}
-        ml={150}
+        ml={125}
         mr={30}
         style={{ backgroundColor: "#D9D9D9" }}
         p={30}
