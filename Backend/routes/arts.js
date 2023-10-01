@@ -75,7 +75,7 @@ router.route("/updateart/:artid").put(async (req,res) => {
         location,
         value,
         images
-    }
+    };
 
     const updateart = await Art.findByIdAndUpdate(userID, updateArt)
     .then(() =>{
@@ -83,9 +83,9 @@ router.route("/updateart/:artid").put(async (req,res) => {
     }).catch((err) =>{
         console.log(err);
         res.status(500).send({status: "Error with updating art", error: err.message});
-    })
+    });
 
-})
+});
 
 router.route("/deleteart/:artid").delete(async (req,res) => {
     let userID = req.params.artid;
