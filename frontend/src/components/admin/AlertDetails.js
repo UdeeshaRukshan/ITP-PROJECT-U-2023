@@ -250,7 +250,7 @@ function AlertDetails() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              border: "1px solid",
+              border: "2px solid",
               width: "60%",
             }}
           >

@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 
+
 function SendNewAlerts() {
   const fileInput = React.useRef();
 
@@ -128,12 +129,11 @@ function SendNewAlerts() {
       const data = new FormData();
 
       data.append("file", pic);
-      const uploadPreset = "Unsigned";
-      const cloudName = "bhdnazx0";
-      const cloudinaryUploadURL =
-        "https://api.cloudinary.com/v1_1/bhdnazx0/image/upload";
+      const uploadPreset = "notificationimg"; 
+      const cloudName = "drmwn5axe";
+      const cloudinaryUploadURL = "https://api.cloudinary.com/v1_1/drmwn5axe/image/upload";
 
-      // Setup your cloudinary detailsn here
+      
       data.append("upload_preset", uploadPreset);
 
       data.append("cloud_name", cloudName);
@@ -147,6 +147,7 @@ function SendNewAlerts() {
         .then((data) => {
           //const imageUrl = data.url.toString();
           setImage(data.url.toString());
+          console.log(data.url.toString())
         })
         .catch((err) => {
           console.log(err);
@@ -174,7 +175,7 @@ function SendNewAlerts() {
         noValidate
         sx={{
           mt: 1,
-          border: "1px solid #ccc",
+          border: "2px solid #ccc",
           padding: "16px",
           borderRadius: "4px",
           width: "75%",

@@ -4,6 +4,7 @@ const Notification = require("../models/Notification");
 const asyncHandler = require("express-async-handler");
 const nodemailer = require("nodemailer");
 
+
 //user authenticate
 const authAdmin = asyncHandler(async (req, res) => {
   //getting body data
@@ -216,13 +217,13 @@ const sendEmail = asyncHandler(async (req, res) => {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "add your email here",
+      user: "sdinuwan13@gmail.com",
       pass: "add your pass key here",
     },
   });
 
   var mailOptions = {
-    from: "add your email here",
+    from: "sdinuwan13@gmail.com",
     to: userEmail,
     subject: subject,
     text: message,
