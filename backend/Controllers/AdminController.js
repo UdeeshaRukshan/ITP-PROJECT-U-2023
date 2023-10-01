@@ -215,15 +215,17 @@ const sendEmail = asyncHandler(async (req, res) => {
   console.log(userEmail, subject, message);
 
   var transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.zoho.com",
+    port: 465, // Use the appropriate port for Zoho SMTP (465 for secure SSL/TLS)
+    secure: true, // Use SSL/TLS for secure connection
     auth: {
-      user: "sdinuwan13@gmail.com",
-      pass: "add your pass key here",
-    },
+      user: "udeeshagamage12@zohomail.com",
+      pass: "udeesha@135",
+    }, // <-- Add the missing closing bracket here
   });
 
   var mailOptions = {
-    from: "sdinuwan13@gmail.com",
+    from: "udeeshagamage12@zohomail.com",
     to: userEmail,
     subject: subject,
     text: message,
