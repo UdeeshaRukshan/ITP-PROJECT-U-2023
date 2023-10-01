@@ -8,6 +8,7 @@ const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
 const adminRoute = require("./Routes/AdminRoutes");
  const agentRouter = require("./Routes/agentroute");
+ const propertie=require("./Routes/properties")
 dotenv.config();
 
 const { MONGO_URL } = process.env;
@@ -46,3 +47,4 @@ app.use("/", authRoute);
 app.use("/ticket", ticketRoute);
 app.use("/admin", adminRoute);
  app.use("/agent", agentRouter);
+ app.use("/property",propertie)

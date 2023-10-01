@@ -27,7 +27,8 @@ import PropTypes from "prop-types";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import QRCode from "qrcode.react";
-import "../pages/Payment.css";
+
+import "../pages/Auction.css"
 
 const drawerWidth = 0;
 
@@ -197,7 +198,7 @@ function DashboardContent() {
                 <div className="main-div">
                   <div className="col-div-8 displayA" id="displayArea">
                     <div className="search-bar">
-                        HI This is payment gateway
+                        Auction Management section
                      </div>
                   </div>
                 </div>
