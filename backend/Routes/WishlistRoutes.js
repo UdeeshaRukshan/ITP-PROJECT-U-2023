@@ -7,10 +7,7 @@ const {
 } = require("../Controllers/WishlistController");
 
 router.post("/add-to-wishlist", WishlistAdd);
-
-// Get all items in the wishlist
-router.get("/wishlist", WishlistDisplay);
-
+router.get("/getWishlist",WishlistDisplay);
 // delete item from wishlist
 router.delete("/withlist/delete/:itemId",deleteItemWishList);
 module.exports = router;
