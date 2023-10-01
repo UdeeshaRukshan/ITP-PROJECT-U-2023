@@ -1,5 +1,6 @@
-/* ArtForm.css */
-.vehicle-form {
+/* CollectableForm.css (or any other CSS file you prefer) */
+
+.collectable-form {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -23,20 +24,19 @@ label {
 }
 
 input[type="text"],
+input[type="url"],
 textarea {
   width: 100%;
   padding: 8px;
   margin-top: 4px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
 }
 
 button {
   display: block; 
-  margin: 0 auto;
+  margin: 0 auto; 
 }
-
 
 button {
   background-color: #007bff;
@@ -59,3 +59,4 @@ button:hover {
   max-width: 100px;
   max-height: 100px;
 }
+

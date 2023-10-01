@@ -1,49 +1,52 @@
-
-.user-form-container {
-    max-width: 800px; /* Increase the maximum width */
-    margin: 0 auto;
-    padding: 40px; /* Increase padding */
+/* PersonalDetails.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Background color for the entire page */
+  }
+  
+  .form-container {
+    width: 80%; /* Adjust the width as needed */
+    padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 10px; /* Increase border-radius */
-    background-color: #f9f9f9;
+    border-radius: 5px;
+    background-color: #fff; /* Background color for the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+    margin: 20px; /* Add margin to the form */
   }
   
-  .user-form-title {
-    font-size: 36px; /* Increase font size */
-    margin-bottom: 30px; /* Increase margin */
-  }
-  
-  .user-form-label {
-    display: block;
+  .form-label {
     font-weight: bold;
-    font-size: 18px; /* Increase font size */
   }
   
-  .user-form-input[type="text"],
-  .user-form-textarea {
-    width: 100%;
-    padding: 12px; /* Increase padding */
-    margin-top: 10px; /* Increase margin-top */
-    border: 2px solid #ccc; /* Increase border thickness */
-    border-radius: 6px; /* Increase border-radius */
-    box-sizing: border-box;
-    font-size: 16px; /* Increase font size */
+  .form-control {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
   
-  .user-form-button {
-    display: block;
-    margin: 0 auto;
+  .small {
+    color: #999;
+  }
+
+  button {
+    display: block; /* Make the button a block-level element */
+    margin: 0 auto; /* Center horizontally */
+  }
+  
+  .btn-primary {
     background-color: #007bff;
     color: #fff;
-    padding: 15px 30px; /* Increase padding */
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
+    padding: 10px 20px;
     cursor: pointer;
-    font-size: 18px; /* Increase font size */
   }
   
-  .user-form-button:hover {
+  .btn-primary:hover {
     background-color: #0056b3;
   }
-  
   

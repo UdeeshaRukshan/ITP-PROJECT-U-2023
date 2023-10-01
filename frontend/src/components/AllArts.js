@@ -123,9 +123,9 @@ export default function AllArts() {
   };
 
   return (
-    <div className="all-arts-container">
-      <table className="all-arts-table">
-        <thead className="all-arts-thead">
+    <div className="container">
+      <table>
+        <thead>
           <tr>
             <th>Title</th>
             <th>Medium</th>

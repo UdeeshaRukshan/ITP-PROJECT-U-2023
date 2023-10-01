@@ -45,8 +45,8 @@ export default function AllVehicles() {
         <td>{vehicle.value}</td>
         <td>{renderImages(vehicle.images)}</td>
         <td>
-        <div className="all-vehicle-button-container">
-          <button className="all-vehicle-delete-button" onClick={() => handleDeleteClick(vehicle._id)}>
+        <div className="button-container">
+          <button className="delete-button" onClick={() => handleDeleteClick(vehicle._id)}>
             Delete
           </button>
         </div>
@@ -73,9 +73,9 @@ export default function AllVehicles() {
   };
 
   return (
-    <div className="all-vehicle-container">
-    <table className="all-vehicle-table">
-      <thead className="all-vehicle-thead">
+    <div className="container">
+      <table>
+        <thead>
           <tr>
             <th>Vehicle Number</th>
             <th>Model</th>
