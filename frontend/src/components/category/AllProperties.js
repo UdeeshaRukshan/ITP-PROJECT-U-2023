@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { SimpleGrid } from '@mantine/core';
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./AllProperties.css"; // Import CSS file
 
@@ -8,13 +9,13 @@ export default function AllProperties() {
   const [properties, setProperties] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [message, setMessage] = useState("");
-  
+
   const handleAddToWishlist = async (propertyId) => {
     console.log(propertyId);
 
     try {
       const response = await axios.post(
-        "http://localhost:4042/api/add-to-wishlist",{itemId : propertyId},{withCredentials:true});
+        "http://localhost:4042/api/add-to-wishlist", { itemId: propertyId }, { withCredentials: true });
 
       if (response.status === 201) {
         setMessage("Item added to wishlist successfully.");
@@ -41,10 +42,12 @@ export default function AllProperties() {
 
     fetchProperties();
   }, []);
- 
+
 
   // Render property items in a catalog-like box
   const renderPropertyItems = () => {
+
+
     return properties.map((property) => (
       <div key={property._id} className="catalog-item">
         <div className="item-image">
@@ -61,14 +64,17 @@ export default function AllProperties() {
           <Link
             to={`/property/${property._id}`}
             className="view-details-button"
+            style={{fontSize:10}}
+            
           >
             View Details
           </Link>
           <button
             className="view-details-button"
             onClick={() => handleAddToWishlist(property._id)}
+            style={{fontSize:10}}
           >
-            Add to Cart
+            Add to Wishlist
           </button>{" "}
           {/* Add to cart button */}
         </div>
@@ -77,5 +83,14 @@ export default function AllProperties() {
   };
 
   // Return the JSX for rendering
-  return <div className="catalog-container">{renderPropertyItems()}</div>;
+  return (
+    <div style={{marginTop : 100, marginLeft:80}}>
+    <button onClick={() => console.log("Button Clicked")}
+      style={{marginLeft:20,marginBottom:10,marginLeft:1125}}
+    >
+      Add Property
+    </button>
+    <SimpleGrid cols={3}>{renderPropertyItems()}</SimpleGrid>
+  </div>
+  )
 }
