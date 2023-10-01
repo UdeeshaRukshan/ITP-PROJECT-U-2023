@@ -108,20 +108,7 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [value, setValue] = React.useState(0);
-  const [imageUrls, setImageUrls] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [agents, setAgents] = useState([]);
-  const [updateAgentId, setUpdateAgentId] = useState(null);
-  const [qrCodeData, setQRCodeData] = useState(null);
-  const [searchInput, setSearchInput] = useState("");
-  const [filteredAgents, setFilteredAgents] = useState([]);
-  const [selectedItemId, setSelectedItemId] = useState("");
-  const [selectedItemAddress, setSelectedItemAddress] = useState("");
-
-  const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);
-  const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
-  const [isAssignFormVisible, setIsAssignFormVisible] = useState(false);
-
+ 
   
   const logout = (e) => {
     e.preventDefault();
@@ -429,7 +416,7 @@ function LoginForm() {
   }
 }
 
-export default function Agent() {
+export default function Payment() {
   return <LoginForm />;
 }
 
