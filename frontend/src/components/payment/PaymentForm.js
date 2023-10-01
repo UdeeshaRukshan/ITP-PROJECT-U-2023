@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../payment/paymentForm.css";
+import EditCard from "./EditCard";
 import axios from "axios";
 
 const PaymentForm = () => {
   const [saveCardDetails, setSaveCardDetails] = useState(false);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -109,16 +111,8 @@ const PaymentForm = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (
-      isEmailValid(formData.email) &&
-      isPhoneNumberValid(formData.phone) &&
-      isCardNumberValid(formData.cardNumber) &&
-      isExpiryDateValid(formData.expiryDate) &&
-      isCVVValid(formData.cvv)
-    ) {
+    // Function to save card details
+    const saveCardDetailsFunction = async () => {
       try {
         const response = await axios.post(
           "http://localhost:8070/payment/addpayment",
@@ -129,12 +123,31 @@ const PaymentForm = () => {
             },
           }
         );
-
+  
         if (response.status === 200) {
           console.log("Payment data saved successfully");
+          navigate("/review");
+        } else {
+          console.error("Error saving payment data");
+        }
+      } catch (error) {
+        console.error("Error saving payment data:", error);
+      }
+    };
 
-          // Save card details if the checkbox is checked
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    
+      if (
+        isEmailValid(formData.email) &&
+        isPhoneNumberValid(formData.phone) &&
+        isCardNumberValid(formData.cardNumber) &&
+        isExpiryDateValid(formData.expiryDate) &&
+        isCVVValid(formData.cvv)
+      ) {
+        try {
           if (saveCardDetails) {
+            // Only save card details if the checkbox is checked
             await axios.post(
               "http://localhost:8070/payment/addpayment",
               formData,
@@ -145,18 +158,15 @@ const PaymentForm = () => {
               }
             );
           }
-
+    
           navigate("/review");
-        } else {
-          console.error("Error saving payment data");
+        } catch (error) {
+          console.error("Error saving payment data:", error);
         }
-      } catch (error) {
-        console.error("Error saving payment data:", error);
+      } else {
+        alert("Form data is not valid. Please check your inputs.");
       }
-    } else {
-      alert("Form data is not valid. Please check your inputs.");
-    }
-  };
+    };    
 
   return (
     <div className="payment-form">
@@ -287,16 +297,32 @@ const PaymentForm = () => {
             )}
           </div>
         </div>
-        <div className="form-group-payment">
-          <label className="label-pay">
+        <div className="form-group-payment radio-group">
+          <p>Do you want to save your card details?</p>
+          <div>
             <input
-              type="checkbox"
+              type="radio"
+              id="saveCardDetailsYes"
               name="saveCardDetails"
-              checked={saveCardDetails}
-              onChange={handleChange}
+              value="yes"
+              checked={saveCardDetails === true}
+              onChange={() => setSaveCardDetails(true)}
             />
-             Save card details
-          </label>
+            <div className="pay-radio-button-container">
+              <label htmlFor="saveCardDetailsYes">Yes</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="saveCardDetailsNo"
+                name="saveCardDetails"
+                value="no"
+                checked={saveCardDetails === false}
+                onChange={() => setSaveCardDetails(false)}
+              />
+              <label htmlFor="saveCardDetailsNo">No</label>
+            </div>
+          </div>
         </div>
         <button className="checkout-button" type="submit" onClick={handleSubmit}>
            Submit Details
@@ -307,3 +333,4 @@ const PaymentForm = () => {
 };
 
 export default PaymentForm;
+

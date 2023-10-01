@@ -116,5 +116,35 @@
   margin-top: 10px;
 }
 
+.radio-group {
+  display: flex;
+  gap: 10px; /* Adjust the gap between radio buttons as needed */
+}
+
+.radio-group div {
+  display: flex;
+}
+
+.radio-group input {
+  margin-right: 5px; /* Adjust the margin between the radio button and label */
+}
+.pay-radio-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.pay-radio-button-container label {
+  margin-right: 15px; /* Adjust the margin between the label and the radio button */
+}
+
+.pay-radio-button-container input {
+  margin-right: 50px; /* Adjust the margin between the radio button and the label */
+}
+
+
+
+
+
+
 
 

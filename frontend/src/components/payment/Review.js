@@ -26,6 +26,14 @@ const Review = ({ paymentid }) => {
     yourBid: 60.0,
   };
 
+  // Sample data for paymentDetails (replace this with actual data fetched from the server)
+  const samplePaymentDetails = {
+    cardName: "Visa",
+    firstName: "Thamasha pasidunee",
+    cardNumber: "**** **** **** 1234",
+    expiryDate: "12/23",
+  };
+
   return (
     <div className="transaction-summary-container">
       <div className="transaction-summary">
@@ -38,10 +46,10 @@ const Review = ({ paymentid }) => {
         <div className="payment-details">
           <h4 className="pay-sub-heading">Payment Details</h4>
           <br />
-          <p className="pay-paragraph">Card Name: {paymentDetails.cardName}</p>
-          <p className="pay-paragraph">Card Holder: {paymentDetails.firstName}</p>
-          <p className="pay-paragraph">Card Number: {paymentDetails.cardNumber}</p>
-          <p className="pay-paragraph">Expiry Date: {paymentDetails.expiryDate}</p>
+          <p className="pay-paragraph">Card Name: {samplePaymentDetails.cardName}</p>
+          <p className="pay-paragraph">Card Holder: {samplePaymentDetails.firstName}</p>
+          <p className="pay-paragraph">Card Number: {samplePaymentDetails.cardNumber}</p>
+          <p className="pay-paragraph">Expiry Date: {samplePaymentDetails.expiryDate}</p>
         </div>
         <div className="action-buttons">
           <button className="back-button-pay" onClick={() => navigate("/payment")}>
