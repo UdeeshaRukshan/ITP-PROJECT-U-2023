@@ -45,6 +45,7 @@ import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
+import supportQuesPage from "./pages/Support Ques/supportQues";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -67,6 +68,8 @@ function App() {
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
+            <Route path="/support/supportQues" element={<supportQuesPage />} />
+
 
             <Route path="/add" exact element={<PersonalDetails />} />
             <Route path="/addart" exact element={<ArtForm />} />
