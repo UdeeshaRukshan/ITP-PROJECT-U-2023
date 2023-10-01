@@ -8,6 +8,7 @@ export default function AllProperties() {
   const [properties, setProperties] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [message, setMessage] = useState("");
+  
   const handleAddToWishlist = async (propertyId) => {
     console.log(propertyId);
 
@@ -40,10 +41,7 @@ export default function AllProperties() {
 
     fetchProperties();
   }, []);
-  const addToWishlist = (property) => {
-    // Step 2: Function to add to wishlist
-    setWishlist([...wishlist, property]);
-  };
+ 
 
   // Render property items in a catalog-like box
   const renderPropertyItems = () => {
