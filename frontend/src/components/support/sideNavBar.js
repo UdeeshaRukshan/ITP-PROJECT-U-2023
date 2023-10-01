@@ -21,7 +21,7 @@ const SideNavBar = ({ activeIndex }) => {
         w={350}
         mt={20}
         h={"110vh"}
-        ml={80}
+        ml={150}
         mr={30}
         style={{ backgroundColor: "#D9D9D9" }}
         p={30}
@@ -32,6 +32,10 @@ const SideNavBar = ({ activeIndex }) => {
           rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
           mb={5}
           icon={<IconHelp size="1rem" stroke={1.5} />}
+          onClick={() => navigate("/support/supportQues")}
+            color="dark"
+            variant="filled"
+            active={active === 8? true : false}
         />
         <NavLink
           label="Frequently Asked Questions"

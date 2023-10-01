@@ -15,7 +15,7 @@ import Dropdown from "./Dropdown";
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   return (
-    <>
+    <div style={{display:"flex",justifyContent:"center", alignItems: "center"}}>
       <PrimaryNav>
         <Hamburger />
         <LeftAlignedMenuLogo>
@@ -53,7 +53,7 @@ const Navbar = () => {
           </MenuLink>
         </Menu>
       </PrimaryNav>
-    </>
+    </div>
   );
 };
 export default Navbar;

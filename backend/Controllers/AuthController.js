@@ -56,7 +56,7 @@ module.exports.Login = async (req, res, next) => {
 
     const username = email; // Replace with the actual username value
     res.cookie("username", username, {
-      maxAge: 3600000, // Cookie expiration time in milliseconds
+      maxAge: 60000 * 60 * 24, // Cookie expiration time in milliseconds ( 1 Day)
       path: "/",
       withCredentials: true,
       httpOnly: false, // Make the cookie accessible only on the server-side

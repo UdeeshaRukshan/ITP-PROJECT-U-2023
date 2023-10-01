@@ -20,6 +20,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.2",
+    "emailjs-com": "^3.2.0",
     "feather-icons": "^4.29.1",
     "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",

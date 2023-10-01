@@ -21,7 +21,11 @@ import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
 import MyTicketPage from "./pages/MyTickets/myTickets";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import supportQuesPage from "./pages/Support Ques/supportQues";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 function App() {
   const queryClient = new QueryClient();
@@ -42,6 +46,7 @@ function App() {
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
+          <Route path = "support/supportQues" element={<supportQuesPage/>}/>
           </Routes>
           <Footer />
         </div>

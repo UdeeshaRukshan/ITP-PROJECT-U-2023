@@ -4,7 +4,10 @@ module.exports.ticketadd = async (req, res) => {
   try {
     const { name, email, category, subject, message } = req.body;
 
+    const {username} = req.cookies;
+
     const ticket = await Ticket.create({
+      loggedUserEmail : username,
       name,
       email,
       category,
@@ -21,7 +24,14 @@ module.exports.ticketadd = async (req, res) => {
 //get all submitted tickets from the database
 module.exports.getAllTickets = async (req, res) => {
   try {
-    const tickets = await Ticket.find({});
+
+    // get user identify cookie
+    const {username} = req.cookies;
+    
+    console.log(req.cookies);
+
+        // returns all ticket relevent to current logged-in user
+    const tickets = await Ticket.find({loggedUserEmail: username});   
     res.status(200).json(tickets);
   } catch (error) {
     res.status(500).json({ error: error.message });

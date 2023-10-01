@@ -6,18 +6,26 @@ import {
   Badge,
   Button,
   Container,
+  Text,
+  Modal,
+  TextInput,
+  useMantineTheme
 } from "@mantine/core";
 import { showNotification, updateNotification } from "@mantine/notifications";
 import { IconDiscountCheck, IconExclamationCircle } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from "react";
 
 const MyTickets = () => {
+  const[opened, setOpened] = useState(false);
+
   const { error, isLoading, data, refetch } = useQuery({
     queryKey: ["raisedTickets"],
     queryFn: () =>
-      axios.get("http://localhost:4042/ticket/getall").then((res) => res.data),
+      axios.get("http://localhost:4042/ticket/getall",{withCredentials:true}).then((res) => res.data),
   });
+
 
   const deleteTicket = (ticketID) => {
     showNotification({
@@ -55,26 +63,28 @@ const MyTickets = () => {
   //generate table rows
   const rows = data
     ? data.map((ticket, index) => (
-        <tr key={ticket._id}>
-          <td>{ticket._id}</td>
-          <td>{ticket.subject}</td>
+        <tr key={ticket._id} >
+  
+          <td>{<Text color="dark">{`#REF${ticket._id.slice(1,6)}`}</Text>}</td>
+          <td>{<Text color="dark">{ticket.subject}</Text>}</td>
           <td>
             {
-              <Badge color="yellow" radius="sm" variant="filled">
-                Pending
+              <Badge color={ticket.ticketSolved === true? "teal" : "yellow"} radius="sm" variant="filled">
+                {ticket.ticketSolved === true? "SOLVED" : "PENDING"} 
               </Badge>
             }
           </td>
           <td>
-            {
+            {<Text color="dark">{
               new Date(ticket.createdAt)
                 .toLocaleDateString("en-GB")
-                .split("T")[0]
+                .split("T")[0]}</Text>
             }
           </td>
-          <td>last Action</td>
+          <td>{<Text color="dark">last Action</Text>}</td>
           <td>
             {
+              <>
               <Button
                 color="red"
                 radius="sm"
@@ -83,20 +93,27 @@ const MyTickets = () => {
               >
                 Delete
               </Button>
+
+              <Button onClick= {() => {setOpened(true);}}>View</Button></>
             }
           </td>
+          
         </tr>
       ))
     : null;
 
   return (
+    <>
+    <Modal opened={opened} onClose={() =>setOpened(false)} title="View Ticket" centered >
+      
+    </Modal>
     <Paper shadow="md" radius={"md"} withBorder mt={20}>
       <Title order={1} align="center">
         My Tickets
       </Title>
       <Divider />
       <Container>
-        <Table highlightOnHover withBorder>
+        <Table highlightOnHover withBorder mt={10} mb={10}>
           <thead>
             <tr>
               <th>Reference</th>
@@ -107,10 +124,11 @@ const MyTickets = () => {
               <th> </th>
             </tr>
           </thead>
-          <tbody style={{ color: "black" }}>{rows}</tbody>
+          <tbody>{rows}</tbody>
         </Table>
       </Container>
     </Paper>
+    </>
   );
 };
 
