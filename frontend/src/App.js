@@ -46,6 +46,7 @@ import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
 import Payment from "./pages/Payment";
+import Feedback from "./pages/Feedback";
 import supportQuesPage from "./pages/Support Ques/supportQues";
 function App() {
   const queryClient = new QueryClient();
@@ -82,9 +83,10 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
+            <Route path="/feedback" exact element={<Feedback />} />
 
 
-            <Route path="/dashbordpayment" exact element={<Payment />} />
+            <Route path="/dashbord/payment" exact element={<Payment />} />
             <Route
               path="/collectables/:auctioneerId"
               element={CollectableDetails}
