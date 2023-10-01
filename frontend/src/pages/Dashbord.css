@@ -265,11 +265,6 @@ th {
 }
 
 /* Style for the user information */
-.profile-info p {
-  margin: 15px 0;
-  font-size: 16px;
-  margin: 5px 0;
-}
 
 /* Strong text (labels) */
 .profile-info strong {
@@ -298,6 +293,11 @@ th {
 /* Style for strong (labels) */
 .profile-info strong {
   font-weight: bold;
+  margin: 20px;
+}
+.profile-info p {
+  font-weight: bold;
+  margin: 20px;
 }
 
 .form-group {
@@ -321,6 +321,7 @@ th {
 }
 
 .logoutbtn {
+  margin-top:20vh;
   float: right;
   width: 15vh;
   height: 7vh;
@@ -328,7 +329,7 @@ th {
   font-size: large;
   background-color: #363753;
   margin-right: 10vh;
-  margin-top: 2vh;
+
   border-color: #333;
 }
 .button-containerr {
@@ -343,4 +344,7 @@ th {
 }
 .btn-deleteA {
   height: 5.5vh;
+}
+#displayArea{
+  margin-top:-10vh
 }

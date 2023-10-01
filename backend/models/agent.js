@@ -19,6 +19,9 @@ const agentSchema = new schema({
     type: String,
     require,
   },
+  assign: {
+    type: String,
+  },
 });
 
 const agent = mongoose.model("agent", agentSchema);

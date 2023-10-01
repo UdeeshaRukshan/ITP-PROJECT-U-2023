@@ -1,42 +1,45 @@
-/* AllProperties.css */
+/* Catalog.css */
 
-/* Style for the container holding the catalog items */
+/* Styles for the catalog container */
 .catalog-container {
-  display: flex;
-
-  gap: 20px;
-  margin: 20px;
+  background-color: rgb(162, 175, 193);
+  display: inline-block;
+  flex-wrap: wrap;
+  gap: 20px; /* Spacing between catalog items */
+  justify-content: center; /* Center align items horizontally */
+  padding: 10px; /* Padding around the catalog */
 }
 
-/* Style for each catalog item */
+/* Styles for each catalog item */
 .catalog-item {
-  display: flex;
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 300px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  border-radius: 5px;
+  border: 1px solid #ddd; /* Border around each item */
+  width: 300px; /* Width of each item box */
+  padding: 10px; /* Padding inside each item */
+  background-color: #fff; /* Item background color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+  text-align: center; /* Center align item content */
 }
 
-/* Style for item details */
-.item-details {
-  margin-bottom: 10px;
+/* Styles for item images */
+.item-image img {
+  max-width: 100%; /* Ensure images don't exceed their container */
+  height: auto; /* Maintain aspect ratio */
 }
 
-/* Style for buttons */
-.approve-button,
-.delete-button {
-  background-color: #007bff;
-  color: #fff;
+/* Styles for the "View Item" button */
+
+.view-details-button {
+  background-color: #081ade; /* Red background color */
+  color: #fff; /* Button text color */
   border: none;
-  padding: 5px 10px;
-  margin-right: 5px;
+  height: 5vh;
+  padding: 10px 20px;
+  margin-top: 10px; /* Spacing between image and button */
   cursor: pointer;
-  border-radius: 3px;
 }
 
-.approve-button:hover,
-.delete-button:hover {
-  background-color: #0056b3;
+/* Hover effect for the "View Item" button */
+.view-item-button:hover {
+  background-color: #d48c05; /* Darker red background color on hover */
 }
+/* Add any additional styles or overrides as needed */

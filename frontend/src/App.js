@@ -18,7 +18,6 @@ import Blog from "./pages/Blog";
 
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
-import paymentHistory from "./components/dashbord/paymentHistory/paymentHistory";
 
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
@@ -44,6 +43,8 @@ import AllCollectables from "./components/category/AllCollectables";
 import CollectableDetails from "./components/itempage/CollectableDetail";
 import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
+import ArtDetails from "./components/itempage/ArtDetails";
+import Wishlist from "./pages/wishlist";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -52,6 +53,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <div className="App">
           <Header />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -79,10 +81,14 @@ function App() {
 
             <Route
               path="/collectables/:auctioneerId"
-              component={CollectableDetails}
+              element={CollectableDetails}
             />
             <Route path="/property/:propertyId" element={<PropertyDetails />} />
+
+            <Route path="/arts/:artid" element={<ArtDetails />} />
+            <Route path="/wishlist" element={<Wishlist />} />
           </Routes>
+
           <Footer />
         </div>
       </QueryClientProvider>

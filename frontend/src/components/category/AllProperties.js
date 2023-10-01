@@ -6,7 +6,25 @@ import "./AllProperties.css"; // Import CSS file
 export default function AllProperties() {
   // State to store properties data
   const [properties, setProperties] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+  const [message, setMessage] = useState("");
+  const handleAddToWishlist = async (propertyId) => {
+    console.log(propertyId);
 
+    try {
+      const response = await axios.post(
+        "http://localhost:4042/api/add-to-wishlist",{itemId : propertyId},{withCredentials:true});
+
+      if (response.status === 201) {
+        setMessage("Item added to wishlist successfully.");
+      } else {
+        setMessage("Error adding item to wishlist.");
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage("Server error");
+    }
+  };
   // Fetch properties data from the server
   useEffect(() => {
     async function fetchProperties() {
@@ -22,31 +40,39 @@ export default function AllProperties() {
 
     fetchProperties();
   }, []);
+  const addToWishlist = (property) => {
+    // Step 2: Function to add to wishlist
+    setWishlist([...wishlist, property]);
+  };
 
   // Render property items in a catalog-like box
   const renderPropertyItems = () => {
     return properties.map((property) => (
       <div key={property._id} className="catalog-item">
-        <div className="item-details">
-          {/* Display the property address */}
-          <h3>{property.address}</h3>
-
-          {/* Display the property description */}
-        </div>
         <div className="item-image">
-          {/* Display the property images */}
-          {property.images.map((image, index) => (
-            <img
-              key={index}
-              src={`${image.path}`}
-              alt={`Property Image ${image.path}`}
-            />
-          ))}
+          <img
+            src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?cs=srgb&dl=pexels-binyamin-mellish-106399.jpg&fm=jpg" // Use property-specific image URL
+            alt={`Property ${property._id}`}
+          />
+        </div>
+        <div className="item-details">
+          <h3>{property.address}</h3>
+          <p className="price">${property.price}</p> {/* Add price */}
         </div>
         <div className="item-actions">
-          <Link to={`/property/${property._id}`} className="detail-link">
+          <Link
+            to={`/property/${property._id}`}
+            className="view-details-button"
+          >
             View Details
           </Link>
+          <button
+            className="view-details-button"
+            onClick={() => handleAddToWishlist(property._id)}
+          >
+            Add to Cart
+          </button>{" "}
+          {/* Add to cart button */}
         </div>
       </div>
     ));

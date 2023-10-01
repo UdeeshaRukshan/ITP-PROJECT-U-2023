@@ -22,6 +22,133 @@ const Dashboard = () => {
 
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [changePasswordSuccess, setChangePasswordSuccess] = useState(false);
+
+  const handleCurrentPasswordChange = (e) => {
+    setCurrentPassword(e.target.value);
+  };
+
+  // Event handler for new password input
+  const handleNewPasswordChange = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  const [errors, setErrors] = useState({});
+
+  const validateEmail = (email) => {
+    // Basic email validation regex
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  };
+
+  const validateName = (name) => {
+    const nameRegex = /^[a-zA-Z]+$/; // Only alphabetic characters allowed
+    return nameRegex.test(name);
+  };
+
+  const validateAge = (age) => {
+    const parsedAge = parseInt(age);
+    return !isNaN(parsedAge) && parsedAge >= 18; // Age validation: must be a number and at least 18 years old
+  };
+  const validateSriLankanNIC = (nic) => {
+    // Sri Lankan NIC format: 123456789V or 123456789X
+    const nicRegex = /^\d{9}[VX]$/;
+    return nicRegex.test(nic.toUpperCase());
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // Copy the previous errors and remove the error for the current field
+    const updatedErrors = { ...errors };
+    delete updatedErrors[name];
+
+    // Update the editedUser state
+    setEditedUser({ ...editedUser, [name]: value });
+
+    // Validate the field and update errors if necessary
+    if (name === "email" && !validateEmail(value)) {
+      updatedErrors[name] = "Invalid email format";
+    } else if (
+      (name === "firstname" || name === "lastname") &&
+      !validateName(value)
+    ) {
+      updatedErrors[name] = "Only alphabetic characters allowed";
+    } else if (name === "age" && !validateAge(value)) {
+      updatedErrors[name] = "Age must be a number and at least 18";
+    } else if (name === "id" && !validateSriLankanNIC(value)) {
+      updatedErrors[name] = "Invalid Sri Lankan NIC format";
+    }
+
+    // Update the errors state
+    setErrors(updatedErrors);
+  };
+
+  // Handle form submission
+  const handleSaveClick = () => {
+    // Validate the form before submitting
+    const newErrors = {};
+
+    // Add your validation logic for each field
+    if (!validateEmail(editedUser.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (!validateName(editedUser.firstname)) {
+      newErrors.firstname = "Only alphabetic characters allowed";
+    }
+    if (!validateName(editedUser.lastname)) {
+      newErrors.lastname = "Only alphabetic characters allowed";
+    }
+    if (!validateAge(editedUser.age)) {
+      newErrors.age = "Age must be a number and at least 18";
+    }
+    if (!validateSriLankanNIC(editedUser.id)) {
+      newErrors.id = "Invalid Sri Lankan NIC format";
+    }
+
+    if (Object.keys(newErrors).length === 0) {
+      // Form is valid, you can proceed with submitting the data
+      axios
+        .put(`http://localhost:4042/update/${users._id}`, editedUser)
+        .then((response) => {
+          // Update the state with the updated user data
+          setUsers(response.data);
+          setIsEditing(false);
+        })
+        .catch((error) => {
+          console.error("Error updating user data:", error);
+        });
+    } else {
+      // Form is not valid, update the errors state
+      setErrors(newErrors);
+    }
+  };
+  // Event handler for password change request
+  // const handleChangePassword = () => {
+  //   // Send a request to the backend to change the password
+  //   axios
+  //     .put(`http://localhost:4042/change-password/${users._id}`, {
+  //       currentPassword,
+  //       newPassword,
+  //     })
+  //     .then((response) => {
+  //       setChangePasswordSuccess(true);
+  //       // Clear the password fields
+  //       setCurrentPassword("");
+  //       setNewPassword("");
+  //       // Display a success message
+  //       toast("Password changed successfully.", {
+  //         position: "top-right",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       // Handle password change error (e.g., invalid current password)
+  //       toast.error("Password change failed. Please try again.", {
+  //         position: "top-right",
+  //       });
+  //     });
+  // };
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -78,20 +205,6 @@ const Dashboard = () => {
     setIsEditing(true);
     // Set the edited user data to the current user's data
     setEditedUser(users);
-  };
-
-  const handleSaveClick = () => {
-    // Send a PUT request to update the user data on the server
-    axios
-      .put(`http://localhost:4042/update/${users._id}`, editedUser)
-      .then((response) => {
-        // Update the state with the updated user data
-        setUsers(response.data);
-        setIsEditing(false);
-      })
-      .catch((error) => {
-        console.error("Error updating user data:", error);
-      });
   };
 
   const handleDeleteClick = () => {
@@ -164,7 +277,9 @@ const Dashboard = () => {
             <img
               className="img-x"
               style={{ width: "20vh", height: "20vh" }}
-              src={imageUrls[0].url} // Display the first image from the array
+              src={
+                imageUrls.length > 0 ? imageUrls[imageUrls.length - 1].url : ""
+              } // Display the first image from the array
               alt={`Image 0`}
             />
           )}
@@ -277,57 +392,91 @@ const Dashboard = () => {
           ) : isEditing ? (
             // Display the edit form when isEditing is true
             <div className="edit-profile-form">
-              {/* Edit form fields */}
               <div className="form-group">
                 <label>Email:</label>
                 <input
                   type="text"
+                  name="email"
                   value={editedUser.email}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, email: e.target.value })
-                  }
+                  onChange={handleInputChange}
                 />
+                {errors.email && <div className="error">{errors.email}</div>}
               </div>
               <div className="form-group">
-                <label>firstname</label>
+                <label>Firstname:</label>
                 <input
                   type="text"
+                  name="firstname"
                   value={editedUser.firstname}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, firstname: e.target.value })
-                  }
+                  onChange={handleInputChange}
                 />
+                {errors.firstname && (
+                  <div className="error">{errors.firstname}</div>
+                )}
               </div>
               <div className="form-group">
-                <label>lastname</label>
+                <label>Lastname:</label>
                 <input
                   type="text"
+                  name="lastname"
                   value={editedUser.lastname}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, lastname: e.target.value })
-                  }
+                  onChange={handleInputChange}
                 />
+                {errors.lastname && (
+                  <div className="error">{errors.lastname}</div>
+                )}
               </div>
               <div className="form-group">
                 <label>Age:</label>
                 <input
                   type="text"
+                  name="age"
                   value={editedUser.age}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, age: e.target.value })
-                  }
+                  onChange={handleInputChange}
                 />
+                {errors.age && <div className="error">{errors.age}</div>}
               </div>
               <div className="form-group">
                 <label>Address:</label>
                 <input
                   type="text"
+                  name="address"
                   value={editedUser.address}
-                  onChange={(e) =>
-                    setEditedUser({ ...editedUser, address: e.target.value })
-                  }
+                  onChange={handleInputChange}
+                />
+              </div>{" "}
+              <div className="form-group">
+                <label>Nic No:</label>
+                <input
+                  type="text"
+                  name="id"
+                  value={editedUser.id}
+                  onChange={handleInputChange}
+                />
+                {errors.id && <div className="error">{errors.id}</div>}
+              </div>
+              {/* <div className="form-group">
+                <label>Current Password:</label>
+                <input
+                  type="password"
+                  value={currentPassword}
+                  onChange={handleCurrentPasswordChange}
                 />
               </div>
+              <div className="form-group">
+                <label>New Password:</label>
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={handleNewPasswordChange}
+                />
+              </div>
+              <button
+                className="btn btn-success"
+                onClick={handleChangePassword}
+              >
+                Change Password
+              </button> */}
               {/* Add similar fields for other user properties (address, age, etc.) */}
               <button className="btn btn-success" onClick={handleSaveClick}>
                 Save Changes
@@ -353,6 +502,9 @@ const Dashboard = () => {
               </p>
               <p>
                 <strong>Age:</strong> {users.age}
+              </p>
+              <p>
+                <strong>Nic No:</strong> {users.id}
               </p>
               <p>
                 <strong>Address:</strong> {users.address}

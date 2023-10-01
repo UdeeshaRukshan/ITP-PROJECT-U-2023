@@ -13,9 +13,15 @@ const Agent = () => {
   const [qrCodeData, setQRCodeData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [filteredAgents, setFilteredAgents] = useState([]);
+  const [selectedItemId, setSelectedItemId] = useState("");
+  const [selectedItemAddress, setSelectedItemAddress] = useState("");
 
   const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);
   const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
+  const [isAssignFormVisible, setIsAssignFormVisible] = useState(false);
+
+  const [items, setItems] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
   const [isUpdateAgentFormVisible, setIsUpdateAgentFormVisible] =
     useState(false);
   const [formData, setFormData] = useState({
@@ -23,7 +29,38 @@ const Agent = () => {
     address: "",
     age: "",
     jobtype: "",
+    assign: "",
   });
+
+  //validation
+  const validateForm = () => {
+    const errors = {};
+  
+    // Check if the name field is empty
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    }
+  
+    // Check if the age is a positive number between 18 and 80
+    if (!formData.age || isNaN(formData.age) || formData.age < 18 || formData.age > 80) {
+      errors.age = "Age must be a number between 18 and 80";
+    }
+  
+    // Check if address is empty
+    if (!formData.address.trim()) {
+      errors.address = "Address is required";
+    }
+  
+    // Check if jobtype is empty
+    if (!formData.jobtype.trim()) {
+      errors.jobtype = "Job Type is required";
+    }
+  
+    // Check other form fields as needed
+  
+    return errors;
+  };
+
   const handleDelete = (agentId) => {
     // Show a confirmation dialog before deleting the agent
     if (window.confirm("Are you sure you want to delete this agent?")) {
@@ -42,30 +79,58 @@ const Agent = () => {
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
 
+    if (name === "item") {
+      // Update formData.assign with the selected item's ID
+      setFormData({ ...formData, assign: value });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+  useEffect(() => {
+    // Fetch items from your server
+    axios
+      .get("http://localhost:4042/property/getproperties")
+      .then((response) => {
+        setItems(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching items:", error);
+      });
+  }, []);
   //handle submit button
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Send formData to your server using Axios or fetch
-    axios
-      .post("http://localhost:4042/agent/add", formData)
-      .then((response) => {
-        console.log("Agent added successfully");
-        // Optionally, you can reset the form fields
-        setFormData({
-          name: "",
-          address: "",
-          age: "",
-          jobtype: "",
+    // Validate the form
+    const errors = validateForm();
+
+    if (Object.keys(errors).length === 0) {
+      // No validation errors, proceed with form submission
+      axios
+        .post("http://localhost:4042/agent/add", formData)
+        .then((response) => {
+          console.log("Agent added successfully");
+          // Optionally, you can reset the form fields
+          setFormData({
+            name: "",
+            address: "",
+            age: "",
+            jobtype: "",
+            assign: "",
+          });
+          // Clear any previous form errors
+          setFormErrors({});
+        })
+        .catch((error) => {
+          console.error("Error adding agent:", error);
         });
-      })
-      .catch((error) => {
-        console.error("Error adding agent:", error);
-      });
+    } else {
+      // Validation errors found, update the formErrors state
+      setFormErrors(errors);
+    }
   };
+  
 
   useEffect(() => {
     axios
@@ -120,6 +185,7 @@ const Agent = () => {
           address: "",
           age: "",
           jobtype: "",
+          assign: "",
         });
         // Optionally, you can hide the update form
         toggleUpdateAgentForm();
@@ -130,7 +196,7 @@ const Agent = () => {
       });
   };
   //toggle buttton
-  const toggleAddAgentForm = () => {
+  const toggleAddAgentForm = (agentId) => {
     setIsAddAgentFormVisible(!isAddAgentFormVisible);
   };
   const toggleUpdateAgentForm = (agentId) => {
@@ -217,6 +283,33 @@ const Agent = () => {
         console.error("Error downloading PDF:", error);
       });
   };
+  const toggleAssignForm = (agentId, itemAddress) => {
+    setIsAssignFormVisible(!isAssignFormVisible);
+    setSelectedItemId(agentId);
+    setSelectedItemAddress(itemAddress);
+  };
+  const handleAssignItem = (agentId) => {
+    if (agentId && selectedItemAddress) {
+      // Find the selected agent by ID
+      const updatedAgent = agents.find((agent) => agent._id === agentId);
+
+      if (updatedAgent) {
+        // Update the "assign" column of the selected agent with the item's address
+        updatedAgent.assign = selectedItemAddress;
+
+        // Create a new array of agents with the updated agent
+        const updatedAgentsArray = agents.map((agent) =>
+          agent._id === agentId ? updatedAgent : agent
+        );
+
+        // Update the state variable with the updated agent data
+        setAgents(updatedAgentsArray);
+
+        // Close the assignment form
+        toggleAssignForm(null, "");
+      }
+    }
+  };
 
   //Search function
 
@@ -239,9 +332,11 @@ const Agent = () => {
         <a>
           {imageUrls.length > 0 && (
             <img
-              className="image-agent"
+              className="img-x"
               style={{ width: "20vh", height: "20vh" }}
-              src={imageUrls[0].url} // Display the first image from the array
+              src={
+                imageUrls.length > 0 ? imageUrls[imageUrls.length - 1].url : ""
+              } // Display the first image from the array
               alt={`Image 0`}
             />
           )}
@@ -301,6 +396,35 @@ const Agent = () => {
         </div>
 
         <div className="user-profilee">
+          {isAssignFormVisible && (
+            
+            <div className="popup-form">
+              <h3>Assign Item</h3>
+              <div className="form-group">
+                <label htmlFor="item">Select Item:</label>
+                <select
+                  id="item"
+                  name="item"
+                  onChange={(e) => setSelectedItemId(e.target.value)}
+                  value={selectedItemId}
+                >
+                  <option value="">Select an item</option>
+                  {/* Map through your available items and display them as options */}
+                  {items.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.address}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button type="button" onClick={handleAssignItem}>
+                Add
+              </button>
+              <button type="button" onClick={() => toggleAssignForm(null, "")}>
+                Cancel
+              </button>
+            </div>
+          )}
           {isUpdateAgentFormVisible && (
             <div className="popup-form">
               <h3>Update Agent</h3>
@@ -365,6 +489,7 @@ const Agent = () => {
           {isAddAgentFormVisible ? (
             <div className="popup-form">
               <h3>Add New Agent</h3>
+             
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
@@ -375,6 +500,8 @@ const Agent = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                   />
+                   {formErrors.name && <p className="error">{formErrors.name}</p>}
+    
                 </div>
 
                 <div className="form-group">
@@ -386,6 +513,7 @@ const Agent = () => {
                     value={formData.age}
                     onChange={handleInputChange}
                   />
+                    {formErrors.age && <p className="error">{formErrors.age}</p>}
                 </div>
 
                 <div className="form-group">
@@ -397,6 +525,7 @@ const Agent = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                   />
+                   {formErrors.address && <p className="error">{formErrors.address}</p>}
                 </div>
 
                 <div className="form-group">
@@ -408,6 +537,24 @@ const Agent = () => {
                     value={formData.jobtype}
                     onChange={handleInputChange}
                   />
+                  {formErrors.jobtype && <p className="error">{formErrors.type}</p>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="item">Select Item:</label>
+                  <select
+                    id="item"
+                    name="item"
+                    onChange={handleInputChange}
+                    value={formData.assign}
+                  >
+                    <option value="">Select an item</option>
+                    {/* Map through your available items and display them as options */}
+                    {items.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.address}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="button-container">
@@ -426,6 +573,7 @@ const Agent = () => {
                     <th>Age</th>
                     <th>Address</th>
                     <th>Job Type</th>
+                    <th>Assign to</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -445,6 +593,7 @@ const Agent = () => {
                           <td>{agent.age}</td>
                           <td>{agent.address}</td>
                           <td>{agent.jobtype}</td>
+                          <td>{agent.assign}</td>
                           <td>
                             <button
                               className="btn btnAssign"
@@ -452,8 +601,13 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-
-                              //onClick={() => handleAssign(agent._id)}
+                              onClick={() =>
+                                toggleAssignForm(
+                                  agent._id,
+                                  agent.address,
+                                  items.address
+                                )
+                              }
 
                               // onClick={() => handleAssign(agent._id)}
                             >
@@ -492,8 +646,7 @@ const Agent = () => {
                                 backgroundColor: "blue",
                                 color: "white",
                               }}
-
-                              //onClick={() => handleAssign(agent._id)}
+                              onClick={() => toggleAssignForm(agent._id)}
 
                               // onClick={() => handleAssign(agent._id)}
                             >

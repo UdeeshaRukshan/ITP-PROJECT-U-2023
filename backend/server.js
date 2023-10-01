@@ -10,8 +10,11 @@ const image = require("./models/image");
 const auctioneerRouter = require("./Routes/auctioneers");
 const vehicleRouter = require("./routes/vehicles.js");
 const artRouter = require("./routes/arts.js");
+const adminRoute = require("./Routes/AdminRoutes");
 const propertyRouter = require("./Routes/properties");
 const collectableRouter = require("./routes/collectables");
+
+const wishlistRoutes = require("./Routes/WishlistRoutes");
 
 const agentRouter = require("./Routes/agentroute");
 
@@ -62,6 +65,7 @@ cloudinary.config({
 async function handleUpload(file) {
   const res = await cloudinary.uploader.upload(file, {
     resource_type: "auto",
+    folder: "profile",
   });
   return res;
 }
@@ -115,11 +119,12 @@ app.use(express.json());
 
 app.use("/", authRoute);
 app.use("/ticket", ticketRoute);
-
+app.use("/api", wishlistRoutes);
 app.use("/auctioneer", auctioneerRouter);
 app.use("/vehicle", vehicleRouter);
 app.use("/art", artRouter);
 app.use("/property", propertyRouter);
 app.use("/collectable", collectableRouter);
+app.use("/admin", adminRoute);
 
 app.use("/agent", agentRouter);
