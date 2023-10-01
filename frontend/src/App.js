@@ -12,9 +12,9 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import About from "./pages/About";
+
 import ContactUs from "./pages/ContactUs";
-import Blog from "./pages/Blog";
+
 
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
@@ -45,6 +45,7 @@ import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
+import Payment from "./pages/Payment";
 import supportQuesPage from "./pages/Support Ques/supportQues";
 function App() {
   const queryClient = new QueryClient();
@@ -82,6 +83,8 @@ function App() {
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
 
+
+            <Route path="/dashbordpayment" exact element={<Payment />} />
             <Route
               path="/collectables/:auctioneerId"
               element={CollectableDetails}

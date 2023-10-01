@@ -306,7 +306,7 @@ const Dashboard = () => {
         >
           <i class="fa fa-video-camera"></i> &nbsp;&nbsp;Order History
         </a>
-        <a href="" class="icon-a" id="btn3">
+        <a href="/dashbordpayment" class="icon-a" id="btn3">
           <i class="fa fa-tv"></i> &nbsp;&nbsp;Payment History
         </a>
         <a href="" class="icon-a" id="btn4">
