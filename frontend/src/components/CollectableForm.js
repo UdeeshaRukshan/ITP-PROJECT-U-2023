@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Collectable.css";
+import "./CollectableForm.css";
+
 
 function CollectableForm() {
   const [type, setType] = useState("");
@@ -51,10 +52,11 @@ function CollectableForm() {
   }
  
   return (
-    <div className="container">
+    <div className="collectable-form-container">
       <form onSubmit={sendData}>
-      <h2>Tell Us About Your Item</h2>
-      <select class="form-select" aria-label="Default select example" required
+      <h2 className="collectable-form-title">Tell Us About Your Item</h2>
+      <label className="collectable-form-label" htmlFor="type">Type:</label>
+      <select className="collectable-form-select" aria-label="Default select example" required
       onChange={(e) =>{
         setType(e.target.value);
       }}>
@@ -67,11 +69,11 @@ function CollectableForm() {
          <option value="Other">Other</option>
       </select>
 
-        <label htmlFor="name">Name:</label>
+        <label className="collectable-form-label" htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
-          name="name"
+          className="collectable-form-input"
           placeholder="e.g., Desert Flower Novel."        
           required
           onChange={(e) =>{
@@ -79,10 +81,10 @@ function CollectableForm() {
           }}
         />
 
-        <label htmlFor="description">Description:</label>
+        <label className="collectable-form-label" htmlFor="description">Description:</label>
         <textarea
           id="description"
-          name="description"
+          className="collectable-form-textarea"
           placeholder="e.g.,Used book,Only two pages are torn but readable."
           required
           onChange={(e) =>{
@@ -90,11 +92,11 @@ function CollectableForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Give a opening value to auction your item:($)</label>
+        <label className="collectable-form-label" htmlFor="openingValue">Give a opening value to auction your item:($)</label>
         <input
           type="number"
           id="openingValue"
-          name="openingValue"
+          className="collectable-form-input"
           placeholder="e.g., 15"
           required
           onChange={(e) =>{
@@ -107,7 +109,7 @@ function CollectableForm() {
           }}
         />
 
-         <label htmlFor="images">Images (up to 10):</label>
+         <label className="collectable-form-label" htmlFor="images">Images (up to 10):</label>
          <input
           type="file"
           id="images"
@@ -123,7 +125,7 @@ function CollectableForm() {
             <p>Selected Images:</p>
             {images.map((image, index) => (
               <img key={index}
-              className="image-preview" 
+              className="collectable-form-image-preview" 
               src={image} 
               alt={`Image ${index}`} />
             ))}
@@ -131,7 +133,9 @@ function CollectableForm() {
         )}
               
 
-              <button type="submit">Submit</button>
+        <button type="submit" className="collectable-form-button">
+          Submit
+        </button>
               
         </form>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Properties.css";
+import "./PropertiesForm.css";
+
 
 function PropertyForm() {
   const [address, setAddress] = useState("");
@@ -55,15 +56,15 @@ function PropertyForm() {
   }
 
   return (
-    <div className="container">
+    <div className="property-form-container">
       <form onSubmit={sendData}>
-      <h2>Tell Us About Your Property</h2>
+      <h2 className="property-form-title">Tell Us About Your Property</h2>
       <h6 className="bold-header">Property Location</h6>
-        <label htmlFor="address">Address:</label>
+        <label className="property-form-label" htmlFor="address">Address:</label>
         <input
           type="text"
           id="address"
-          name="address"
+          className="property-form-input"
           placeholder="Address"
           required
           onChange={(e) =>{
@@ -71,11 +72,11 @@ function PropertyForm() {
           }}
         />
 
-        <label htmlFor="street">Street:</label>
+        <label className="property-form-label" htmlFor="street">Street:</label>
         <input
           type="text"
           id="street"
-          name="street"
+          className="property-form-input"
           placeholder="Street/house/apartment etc."
           required
           onChange={(e) =>{
@@ -83,10 +84,10 @@ function PropertyForm() {
           }}
         />
 
-<label htmlFor="city">City:</label>
-        <select class="form-select"
+       <label className="property-form-label" htmlFor="city">City:</label>
+        <select 
           id="city"
-          name="city"
+          className="property-form-select"
           required
           onChange={(e) =>{
             setCity(e.target.value);
@@ -102,10 +103,10 @@ function PropertyForm() {
           <option value="Anuradhapura">Anuradhapura</option>
         </select><br />
 
-        <label htmlFor="description">Give a description:</label>
+        <label className="property-form-label" htmlFor="description">Give a description:</label>
         <textarea
           id="description"
-          name="description"
+          className="property-form-textarea"
           placeholder="e.g., Located on the riverside.A modern two story house.Five bedrooms with attached bathrooms."
           required
           onChange={(e) =>{
@@ -113,11 +114,11 @@ function PropertyForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Set a opening value to auction your property:($)</label>
+        <label className="property-form-label" htmlFor="openingValue">Set a opening value to auction your property:($)</label>
         <input 
         type="number" 
         id="openingvalue" 
-        name="openingvalue" 
+        className="property-form-input" 
         placeholder="e.g., 75000" 
         required
              onChange={(e) => {
@@ -129,7 +130,7 @@ function PropertyForm() {
                 }
             }}/>
 
-        <label htmlFor="images">Images (up to 10):</label>
+        <label className="property-form-label" htmlFor="images">Images (up to 10):</label>
         <input
           type="file"
           id="images"
@@ -145,7 +146,7 @@ function PropertyForm() {
             <p>Selected Images:</p>
             {images.map((image, index) => (
               <img key={index}
-              className="image-preview" 
+              className="art-form-image-preview" 
               src={image} 
               alt={`Image ${index}`} />
             ))}
@@ -153,7 +154,9 @@ function PropertyForm() {
         )}
 
 
-         <button type="submit">Submit</button>
+       <button type="submit" className="property-form-button">
+          Submit
+        </button>
          
       </form>
     </div>

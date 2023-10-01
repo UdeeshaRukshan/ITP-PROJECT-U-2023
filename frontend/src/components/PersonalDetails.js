@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./PersonalDetails.css"; 
+import "./PersonalDetails.css";
+
 
 export default function PersonalDetails() {
 
@@ -43,13 +44,13 @@ export default function PersonalDetails() {
   }
 
   return (
-    <div className="container">
+    <div className="user-form-container">
       <form onSubmit={sendData}>
 
       <div className="row">
-       <label htmlFor="exampleInputName" className="form-label">Full Name</label>
+       <label htmlFor="exampleInputName" className="user-form-label">Full Name</label>
        <div className="col">
-      <input type="text" className="form-control" placeholder="First name" aria-label="First name" required 
+      <input type="text" className="user-form-input" placeholder="First name" aria-label="First name" required 
       onChange={(e)=>{
         setFirstName(e.target.value);
       }}/>
@@ -57,41 +58,41 @@ export default function PersonalDetails() {
 
   </div>
     <div className="col">
-      <input type="text" className="form-control" placeholder="Last name" aria-label="Last name" required 
+      <input type="text" className="user-form-input" placeholder="Last name" aria-label="Last name" required 
       onChange={(e)=>{
         setLastName(e.target.value);
       }}/>
     </div>
       </div>
        <div className="mb-3">
-         <label htmlFor="exampleInputEmail" className="form-label">Email Address</label>
-        <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" required 
+         <label htmlFor="exampleInputEmail" className="user-form-label">Email Address</label>
+        <input type="email" className="user-form-input" id="exampleInputEmail1" placeholder="Email" required 
         onChange={(e)=>{
           setEmail(e.target.value);
         }}/>
       </div>
   <div className="mb-3">
-    <label htmlFor="exampleInputNo" className="form-label">Contact Number</label>
-    <input type="text" className="form-control" id="exampleInputContactNo1" placeholder="Mobile Number" required pattern="[0-9]{10}" 
+    <label htmlFor="exampleInputNo" className="user-form-label">Contact Number</label>
+    <input type="text" className="user-form-input" id="exampleInputContactNo1" placeholder="Mobile Number" required pattern="[0-9]{10}" 
     onChange={(e)=>{
       setContact(e.target.value);
     }}/>
     <small className="text-muted">Please enter a 10-digit mobile number.</small>
   </div>
   <div className="mb-3">
-    <label htmlFor ="exampleInputAddress" className="form-label">Address</label>
-    <input type="text" className="form-control" id="exampleInputAddress1" placeholder="Address" required 
+    <label htmlFor ="exampleInputAddress" className="user-form-label">Address</label>
+    <input type="text" className="user-form-input" id="exampleInputAddress1" placeholder="Address" required 
     onChange={(e)=>{
       setAddress(e.target.value);
     }}/>
   </div>
   <div className="mb-3">
-    <input type="text" className="form-control" id="exampleInputStreet1" placeholder="Street/house/apartment etc." required 
+    <input type="text" className="user-form-input" id="exampleInputStreet1" placeholder="Street/house/apartment etc." required 
     onChange={(e)=>{
       setStreet(e.target.value);
     }}/>
   </div>
-  <select className="form-select" aria-label="Default select example" required
+  <select className="user-form-input" aria-label="Default select example" required
   onChange={(e)=>{
     setCity(e.target.value);
   }}>
@@ -104,10 +105,11 @@ export default function PersonalDetails() {
     <option value="Negambo">Negambo</option>
   </select>
 
-  
-
   <br></br>
-      <button type="submit">Submit</button>
+
+  <button type="submit" className="user-form-button">
+          Submit
+        </button>
     </form>
     </div>
   );

@@ -3,6 +3,7 @@ import axios from "axios";
 import "./VehicleForm.css";
 
 
+
 function VehicleForm() {
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [year, setYear] = useState("");
@@ -79,33 +80,33 @@ function sendData(e){
     }
   
   return (
-    <div className="container">
-
-      
+    <div className="vehicle-form-container">    
        <form onSubmit={sendData}>
 
-      <h2>Tell Us About Your Vehicle</h2>
+       <h2 className="vehicle-form-title">Tell Us About Your Vehicle</h2>
   
-        <label htmlFor="vehicleNumber">Vehicle Number:</label>
-        <input type="text" id="vehicleNumber" name="vehicleNumber" placeholder="e.g., ABC-2056" required
+       <label className="vehicle-form-label" htmlFor="title">
+      Vehicle Number:
+      </label>
+        <input type="text" id="vehicleNumber" className="vehicle-form-input" placeholder="e.g., ABC-2056" required
         onChange={(e) =>{
           setVehicleNumber(e.target.value);
         }}/><br></br>
 
         <div className="row">
           <div className="col">
-            <label htmlFor="model"> Vehicle Model:</label>
-            <input type="text" id="model" name="model" placeholder="e.g., Honda Civic" required
+            <label className="vehicle-form-label" htmlFor="model"> Vehicle Model:</label>
+            <input type="text" id="model" className="vehicle-form-input" placeholder="e.g., Honda Civic" required
             onChange={(e) =>{
               setModel(e.target.value);
             }}/><br></br>
           </div>
           <div className="col">
-          <label htmlFor="year">Manufacture Year:</label>
+          <label className="vehicle-form-label" htmlFor="year">Manufacture Year:</label>
            <input 
             type="number" 
             id="year" 
-            name="year" 
+            className="vehicle-form-input"
             min="1900" // Set the minimum year to allow
             max="2099" // Set the maximum year to allow
             step="1"    // Set the step to 1 to allow whole numbers only
@@ -120,9 +121,9 @@ function sendData(e){
         </div>
 
         <div className="row">
-  <div className="col">
-    <label htmlFor="fuelType">Fuel Type:</label>
-    <select className="form-select" aria-label="Default select example" required
+   <div className="col">
+    <label className="vehicle-form-label" htmlFor="fuelType">Fuel Type:</label>
+    <select className="vehicle-form-select" aria-label="Default select example" required
     onChange={(e) =>{
       setFuelType(e.target.value);
     }}>
@@ -134,8 +135,8 @@ function sendData(e){
     </select>
   </div>
   <div className="col">
-    <label htmlFor="mileage">Mileage:(In killometers)</label>
-    <input type="number" id="mileage" name="mileage" placeholder="e.g., 3200" required 
+    <label className="vehicle-form-label" htmlFor="mileage">Mileage:(In killometers)</label>
+    <input type="number" id="mileage" name="mileage" className="vehicle-form-input" placeholder="e.g., 3200" required 
     onChange={(e) =>{
       const inputMileage = e.target.value;
                if (inputMileage > 0) {
@@ -147,14 +148,16 @@ function sendData(e){
   </div>
     </div>
 
-        <label htmlFor="features">Features:</label>
-        <textarea id="features" name="features" placeholder="Mention the condition of your vehicle. " required
+    <label className="vehicle-form-label" htmlFor="title">
+      Features:
+      </label>
+        <textarea id="features" className="vehicle-form-textarea" placeholder="Mention the condition of your vehicle. " required
         onChange={(e) =>{
           setFeatures(e.target.value);
         }}></textarea><br></br>
 
-        <label htmlFor="location">Where is this vehicle located:</label>
-        <select class="form-select" id="location" name="location" required 
+        <label className="vehicle-form-label" htmlFor="location">Where is this vehicle located:</label>
+        <select className="vehicle-form-select" id="location" required 
         onChange={(e) =>{
           setLocation(e.target.value);
         }}>
@@ -168,8 +171,8 @@ function sendData(e){
           <option value="Anuradhapura">Anuradhapura</option>
         </select><br />
 
-        <label htmlFor="openingValue">Set a opening value to auction your vehicle:($)</label>
-        <input type="number" id="openingValue" name="openingValue" placeholder="e.g., 6000" required 
+        <label className="vehicle-form-label" htmlFor="openingValue">Set a opening value to auction your vehicle:($)</label>
+        <input type="number" id="openingValue" className="vehicle-form-input" placeholder="e.g., 6000" required 
         onChange={(e) =>{
           const inputOpeningValue = e.target.value;
                if (inputOpeningValue > 0) {
@@ -179,7 +182,7 @@ function sendData(e){
                 }
         }}/><br/>
 
-<label htmlFor="image">
+       <label className="vehicle-form-label" htmlFor="image">
           Images:(Please add at least 6 photos of the interior and exterior of the vehicle)
         </label>
         <input
@@ -194,17 +197,19 @@ function sendData(e){
         <br></br>
 
         {images.map((image, index) => (
-          <div key={index} className="image-preview">
+          <div key={index} >
             <img
+              className="vehicle-form-image-preview"
               src={URL.createObjectURL(image)}
               alt={`Image ${index}`}
-              className="preview-image"
             />
           </div>
         ))}
 
        
-          <button type="submit">Submit</button>
+        <button type="submit" className="vehicle-form-button">
+          Submit
+        </button>
        
       </form>
     </div>

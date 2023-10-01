@@ -41,8 +41,8 @@ export default function AllProperties() {
         <td>{property.value}</td>
         <td>{renderImages(property.images)}</td>
         <td>
-        <div className="button-container">
-          <button className="delete-button" onClick={() => handleDeleteClick(property._id)}>
+        <div className="all-prop-button-container">
+          <button className="all-prop-delete-button" onClick={() => handleDeleteClick(property._id)}>
             Delete
           </button>
         </div>
@@ -66,9 +66,9 @@ export default function AllProperties() {
     }
   };
   return (
-    <div className="container">
-      <table>
-        <thead>
+    <div className="all-prop-container">
+      <table className="all-prop-table">
+        <thead className="all-prop-thead">
           <tr>
             <th>Address</th>
             <th>Street</th>

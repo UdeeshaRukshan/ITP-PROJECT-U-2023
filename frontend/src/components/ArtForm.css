@@ -1,61 +1,54 @@
-/* ArtForm.css */
-.vehicle-form {
-  max-width: 400px;
+
+.art-form-container {
+  max-width: 800px; /* Increase the maximum width */
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px; /* Increase padding */
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px; /* Increase border-radius */
   background-color: #f9f9f9;
 }
 
-h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.art-form-title {
+  font-size: 36px; /* Increase font size */
+  margin-bottom: 30px; /* Increase margin */
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
+.art-form-label {
   display: block;
   font-weight: bold;
+  font-size: 18px; /* Increase font size */
 }
 
-input[type="text"],
-textarea {
+.art-form-input[type="text"],
+.art-form-textarea {
   width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 12px; /* Increase padding */
+  margin-top: 10px; /* Increase margin-top */
+  border: 2px solid #ccc; /* Increase border thickness */
+  border-radius: 6px; /* Increase border-radius */
   box-sizing: border-box;
+  font-size: 16px; /* Increase font size */
 }
 
-button {
-  display: block; 
+.art-form-button {
+  display: block;
   margin: 0 auto;
-}
-
-
-button {
   background-color: #007bff;
   color: #fff;
-  padding: 10px 20px;
+  padding: 15px 30px; /* Increase padding */
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 18px; /* Increase font size */
 }
 
-button:hover {
+.art-form-button:hover {
   background-color: #0056b3;
 }
-.image-preview {
-  display: inline-block;
-  margin-right: 10px;
-}
 
-.image-preview {
-  max-width: 100px;
-  max-height: 100px;
+.art-form-image-preview {
+  display: inline-block;
+  margin-right: 20px; /* Increase margin-right */
+  max-width: 200px; /* Increase max-width */
+  max-height: 200px; /* Increase max-height */
 }

@@ -36,18 +36,12 @@ export default function AllAuctioneers() {
         <td>{auctioneer.street}</td>
         <td>{auctioneer.city}</td>
         <td>
-          <div className="button-container">
+          <div className="all-auc-button-container">
             <button
-              className="delete-button"
+              className="all-auc-delete-button"
               onClick={() => handleDeleteClick(auctioneer._id)}
             >
               Delete
-            </button>
-            <button
-              className="update-button"
-              onClick={() => handleUpdateClick(auctioneer)}
-            >
-              Update
             </button>
           </div>
         </td>
@@ -68,34 +62,22 @@ export default function AllAuctioneers() {
   };
 
   return (
-    <div className="container">
-      {selectedAuctioneer ? (
-        <UpdateAuctioneerForm
-          selectedAuctioneer={selectedAuctioneer}
-          onUpdate={(updatedAuctioneer) => {
-            // Handle the update logic here, e.g., send a PUT request to update the data
-            // Then reset the selectedAuctioneer state
-            setSelectedAuctioneer(null);
-          }}
-          onCancel={handleCancelUpdate}
-        />
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Contact Number</th>
-              <th>Address</th>
-              <th>Street</th>
-              <th>City</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{renderAuctioneerRows()}</tbody>
-        </table>
-      )}
+    <div className="all-auc-container">
+      <table className="all-auc-table">
+        <thead className="all-auc-thead">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>{renderAuctioneerRows()}</tbody>
+      </table>
     </div>
   );
 }
