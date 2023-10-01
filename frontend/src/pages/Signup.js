@@ -43,9 +43,7 @@ function isValidSriLankanNIC(nic) {
   const genderPart = nic.charAt(9);
   const otherPart = nic.substring(10);
 
-  if (genderPart !== "V" && genderPart !== "X") {
-    return false;
-  }
+ 
 
   if (!/^\d{2}$/.test(otherPart)) {
     return false;
@@ -319,8 +317,8 @@ const Signup = () => {
                   value={id}
                   placeholder="Enter your Nic No"
                   onChange={handleOnChange}
-                  error={!!errors.id}
-                  helperText={errors.id}
+                  // error={!!errors.id}
+                  // helperText={errors.id}
                 />
               </Grid>
               <Grid item xs={12}>
