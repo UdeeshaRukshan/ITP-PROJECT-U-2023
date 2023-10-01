@@ -4,6 +4,7 @@ import "../payment/paymentForm.css";
 import axios from "axios";
 
 const PaymentForm = () => {
+  const [saveCardDetails, setSaveCardDetails] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -73,37 +74,44 @@ const PaymentForm = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
-    // Check if the input is the "expiryDate" field
-    if (name === "expiryDate") {
-      // Ensure only numbers are entered
-      const cleanedValue = value.replace(/\D/g, "");
-
-      if (cleanedValue.length <= 4) {
-        let formattedValue = cleanedValue;
-        if (cleanedValue.length >= 2) {
-          // Add a "/" after the first 2 digits (MM)
-          formattedValue =
-            cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
-        }
-
-        setFormData({
-          ...formData,
-          [name]: formattedValue,
-        });
-      }
-    } else {
+    if (type === "checkbox") {
       setFormData({
         ...formData,
-        [name]: value,
+        [name]: checked,
       });
+    } else {
+      // Check if the input is the "expiryDate" field
+      if (name === "expiryDate") {
+        // Ensure only numbers are entered
+        const cleanedValue = value.replace(/\D/g, "");
+
+        if (cleanedValue.length <= 4) {
+          let formattedValue = cleanedValue;
+          if (cleanedValue.length >= 2) {
+            // Add a "/" after the first 2 digits (MM)
+            formattedValue =
+              cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
+          }
+
+          setFormData({
+            ...formData,
+            [name]: formattedValue,
+          });
+        }
+      } else {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      }
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (
       isEmailValid(formData.email) &&
       isPhoneNumberValid(formData.phone) &&
@@ -121,9 +129,23 @@ const PaymentForm = () => {
             },
           }
         );
-  
+
         if (response.status === 200) {
           console.log("Payment data saved successfully");
+
+          // Save card details if the checkbox is checked
+          if (saveCardDetails) {
+            await axios.post(
+              "http://localhost:8070/payment/addpayment",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+          }
+
           navigate("/review");
         } else {
           console.error("Error saving payment data");
@@ -135,19 +157,17 @@ const PaymentForm = () => {
       alert("Form data is not valid. Please check your inputs.");
     }
   };
-  
-  
 
   return (
     <div className="payment-form">
-      <h2>Checkout</h2>
-      <div className="subheading">Personal Information</div>
+      <h2 className="paymentform-head">Checkout</h2>
+      <div className="form-subheading">Personal Information</div>
       <form onSubmit={handleSubmit}>
         <div className="row">
-          <div className="form-group">
+          <div className="form-group-payment">
             <input
               type="text"
-              className="input-field"
+              className="input-field-pay"
               name="firstName"
               placeholder="First Name"
               value={formData.firstName}
@@ -155,10 +175,10 @@ const PaymentForm = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="form-group-payment">
             <input
               type="text"
-              className="input-field"
+              className="input-field-pay"
               name="lastName"
               placeholder="Last Name"
               value={formData.lastName}
@@ -167,20 +187,20 @@ const PaymentForm = () => {
             />
           </div>
         </div>
-        <div className="form-group">
+        <div className="form-group-payment">
           <input
             type="text"
-            className="input-field"
+            className="input-field-pay"
             name="address"
             placeholder="Address"
             value={formData.address}
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group-payment">
           <input
             type="email"
-            className="input-field"
+            className="input-field-pay"
             name="email"
             placeholder="Email"
             value={formData.email}
@@ -193,10 +213,10 @@ const PaymentForm = () => {
             </div>
           )}
         </div>
-        <div className="form-group">
+        <div className="form-group-payment">
           <input
             type="tel"
-            className="input-field"
+            className="input-field-pay"
             name="phone"
             placeholder="Phone"
             value={formData.phone}
@@ -208,12 +228,12 @@ const PaymentForm = () => {
             </div>
           )}
         </div>
-        <div className="subheading">Payment Information</div>
+        <div className="form-subheading">Payment Information</div>
         <div className="row">
-          <div className="form-group">
+          <div className="form-group-payment">
             <input
               type="text"
-              className="input-field card-field"
+              className="input-field-pay card-field"
               name="cardName"
               placeholder="Card Name"
               value={formData.cardName}
@@ -221,10 +241,10 @@ const PaymentForm = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="form-group-payment">
             <input
               type="text"
-              className="input-field card-field"
+              className="input-field-pay card-field"
               name="cardNumber"
               placeholder="Card Number"
               value={formatCardNumber(formData.cardNumber)}
@@ -238,10 +258,10 @@ const PaymentForm = () => {
           </div>
         </div>
         <div className="row">
-          <div className="form-group">
+          <div className="form-group-payment">
             <input
               type="text"
-              className="input-field date-field"
+              className="input-field-pay date-field"
               name="expiryDate"
               placeholder="Expiry Date (MM/YY)"
               value={formData.expiryDate}
@@ -251,10 +271,10 @@ const PaymentForm = () => {
               <div className="error-message">Card has already expired</div>
             )}
           </div>
-          <div className="form-group">
+          <div className="form-group-payment">
             <input
               type="text"
-              className="input-field cvv-field"
+              className="input-field-pay cvv-field"
               name="cvv"
               placeholder="CVV"
               value={formData.cvv}
@@ -267,10 +287,21 @@ const PaymentForm = () => {
             )}
           </div>
         </div>
+        <div className="form-group-payment">
+          <label className="label-pay">
+            <input
+              type="checkbox"
+              name="saveCardDetails"
+              checked={saveCardDetails}
+              onChange={handleChange}
+            />
+             Save card details
+          </label>
+        </div>
         <button className="checkout-button" type="submit" onClick={handleSubmit}>
-          Submit Details
+           Submit Details
         </button>
-      </form>
+      </form> 
     </div>
   );
 };

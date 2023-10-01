@@ -1,45 +1,56 @@
 /* PaymentList.css */
-
 .payment-list-container {
-  margin: 50px auto; /* Center the container */
-  max-width: 1350px; /* Set a max width for better readability */
+  margin: 50px auto;
+  max-width: 2000px; /* Adjusted max-width for better readability */
   padding: 20px;
-  background-color: #ffffff; /* Background color of the container */
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
-  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.payment-list-header {
   color: #363753;
   margin-bottom: 20px;
 }
 
-table {
+.payment-list-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px; /* Add space between header and table */
+  margin-top: 10px; /* Slightly decreased space between header and table */
 }
 
-th, td {
-  padding: 12px;
+.payment-list-thread .payment-list-th {
+  background-color: #363753;
+  color: #ffffff;
+  padding: 12px; /* Slightly decreased padding for header cells */
   text-align: left;
-  border-bottom: 1px solid #e0e0e0; /* Border color for rows */
 }
 
-th {
-  background-color: #363753; /* Header background color */
-  color: #ffffff; /* Header text color */
+.payment-list-tbody .payment-list-td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Slightly decreased padding for data cells */
 }
 
-tr:hover {
-  background-color: #f5f5f5; /* Hover effect color */
+.payment-list-card-number {
+  max-width: 150px; /* Adjusted max-width for card number column */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.payment-list-masked {
+  font-family: monospace; /* Ensure masked characters have the same width */
+}
+
+.payment-list-tbody tr:nth-child(even) {
+  background-color: #e5e5e5;
+}
+
+.payment-list-tbody tr:nth-child(odd) {
+  background-color: #ffffff;
 }
 
 
-tr:nth-child(even) {
-  background-color: #e5e5e5; /* Change this color as needed */
-}
+
 
 
 

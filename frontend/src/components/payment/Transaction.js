@@ -7,9 +7,9 @@ function Transaction() {
   const navigate = useNavigate()
 
   return (
-    <div className = "container" >
-      <h1>Thank you for your Transaction!</h1>
-      <p>
+    <div className = "container-transaction" >
+      <h2 className= "transaction-header">Thank you for your Transaction!</h2>
+      <p className="transaction-paragraph">
         Your item is now ready for pickup. Your winning bid number is #2001539.
         We have emailed your confirmation, and you can come to our location to
         collect your item. Please check your email for more details on how to

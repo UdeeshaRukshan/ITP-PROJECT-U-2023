@@ -1,43 +1,45 @@
 /* paymentForm.css */
 
 .payment-form {
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: 20px auto; /* Adjusted margin for spacing */
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: #fbf9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 700px; /* Set a maximum height for the form */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
 }
 
-h2 {
+.paymentform-head {
   text-align: center;
   color: #333;
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-.subheading {
+.form-subheading {
   font-size: 20px;
   color: #333;
   margin-top: 15px;
   margin-bottom: 10px;
 }
 
-.form-group {
+.form-group-payment {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.label {
+.label-pay {
   font-size: 16px;
   color: #555;
   margin-bottom: 8px;
   display: block;
 }
 
-.input-field {
+.input-field-pay {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
@@ -47,25 +49,25 @@ h2 {
   transition: border-color 0.2s;
 }
 
-.input-field[name="address"] {
+.input-field-pay[name="address"] {
   height: 100px;
   resize: vertical;
   position: relative;
 }
 
-.input-field:focus {
+.input-field-pay:focus {
   outline: none;
   border-color: #007bff;
 }
 
 /* Flexbox for alignment */
-.form-group.inline {
+.form-group-payment.inline {
   flex-direction: row;
   align-items: baseline;
 }
 
 /* Add margin to the label for spacing */
-.label.inline {
+.label-pay.inline {
   margin-right: 10px;
 }
 

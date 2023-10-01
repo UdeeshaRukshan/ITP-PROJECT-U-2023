@@ -94,25 +94,25 @@ const handleDeleteCard = (index) => {
 
   return (
     <div className="edit-card-container">
-      <h2>Edit Card Details</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Card Name</th>
-            <th>Card Number</th>
-            <th>Expiry Date</th>
-            <th>CVV</th>
-            <th>Action</th>
+      <h2 className="edit-card-header">Edit Card Details</h2>
+      <table className="edit-card-table">
+        <thead className="edit-card-thread">
+          <tr className="tr-edit-card">
+            <th className="edit-card-th">ID</th>
+            <th className="edit-card-th">Card Name</th>
+            <th className="edit-card-th">Card Number</th>
+            <th className="edit-card-th">Expiry Date</th>
+            <th className="edit-card-th">CVV</th>
+            <th className="edit-card-th">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="edit-card-tbody">
           {cards.map((card, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>
                 {editCard && editCard.index === index ? (
-                  <input
+                  <input className="edit-card-input"
                     type="text"
                     value={editCard.cardName}
                     onChange={(e) =>
@@ -125,7 +125,7 @@ const handleDeleteCard = (index) => {
               </td>
               <td>
                 {editCard && editCard.index === index ? (
-                  <input
+                  <input className="edit-card-input"
                     type="text"
                     value={editCard.cardNumber}
                     onChange={(e) =>
@@ -138,7 +138,7 @@ const handleDeleteCard = (index) => {
               </td>
               <td>
                 {editCard && editCard.index === index ? (
-                  <input
+                  <input className="edit-card-input"
                     type="text"
                     value={editCard.expiryDate}
                     onChange={(e) =>
@@ -151,7 +151,7 @@ const handleDeleteCard = (index) => {
               </td>
               <td>
                 {editCard && editCard.index === index ? (
-                  <input
+                  <input className="edit-card-input"
                     type="text"
                     value={editCard.cvv}
                     onChange={(e) =>
@@ -165,11 +165,11 @@ const handleDeleteCard = (index) => {
               <td>
                 {editCard && editCard.index === index ? (
                   <>
-                    <button className="save-button" onClick={handleUpdateCard}>
+                    <button className="save-button-editcard" onClick={handleUpdateCard}>
                       Save
                     </button>
                     <button
-                      className="cancel-button"
+                      className="cancel-button-editcard"
                       onClick={() => setEditCard(null)}
                     >
                       Cancel
@@ -178,13 +178,13 @@ const handleDeleteCard = (index) => {
                 ) : (
                   <>
                     <button
-                      className="edit-button"
+                      className="edit-button-editcard"
                       onClick={() => handleEditCard(index)}
                     >
                       Edit
                     </button>
                     <button
-                      className="delete-button"
+                      className="delete-button-editcard"
                       onClick={() => handleDeleteCard(index)}
                     >
                       Delete

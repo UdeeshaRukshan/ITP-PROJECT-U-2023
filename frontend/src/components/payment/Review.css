@@ -17,13 +17,13 @@
 }
 
 /* Heading styles */
-h2 {
+.review-header {
   font-size: 28px; /* Bigger font size for "Transaction Summary" */
   margin-top: 0;
   margin-bottom: 20px;
 }
 
-h4 {
+.pay-sub-heading {
   font-size: 20px; /* Slightly smaller font size for "Payment Details" */
   margin-top: 0;
   margin-bottom: 10px;
@@ -42,7 +42,7 @@ h4 {
   align-items: center; /* Center the buttons vertically */
 }
 
-.back-button,
+.back-button-pay,
 .pay-now-button {
   padding: 10px 20px;
   color: #fff;
@@ -53,7 +53,7 @@ h4 {
   transition: background-color 0.3s;
 }
 
-.back-button {
+.back-button-pay {
   background-color: #007bff; /* Blue color for "Back" button */
   opacity: 0.7; /* Reduced opacity for less emphasis */
 }
@@ -63,7 +63,7 @@ h4 {
 }
 
 
-.back-button:hover {
+.back-button-pay:hover {
   background-color: #0056b3;
   opacity: 1; /* Full opacity on hover for "Back" button */
 }
@@ -74,8 +74,11 @@ h4 {
 }
 
 /* Arrow icon for the "Back" button */
-.back-button::before {
+.back-button-pay::before {
   content: "←"; /* Unicode arrow character */
   margin-right: 5px;
 }
 
+.pay-paragraph {
+  text-align: left;
+}
