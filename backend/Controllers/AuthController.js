@@ -61,6 +61,13 @@ module.exports.Login = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false, // Make the cookie accessible only on the server-side
     });
+    const userid = user._id; // Replace with the actual username value
+    res.cookie("userid", userid, {
+      maxAge: 3600000, // Cookie expiration time in milliseconds
+      path: "/",
+      withCredentials: true,
+      httpOnly: false, // Make the cookie accessible only on the server-side
+    });
     res
       .status(201)
       .json({ message: "User logged in successfully", success: true });
