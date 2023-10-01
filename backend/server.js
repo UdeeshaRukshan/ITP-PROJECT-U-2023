@@ -7,13 +7,8 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
 const adminRoute = require("./Routes/AdminRoutes");
-const agentRouter = require("./Routes/agentroute");
-const propertie = require("./Routes/properties");
-
-const auctioneerRouter = require("./Routes/auctioneers.js");
-const vehicleRouter = require("./Routes/vehicles.js");
-const artRouter = require("./Routes/arts.js");
-const collectableRouter = require("./Routes/collectables.js");
+ const agentRouter = require("./Routes/agentroute");
+ const propertie=require("./Routes/properties")
 dotenv.config();
 
 const { MONGO_URL } = process.env;
@@ -51,10 +46,5 @@ app.use(express.json());
 app.use("/", authRoute);
 app.use("/ticket", ticketRoute);
 app.use("/admin", adminRoute);
-app.use("/agent", agentRouter);
-app.use("/property", propertie);
-app.use("/auctioneer", auctioneerRouter);
-app.use("/vehicle", vehicleRouter);
-app.use("/art", artRouter);
-
-app.use("/collectable", collectableRouter);
+ app.use("/agent", agentRouter);
+ app.use("/property",propertie)

@@ -21,8 +21,6 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
-import CustomerSupport from "./pages/CustomerSupport";
-import Report from "./pages/Report";
 function App() {
   // Create a client
 const queryClient = new QueryClient()
@@ -40,8 +38,6 @@ const queryClient = new QueryClient()
         <Route path="/payment" element={<Payment/>}/>
         <Route path="/auction" element={<Auction/>}/>
         <Route path="/customersupport" element={<DashboardSupportContent/>}/>
-        <Route path="/customer" element={<CustomerSupport/>}/>
-        <Route path="/report" element={<Report/>}/>
       </Routes>
     </div>
     </QueryClientProvider>

@@ -225,7 +225,19 @@ function DashboardContent() {
       });
   }, []);
 
-  
+  useEffect(() => {
+    // Fetch user data from your server
+    axios
+      .get("http://localhost:4042/dashbord", {
+        withCredentials: true, //fix cookie problem
+      })
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
   useEffect(() => {
     // Fetch agents from your server
     axios
@@ -350,13 +362,11 @@ function DashboardContent() {
         console.error("Error downloading PDF:", error);
       });
   };
-  
   const toggleAssignForm = (agentId, itemAddress) => {
     setIsAssignFormVisible(!isAssignFormVisible);
     setSelectedItemId(agentId);
     setSelectedItemAddress(itemAddress);
   };
-
   const handleAssignItem = (agentId) => {
     if (agentId && selectedItemAddress) {
       // Find the selected agent by ID

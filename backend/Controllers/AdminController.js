@@ -187,20 +187,6 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
-const getAllNotificationByUserId = asyncHandler(async (req, res) => {
-  try {
-    const { userId } = req.body; // Assuming you have a route parameter for the user ID
-    const notification = await Notification.find({selectedUser:userId})
-    if (!notification) {
-      return res.status(200).json({ message: "Notifications not found" });
-    }
-    res.status(200).json(notification);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
 const deleteNotification = asyncHandler(async (req, res) => {
   const { id } = req.body;
   console.log(id);
@@ -264,5 +250,4 @@ module.exports = {
   updateNotification,
   deleteNotification,
   sendEmail,
-  getAllNotificationByUserId
 };
