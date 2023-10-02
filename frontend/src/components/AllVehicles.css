@@ -46,7 +46,7 @@
 .cancel-button-allvehicle,
 .all-button-allvehicle,
 .delete-button-allvehicle {
-  padding: 10px 15px;
+  padding: 10px 10px;
   margin-right: 10px;
   cursor: pointer;
   border: none;
