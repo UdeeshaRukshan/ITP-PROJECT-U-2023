@@ -7,7 +7,7 @@ import "./Dashbord.css";
 // import axios from "axios"; // Import axios for making API requests
 // import { toast } from "react-toastify"; // Import toast for notifications
 
-const Dashboard = () => {
+const DDashboard = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -217,4 +217,4 @@ const Dashboard = () => {
   // );
 };
 
-export default Dashboard;
+export default DDashboard;
