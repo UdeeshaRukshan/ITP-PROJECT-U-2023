@@ -15,7 +15,6 @@ import Login from "./pages/Login";
 
 import ContactUs from "./pages/ContactUs";
 
-
 import Dashboard from "./pages/Dashbord";
 import Agent from "./components/dashbord/Agent";
 
@@ -46,7 +45,7 @@ import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
 import Payment from "./pages/Payment";
-import Feedback from "./pages/Feedback";
+
 import supportQuesPage from "./pages/Support Ques/supportQues";
 function App() {
   const queryClient = new QueryClient();
@@ -72,7 +71,6 @@ function App() {
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
             <Route path="/support/supportQues" element={<supportQuesPage />} />
 
-
             <Route path="/add" exact element={<PersonalDetails />} />
             <Route path="/addart" exact element={<ArtForm />} />
             <Route path="/addvehicle" exact element={<VehiclesForm />} />
@@ -83,7 +81,6 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
-          
 
             <Route path="/dashbord/payment" exact element={<Payment />} />
             <Route
