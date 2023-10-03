@@ -9,7 +9,7 @@ import Footer from "./components/dashbord/Footer/footer";
 import React from "react";
 import IndexPage from "./pages/IndexPage";
 import Header from "./components/Header";
-import Home from "./pages/Home";
+
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
@@ -45,6 +45,7 @@ import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
 import Payment from "./pages/Payment";
+//import AdminDashboard from "./pages/AdminDashboard";
 
 import supportQuesPage from "./pages/Support Ques/supportQues";
 function App() {
@@ -57,7 +58,6 @@ function App() {
           <Header />
 
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />

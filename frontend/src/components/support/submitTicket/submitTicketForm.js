@@ -15,7 +15,7 @@ import { useForm } from "@mantine/form";
 import { showNotification, updateNotification } from "@mantine/notifications";
 import { IconDiscountCheck, IconExclamationCircle } from "@tabler/icons-react";
 import axios from "axios";
-import Home from "../../../pages/Home";
+
 const SubmitTicketForm = () => {
   const ticket = useForm({
     validateInputOnChange: true,
@@ -36,32 +36,31 @@ const SubmitTicketForm = () => {
     },
   });
   const handleSubmit = (values) => {
+    //     const serviceId = "service_r27xwep";
+    //     const templateId = "template_fz0sxta";
+    //     const publicKey = "Wi-JrZP_Jb89HSxvb";
 
-//     const serviceId = "service_r27xwep";
-//     const templateId = "template_fz0sxta";
-//     const publicKey = "Wi-JrZP_Jb89HSxvb";
+    //     const data ={
+    //       service_id: serviceId,
+    //       template_id: templateId,
+    // user_id: publicKey,
+    // template_params: {
+    //   from_name : name,
+    //   from_email : email,
+    //   to_name : "auction pal",
+    //   message: message,
+    // }
 
-//     const data ={
-//       service_id: serviceId,
-//       template_id: templateId,
-// user_id: publicKey,
-// template_params: {
-//   from_name : name,
-//   from_email : email,
-//   to_name : "auction pal",
-//   message: message,
-// }
-
-//     };
-//     try{
-// const res = axios.post("http://localhost:4042/ticket/add", data);
-// console.log(res.data);
-// setName("");
-// setEmail("");
-// setMessage("");
-//  }catch(error){
-// console.log(error);
-//     }
+    //     };
+    //     try{
+    // const res = axios.post("http://localhost:4042/ticket/add", data);
+    // console.log(res.data);
+    // setName("");
+    // setEmail("");
+    // setMessage("");
+    //  }catch(error){
+    // console.log(error);
+    //     }
 
     showNotification({
       //after submitting form show loading notification
@@ -72,10 +71,12 @@ const SubmitTicketForm = () => {
       message: "we're trying to submit your ticket",
     });
     axios
-      .post("http://localhost:4042/ticket/add", values,{withCredentials:true})
+      .post("http://localhost:4042/ticket/add", values, {
+        withCredentials: true,
+      })
       .then((response) => {
-        //reset current form 
-        ticket.reset()
+        //reset current form
+        ticket.reset();
 
         //show success notification
         updateNotification({
@@ -98,9 +99,7 @@ const SubmitTicketForm = () => {
           title: "error",
           message: "submission failed",
         });
-
       });
-      
   };
 
   return (
