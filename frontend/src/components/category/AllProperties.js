@@ -58,7 +58,7 @@ export default function AllProperties() {
         </div>
         <div className="item-details">
           <h3>{property.address}</h3>
-          <p className="price">${property.price}</p> {/* Add price */}
+          <p className="price">${property.value}</p> {/* Add price */}
         </div>
         <div className="item-actions">
           <Link
