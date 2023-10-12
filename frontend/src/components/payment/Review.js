@@ -28,10 +28,10 @@ const Review = ({ paymentid }) => {
 
   // Sample data for paymentDetails (replace this with actual data fetched from the server)
   const samplePaymentDetails = {
-    cardName: "Visa",
-    firstName: "Thamasha pasidunee",
-    cardNumber: "**** **** **** 1234",
-    expiryDate: "12/23",
+    cardName: "",
+    firstName: "",
+    cardNumber: "",
+    expiryDate: "",
   };
 
   return (
