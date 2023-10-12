@@ -3,7 +3,7 @@
   margin: 0;
 }
 .index {
-  background-color: #d1c7c7;
+  background-color: #ffffff;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,7 +11,7 @@
 }
 
 .index .div {
-  background-color: #b9b2b2;
+  background-color: #ffffff;
   height: 110%;
   position: relative;
   width: 100%;

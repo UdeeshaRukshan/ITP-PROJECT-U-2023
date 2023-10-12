@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useRef} from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -16,11 +16,14 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Swal from "sweetalert2";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
+import SimpleReactValidator from 'simple-react-validator';
 
 function SendEmail() {
   const [userEmail, setUserEmail] = React.useState();
   const [subject, setSubject] = React.useState();
   const [message, setMessgae] = React.useState();
+  const [validator] = React.useState(new SimpleReactValidator());
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,41 +34,57 @@ function SendEmail() {
         title: "Please enter all fields",
         text: "error while sending email",
       });
-    } else {
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-        const { info } = axios.post(
-          "http://localhost:4042/admin/sendEmail",
-          {
-            userEmail,
-            subject,
-            message,
-          },
-          config
-        );
+    } 
+  
+      else {
 
-        console.log(info);
-        Swal.fire({
-          icon: "success",
-          title: "Email send",
-          text: "Email has been send successfully to " + userEmail,
-        });
-        setUserEmail("");
-        setSubject("");
-        setMessgae("");
-      } catch (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Error while sending email",
-        });
-      }
+        if(!validator.allValid()){
+          Swal.fire({
+            icon: "error",
+            title: "Email Validation Error",
+            text: "Please enter valid email",
+          });
+          forceUpdate();
+        }
+        else{
+
+          try {
+            const config = {
+              headers: {
+                "Content-type": "application/json",
+              },
+            };
+            const { info } = axios.post(
+              "http://localhost:4042/admin/sendEmail",
+              {
+                userEmail,
+                subject,
+                message,
+              },
+              config
+            );
+  
+            console.log(info);
+            Swal.fire({
+              icon: "success",
+              title: "Email send",
+              text: "Email has been send successfully to " + userEmail,
+            });
+            setUserEmail("");
+            setSubject("");
+            setMessgae("");
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Error while sending email",
+            });
+          }
+        }
     }
   };
+  const [, forceUpdate] = React.useState();
+  
   return (
     <div
       style={{
@@ -97,8 +116,10 @@ function SendEmail() {
           autoFocus
           value={userEmail}
           onChange={(e) => setUserEmail(e.target.value)}
-        />
-
+        >
+          {validator.message('email', userEmail, 'required|email')}
+        </TextField>
+        
         <TextField
           margin="normal"
           required
