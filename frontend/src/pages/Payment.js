@@ -108,7 +108,8 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [value, setValue] = React.useState(0);
-
+ 
+  
   const logout = (e) => {
     e.preventDefault();
     Swal.fire({
@@ -128,6 +129,7 @@ function DashboardContent() {
     });
   };
 
+ 
   return (
     <Box sx={{ flexGrow: 1, display: "block" }}>
       <Grid container spacing={2}>
@@ -194,7 +196,9 @@ function DashboardContent() {
               <Box>
                 <div className="main-div">
                   <div className="col-div-8 displayA" id="displayArea">
-                    <div className="search-bar">HI This is payment gateway</div>
+                    <div className="search-bar">
+                        HI This is payment gateway
+                     </div>
                   </div>
                 </div>
               </Box>

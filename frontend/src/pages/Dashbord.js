@@ -39,10 +39,10 @@ const DDashboard = () => {
         <a href="" class="icon-a" id="btn1">
           <i class="fa fa-users icons"></i> &nbsp;&nbsp;Bidding History
         </a>
-        <a href="/dashbord" class="icon-a" id="btn2" onclick="changeContent()">
+        <a href="Movie.jsp" class="icon-a" id="btn2" onclick="changeContent()">
           <i class="fa fa-video-camera"></i> &nbsp;&nbsp;Order History
         </a>
-        <a href="/dashbord/payment" class="icon-a" id="btn3">
+        <a href="Tvshow.jsp" class="icon-a" id="btn3">
           <i class="fa fa-tv"></i> &nbsp;&nbsp;Payment History
         </a>
         <a href="DisplayFeedback.jsp" class="icon-a" id="btn4">
