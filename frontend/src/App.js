@@ -44,7 +44,7 @@ import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
 import FeedbackHistory from "./components/dashbord/feedbacks/FeedbackHistory";
-
+import BiddingHistory from "./components/dashbord/biddingHistory/biddingHistory";
 import PaymentHistory from "./components/dashbord/PaymentHistory";
 import AdminDashboard from "./pages/AdminDashboard";
 
@@ -94,6 +94,11 @@ function App() {
               path="/dashbord/payment"
               exact
               element={<PaymentHistory />}
+            />
+            <Route
+              path="/dashbord/orderhistory"
+              exact
+              element={<BiddingHistory />}
             />
             <Route
               path="/collectables/:auctioneerId"

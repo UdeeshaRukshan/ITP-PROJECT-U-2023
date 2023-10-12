@@ -322,9 +322,14 @@ const Dashboard = () => {
         {/* </Link> */}
 
         <a href="/dashbord" class="icon-a" id="btn1">
-          <i class="fa fa-users icons"></i> &nbsp;&nbsp;Bidding History
+          <i class="fa fa-users icons"></i> &nbsp;&nbsp;Profile Information
         </a>
-        <a href="/dashbord" class="icon-a" id="btn2" onclick="changeContent()">
+        <a
+          href="/dashbord/orderhistory"
+          class="icon-a"
+          id="btn2"
+          onclick="changeContent()"
+        >
           <i class="fa fa-video-camera"></i> &nbsp;&nbsp;Order History
         </a>
         <a href="/dashbord/payment" class="icon-a" id="btn3">
