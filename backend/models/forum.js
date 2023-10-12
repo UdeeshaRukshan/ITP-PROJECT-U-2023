@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const WishListSchema = mongoose.Schema(
+const ForumSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -23,6 +23,6 @@ const WishListSchema = mongoose.Schema(
   }
 );
 
-const WishList = mongoose.model("WishList", WishListSchema);
+const Forum = mongoose.model("Forum", ForumSchema);
 
-module.exports = { WishList };
+module.exports = { Forum };

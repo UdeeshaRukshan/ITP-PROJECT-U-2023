@@ -1,9 +1,9 @@
 const express = require("express");
-const { WishList } = require("../models/wishlist");
+const { Forum } = require("../models/forum"); // Assuming you have a "forum.js" file in your models directory
 
 const router = express.Router();
 
-// Route for Save a new WishList
+// Route for Save a new Forum
 router.post("/", async (request, response) => {
   try {
     const { title, author, publishYear, content } = request.body;
@@ -14,30 +14,30 @@ router.post("/", async (request, response) => {
       });
     }
 
-    const newWishList = {
+    const newForum = {
       title,
       author,
       publishYear,
       content,
     };
 
-    const wishlist = await WishList.create(newWishList);
+    const forum = await Forum.create(newForum);
 
-    return response.status(201).send(wishlist);
+    return response.status(201).send(forum);
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
   }
 });
 
-// Route for Get All WishLists from the database
+// Route for Get All Forums from the database
 router.get("/", async (request, response) => {
   try {
-    const wishlists = await WishList.find({});
+    const forums = await Forum.find({});
 
     return response.status(200).json({
-      count: wishlists.length,
-      data: wishlists,
+      count: forums.length,
+      data: forums,
     });
   } catch (error) {
     console.log(error.message);
@@ -45,21 +45,21 @@ router.get("/", async (request, response) => {
   }
 });
 
-// Route for Get One WishList from the database by id
+// Route for Get One Forum from the database by id
 router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
-    const wishlist = await WishList.findById(id);
+    const forum = await Forum.findById(id);
 
-    return response.status(200).json(wishlist);
+    return response.status(200).json(forum);
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
   }
 });
 
-// Route for Update a WishList
+// Route for Update a Forum
 router.put("/:id", async (request, response) => {
   try {
     const { title, author, publishYear, content } = request.body;
@@ -71,7 +71,7 @@ router.put("/:id", async (request, response) => {
       });
     }
 
-    const result = await WishList.findByIdAndUpdate(id, {
+    const result = await Forum.findByIdAndUpdate(id, {
       title,
       author,
       publishYear,
@@ -79,28 +79,28 @@ router.put("/:id", async (request, response) => {
     });
 
     if (!result) {
-      return response.status(404).json({ message: "WishList not found" });
+      return response.status(404).json({ message: "Forum not found" });
     }
 
-    return response.status(200).send({ message: "WishList updated successfully" });
+    return response.status(200).send({ message: "Forum updated successfully" });
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
   }
 });
 
-// Route for Delete a WishList
+// Route for Delete a Forum
 router.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
-    const result = await WishList.findByIdAndDelete(id);
+    const result = await Forum.findByIdAndDelete(id);
 
     if (!result) {
-      return response.status(404).json({ message: "WishList not found" });
+      return response.status(404).json({ message: "Forum not found" });
     }
 
-    return response.status(200).send({ message: "WishList deleted successfully" });
+    return response.status(200).send({ message: "Forum deleted successfully" });
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });

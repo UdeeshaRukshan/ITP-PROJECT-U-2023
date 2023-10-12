@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
-import "./ShowWishlist.css";
+import "./ShowForum.css"; // Update CSS file name if necessary
 
 const ShowWishlist = () => {
   const [wishlist, setWishlist] = useState({});
@@ -13,7 +13,7 @@ const ShowWishlist = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/wishlists/${id}`)
+      .get(`http://localhost:4000/wishlists/${id}`) // Update URL to match your wishlist endpoint
       .then((response) => {
         setWishlist(response.data);
         setLoading(false);
@@ -32,10 +32,6 @@ const ShowWishlist = () => {
         <Spinner />
       ) : (
         <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
-          {/* <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">ID</span>
-            <span>{wishlist._id}</span>
-          </div> */}
           <div className="my-4">
             <span className="text-xl mr-4 text-gray-500">Title</span>
             <span>{wishlist.title}</span>

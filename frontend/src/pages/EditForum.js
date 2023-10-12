@@ -1,21 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import "./CreateWishList.css"; // Update CSS file name if necessary
+import "./EditForum.css"; // Update CSS file name if necessary
 
-const CreateWishlist = () => {
+const EditForum = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
   const [content, setContent] = useState(""); // Added content state
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleSaveWishlist = () => {
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`http://localhost:4000/forums/${id}`) // Updated URL to match your forum endpoint
+      .then((response) => {
+        setAuthor(response.data.author);
+        setPublishYear(response.data.publishYear);
+        setTitle(response.data.title);
+        setContent(response.data.content); // Set the content
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        enqueueSnackbar("Error loading forum", { variant: "error" });
+        console.log(error);
+      });
+  }, [id]);
+
+  const handleEditForum = () => {
     const data = {
       title,
       author,
@@ -24,15 +43,15 @@ const CreateWishlist = () => {
     };
     setLoading(true);
     axios
-      .post("http://localhost:4000/wishlists", data) // Updated URL to "/wishlists"
+      .put(`http://localhost:4000/forums/${id}`, data) // Updated URL to match your forum endpoint
       .then(() => {
         setLoading(false);
-        enqueueSnackbar("Wishlist Created successfully", { variant: "success" });
-        navigate("/"); // Assuming you want to navigate back to the homepage
+        enqueueSnackbar("Forum Edited successfully", { variant: "success" });
+        navigate("/");
       })
       .catch((error) => {
         setLoading(false);
-        enqueueSnackbar("Error", { variant: "error" });
+        enqueueSnackbar("Error editing forum", { variant: "error" });
         console.log(error);
       });
   };
@@ -40,7 +59,7 @@ const CreateWishlist = () => {
   return (
     <div className="p-4">
       <BackButton />
-      <h1 className="text-3xl my-4">Create Wishlist</h1>
+      <h1 className="text-3xl my-4">Edit Forum</h1>
       {loading ? <Spinner /> : ""}
       <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
         <div className="my-4">
@@ -78,7 +97,7 @@ const CreateWishlist = () => {
             className="border-2 border-gray-500 px-4 py-2 w-full h-48" // Adjust the height as needed
           />
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={handleSaveWishlist}>
+        <button className="p-2 bg-sky-300 m-8" onClick={handleEditForum}>
           Save
         </button>
       </div>
@@ -86,4 +105,4 @@ const CreateWishlist = () => {
   );
 };
 
-export default CreateWishlist;
+export default EditForum;

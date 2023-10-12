@@ -1,5 +1,5 @@
-/* Style for the wishlist card container */
-.wishlist-card {
+/* Style for the forum card container */
+.forum-card {
   border: 2px solid #ccc;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
@@ -8,13 +8,13 @@
   transition: box-shadow 0.3s;
 }
 
-/* Hover effect for the wishlist card */
-.wishlist-card:hover {
+/* Hover effect for the forum card */
+.forum-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Style for wishlist title */
-.wishlist-title {
+/* Style for forum title */
+.forum-title {
   font-size: 1.25rem;
   margin-top: 0.5rem;
 }
@@ -27,8 +27,8 @@
   margin-top: 1rem;
 }
 
-/* Style for the wishlist icon */
-.wishlist-icon {
+/* Style for the forum icon */
+.forum-icon {
   color: #03a9f4;
   font-size: 2.5rem;
   cursor: pointer;

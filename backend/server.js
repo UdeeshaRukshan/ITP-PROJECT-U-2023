@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
-const wishlistRoute = require("./routes/wishlistRoute"); // Import the route for wishlists
+const forumRoute = require("./routes/forumRoute"); // Import the route for forums
 const cookieParser = require("cookie-parser");
 
 dotenv.config();
@@ -37,8 +37,8 @@ app.use(
 // Middleware for parsing request body
 app.use(express.json());
 
-// Define routes for wishlists
-app.use("/wishlists", wishlistRoute); // Use the wishlist route for '/wishlists' path
+// Define routes for forums
+app.use("/forums", forumRoute); // Use the forum route for '/forums' path
 
 app.get("/", (request, response) => {
   return response.status(200).send("Welcome To MERN Stack Tutorial");

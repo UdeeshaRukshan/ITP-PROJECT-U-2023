@@ -2,21 +2,24 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
-import WishlistsTable from "../components/home/WishlistTable"; // Import the appropriate component for wishlists
-import WishlistsCard from "../components/home/WishlistCard"; // Import the appropriate component for wishlists
+import ForumTable from "../components/home/ForumTable";
+import ForumCard from "../components/home/FourmCard";
+
+
+
 import "./Home.css"; // Import your custom CSS file
 
 const Home = () => {
-  const [wishlists, setWishlists] = useState([]); // Update state variable name to wishlists
+  const [forums, setForums] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:4000/wishlists") // Updated URL to "/wishlists"
+      .get("http://localhost:4000/forums") // Updated URL to "/forums"
       .then((response) => {
-        setWishlists(response.data.data); // Updated state variable to wishlists
+        setForums(response.data.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -35,15 +38,15 @@ const Home = () => {
           Table
         </button>
         <button
-          className="bg-sky-300 hover.bg-sky-600 px-4 py-1 rounded-lg"
+          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
           onClick={() => setShowType("card")}
         >
           Card
         </button>
       </div>
       <div className="flex justify-between items-center">
-        <h1 className="title">WishList</h1> {/* Updated title */}
-        <Link to="/wishlists/create" className="create-link"> {/* Updated create URL */}
+        <h1 className="title">Share your Knowledge with us</h1>
+        <Link to="/forums/create" className="create-link"> {/* Updated create URL */}
           <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg">
             Create
           </button>
@@ -52,9 +55,9 @@ const Home = () => {
       {loading ? (
         <Spinner />
       ) : showType === "table" ? (
-        <WishlistsTable wishlists={wishlists} />
+        <ForumTable forums={forums} /> // Updated component name
       ) : (
-        <WishlistsCard wishlists={wishlists} /> 
+        <ForumCard forums={forums} /> // Updated component name
       )}
     </div>
   );
