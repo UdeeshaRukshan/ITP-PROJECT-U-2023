@@ -29,6 +29,8 @@
     "filepond-plugin-image-preview": "^4.6.11",
     "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.7.0",
     "mdb-react-ui-kit": "^6.3.0",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",

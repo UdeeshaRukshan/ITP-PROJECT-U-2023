@@ -52,6 +52,12 @@ import AdminDashboard from "./pages/AdminDashboard";
 import supportQuesPage from "./pages/Support Ques/supportQues";
 import Agent from "./pages/Agent";
 
+import PaymentForm from "./components/payment/PaymentForm";
+import PaymentList from "./components/payment/PaymentList";
+import Review from "./components/payment/Review";
+import Transaction from "./components/payment/Transaction";
+import EditCard from "./components/payment/EditCard";
+
 //Admin Dashbord
 
 function App() {
@@ -68,13 +74,11 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
             <Route path="/support/supportQues" element={<supportQuesPage />} />
-
             <Route path="/add" exact element={<PersonalDetails />} />
             <Route path="/addart" exact element={<ArtForm />} />
             <Route path="/addvehicle" exact element={<VehiclesForm />} />
@@ -105,13 +109,18 @@ function App() {
               element={CollectableDetails}
             />
             <Route path="/property/:propertyId" element={<PropertyDetails />} />
-
             <Route path="/arts/:artid" element={<ArtDetails />} />
             <Route path="/wishlist" element={<Wishlist />} />
-
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/agent" element={<Agent />} />
             {/* <Route path="/paymentAdmin" element={<Payment />} /> */}
+            <Route path="/payment" element={<PaymentForm />} />{" "}
+            {/* Use "element" */}
+            <Route path="/paymentlist" element={<PaymentList />} />{" "}
+            {/* Use "element" */}
+            <Route path="/review" element={<Review />} />{" "}
+            <Route path="/transaction" element={<Transaction />} />{" "}
+            <Route path="/edit-card" element={<EditCard />} />{" "}
           </Routes>
 
           <Footer />

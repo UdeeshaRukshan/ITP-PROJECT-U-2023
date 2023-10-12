@@ -1,0 +1,83 @@
+/* Container for the transaction summary */
+.transaction-summary-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style for the transaction summary box */
+.transaction-summary {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 400px;
+  text-align: left;
+}
+
+/* Heading styles */
+.review-header {
+  font-size: 28px; /* Bigger font size for "Transaction Summary" */
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.pay-sub-heading {
+  font-size: 20px; /* Slightly smaller font size for "Payment Details" */
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Payment details section */
+.payment-details {
+  margin-top: 20px;
+}
+
+/* Buttons */
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center the buttons vertically */
+}
+
+.back-button-pay,
+.pay-now-button {
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.back-button-pay {
+  background-color: #007bff; /* Blue color for "Back" button */
+  opacity: 0.7; /* Reduced opacity for less emphasis */
+}
+
+.pay-now-button {
+  background-color: #ff5733; /* Make "Pay Now" button more prominent */
+}
+
+.back-button-pay:hover {
+  background-color: #0056b3;
+  opacity: 1; /* Full opacity on hover for "Back" button */
+}
+
+.pay-now-button:hover {
+  background-color: #b93201;
+  opacity: 1; /* Full opacity on hover for "Back" button */
+}
+
+/* Arrow icon for the "Back" button */
+.back-button-pay::before {
+  content: "←"; /* Unicode arrow character */
+  margin-right: 5px;
+}
+
+.pay-paragraph {
+  text-align: left;
+}

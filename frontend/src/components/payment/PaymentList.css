@@ -1,0 +1,81 @@
+/* PaymentList.css */
+.payment-list-container {
+  margin: 50px auto;
+  max-width: 2000px; /* Adjusted max-width for better readability */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-list-header {
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.search-bar button {
+  background-color: #363753;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.print-pdf-button {
+  background-color: #ba2b00;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px; /* Slightly decreased space between header and table */
+}
+
+.payment-list-thread .payment-list-th {
+  background-color: #363753;
+  color: #ffffff;
+  padding: 12px; /* Slightly decreased padding for header cells */
+  text-align: left;
+}
+
+.payment-list-tbody .payment-list-td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Slightly decreased padding for data cells */
+}
+
+.payment-list-card-number {
+  max-width: 150px; /* Adjusted max-width for card number column */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.payment-list-masked {
+  font-family: monospace; /* Ensure masked characters have the same width */
+}
+
+.payment-list-tbody tr:nth-child(even) {
+  background-color: #e5e5e5;
+}
+
+.payment-list-tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
