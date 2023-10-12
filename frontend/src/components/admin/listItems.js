@@ -19,11 +19,11 @@ export const mainListItems = (
       <ListItemText primary="Notification & Alerts" />
     </ListItemButton>
 
-    <ListItemButton to={"/auction"}>
+    <ListItemButton to={"/auctionmanagement"}>
       <ListItemText primary="Auction Management" />
     </ListItemButton>
 
-    <ListItemButton to={"/payment"}>
+    <ListItemButton to={"/paymentmanagement"}>
       <ListItemText primary="Payment Management" />
     </ListItemButton>
 

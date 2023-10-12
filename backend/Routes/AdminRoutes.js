@@ -1,4 +1,4 @@
-const { authAdmin, addAdmin, searchUser, sendNotification, getAllNotifications, getUserById, updateNotification, deleteNotification, sendEmail } = require("../Controllers/AdminController");
+const { authAdmin, addAdmin, searchUser, sendNotification, getAllNotifications, getUserById, updateNotification, deleteNotification, sendEmail, getAllNotificationByUserId } = require("../Controllers/AdminController");
 
 const router = require("express").Router();
 
@@ -12,5 +12,6 @@ router.post("/get-user-by-id",getUserById)
 router.post("/update-notification", updateNotification);
 router.post("/delete-notification", deleteNotification);
 router.post("/sendEmail",sendEmail)
+router.post("/getAllNotification-ByUserId",getAllNotificationByUserId);
 
 module.exports = router;

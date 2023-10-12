@@ -472,7 +472,7 @@ function LoginForm() {
   }
 }
 
-export default function Dashboard() {
+export default function AdminDashboard() {
   return <LoginForm />;
 }
 

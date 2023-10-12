@@ -568,7 +568,7 @@ function DashboardContent() {
                               />
                             </div>
 
-                            <div className="button-containerrr">
+                            <div className="button-container">
                               <button type="submit">Update Agent</button>
                               <div className="spacer"></div>
                               <button
