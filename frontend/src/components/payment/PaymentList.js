@@ -10,7 +10,7 @@ const PaymentList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8070/payment/getpayments")
+      .get("http://localhost:4042/payment/getpayments")
       .then((response) => {
         setPayments(response.data);
         setFilteredPayments(response.data);
