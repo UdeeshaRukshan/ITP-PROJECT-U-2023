@@ -63,7 +63,7 @@ function SendNewAlerts() {
         Swal.fire({
           icon: "success",
           title: "Published",
-          text: "Notification sent",
+          text: "Artical has been published",
         });
         setImage(null);
         setDescription("");

@@ -1,0 +1,533 @@
+body {
+  margin: 0px;
+  padding: 0px;
+
+  background-color: #dbd5d5;
+
+  font-family: system-ui;
+}
+.clearfix {
+  clear: both;
+}
+.logo {
+  margin: 0px;
+  margin-left: 28px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 30px;
+}
+.logo span {
+  color: #d5ab01;
+}
+.sidenav {
+  margin-top: 9.5vh;
+  height: 130%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #363753;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+}
+.sidenav a {
+  padding: 15px 8px 15px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #ebebeb;
+  display: block;
+  transition: 0.3s;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+  background-color: #1b203d;
+}
+.sidenav {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+  margin-left: 300px;
+}
+.head {
+  padding: 20px;
+}
+.col-div-6 {
+  width: 50%;
+  float: left;
+}
+.profile {
+  display: inline-block;
+  float: right;
+  width: 160px;
+}
+.pro-img {
+  float: left;
+  width: 50px;
+  margin-top: 10px;
+}
+.profile p {
+  color: white;
+  font-weight: 500;
+  margin-left: 55px;
+  margin-top: 10px;
+  font-size: 13.5px;
+}
+.profile p span {
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+  color: #8e8b8b;
+}
+.col-div-3 {
+  width: 25%;
+  float: left;
+}
+.box {
+  width: 85%;
+  height: 100px;
+  background-color: #b2b4c1;
+  margin-left: 10px;
+  padding: 10px;
+}
+.box p {
+  font-size: 35px;
+  color: white;
+  font-weight: bold;
+  line-height: 30px;
+  padding-left: 10px;
+  margin-top: 20px;
+  display: inline-block;
+}
+.box p span {
+  font-size: 20px;
+  font-weight: 400;
+  color: #818181;
+}
+.box-icon {
+  font-size: 40px !important;
+  float: right;
+  margin-top: 35px !important;
+  color: #818181;
+  padding-right: 10px;
+}
+.col-div-8 {
+  margin-left: 50vh;
+}
+.col-div-4 {
+  width: 30%;
+  float: left;
+}
+.content-box {
+  padding: 20px;
+}
+.content-box p {
+  margin: 0px;
+  font-size: 20px;
+  color: #f7403b;
+}
+.content-box p span {
+  float: right;
+  background-color: #ddd;
+  padding: 3px 10px;
+  font-size: 15px;
+}
+.box-8,
+.box-4 {
+  width: 95%;
+  background-color: #b4b5bc;
+  height: 330px;
+}
+.nav2 {
+  display: none;
+}
+
+.box-8 {
+  margin-left: 10px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  text-align: left;
+  padding: 15px;
+  color: #ddd;
+  border-bottom: 1px solid #81818140;
+}
+.circle-wrap {
+  margin: 50px auto;
+  width: 150px;
+  height: 150px;
+  background: #e6e2e7;
+  border-radius: 50%;
+}
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+}
+.circle-wrap .circle .mask {
+  clip: rect(0px, 150px, 150px, 75px);
+}
+
+.circle-wrap .circle .mask .fill {
+  clip: rect(0px, 75px, 150px, 0px);
+  background-color: #f7403b;
+}
+.circle-wrap .circle .mask.full,
+.circle-wrap .circle .fill {
+  animation: fill ease-in-out 3s;
+  transform: rotate(126deg);
+}
+
+.circle-wrap .inside-circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #fff;
+  line-height: 130px;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  position: absolute;
+  z-index: 100;
+  font-weight: 700;
+  font-size: 2em;
+}
+.update-button,
+.delete-button {
+  display: inline-block;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.update-button input[type="button"],
+.delete-button input[type="button"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-button input[type="button"] {
+  background-color: #f44336;
+}
+.image-agent {
+  margin-left: 2.5vh;
+  width: 20vh;
+  height: 20vh;
+  background: rgb(250, 250, 250);
+  border-radius: 50%;
+}
+.user-name {
+  margin-left: 2.2vh;
+  font-family: "Georgia", Serif, monospace;
+  color: #ffffff;
+  font-weight: 800;
+}
+.main-div {
+  background-color: #c9cad5;
+}
+/* Dashboard.css */
+/* Style for the user profile container */
+.user-profilee {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 120vh;
+  height: 100%;
+  margin-bottom: 10vh;
+}
+
+/* Style for the profile title (username) */
+.profile-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Style for the user information */
+.profile-info p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* Strong text (labels) */
+.profile-info strong {
+  font-weight: bold;
+}
+
+/* You can customize these styles further to match your design */
+.button-container {
+  justify-content: space-between;
+}
+.profile-info {
+  margin-top: 10px; /* Add margin to separate from other content */
+}
+
+/* Style for individual profile detail items */
+.profile-info div {
+  margin-bottom: 8px; /* Add vertical spacing between detail items */
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+/* Style for strong (labels) */
+.profile-info strong {
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 10px; /* Add vertical spacing between field groups */
+}
+
+/* Style for labels */
+.form-group label {
+  display: block; /* Display labels as block-level elements (one below the other) */
+  font-weight: bold;
+  margin-bottom: 5px; /* Add spacing between labels and inputs */
+}
+/*update input area design */
+.form-group input {
+  width: 40vh;
+  height: 5vh;
+}
+
+.btn-update {
+  margin-left: 4vh;
+}
+
+.popup-form {
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 400px;
+  width: 100%;
+}
+
+.popup-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+button {
+  margin-top: 10px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #999;
+}
+
+/* Add this CSS to your Agent.css or a separate CSS file */
+
+/* Style the table header */
+/* Add this CSS to your Agent.css or a separate CSS file */
+
+/* Style the table header */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style table rows and cells */
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #cce5ff;
+}
+
+table td {
+  padding: 10px;
+  color: black; /* Set text color to black */
+}
+
+/* Style the "Assign" button */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Style the form elements */
+.popup-form label {
+  color: black; /* Set label text color to black */
+}
+.popup-form {
+  position: absolute;
+  top: 50%; /* Adjust the top position as needed */
+  left: 35%; /* Adjust the left position as needed */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  margin-left: 9vh;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it's above other content */
+}
+.btnn-cancel {
+  margin-left: -20vh;
+}
+
+.button-container {
+  margin-top: 10px; /* Adjust the margin as needed */
+  padding-left: -80vh;
+}
+
+.popup-form input[type="text"],
+.popup-form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: black; /* Set input text color to black */
+}
+
+.popup-form button[type="submit"],
+.popup-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-form button[type="submit"]:hover,
+.popup-form button:hover {
+  background-color: #0056b3;
+}
+/* .button-container {
+  display: flex;
+}
+
+.button-container button {
+  margin-right: 10px;
+  margin-left: -30vh;
+} */
+
+.user-name {
+  padding-left: 5px;
+  font-size: 20px;
+}
+.add-agent {
+  margin-left: 40vh;
+  width: 18vh;
+  height: 5vh;
+}
+.btn-report {
+}
+
+.search-bar {
+  margin-bottom: 3vh;
+}
+
+.search-btn {
+  height: 5.5vh;
+}
+.search-area {
+  height: 5.5vh;
+}
+
+#displayArea {
+  margin-bottom: 30vh;
+  padding-bottom: 30vh;
+  position: sticky;
+  height: 120vh;
+  margin-top: 2vh;
+}
+
+.btnUpdate {
+  margin: 2vh;
+}
+/* .btnn-update {
+  margin-left: -40vh;
+} */
+
+.view-qr,
+.down-qr {
+  margin-bottom: 10vh;
+}
+.btn-compartment {
+  margin-top: 4vh;
+}
+.button-container {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+}
+
+.spacer {
+  flex-grow: 1; /* Allow the spacer to grow and push the buttons apart */
+}
+
+.button-container button {
+  margin: 0 5px; /* Add horizontal margin to separate buttons */
+}

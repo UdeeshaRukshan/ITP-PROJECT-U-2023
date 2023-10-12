@@ -187,6 +187,20 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
+const getAllNotificationByUserId = asyncHandler(async (req, res) => {
+  try {
+    const { userId } = req.body; // Assuming you have a route parameter for the user ID
+    const notification = await Notification.find({selectedUser:userId})
+    if (!notification) {
+      return res.status(200).json({ message: "Notifications not found" });
+    }
+    res.status(200).json(notification);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 const deleteNotification = asyncHandler(async (req, res) => {
   const { id } = req.body;
   console.log(id);
@@ -215,17 +229,15 @@ const sendEmail = asyncHandler(async (req, res) => {
   console.log(userEmail, subject, message);
 
   var transporter = nodemailer.createTransport({
-    host: "smtp.zoho.com",
-    port: 465, // Use the appropriate port for Zoho SMTP (465 for secure SSL/TLS)
-    secure: true, // Use SSL/TLS for secure connection
+    service: "gmail",
     auth: {
-      user: "udeeshagamage12@zohomail.com",
-      pass: "udeesha@135",
-    }, // <-- Add the missing closing bracket here
+      user: "sdinuwan13@gmail.com",
+      pass: "add your pass key here",
+    },
   });
 
   var mailOptions = {
-    from: "udeeshagamage12@zohomail.com",
+    from: "sdinuwan13@gmail.com",
     to: userEmail,
     subject: subject,
     text: message,
@@ -250,4 +262,5 @@ module.exports = {
   updateNotification,
   deleteNotification,
   sendEmail,
+  getAllNotificationByUserId
 };
