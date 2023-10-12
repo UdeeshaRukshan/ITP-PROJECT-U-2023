@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./PaymentList.css";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 const PaymentList = () => {
   const [payments, setPayments] = useState([]);
+  const [filteredPayments, setFilteredPayments] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     axios
       .get("http://localhost:8070/payment/getpayments")
       .then((response) => {
         setPayments(response.data);
+        setFilteredPayments(response.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -26,9 +31,51 @@ const PaymentList = () => {
     return "*".repeat(cvv.length);
   };
 
+  const handleSearch = () => {
+    const searchTermLower = searchTerm.toLowerCase();
+    if (searchTermLower.trim() === "") {
+      setFilteredPayments(payments);
+    } else {
+      const filtered = payments.filter((payment) => {
+        return (
+          payment.firstName.toLowerCase().includes(searchTermLower) ||
+          payment.lastName.toLowerCase().includes(searchTermLower) ||
+          payment.email.toLowerCase().includes(searchTermLower)
+        );
+      });
+      setFilteredPayments(filtered);
+    }
+  };
+
+  const handlePrintPDF = () => {
+    // Use jsPDF to generate a PDF document
+    const doc = new jsPDF();
+    doc.text("Payment Details", 20, 10);
+    doc.autoTable({
+      head: ["First Name", "Last Name", "Email", "Expiry Date"],
+      body: filteredPayments.map((payment) => [
+        payment.firstName,
+        payment.lastName,
+        payment.email,
+        payment.expiryDate,
+      ]),
+    });
+    doc.save("payment_details.pdf");
+  };  
+
   return (
     <div className="payment-list-container">
       <h2 className="payment-list-header">Payment List</h2>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by first name, last name, or email"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+      <button className="print-pdf-button" onClick={handlePrintPDF}>Print details as PDF</button>
       <table className="payment-list-table">
         <thead className="payment-list-thread">
           <tr>
@@ -44,7 +91,7 @@ const PaymentList = () => {
           </tr>
         </thead>
         <tbody className="payment-list-tbody">
-          {payments.map((payment) => (
+          {filteredPayments.map((payment) => (
             <tr key={payment._id}>
               <td className="payment-list-td">{payment.firstName}</td>
               <td className="payment-list-td">{payment.lastName}</td>
@@ -68,4 +115,5 @@ const PaymentList = () => {
 };
 
 export default PaymentList;
+
 

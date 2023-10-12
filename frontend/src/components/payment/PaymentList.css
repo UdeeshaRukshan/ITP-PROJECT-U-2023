@@ -13,6 +13,37 @@
   margin-bottom: 20px;
 }
 
+.search-bar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.search-bar button {
+  background-color: #363753;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.print-pdf-button {
+  background-color: #ba2b00;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .payment-list-table {
   width: 100%;
   border-collapse: collapse;
@@ -48,6 +79,8 @@
 .payment-list-tbody tr:nth-child(odd) {
   background-color: #ffffff;
 }
+
+
 
 
 
