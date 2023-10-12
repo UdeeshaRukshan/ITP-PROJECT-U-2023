@@ -15,7 +15,7 @@ const propertyRouter = require("./Routes/properties");
 const collectableRouter = require("./Routes/collectables");
 const paymentRoute = require("./routes/paymentRoutes");
 const wishlistRoutes = require("./Routes/WishlistRoutes");
-
+const feedbackRoute = require("./Routes/FeedbackRoute");
 const agentRouter = require("./Routes/agentroute");
 
 const cloudinary = require("cloudinary").v2;
@@ -161,3 +161,5 @@ app.use("/collectable", collectableRouter);
 app.use("/admin", adminRoute);
 app.use("/payment", paymentRoute);
 app.use("/agent", agentRouter);
+
+app.use("/api/feedback", feedbackRoute);

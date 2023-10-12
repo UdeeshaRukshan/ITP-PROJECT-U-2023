@@ -58,6 +58,10 @@ import Review from "./components/payment/Review";
 import Transaction from "./components/payment/Transaction";
 import EditCard from "./components/payment/EditCard";
 
+import Feedback from "./pages/Feedback";
+import FeedbackView from "./pages/FeedbackView";
+import FeedbackEdit from "./pages/FeedbackEdit";
+
 //Admin Dashbord
 
 function App() {
@@ -120,7 +124,11 @@ function App() {
             {/* Use "element" */}
             <Route path="/review" element={<Review />} />{" "}
             <Route path="/transaction" element={<Transaction />} />{" "}
-            <Route path="/edit-card" element={<EditCard />} />{" "}
+            <Route path="/edit-card" element={<EditCard />} />
+            {/* randi */}
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/feedback/all" element={<FeedbackView />} />
+            <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
           </Routes>
 
           <Footer />
