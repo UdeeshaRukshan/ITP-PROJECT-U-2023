@@ -57,24 +57,25 @@ const PaymentHistory = () => {
               alt={`Image 0`}
             />
           )}
+          <p class="user-name"> {users.firstname + " " + users.lastname}</p>
         </a>
         <p className="user-name"> {users.username}</p>
 
         <a href="/dashbord" class="icon-a" id="btn1">
-          <i class="fa fa-users icons"></i> &nbsp;&nbsp;Bidding History
+          <i class="fa fa-users icons"></i> &nbsp;&nbsp;Profile Information
         </a>
         <a
-          href="/dashbord/agent"
+          href="/dashbord/orderhistory"
           class="icon-a"
           id="btn2"
           onclick="changeContent()"
         >
           <i class="fa fa-video-camera"></i> &nbsp;&nbsp;Order History
         </a>
-        <a href="" class="icon-a" id="btn3">
+        <a href="/dashbord/payment" class="icon-a" id="btn3">
           <i class="fa fa-tv"></i> &nbsp;&nbsp;Payment History
         </a>
-        <a href="" class="icon-a" id="btn4">
+        <a href="/dashbord/feedback" class="icon-a" id="btn4">
           <i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Feedbacks
         </a>
       </div>
