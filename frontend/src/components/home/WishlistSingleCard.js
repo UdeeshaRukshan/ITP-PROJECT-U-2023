@@ -11,11 +11,11 @@ const WishlistSingleCard = ({ wishlist }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="wishlist-card"> {/* Adjust the class name for your styles */}
+    <div className="wishlist-card">
       <h2 className="wishlist-title">Name: {wishlist.title}</h2>
       <h2 className="wishlist-title">Author: {wishlist.author}</h2>
-      <h2 className="wishlist-title">publish Year: {wishlist.publishYear}</h2>
-      {/* You can customize the content based on your wishlist data */}
+      <h2 className="wishlist-title">Publish Year: {wishlist.publishYear}</h2>
+      <p className="wishlist-title">Content: {wishlist.content}</p> {/* Display the 'content' field */}
       <div className="action-icons">
         <BiGift
           className="wishlist-icon"

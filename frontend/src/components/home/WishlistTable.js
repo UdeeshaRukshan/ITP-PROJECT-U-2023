@@ -14,6 +14,7 @@ const WishlistTable = ({ wishlists }) => {
           <th className="table-header">Name</th>
           <th className="table-header hidden md:table-cell">Owner</th>
           <th className="table-header hidden md:table-cell">Creation Date</th>
+          <th className="table-header">Content</th>
           <th className="table-header">Operations</th>
         </tr>
       </thead>
@@ -26,6 +27,7 @@ const WishlistTable = ({ wishlists }) => {
             <td className="table-cell hidden md:table-cell">
               {wishlist.publishYear}
             </td>
+            <td className="table-cell">{wishlist.content}</td>
             <td className="table-cell">
               <div className="operation-icons">
                 <Link to={`/wishlists/details/${wishlist._id}`}>

@@ -8,6 +8,7 @@ const WishlistCard = ({ wishlists }) => {
       ))}
     </div>
   );
+ 
 };
 
 export default WishlistCard;

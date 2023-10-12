@@ -14,6 +14,9 @@ const WishListSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    content: { // New property 'content'
+      type: String, // Assuming content is a string, you can change the type as needed
+    },
   },
   {
     timestamps: true,
