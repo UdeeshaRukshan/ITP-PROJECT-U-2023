@@ -169,21 +169,27 @@ const EditCard = () => {
   };
 
   return (
-    <div style={containerStyle}>
-      <h2 style={headerStyle}>Edit Card Details</h2>
-      <table style={tableStyle}>
-        <thead style={headerCellStyle}>{/* ... */}</thead>
-        <tbody>
+    <div className="edit-card-container">
+      <h2 className="edit-card-header">Edit Card Details</h2>
+      <table className="edit-card-table">
+        <thead className="edit-card-thread">
+          <tr className="tr-edit-card">
+            <th className="edit-card-th">ID</th>
+            <th className="edit-card-th">Card Name</th>
+            <th className="edit-card-th">Card Number</th>
+            <th className="edit-card-th">Expiry Date</th>
+            <th className="edit-card-th">CVV</th>
+            <th className="edit-card-th">Action</th>
+          </tr>
+        </thead>
+        <tbody className="edit-card-tbody">
           {cards.map((card, index) => (
-            <tr
-              key={index}
-              style={index % 2 === 0 ? evenRowStyle : oddRowStyle}
-            >
+            <tr key={index}>
               <td>{index + 1}</td>
               <td>
                 {editCard && editCard.index === index ? (
                   <input
-                    style={inputStyle}
+                    className="edit-card-input"
                     type="text"
                     value={editCard.cardName}
                     onChange={(e) =>
@@ -194,15 +200,59 @@ const EditCard = () => {
                   card.cardName
                 )}
               </td>
-              {/* ... */}
+              <td>
+                {editCard && editCard.index === index ? (
+                  <input
+                    className="edit-card-input"
+                    type="text"
+                    value={editCard.cardNumber}
+                    onChange={(e) =>
+                      setEditCard({ ...editCard, cardNumber: e.target.value })
+                    }
+                  />
+                ) : (
+                  card.cardNumber
+                )}
+              </td>
+              <td>
+                {editCard && editCard.index === index ? (
+                  <input
+                    className="edit-card-input"
+                    type="text"
+                    value={editCard.expiryDate}
+                    onChange={(e) =>
+                      setEditCard({ ...editCard, expiryDate: e.target.value })
+                    }
+                  />
+                ) : (
+                  card.expiryDate
+                )}
+              </td>
+              <td>
+                {editCard && editCard.index === index ? (
+                  <input
+                    className="edit-card-input"
+                    type="text"
+                    value={editCard.cvv}
+                    onChange={(e) =>
+                      setEditCard({ ...editCard, cvv: e.target.value })
+                    }
+                  />
+                ) : (
+                  card.cvv
+                )}
+              </td>
               <td>
                 {editCard && editCard.index === index ? (
                   <>
-                    <button style={saveButtonStyle} onClick={handleUpdateCard}>
+                    <button
+                      className="save-button-editcard"
+                      onClick={handleUpdateCard}
+                    >
                       Save
                     </button>
                     <button
-                      style={cancelButtonStyle}
+                      className="cancel-button-editcard"
                       onClick={() => setEditCard(null)}
                     >
                       Cancel
@@ -211,13 +261,13 @@ const EditCard = () => {
                 ) : (
                   <>
                     <button
-                      style={editButtonStyle}
+                      className="edit-button-editcard"
                       onClick={() => handleEditCard(index)}
                     >
                       Edit
                     </button>
                     <button
-                      style={deleteButtonStyle}
+                      className="delete-button-editcard"
                       onClick={() => handleDeleteCard(index)}
                     >
                       Delete
