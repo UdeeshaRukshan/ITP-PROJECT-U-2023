@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../payment/paymentForm.css";
-import EditCard from "./EditCard";
 import axios from "axios";
 
 const PaymentForm = () => {
@@ -18,6 +17,15 @@ const PaymentForm = () => {
     expiryDate: "",
     cvv: "",
   });
+
+  const [errorMessages, setErrorMessages] = useState({
+    email: '',
+    phone: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+  });
+  
 
   const navigate = useNavigate();
 
@@ -77,39 +85,74 @@ const PaymentForm = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-
+  
     if (type === "checkbox") {
       setFormData({
         ...formData,
         [name]: checked,
       });
     } else {
-      // Check if the input is the "expiryDate" field
+      let cleanedValue = value;
+  
+      // Handle special formatting for expiryDate
       if (name === "expiryDate") {
-        // Ensure only numbers are entered
-        const cleanedValue = value.replace(/\D/g, "");
-
-        if (cleanedValue.length <= 4) {
-          let formattedValue = cleanedValue;
-          if (cleanedValue.length >= 2) {
-            // Add a "/" after the first 2 digits (MM)
-            formattedValue =
-              cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
-          }
-
-          setFormData({
-            ...formData,
-            [name]: formattedValue,
-          });
+        cleanedValue = cleanedValue.replace(/\D/g, "");
+  
+        if (cleanedValue.length >= 2) {
+          cleanedValue =
+            cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
         }
-      } else {
-        setFormData({
-          ...formData,
-          [name]: value,
+  
+        setErrorMessages({
+          ...errorMessages,
+          expiryDate: isExpiryDateValid(cleanedValue)
+            ? ""
+            : "Card has already expired",
         });
       }
+  
+      setFormData({
+        ...formData,
+        [name]: cleanedValue,
+      });
+  
+      // Validate and set error messages for other fields
+      setErrorMessages({
+        ...errorMessages,
+        email:
+          name === "email"
+            ? isEmailValid(cleanedValue)
+              ? ""
+              : "Please enter a valid email address"
+            : errorMessages.email,
+        phone:
+          name === "phone"
+            ? isPhoneNumberValid(cleanedValue)
+              ? ""
+              : "Please enter a valid phone number"
+            : errorMessages.phone,
+        cardNumber:
+          name === "cardNumber"
+            ? isCardNumberValid(cleanedValue)
+              ? ""
+              : "Please enter a valid 16-digit card number"
+            : errorMessages.cardNumber,
+        cvv:
+          name === "cvv"
+            ? isCVVValid(cleanedValue)
+              ? ""
+              : "Please enter a valid 3-digit CVV"
+            : errorMessages.cvv,
+        expiryDate:
+          name === "expiryDate"
+            ? isExpiryDateValid(cleanedValue)
+              ? ""
+              : "Card has already expired"
+            :errorMessages.expiryDate,
+      });
     }
   };
+  
 
     // Function to save card details
     const saveCardDetailsFunction = async () => {
@@ -208,20 +251,18 @@ const PaymentForm = () => {
           />
         </div>
         <div className="form-group-payment">
-          <input
-            type="email"
-            className="input-field-pay"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {!isEmailValid(formData.email) && (
-            <div className="error-message">
-              Please enter a valid email address
-            </div>
-          )}
+            <input
+              type="email"
+              className="input-field-pay"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errorMessages.email && (
+              <div className="error-message">{errorMessages.email}</div>
+            )}
         </div>
         <div className="form-group-payment">
           <input
@@ -232,10 +273,8 @@ const PaymentForm = () => {
             value={formData.phone}
             onChange={handleChange}
           />
-          {!isPhoneNumberValid(formData.phone) && (
-            <div className="error-message">
-              Please enter a valid phone number
-            </div>
+          {errorMessages.phone && (
+            <div className="error-message">{errorMessages.phone}</div>
           )}
         </div>
         <div className="form-subheading">Payment Information</div>
@@ -260,42 +299,38 @@ const PaymentForm = () => {
               value={formatCardNumber(formData.cardNumber)}
               onChange={handleChange}
             />
-            {!isCardNumberValid(formData.cardNumber) && (
-              <div className="error-message">
-                Please enter a valid 16-digit card number
-              </div>
+            {errorMessages.cardNumber && (
+              <div className="error-message">{errorMessages.cardNumber}</div>
             )}
           </div>
         </div>
         <div className="row">
-          <div className="form-group-payment">
-            <input
-              type="text"
-              className="input-field-pay date-field"
-              name="expiryDate"
-              placeholder="Expiry Date (MM/YY)"
-              value={formData.expiryDate}
-              onChange={handleChange}
-            />
-            {!isExpiryDateValid(formData.expiryDate) && (
-              <div className="error-message">Card has already expired</div>
-            )}
-          </div>
-          <div className="form-group-payment">
-            <input
-              type="text"
-              className="input-field-pay cvv-field"
-              name="cvv"
-              placeholder="CVV"
-              value={formData.cvv}
-              onChange={handleChange}
-            />
-            {!isCVVValid(formData.cvv) && (
-              <div className="error-message">
-                Please enter a valid 3-digit CVV
-              </div>
-            )}
-          </div>
+        <div className="form-group-payment">
+          <input
+            type="text"
+            className="input-field-pay date-field"
+            name="expiryDate"
+            placeholder="Expiry Date (MM/YY)"
+            value={formData.expiryDate}
+            onChange={handleChange}
+          />
+          {errorMessages.expiryDate && (
+            <div className="error-message">{errorMessages.expiryDate}</div>
+          )}
+        </div>
+        <div className="form-group-payment">
+          <input
+            type="text"
+            className="input-field-pay cvv-field"
+            name="cvv"
+            placeholder="CVV"
+            value={formData.cvv}
+            onChange={handleChange}
+          />
+          {errorMessages.cvv && (
+            <div className="error-message">{errorMessages.cvv}</div>
+          )}
+        </div>
         </div>
         <div className="form-group-payment radio-group">
           <p>Do you want to save your card details?</p>
