@@ -27,7 +27,7 @@ export const mainListItems = (
       <ListItemText primary="Payment Management" />
     </ListItemButton>
 
-    <ListItemButton to={"/customersupport"}>
+    <ListItemButton to={"/adminsupport"}>
       <ListItemText primary="Customer support & Help" />
     </ListItemButton>
 

@@ -465,6 +465,7 @@ function DashboardContent() {
               }}
             >
               <Box>
+                {" "}
                 <div className="main-div">
                   <div className="col-div-8 displayA" id="displayArea">
                     <div className="search-bar">
