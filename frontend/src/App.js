@@ -7,20 +7,18 @@ import {
 
 import React from "react";
 
-import Header from "./components/Header";
-
 import AdminDashboard from "./pages/AdminDashboard";
 import Agent from "./pages/Agent";
-import Payment from "./pages/Payment";
+import PaymentAdmin from "./pages/PaymentAdmin";
 import Auction from "./pages/Auction";
+
 function App() {
   return (
     <div className="App">
-      <Header />
       <Routes>
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/agent" element={<Agent />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment" element={<PaymentAdmin />} />
         <Route path="/auction" element={<Auction />} />
       </Routes>
     </div>

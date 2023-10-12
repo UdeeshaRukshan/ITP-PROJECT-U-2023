@@ -27,7 +27,7 @@ import PropTypes from "prop-types";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import QRCode from "qrcode.react";
-import "../pages/Payment.css";
+import "../pages/PaymentAdmin.css";
 
 const drawerWidth = 0;
 
@@ -108,8 +108,7 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [value, setValue] = React.useState(0);
- 
-  
+
   const logout = (e) => {
     e.preventDefault();
     Swal.fire({
@@ -129,7 +128,6 @@ function DashboardContent() {
     });
   };
 
- 
   return (
     <Box sx={{ flexGrow: 1, display: "block" }}>
       <Grid container spacing={2}>
@@ -196,9 +194,7 @@ function DashboardContent() {
               <Box>
                 <div className="main-div">
                   <div className="col-div-8 displayA" id="displayArea">
-                    <div className="search-bar">
-                        HI This is payment gateway
-                     </div>
+                    <div className="search-bar">HI This is payment gateway</div>
                   </div>
                 </div>
               </Box>
@@ -416,7 +412,7 @@ function LoginForm() {
   }
 }
 
-export default function Payment() {
+export default function PaymentAdmin() {
   return <LoginForm />;
 }
 
