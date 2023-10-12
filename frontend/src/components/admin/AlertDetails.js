@@ -196,7 +196,7 @@ function AlertDetails() {
 
       data.append("file", pic);
 
-      // Setup your cloudinary detailsn here
+      
       data.append("upload_preset", "yourfile name");
 
       data.append("cloud_name", "your cloud name");

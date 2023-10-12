@@ -1,26 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
+
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+
 import Link from "@mui/material/Link";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import {
-  mainListItems,
-  secondaryListItems,
-} from "../components/admin/listItems";
+
+import { mainListItems } from "../components/admin/listItems";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -30,12 +23,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Swal from "sweetalert2";
 import axios from "axios";
 import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import SendNewAlerts from "../components/admin/SendNewAlerts";
-import AlertDetails from "../components/admin/AlertDetails";
-import SendEmail from "../components/admin/SendEmail";
+
 import LogoutIcon from "@mui/icons-material/Logout";
+import "bootstrap/dist/css/bootstrap.min.css";
+import QRCode from "qrcode.react";
+import "../pages/PaymentAdmin.css";
 
 const drawerWidth = 0;
 
@@ -111,22 +103,11 @@ CustomTabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-
 const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   const logout = (e) => {
     e.preventDefault();
@@ -210,55 +191,14 @@ function DashboardContent() {
                 padding: "10px 20px",
               }}
             >
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-                indicatorColor="primary"
-                textColor="inherit"
-                variant="fullWidth"
-                sx={{ mt: "10px", ml: "20px", mr: "20px" }}
-              >
-                <Tab
-                  label="Send New Alerts"
-                  {...a11yProps(0)}
-                  sx={{
-                    backgroundColor: "green",
-                    borderRadius: "15px",
-                    width: "20vw",
-                    mr: "40px",
-                  }}
-                />
-                <Tab
-                  label="Alert Details"
-                  {...a11yProps(1)}
-                  sx={{
-                    backgroundColor: "green",
-                    borderRadius: "15px",
-                    width: "20vw",
-                  }}
-                />
-                <Tab
-                  label="Send Email"
-                  {...a11yProps(2)}
-                  sx={{
-                    backgroundColor: "green",
-                    borderRadius: "15px",
-                    width: "20vw",
-                    ml: "40px",
-                  }}
-                />
-              </Tabs>
+              <Box>
+                <div className="main-div">
+                  <div className="col-div-8 displayA" id="displayArea">
+                    <div className="search-bar">HI This is payment gateway</div>
+                  </div>
+                </div>
+              </Box>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-              <SendNewAlerts />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-              <AlertDetails />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-              <SendEmail />
-            </CustomTabPanel>
           </Box>
         </Grid>
       </Grid>
@@ -472,7 +412,7 @@ function LoginForm() {
   }
 }
 
-export default function Dashboard() {
+export default function PaymentAdmin() {
   return <LoginForm />;
 }
 
