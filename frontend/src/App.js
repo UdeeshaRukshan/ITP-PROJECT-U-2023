@@ -17,6 +17,7 @@ import EditArtForm from "./components/EditArtForm";
 
 
 
+
 function App() {
   return (
     <div>
@@ -36,6 +37,7 @@ function App() {
            <Route path="/getcollectables" exact element={<AllCollectables/>} />
            <Route path="/getvehicles" exact element={<AllVehicles/>} />
            <Route path="/updateart/:artid" exact element={<EditArtForm/>} />
+          
 
 
            

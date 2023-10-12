@@ -14,30 +14,30 @@
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/getauctioneers">Users</a>        
+          <a className="nav-link active" aria-current="page" href="/add">Users</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/getvehicles">Vehicles</a>        
+          <a className="nav-link active" aria-current="page" href="/addvehicle">Vehicles</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/getarts">Arts</a>        
+          <a className="nav-link active" aria-current="page" href="/addart">Arts</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/getproperties">Properties</a> 
+          <a className="nav-link active" aria-current="page" href="/addproperty">Properties</a> 
           </li>
           <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/getcollectables">Collectables</a>        
+          <a className="nav-link active" aria-current="page" href="/addcollectable">Collectables</a>        
         </li>       
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Forms
           </a>
           <ul className="dropdown-menu">
-          <li><a className="dropdown-item" href="/add">PersonalDetails</a></li>
-            <li><a className="dropdown-item" href="/addvehicle">Vehicles</a></li>
-            <li><a className="dropdown-item" href="/addproperty">Properties</a></li>
-            <li><a className="dropdown-item" href="/addcollectable">Collectables</a></li>        
-            <li><a className="dropdown-item" href="/addart">Arts</a></li>
+          <li><a className="dropdown-item" href="/getauctioneers">PersonalDetails</a></li>
+            <li><a className="dropdown-item" href="/getvehicles">Vehicles</a></li>
+            <li><a className="dropdown-item" href="/getproperties">Properties</a></li>
+            <li><a className="dropdown-item" href="/getcollectables">Collectables</a></li>        
+            <li><a className="dropdown-item" href="/getarts">Arts</a></li>
           </ul>
         </li>
       </ul>

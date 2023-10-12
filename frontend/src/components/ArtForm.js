@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./ArtForm.css"; // Import CSS file for styling
 import axios from "axios";
 
@@ -12,6 +12,8 @@ function ArtForm() {
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
+
+  // const redirectUrl = useRef("/getarts/:artid"); // Replace with the actual URL
 
   function sendData(e){
     e.preventDefault();
@@ -44,6 +46,9 @@ function ArtForm() {
       setLocation("");
       setValue("");
       setImages("");
+
+      // Redirect to the desired URL after successful form submission
+      // window.location.href = redirectUrl.current;
       
     }).catch((err)=>{
       alert(err);
@@ -76,6 +81,7 @@ function ArtForm() {
           className="art-form-textarea"
           placeholder="e.g., Starry night by vincent van gogh"
           required
+          value={title}
           onChange={(e) =>{
             setTitle(e.target.value);
           }}></textarea><br />
@@ -90,6 +96,7 @@ function ArtForm() {
           className="art-form-input"
           placeholder="e.g., canvas,wood,clay,paint etc."
           required
+          value={medium}
           onChange={(e) =>{
             setMedium(e.target.value);
           }}/><br />
@@ -106,6 +113,7 @@ function ArtForm() {
               className="art-form-input"
               placeholder="e.g., 120"
               required
+              value={height}
               onChange={(e) =>{
                 const inputHeight = e.target.value;
                if (inputHeight > 0) {
@@ -126,6 +134,7 @@ function ArtForm() {
               className="art-form-input"
               placeholder="e.g., 145"
               required
+              value={width}
               onChange={(e) =>{
                 const inputWidth = e.target.value;
                if (inputWidth > 0) {
@@ -146,6 +155,7 @@ function ArtForm() {
           className="art-form-textarea"
           placeholder="e.g., Minor crease at lower left corner"
           required
+          value={condition}
           onChange={(e) =>{
             setCondition(e.target.value);
           }}></textarea><br />
@@ -158,6 +168,7 @@ function ArtForm() {
           id="location"
           name="location"
           required
+          value={location}
           onChange={(e) =>{
             setLocation(e.target.value);
           }}
@@ -182,6 +193,7 @@ function ArtForm() {
           className="art-form-input"
           placeholder="e.g., 120"
           required
+          value={value}
           onChange={(e) =>{
             const inputOpeningValue = e.target.value;
                if (inputOpeningValue > 0) {
