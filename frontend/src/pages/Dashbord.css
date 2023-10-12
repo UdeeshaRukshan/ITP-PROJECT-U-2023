@@ -248,13 +248,15 @@ th {
 
 /* Dashboard.css */
 /* Style for the user profile container */
+
 .user-profile {
   background-color: #f4efef;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100vh;
-  max-height: 70vh;
+  max-height: 100vh;
+  margin-top: -8vh;
 }
 
 /* Style for the profile title (username) */
@@ -321,7 +323,7 @@ th {
 }
 
 .logoutbtn {
-  margin-top:20vh;
+  margin-top: 20vh;
   float: right;
   width: 15vh;
   height: 7vh;
@@ -345,6 +347,6 @@ th {
 .btn-deleteA {
   height: 5.5vh;
 }
-#displayArea{
-  margin-top:-10vh
+#displayArea {
+  margin-top: -30vh;
 }

@@ -59,7 +59,7 @@ module.exports.Login = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email" });
     }
     const token = createSecretToken(user._id);
-    
+
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
@@ -161,37 +161,5 @@ module.exports.DeleteUser = async (req, res, next) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
 // module.exports.UpdatePassword = async (req, res) => {
-//   const { currentPassword, newPassword } = req.body;
-//   const userId = req.user.id; // Assuming you have user information in the request object
-
-//   try {
-//     // Retrieve the user from the database
-//     const user = await User.findById(userId);
-
-//     // Check if the provided current password matches the hashed password in the database
-//     const isPasswordValid = await bcrypt.compare(
-//       currentPassword, // Plain text current password from the request
-//       user.password // Hashed password from the database
-//     );
-
-//     if (!isPasswordValid) {
-//       // Current password is incorrect
-//       return res.status(401).json({ message: "Invalid current password." });
-//     }
-
-//     // Hash the new password
-//     const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-//     // Update the user's password in the database
-//     user.password = hashedPassword;
-//     await user.save();
-
-//     // Password changed successfully
-//     res.status(200).json({ message: "Password changed successfully." });
-//   } catch (error) {
-//     // Handle errors (e.g., database error)
-//     console.error(error);
-//     res.status(500).json({ message: "Internal server error." });
-//   }
-// };

@@ -263,33 +263,6 @@ function DashboardContent() {
         </Grid>
       </Grid>
     </Box>
-
-    // <ThemeProvider theme={mdTheme}>
-    //   <CssBaseline />
-    //   {/* <AppBar position="absolute" open={open}>
-    //       <Toolbar>
-    //         <Typography
-    //           component="h1"
-    //           variant="h6"
-    //           color="inherit"
-    //           noWrap
-    //           sx={{ flexGrow: 1 }}
-    //         >
-    //           AuctionPal
-    //         </Typography>
-    //         <IconButton color="inherit">
-    //           <Badge badgeContent={4} color="secondary">
-    //             <NotificationsIcon />
-    //           </Badge>
-    //         </IconButton>
-    //       </Toolbar>
-    //     </AppBar> */}
-
-    //   <Box sx={{ display: "flex" }}>
-
-    //   </Box>
-
-    // </ThemeProvider>
   );
 }
 

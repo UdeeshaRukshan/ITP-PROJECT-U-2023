@@ -26,13 +26,39 @@ const Dashboard = () => {
   const [newPassword, setNewPassword] = useState("");
   const [changePasswordSuccess, setChangePasswordSuccess] = useState(false);
 
+  const [message, setMessage] = useState("");
+
   const handleCurrentPasswordChange = (e) => {
     setCurrentPassword(e.target.value);
   };
 
-  // Event handler for new password input
   const handleNewPasswordChange = (e) => {
     setNewPassword(e.target.value);
+  };
+
+  const handleChangePassword = () => {
+    // Send a request to the backend to change the password
+    axios
+      .put(`http://localhost:4042/update-password/${users._id}`, {
+        currentPassword,
+        newPassword,
+      })
+      .then((response) => {
+        setChangePasswordSuccess(true);
+        // Clear the password fields
+        setCurrentPassword("");
+        setNewPassword("");
+        // Display a success message
+        toast("Password changed successfully.", {
+          position: "top-right",
+        });
+      })
+      .catch((error) => {
+        // Handle password change error (e.g., invalid current password)
+        toast.error("Password change failed. Please try again.", {
+          position: "top-right",
+        });
+      });
   };
 
   const [errors, setErrors] = useState({});
@@ -304,7 +330,7 @@ const Dashboard = () => {
         <a href="/dashbord/payment" class="icon-a" id="btn3">
           <i class="fa fa-tv"></i> &nbsp;&nbsp;Payment History
         </a>
-        <a href="" class="icon-a" id="btn4">
+        <a href="/dashbord/feedback" class="icon-a" id="btn4">
           <i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Feedbacks
         </a>
       </div>
@@ -450,7 +476,7 @@ const Dashboard = () => {
                 />
                 {errors.id && <div className="error">{errors.id}</div>}
               </div>
-              {/* <div className="form-group">
+              <div className="form-group">
                 <label>Current Password:</label>
                 <input
                   type="password"
@@ -471,7 +497,7 @@ const Dashboard = () => {
                 onClick={handleChangePassword}
               >
                 Change Password
-              </button> */}
+              </button>
               {/* Add similar fields for other user properties (address, age, etc.) */}
               <button className="btn btn-success" onClick={handleSaveClick}>
                 Save Changes

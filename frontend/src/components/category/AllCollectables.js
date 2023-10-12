@@ -2,53 +2,91 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AllAuctioneers.css"; // Import your CSS file
 import { Link } from "react-router-dom";
-export default function AllAuctioneers() {
+import { SimpleGrid } from "@mantine/core";
+export default function AllCollectables() {
   // State to store auctioneer data
-  const [auctioneers, setAuctioneers] = useState([]);
+  const [collectables, setcollectables] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+  const [message, setMessage] = useState("");
+  const handleAddToWishlist = async (collectableId) => {
+    //     console.log(artId);
+    try {
+      const response = await axios.post(
+        "http://localhost:4042/api/add-to-wishlist",
+        { itemId: collectableId },
+        { withCredentials: true }
+      );
 
+      if (response.status === 201) {
+        setMessage("Item added to wishlist successfully.");
+      } else {
+        setMessage("Error adding item to wishlist.");
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage("Server error");
+    }
+  };
   // Fetch auctioneer data from the server
   useEffect(() => {
-    async function fetchAuctioneers() {
+    async function fetchCollectables() {
       try {
         const response = await axios.get(
-          "http://localhost:4042/auctioneer/getauctioneers"
+          "http://localhost:4042/collectable/getcollectables"
         );
-        setAuctioneers(response.data);
+        setcollectables(response.data);
       } catch (error) {
         alert(error.message);
       }
     }
 
-    fetchAuctioneers();
+    fetchCollectables();
   }, []);
 
   // Render auctioneer items in a catalog-like box
-  const renderAuctioneerItems = () => {
-    return auctioneers.map((auctioneer) => (
-      <div key={auctioneer._id} className="catalog-item">
+  const renderCollectableItems = () => {
+    return collectables.map((collectable) => (
+      <div key={collectable._id} className="catalog-item">
+        <div className="item-image">
+          <img
+            src="https://m.media-amazon.com/images/I/81SDCMipR-L.jpg" // Use property-specific image URL
+            alt={`art ${collectable._id}`}
+          />
+        </div>
         <div className="item-details">
-          <h3>{`${auctioneer.firstName} ${auctioneer.lastName}`}</h3>
+          <h3>{collectable.name}</h3>
+          <p className="price">${collectable.value}</p> {/* Add price */}
         </div>
         <div className="item-actions">
-          <Link to={`/collectables/${auctioneer._id}`} className="detail-link">
+          <Link
+            to={`/collectables/${collectable._id}`}
+            className="view-details-button"
+            style={{ fontSize: 10 }}
+          >
             View Details
           </Link>
+          <button
+            className="view-details-button"
+            onClick={() => handleAddToWishlist(collectable._id)}
+            style={{ fontSize: 10 }}
+          >
+            Add to Wishlist
+          </button>{" "}
+          {/* Add to cart button */}
         </div>
       </div>
     ));
   };
 
-  // Handle "Approve" button click
-  const handleApprove = (auctioneerId) => {
-    // Add your approval logic here
-    alert(`Approved Auctioneer with ID: ${auctioneerId}`);
-  };
-
-  // Handle "Delete" button click
-  const handleDelete = (auctioneerId) => {
-    // Add your delete logic here
-    alert(`Deleted Auctioneer with ID: ${auctioneerId}`);
-  };
-
-  return <div className="catalog-container">{renderAuctioneerItems()}</div>;
+  return (
+    <div style={{ marginTop: 100, marginLeft: 80 }}>
+      <button
+        onClick={() => console.log("Button Clicked")}
+        style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
+      >
+        Add Collectable
+      </button>
+      <SimpleGrid cols={3}>{renderCollectableItems()}</SimpleGrid>
+    </div>
+  );
 }

@@ -103,7 +103,7 @@ const SubmitTicketForm = () => {
   };
 
   return (
-    <Paper p={30} shadow="md" radius={"md"} withBorder mt={20}>
+    <Paper p={30} shadow="md" radius={"md"} withBorder mt={80}>
       <Title order={1}>Contact Support</Title>
       <Space h="xl" />
       <Center>
