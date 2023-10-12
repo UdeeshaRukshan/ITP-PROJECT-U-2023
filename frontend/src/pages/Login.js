@@ -97,7 +97,12 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid
+        container
+        component="main"
+        sx={{ height: "100vh" }}
+        style={{ marginTop: "5vh" }}
+      >
         <CssBaseline />
         <Grid
           item

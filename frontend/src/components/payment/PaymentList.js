@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./PaymentList.css";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 
@@ -48,11 +47,8 @@ const PaymentList = () => {
   };
 
   const handlePrintPDF = () => {
-    // Use jsPDF to generate a PDF document
     const doc = new jsPDF();
-
-    // Set color for the header
-    const headerColor = [100, 100, 100]; // Dark gray color
+    const headerColor = [100, 100, 100];
 
     doc.text("Payment Details", 20, 10);
 
@@ -64,61 +60,142 @@ const PaymentList = () => {
         payment.email,
         payment.expiryDate,
       ]),
-      startY: 20, // Adjust the starting position to avoid overlapping with the title
+      startY: 20,
       headStyles: {
-        fillColor: headerColor, // Set header background color
-        textColor: [255, 255, 255], // Set header text color to white
+        fillColor: headerColor,
+        textColor: [255, 255, 255],
       },
-      bodyStyles: { textColor: [0, 0, 0] }, // Set body text color to black
-      theme: "striped", // Apply the striped theme
+      bodyStyles: { textColor: [0, 0, 0] },
+      theme: "striped",
     });
 
     doc.save("payment_details.pdf");
   };
 
+  const styles = {
+    paymentListContainer: {
+      margin: "50px auto",
+      maxWidth: "2000px",
+      padding: "20px",
+      backgroundColor: "#ffffff",
+      borderRadius: "8px",
+      boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+    },
+    paymentListHeader: {
+      color: "#000000",
+      marginBottom: "20px",
+    },
+    searchBar: {
+      display: "flex",
+      marginBottom: "20px",
+    },
+    searchBarInput: {
+      flex: 1,
+      padding: "10px",
+      border: "1px solid #ddd",
+      borderRadius: "4px",
+      marginRight: "10px",
+    },
+    searchBarButton: {
+      backgroundColor: "#363753",
+      color: "#ffffff",
+      border: "none",
+      padding: "10px 15px",
+      borderRadius: "4px",
+      cursor: "pointer",
+    },
+    printPdfButton: {
+      backgroundColor: "#ba2b00",
+      color: "#ffffff",
+      border: "none",
+      padding: "10px 15px",
+      borderRadius: "4px",
+      cursor: "pointer",
+    },
+    paymentListTable: {
+      width: "100%",
+      borderCollapse: "collapse",
+      marginTop: "10px",
+    },
+    paymentListTh: {
+      backgroundColor: "#363753",
+      color: "#ffffff",
+      padding: "12px",
+      textAlign: "left",
+    },
+    paymentListTd: {
+      border: "1px solid #ddd",
+      padding: "12px",
+    },
+    paymentListCardNumber: {
+      maxWidth: "150px",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    paymentListMasked: {
+      fontFamily: "monospace",
+    },
+    evenRow: {
+      backgroundColor: "#e5e5e5",
+    },
+    oddRow: {
+      backgroundColor: "#ffffff",
+    },
+  };
+
   return (
-    <div className="payment-list-container">
-      <h2 className="payment-list-header">Payment List</h2>
-      <div className="search-bar">
+    <div style={styles.paymentListContainer}>
+      <h2 style={styles.paymentListHeader}>Payment List</h2>
+      <div style={styles.searchBar}>
         <input
           type="text"
           placeholder="Search by first name, last name, or email"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          style={styles.searchBarInput}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} style={styles.searchBarButton}>
+          Search
+        </button>
       </div>
-      <button className="print-pdf-button" onClick={handlePrintPDF}>
+      <button onClick={handlePrintPDF} style={styles.printPdfButton}>
         Print details as PDF
       </button>
-      <table className="payment-list-table">
-        <thead className="payment-list-thread">
+      <table style={styles.paymentListTable}>
+        <thead>
           <tr>
-            <th className="payment-list-th">First Name</th>
-            <th className="payment-list-th">Last Name</th>
-            <th className="payment-list-th">Address</th>
-            <th className="payment-list-th">Email</th>
-            <th className="payment-list-th">Phone</th>
-            <th className="payment-list-th">Card Name</th>
-            <th className="payment-list-th">Card Number</th>
-            <th className="payment-list-th">Expiry Date</th>
-            <th className="payment-list-th">CVV</th>
+            <th style={styles.paymentListTh}>First Name</th>
+            <th style={styles.paymentListTh}>Last Name</th>
+            <th style={styles.paymentListTh}>Address</th>
+            <th style={styles.paymentListTh}>Email</th>
+            <th style={styles.paymentListTh}>Phone</th>
+            <th style={styles.paymentListTh}>Card Name</th>
+            <th style={styles.paymentListTh}>Card Number</th>
+            <th style={styles.paymentListTh}>Expiry Date</th>
+            <th style={styles.paymentListTh}>CVV</th>
           </tr>
         </thead>
-        <tbody className="payment-list-tbody">
-          {filteredPayments.map((payment) => (
-            <tr key={payment._id}>
-              <td className="payment-list-td">{payment.firstName}</td>
-              <td className="payment-list-td">{payment.lastName}</td>
-              <td className="payment-list-td">{payment.address}</td>
-              <td className="payment-list-td">{payment.email}</td>
-              <td className="payment-list-td">{payment.phone}</td>
-              <td className="payment-list-td">{payment.cardName}</td>
-              <td className="payment-list-td payment-list-card-number">
-                {maskCardNumber(payment.cardNumber)}
+        <tbody>
+          {filteredPayments.map((payment, index) => (
+            <tr
+              key={payment._id}
+              style={index % 2 === 0 ? styles.evenRow : styles.oddRow}
+            >
+              <td style={styles.paymentListTd}>{payment.firstName}</td>
+              <td style={styles.paymentListTd}>{payment.lastName}</td>
+              <td style={styles.paymentListTd}>{payment.address}</td>
+              <td style={styles.paymentListTd}>{payment.email}</td>
+              <td style={styles.paymentListTd}>{payment.phone}</td>
+              <td style={styles.paymentListTd}>{payment.cardName}</td>
+              <td style={styles.paymentListTd}>
+                <span style={styles.paymentListCardNumber}>
+                  {maskCardNumber(payment.cardNumber)}
+                </span>
               </td>
-              <td className="payment-list-td">{payment.expiryDate}</td>
-              <td className="payment-list-td payment-list-masked">
+              <td style={styles.paymentListTd}>{payment.expiryDate}</td>
+              <td
+                style={{ ...styles.paymentListTd, ...styles.paymentListMasked }}
+              >
                 {maskCVV(payment.cvv)}
               </td>
             </tr>

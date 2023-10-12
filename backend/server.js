@@ -13,7 +13,7 @@ const artRouter = require("./Routes/arts.js");
 const adminRoute = require("./Routes/AdminRoutes");
 const propertyRouter = require("./Routes/properties");
 const collectableRouter = require("./Routes/collectables");
-const paymentRoute = require("./Routes/paymentRoutes");
+const paymentRoute = require("./routes/paymentRoutes");
 const wishlistRoutes = require("./Routes/WishlistRoutes");
 
 const agentRouter = require("./Routes/agentroute");
@@ -159,5 +159,5 @@ app.use("/art", artRouter);
 app.use("/property", propertyRouter);
 app.use("/collectable", collectableRouter);
 app.use("/admin", adminRoute);
-app.use("/payment", paymentRoutes);
+app.use("/payment", paymentRoute);
 app.use("/agent", agentRouter);
