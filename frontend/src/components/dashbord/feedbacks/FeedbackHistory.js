@@ -5,7 +5,7 @@ import "./FeedbackHistory.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import QRCode from "qrcode.react";
-
+import FeedbackView from "../../../pages/FeedbackView";
 const FeedbackHistory = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [users, setUsers] = useState([]);
@@ -96,8 +96,14 @@ const FeedbackHistory = () => {
       <br />
       <br />
 
-      <div className="col-div-8 displayA" id="displayArea">
-        <div className="user-profilee"></div>
+      <div
+        className="col-div-8 displayA"
+        id="displayArea"
+        style={{ height: "110%" }}
+      >
+        <div className="user-profilee" style={{ marginLeft: "-40px" }}>
+          <FeedbackView />
+        </div>
       </div>
     </div>
   );

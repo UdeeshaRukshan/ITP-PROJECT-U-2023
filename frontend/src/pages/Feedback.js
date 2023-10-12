@@ -68,7 +68,7 @@ const Feedback = () => {
       .then((data) => {
         setAlertColor("success");
         setShowAlert("Feedback Added Successfully");
-        navigate("/feedback/all");
+        navigate("/home");
       })
       .catch((error) => {
         console.log("Error:", error);

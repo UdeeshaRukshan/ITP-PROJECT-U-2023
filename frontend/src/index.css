@@ -130,6 +130,7 @@ hr {
   border-radius: 5px;
   filter: drop-shadow(1px 1px 5px #04040431);
   margin: auto;
+  margin-top: 10vh;
 }
 .feedback_container .title {
   font-size: 20px;
@@ -189,7 +190,7 @@ hr {
 
 .review_container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
   filter: drop-shadow(0 0 5px #00000027);
@@ -198,6 +199,7 @@ hr {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
+  margin-top: 10vh;
 }
 .review_container .rate {
   font-size: 18px;
