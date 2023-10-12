@@ -16,7 +16,6 @@ import Login from "./pages/Login";
 import ContactUs from "./pages/ContactUs";
 
 import Dashboard from "./pages/Dashbord";
-import Agent from "./components/dashbord/Agent";
 
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
@@ -44,10 +43,14 @@ import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
-import Payment from "./pages/Payment";
-//import AdminDashboard from "./pages/AdminDashboard";
+
+import PaymentHistory from "./components/dashbord/PaymentHistory";
+import AdminDashboard from "./pages/AdminDashboard";
 
 import supportQuesPage from "./pages/Support Ques/supportQues";
+
+//Admin Dashbord
+
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -62,8 +65,6 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-
-            <Route path="/dashbord/agent" element={<Agent />} />
 
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
@@ -82,7 +83,11 @@ function App() {
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
 
-            <Route path="/dashbord/payment" exact element={<Payment />} />
+            <Route
+              path="/dashbord/payment"
+              exact
+              element={<PaymentHistory />}
+            />
             <Route
               path="/collectables/:auctioneerId"
               element={CollectableDetails}
@@ -91,6 +96,8 @@ function App() {
 
             <Route path="/arts/:artid" element={<ArtDetails />} />
             <Route path="/wishlist" element={<Wishlist />} />
+
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
 
           <Footer />

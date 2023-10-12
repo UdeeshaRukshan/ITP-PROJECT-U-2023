@@ -273,7 +273,6 @@ th {
 
 /* You can customize these styles further to match your design */
 .button-container {
- 
   justify-content: space-between;
 }
 .profile-info {
@@ -503,6 +502,7 @@ button:hover {
   padding-bottom: 30vh;
   position: sticky;
   height: 120vh;
+  margin-top: 2vh;
 }
 
 .btnUpdate {
