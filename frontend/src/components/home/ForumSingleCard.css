@@ -1,21 +1,28 @@
 /* Style for the forum card container */
+/* Style for the forum card container */
 .forum-card {
-  border: 2px solid #ccc;
+  border: 2px solid #010a09;
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  margin: 1rem;
+  padding: 5%; /* Adjusted padding for equal sides */
+  margin: 10%;
   position: relative;
-  transition: box-shadow 0.3s;
+  transition: all 0.3s;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
+
 
 /* Hover effect for the forum card */
 .forum-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #4fd1c5;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Style for forum title */
 .forum-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem; /* Increased font size for the title */
   margin-top: 0.5rem;
 }
 
@@ -29,28 +36,28 @@
 
 /* Style for the forum icon */
 .forum-icon {
-  color: #03a9f4;
-  font-size: 2.5rem;
+  color: #4fd1c5; /* Matched the border color */
+  font-size: 2rem; /* Adjusted font size */
   cursor: pointer;
 }
 
 /* Style for the info icon */
 .info-icon {
   color: #4caf50;
-  font-size: 2.25rem;
+  font-size: 1.75rem; /* Adjusted font size */
   margin-left: 0.5rem;
 }
 
 /* Style for the edit icon */
 .edit-icon {
   color: #ffc107;
-  font-size: 2.25rem;
+  font-size: 1.75rem; /* Adjusted font size */
   margin-left: 0.5rem;
 }
 
 /* Style for the delete icon */
 .delete-icon {
   color: #f44336;
-  font-size: 2.25rem;
+  font-size: 1.75rem; /* Adjusted font size */
   margin-left: 0.5rem;
 }

@@ -17,13 +17,13 @@ const ForumSingleCard = ({ forum }) => {
       <h2 className="forum-title">Publish Year: {forum.publishYear}</h2>
       <p className="forum-title">Content: {forum.content}</p> {/* Display the 'content' field */}
       <div className="action-icons">
-        <BiGift
+        {/* <BiGift
           className="forum-icon"
           onClick={() => setShowModal(true)}
         />
         <Link to={`/forums/details/${forum._id}`}>
           <BsInfoCircle className="info-icon" />
-        </Link>
+        </Link> */}
         <Link to={`/forums/edit/${forum._id}`}>
           <AiOutlineEdit className="edit-icon" />
         </Link>

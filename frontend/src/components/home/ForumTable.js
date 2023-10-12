@@ -51,7 +51,6 @@ const ForumTable = ({ forums }) => {
             <th className="table-header">Title</th>
             <th className="table-header hidden md:table-cell">Owner</th>
             <th className="table-header hidden md:table-cell">Creation Date</th>
-            <th className="table-header">Content</th>
             <th className="table-header">Operations</th>
           </tr>
         </thead>
@@ -64,12 +63,9 @@ const ForumTable = ({ forums }) => {
               <td className="table-cell hidden md:table-cell">
                 {forum.publishYear}
               </td>
-              <td className="table-cell">{forum.content}</td>
+             
               <td className="table-cell">
                 <div className="operation-icons">
-                  <Link to={`/forums/details/${forum._id}`}> {/* Update the route path */}
-                    <BsInfoCircle className="icon info-icon" />
-                  </Link>
                   <Link to={`/forums/edit/${forum._id}`}> {/* Update the route path */}
                     <AiOutlineEdit className="icon edit-icon" />
                   </Link>

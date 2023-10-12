@@ -3,17 +3,17 @@
 /* Style for the table */
 .table1 {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0.5rem;
 }
 
 /* Table header */
 .table-header {
-  border: 1px solid #66778d;
-  border-radius: 0.25rem;
-  padding: 0.5rem;
+  background-color: #4fd1c5; /* Header background color */
+  color: #fff; /* Header text color */
   font-weight: bold;
   text-align: center;
+  padding: 0.5rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
 }
 
 /* Table data cells */
@@ -27,21 +27,21 @@
 /* Style for operation icons */
 .operation-icons a {
   text-decoration: none;
-  margin-right: 0.5rem;
+  margin: 0 0.5rem;
 }
 
 /* Customize the operation icons as needed for forums */
 .info-icon {
-  color: #38a169; /* You can update the colors as needed */
+  color: #38a169; /* Icon color for information */
   font-size: 1.5rem;
 }
 
 .edit-icon {
-  color: #d69e2e;
+  color: #d69e2e; /* Icon color for editing */
   font-size: 1.5rem;
 }
 
 delete-icon {
-  color: #e53e3e;
+  color: #e53e3e; /* Icon color for deleting */
   font-size: 1.5rem;
 }
