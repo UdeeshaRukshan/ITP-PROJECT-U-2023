@@ -4,8 +4,16 @@
   margin: 80px auto; /* Increased space at the top */
 }
 
-.all-arts-header {
+.all-arts-header-center {
   color: #000000;
+}
+
+.all-arts-header-center {
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  height: 100%; /* Adjust the height as needed */
 }
 
 .all-arts-table {
@@ -88,7 +96,11 @@
 }
 
 .all-arts-button-container {
-  display: flex; /* Display its children (buttons) in a row */
-  gap: 5px; /* Reduce the gap between buttons to your preferred value */
-  justify-content: flex-end; /* Align buttons to the right within the container */
+  display: flex; /* Display buttons in a row */
+  align-items: center; /* Center vertically if needed */
 }
+
+.all-arts-edit-button, .delete-button-allarts {
+  margin-right: 10px; /* Adjust the margin as needed to separate the buttons */
+}
+
