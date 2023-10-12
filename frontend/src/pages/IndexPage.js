@@ -250,6 +250,22 @@ const IndexPage = () => {
             </button>
           </Link>
         </div>
+        <div style={{ marginTop: 70, marginLeft: 80 }}>
+          <Link to={"/feedback"}>
+            <button
+              onClick={() => console.log("Button Clicked")}
+              style={{
+                marginLeft: 20,
+                marginBottom: 10,
+                marginLeft: 400,
+                width: "40vh",
+                height: "4vh",
+              }}
+            >
+              Add Your Valuable feedback
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
