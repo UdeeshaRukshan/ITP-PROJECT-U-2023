@@ -11,6 +11,11 @@
 .art-form-title {
   font-size: 36px; /* Increase font size */
   margin-bottom: 30px; /* Increase margin */
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  height: 100%; 
 }
 
 .art-form-label {

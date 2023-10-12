@@ -14,23 +14,23 @@
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/add">Users</a>        
+          <a className="nav-link active" aria-current="page" href="/add">User Details</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/addvehicle">Vehicles</a>        
+          <a className="nav-link active" aria-current="page" href="/addvehicle">Vehicle Form</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/addart">Arts</a>        
+          <a className="nav-link active" aria-current="page" href="/addart">Art Form</a>        
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/addproperty">Properties</a> 
+          <a className="nav-link active" aria-current="page" href="/addproperty">Properties Form</a> 
           </li>
           <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/addcollectable">Collectables</a>        
+          <a className="nav-link active" aria-current="page" href="/addcollectable">Collectables Form</a>        
         </li>       
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Forms
+            
           </a>
           <ul className="dropdown-menu">
           <li><a className="dropdown-item" href="/getauctioneers">PersonalDetails</a></li>

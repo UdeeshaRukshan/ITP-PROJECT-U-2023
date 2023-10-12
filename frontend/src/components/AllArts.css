@@ -19,13 +19,13 @@
 .all-arts-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .all-arts-thread .all-arts-th {
   background-color: #363753;
   color: #fff;
-  padding: 15px; /* Increased padding for header cells */
+  padding: 20px; /* Increased padding for header cells */
   text-align: left;
 }
 
@@ -92,7 +92,11 @@
 }
 
 .all-arts-edit-button:hover {
-  background-color: #0056b3; /* Change the hover background color to your desired color */
+  background-color: #7aaf7d; /* Change the hover background color to your desired color */
+}
+
+.delete-button-allarts:hover {
+  background-color: #ea6c6c; /* Change the hover background color to your desired color */
 }
 
 .all-arts-button-container {
@@ -104,3 +108,31 @@
   margin-right: 10px; /* Adjust the margin as needed to separate the buttons */
 }
 
+.all-arts-generate-report-button {
+  background-color: #e89734;
+  color: #fff;
+  border: none;
+  padding: 4px 8px; /* Adjust the padding to make it smaller */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 12px; /* Adjust the font size as needed */
+}
+
+
+.all-arts-generate-report-button:hover {
+  background-color: #f0c528; /* Change the hover background color to your desired color */
+}
+
+.all-arts-search-container {
+  margin-bottom: 20px; /* Add spacing between the table and search input */
+}
+
+.all-arts-search-container input[type="text"] {
+  width: 40%; /* Make the input expand to the full width of the container */
+  padding: 12px; /* Add some padding to the input */
+  border: 2.5px solid #363753; /* Add a border to the input */
+  border-radius: 5px; /* Add rounded corners */
+  font-size: 16px; /* Set the font size */
+  outline: none; /* Remove the input outline on focus */
+}
