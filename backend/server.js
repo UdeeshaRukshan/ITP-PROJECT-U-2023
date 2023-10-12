@@ -8,14 +8,13 @@ const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
 const image = require("./models/image");
 const auctioneerRouter = require("./Routes/auctioneers");
-const vehicleRouter = require("./Routes/vehicles.js");
-const artRouter = require("./Routes/arts.js");
+const vehicleRouter = require("./routes/vehicles.js");
+const artRouter = require("./routes/arts.js");
 const adminRoute = require("./Routes/AdminRoutes");
 const propertyRouter = require("./Routes/properties");
-const collectableRouter = require("./Routes/collectables");
+const collectableRouter = require("./routes/collectables");
 
 const wishlistRoutes = require("./Routes/WishlistRoutes");
-const paymentRoutes = require("./Routes/paymentRoutes");
 
 const agentRouter = require("./Routes/agentroute");
 
@@ -26,6 +25,7 @@ dotenv.config();
 app.use(cookieParser());
 
 //import route files
+const paymentRoutes = require("./routes/paymentRoutes");
 
 const { MONGO_URL } = process.env;
 const PORT = 4042;
