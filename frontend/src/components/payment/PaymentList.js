@@ -47,21 +47,34 @@ const PaymentList = () => {
     }
   };
 
-  const handlePrintPDF = () => {
-    // Use jsPDF to generate a PDF document
-    const doc = new jsPDF();
-    doc.text("Payment Details", 20, 10);
-    doc.autoTable({
-      head: ["First Name", "Last Name", "Email", "Expiry Date"],
-      body: filteredPayments.map((payment) => [
-        payment.firstName,
-        payment.lastName,
-        payment.email,
-        payment.expiryDate,
-      ]),
-    });
-    doc.save("payment_details.pdf");
-  };  
+    const handlePrintPDF = () => {
+      // Use jsPDF to generate a PDF document
+      const doc = new jsPDF();
+    
+      // Set color for the header
+      const headerColor = [100, 100, 100]; // Dark gray color
+      
+      doc.text("Payment Details", 20, 10);
+    
+      doc.autoTable({
+        head: [["First Name", "Last Name", "Email", "Expiry Date"]],
+        body: filteredPayments.map((payment) => [
+          payment.firstName,
+          payment.lastName,
+          payment.email,
+          payment.expiryDate,
+        ]),
+        startY: 20, // Adjust the starting position to avoid overlapping with the title
+        headStyles: {
+          fillColor: headerColor, // Set header background color
+          textColor: [255, 255, 255], // Set header text color to white
+        },
+        bodyStyles: { textColor: [0, 0, 0] }, // Set body text color to black
+        theme: "striped", // Apply the striped theme
+      });
+    
+      doc.save("payment_details.pdf");
+    };
 
   return (
     <div className="payment-list-container">
