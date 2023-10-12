@@ -9,15 +9,13 @@ import Footer from "./components/dashbord/Footer/footer";
 import React from "react";
 import IndexPage from "./pages/IndexPage";
 import Header from "./components/Header";
-import Home from "./pages/Home";
+
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import About from "./pages/About";
+
 import ContactUs from "./pages/ContactUs";
-import Blog from "./pages/Blog";
 
 import Dashboard from "./pages/Dashbord";
-import Agent from "./components/dashbord/Agent";
 
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
@@ -45,7 +43,14 @@ import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
+
+import PaymentHistory from "./components/dashbord/PaymentHistory";
+import AdminDashboard from "./pages/AdminDashboard";
+
 import supportQuesPage from "./pages/Support Ques/supportQues";
+
+//Admin Dashbord
+
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -56,20 +61,16 @@ function App() {
           <Header />
 
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-
-            <Route path="/dashbord/agent" element={<Agent />} />
 
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
             <Route path="/support/supportQues" element={<supportQuesPage />} />
-
 
             <Route path="/add" exact element={<PersonalDetails />} />
             <Route path="/addart" exact element={<ArtForm />} />
@@ -83,6 +84,11 @@ function App() {
             <Route path="/vehicle" exact element={<AllVehicles />} />
 
             <Route
+              path="/dashbord/payment"
+              exact
+              element={<PaymentHistory />}
+            />
+            <Route
               path="/collectables/:auctioneerId"
               element={CollectableDetails}
             />
@@ -90,6 +96,8 @@ function App() {
 
             <Route path="/arts/:artid" element={<ArtDetails />} />
             <Route path="/wishlist" element={<Wishlist />} />
+
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
 
           <Footer />
