@@ -83,12 +83,15 @@ export default function AllArts() {
   // Return the JSX for rendering
   return (
     <div style={{ marginTop: 100, marginLeft: 80 }}>
-      <button
-        onClick={() => console.log("Button Clicked")}
-        style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
-      >
-        Add Art
-      </button>
+      <Link to={"/addart"}>
+        <button
+          onClick={() => console.log("Button Clicked")}
+          style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
+        >
+          Add Art
+        </button>
+      </Link>
+
       <SimpleGrid cols={3}>{renderArtItems()}</SimpleGrid>
     </div>
   );

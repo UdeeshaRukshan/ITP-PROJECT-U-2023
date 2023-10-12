@@ -82,12 +82,14 @@ export default function AllVehicles() {
   };
   return (
     <div style={{ marginTop: 100, marginLeft: 80 }}>
-      <button
-        onClick={() => console.log("Button Clicked")}
-        style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
-      >
-        Add Vehicle
-      </button>
+      <Link to={"/addvehicle"}>
+        <button
+          onClick={() => console.log("Button Clicked")}
+          style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
+        >
+          Add Vehicle
+        </button>
+      </Link>
       <SimpleGrid cols={3}>{renderVehicleItems()}</SimpleGrid>
     </div>
   );

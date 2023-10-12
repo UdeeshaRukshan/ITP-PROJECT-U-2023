@@ -84,12 +84,14 @@ export default function AllProperties() {
   // Return the JSX for rendering
   return (
     <div style={{ marginTop: 100, marginLeft: 80 }}>
-      <button
-        onClick={() => console.log("Button Clicked")}
-        style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
-      >
-        Add Property
-      </button>
+      <Link to={"/addproperty"}>
+        <button
+          onClick={() => console.log("Button Clicked")}
+          style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
+        >
+          Add Property
+        </button>
+      </Link>
       <SimpleGrid cols={3}>{renderPropertyItems()}</SimpleGrid>
     </div>
   );
