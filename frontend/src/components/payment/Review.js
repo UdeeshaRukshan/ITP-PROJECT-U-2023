@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Review.css";
 
-const Review = () => {
+const Review = ({ paymentid }) => {
   // Create a state for storing payment details
   const [paymentDetails, setPaymentDetails] = useState({});
   const navigate = useNavigate();
-  const { paymentid } = useParams();
+
   // Fetch payment data from API
   useEffect(() => {
     axios
-      .get(`http://localhost:4042/payment/getpayment/${paymentid}`)
+      .get(`http://localhost:8070/payment/getpayment/${paymentid}`)
       .then((response) => {
         setPaymentDetails(response.data); // Assuming API returns an object of payment data
       })
@@ -40,32 +40,19 @@ const Review = () => {
         <h2 className="review-header">Transaction Summary</h2>
         <br />
         <div className="review-details">
-          <p className="pay-paragraph">
-            Auction Item: {reviewDetails.auctionItem}
-          </p>
-          <p className="pay-paragraph">
-            Your Bid: ${reviewDetails.yourBid.toFixed(2)}
-          </p>
+          <p className="pay-paragraph">Auction Item: {reviewDetails.auctionItem}</p>
+          <p className="pay-paragraph">Your Bid: ${reviewDetails.yourBid.toFixed(2)}</p>
         </div>
         <div className="payment-details">
           <h4 className="pay-sub-heading">Payment Details</h4>
           <br />
-          <p className="pay-paragraph">Card Name: {paymentDetails.cardName}</p>
-          <p className="pay-paragraph">
-            Card Holder: {paymentDetails.firstName}
-          </p>
-          <p className="pay-paragraph">
-            Card Number: {paymentDetails.cardNumber}
-          </p>
-          <p className="pay-paragraph">
-            Expiry Date: {paymentDetails.expiryDate}
-          </p>
+          <p className="pay-paragraph">Card Name: {samplePaymentDetails.cardName}</p>
+          <p className="pay-paragraph">Card Holder: {samplePaymentDetails.firstName}</p>
+          <p className="pay-paragraph">Card Number: {samplePaymentDetails.cardNumber}</p>
+          <p className="pay-paragraph">Expiry Date: {samplePaymentDetails.expiryDate}</p>
         </div>
         <div className="action-buttons">
-          <button
-            className="back-button-pay"
-            onClick={() => navigate("/payment")}
-          >
+          <button className="back-button-pay" onClick={() => navigate("/payment")}>
             Back
           </button>
           <button

@@ -19,12 +19,13 @@ const PaymentForm = () => {
   });
 
   const [errorMessages, setErrorMessages] = useState({
-    email: "",
-    phone: "",
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
+    email: '',
+    phone: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
   });
+  
 
   const navigate = useNavigate();
 
@@ -84,7 +85,7 @@ const PaymentForm = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-
+  
     if (type === "checkbox") {
       setFormData({
         ...formData,
@@ -92,15 +93,16 @@ const PaymentForm = () => {
       });
     } else {
       let cleanedValue = value;
-
+  
       // Handle special formatting for expiryDate
       if (name === "expiryDate") {
         cleanedValue = cleanedValue.replace(/\D/g, "");
-
+  
         if (cleanedValue.length >= 2) {
-          cleanedValue = cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
+          cleanedValue =
+            cleanedValue.slice(0, 2) + "/" + cleanedValue.slice(2);
         }
-
+  
         setErrorMessages({
           ...errorMessages,
           expiryDate: isExpiryDateValid(cleanedValue)
@@ -108,12 +110,12 @@ const PaymentForm = () => {
             : "Card has already expired",
         });
       }
-
+  
       setFormData({
         ...formData,
         [name]: cleanedValue,
       });
-
+  
       // Validate and set error messages for other fields
       setErrorMessages({
         ...errorMessages,
@@ -146,67 +148,68 @@ const PaymentForm = () => {
             ? isExpiryDateValid(cleanedValue)
               ? ""
               : "Card has already expired"
-            : errorMessages.expiryDate,
+            :errorMessages.expiryDate,
       });
     }
   };
+  
 
-  // Function to save card details
-  const saveCardDetailsFunction = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:4042/payment/addpayment",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log("Payment data saved successfully");
-        navigate("/review");
-      } else {
-        console.error("Error saving payment data");
-      }
-    } catch (error) {
-      console.error("Error saving payment data:", error);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (
-      isEmailValid(formData.email) &&
-      isPhoneNumberValid(formData.phone) &&
-      isCardNumberValid(formData.cardNumber) &&
-      isExpiryDateValid(formData.expiryDate) &&
-      isCVVValid(formData.cvv)
-    ) {
+    // Function to save card details
+    const saveCardDetailsFunction = async () => {
       try {
-        if (saveCardDetails) {
-          // Only save card details if the checkbox is checked
-          await axios.post(
-            "http://localhost:4042/payment/addpayment",
-            formData,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+        const response = await axios.post(
+          "http://localhost:8070/payment/addpayment",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+  
+        if (response.status === 200) {
+          console.log("Payment data saved successfully");
+          navigate("/review");
+        } else {
+          console.error("Error saving payment data");
         }
-
-        navigate("/review");
       } catch (error) {
         console.error("Error saving payment data:", error);
       }
-    } else {
-      alert("Form data is not valid. Please check your inputs.");
-    }
-  };
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    
+      if (
+        isEmailValid(formData.email) &&
+        isPhoneNumberValid(formData.phone) &&
+        isCardNumberValid(formData.cardNumber) &&
+        isExpiryDateValid(formData.expiryDate) &&
+        isCVVValid(formData.cvv)
+      ) {
+        try {
+          if (saveCardDetails) {
+            // Only save card details if the checkbox is checked
+            await axios.post(
+              "http://localhost:8070/payment/addpayment",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+          }
+    
+          navigate("/review");
+        } catch (error) {
+          console.error("Error saving payment data:", error);
+        }
+      } else {
+        alert("Form data is not valid. Please check your inputs.");
+      }
+    };    
 
   return (
     <div className="payment-form">
@@ -248,18 +251,18 @@ const PaymentForm = () => {
           />
         </div>
         <div className="form-group-payment">
-          <input
-            type="email"
-            className="input-field-pay"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errorMessages.email && (
-            <div className="error-message">{errorMessages.email}</div>
-          )}
+            <input
+              type="email"
+              className="input-field-pay"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errorMessages.email && (
+              <div className="error-message">{errorMessages.email}</div>
+            )}
         </div>
         <div className="form-group-payment">
           <input
@@ -302,32 +305,32 @@ const PaymentForm = () => {
           </div>
         </div>
         <div className="row">
-          <div className="form-group-payment">
-            <input
-              type="text"
-              className="input-field-pay date-field"
-              name="expiryDate"
-              placeholder="Expiry Date (MM/YY)"
-              value={formData.expiryDate}
-              onChange={handleChange}
-            />
-            {errorMessages.expiryDate && (
-              <div className="error-message">{errorMessages.expiryDate}</div>
-            )}
-          </div>
-          <div className="form-group-payment">
-            <input
-              type="text"
-              className="input-field-pay cvv-field"
-              name="cvv"
-              placeholder="CVV"
-              value={formData.cvv}
-              onChange={handleChange}
-            />
-            {errorMessages.cvv && (
-              <div className="error-message">{errorMessages.cvv}</div>
-            )}
-          </div>
+        <div className="form-group-payment">
+          <input
+            type="text"
+            className="input-field-pay date-field"
+            name="expiryDate"
+            placeholder="Expiry Date (MM/YY)"
+            value={formData.expiryDate}
+            onChange={handleChange}
+          />
+          {errorMessages.expiryDate && (
+            <div className="error-message">{errorMessages.expiryDate}</div>
+          )}
+        </div>
+        <div className="form-group-payment">
+          <input
+            type="text"
+            className="input-field-pay cvv-field"
+            name="cvv"
+            placeholder="CVV"
+            value={formData.cvv}
+            onChange={handleChange}
+          />
+          {errorMessages.cvv && (
+            <div className="error-message">{errorMessages.cvv}</div>
+          )}
+        </div>
         </div>
         <div className="form-group-payment radio-group">
           <p>Do you want to save your card details?</p>
@@ -356,16 +359,13 @@ const PaymentForm = () => {
             </div>
           </div>
         </div>
-        <button
-          className="checkout-button"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit Details
+        <button className="checkout-button" type="submit" onClick={handleSubmit}>
+           Submit Details
         </button>
-      </form>
+      </form> 
     </div>
   );
 };
 
 export default PaymentForm;
+
