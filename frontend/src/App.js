@@ -43,11 +43,14 @@ import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
+import FeedbackHistory from "./components/dashbord/feedbacks/FeedbackHistory";
 
 import PaymentHistory from "./components/dashbord/PaymentHistory";
 import AdminDashboard from "./pages/AdminDashboard";
 
 import supportQuesPage from "./pages/Support Ques/supportQues";
+import Agent from "./pages/Agent";
+import Payment from "./pages/Payment";
 
 //Admin Dashbord
 
@@ -82,7 +85,11 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
-
+            <Route
+              path="/dashbord/feedback"
+              exact
+              element={<FeedbackHistory />}
+            />
             <Route
               path="/dashbord/payment"
               exact
@@ -98,6 +105,8 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
 
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/agent" element={<Agent />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
 
           <Footer />
