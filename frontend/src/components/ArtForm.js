@@ -5,6 +5,7 @@ import axios from "axios";
 function ArtForm() {
 
   const [title, setTitle] = useState("");
+  
   const [medium, setMedium] = useState("");
   const [height, setHeight] = useState("");
   const [width, setWidth] = useState("");
@@ -12,6 +13,16 @@ function ArtForm() {
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
+  const [formErrors, setFormErrors] = useState({
+    title: "",
+    medium: "",
+    height: "",
+    width: "",
+    condition: "",
+    location: "",
+    value: "",
+    images: "",
+  });
 
   // const redirectUrl = useRef("/getarts/:artid"); // Replace with the actual URL
 
@@ -62,6 +73,7 @@ function ArtForm() {
 
     for (let i = 0; i < selectedImages.length; i++) {
       imageArray.push(URL.createObjectURL(selectedImages[i]));
+
     }
 
     setImages(imageArray);
@@ -83,8 +95,20 @@ function ArtForm() {
           required
           value={title}
           onChange={(e) =>{
-            setTitle(e.target.value);
+            const inputValue = e.target.value;
+            if (/\d/.test(inputValue)) {
+              setFormErrors({
+                ...formErrors,
+                title: "Title cannot contain numerical characters.",
+              });
+            } else {
+              setFormErrors({ ...formErrors, title: "" });
+              setTitle(inputValue);
+            }
           }}></textarea><br />
+          {formErrors.title && (
+          <p className="error-message">{formErrors.title}</p>
+        )}
 
         <label className="art-form-label" htmlFor="medium">
           Medium:
@@ -98,8 +122,20 @@ function ArtForm() {
           required
           value={medium}
           onChange={(e) =>{
-            setMedium(e.target.value);
+            const inputValue = e.target.value;
+            if (/\d/.test(inputValue)) {
+              setFormErrors({
+                ...formErrors,
+                medium: "Title cannot contain numerical characters.",
+              });
+            } else {
+              setFormErrors({ ...formErrors, medium: "" });
+              setMedium(inputValue);
+            }
           }}/><br />
+          {formErrors.medium && (
+          <p className="error-message">{formErrors.medium}</p>
+        )}
 
         <div className="row">
           <div className="col">
