@@ -2,7 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
 
-  background-color: #cfc9c9;
+  background-color: #dbd5d5;
 
   font-family: system-ui;
 }
@@ -21,7 +21,7 @@ body {
 }
 .sidenav {
   margin-top: 9.5vh;
-  height: 100%;
+  height: 130%;
   width: 300px;
   position: fixed;
   z-index: 1;
@@ -119,8 +119,6 @@ body {
 }
 .col-div-8 {
   margin-left: 50vh;
-  width: 70%;
-  height: 70vh;
 }
 .col-div-4 {
   width: 30%;
@@ -193,14 +191,6 @@ th {
   transform: rotate(126deg);
 }
 
-@keyframes fill {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(126deg);
-  }
-}
 .circle-wrap .inside-circle {
   width: 130px;
   height: 130px;
@@ -235,26 +225,32 @@ th {
 .delete-button input[type="button"] {
   background-color: #f44336;
 }
-img {
+.image-agent {
   margin-left: 2.5vh;
   width: 20vh;
   height: 20vh;
-  background: lightblue;
+  background: rgb(250, 250, 250);
   border-radius: 50%;
 }
 .user-name {
-  margin-left: 2.5vh;
+  margin-left: 2.2vh;
+  font-family: "Georgia", Serif, monospace;
+  color: #ffffff;
+  font-weight: 800;
 }
-
+.main-div {
+  background-color: #c9cad5;
+}
 /* Dashboard.css */
 /* Style for the user profile container */
-.user-profile {
-  background-color: #f4efef;
+.user-profilee {
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100vh;
-  max-height: 70vh;
+  width: 120vh;
+  height: 100%;
+  margin-bottom: 10vh;
 }
 
 /* Style for the profile title (username) */
@@ -265,6 +261,10 @@ img {
 }
 
 /* Style for the user information */
+.profile-info p {
+  margin: 10px 0;
+  font-size: 16px;
+}
 
 /* Strong text (labels) */
 .profile-info strong {
@@ -272,14 +272,9 @@ img {
 }
 
 /* You can customize these styles further to match your design */
-.button-containerr {
-  display: inline;
+.button-container {
+  justify-content: space-between;
 }
-.profile-info {
-  font-size: 22px; /* Adjust the font size as needed */
-  color: #333; /* Text color */
-}
-
 .profile-info {
   margin-top: 10px; /* Add margin to separate from other content */
 }
@@ -293,11 +288,6 @@ img {
 /* Style for strong (labels) */
 .profile-info strong {
   font-weight: bold;
-  margin: 20px;
-}
-.profile-info p {
-  font-weight: bold;
-  margin: 20px;
 }
 
 .form-group {
@@ -320,31 +310,224 @@ img {
   margin-left: 4vh;
 }
 
-.logoutbtn {
-  margin-top: 20vh;
-  float: right;
-  width: 15vh;
-  height: 7vh;
+.popup-form {
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 400px;
+  width: 100%;
+}
+
+.popup-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
   color: white;
-  font-size: large;
-  background-color: #363753;
-  margin-right: 10vh;
-
-  border-color: #333;
-}
-.button-containerr {
-  /* Ensure the container doesn't break onto a new line */
-  white-space: nowrap;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.button-containerr button {
-  /* Style the buttons */
-  display: inline-block; /* Display buttons in a line */
-  margin-right: 10px; /* Add some space between buttons (adjust as needed) */
+button[type="submit"]:hover {
+  background-color: #0056b3;
 }
-.btn-deleteA {
+
+button {
+  margin-top: 10px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #999;
+}
+
+/* Add this CSS to your Agent.css or a separate CSS file */
+
+/* Style the table header */
+/* Add this CSS to your Agent.css or a separate CSS file */
+
+/* Style the table header */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style table rows and cells */
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #cce5ff;
+}
+
+table td {
+  padding: 10px;
+  color: black; /* Set text color to black */
+}
+
+/* Style the "Assign" button */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Style the form elements */
+.popup-form label {
+  color: black; /* Set label text color to black */
+}
+.popup-form {
+  position: absolute;
+  top: 50%; /* Adjust the top position as needed */
+  left: 35%; /* Adjust the left position as needed */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  margin-left: 9vh;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it's above other content */
+}
+.btnn-cancel {
+  margin-left: -20vh;
+}
+
+.button-container {
+  margin-top: 10px; /* Adjust the margin as needed */
+  padding-left: -80vh;
+}
+
+.popup-form input[type="text"],
+.popup-form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: black; /* Set input text color to black */
+}
+
+.popup-form button[type="submit"],
+.popup-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-form button[type="submit"]:hover,
+.popup-form button:hover {
+  background-color: #0056b3;
+}
+/* .button-container {
+  display: flex;
+}
+
+.button-container button {
+  margin-right: 10px;
+  margin-left: -30vh;
+} */
+
+.user-name {
+  padding-left: 5px;
+  font-size: 20px;
+}
+.add-agent {
+  margin-left: 40vh;
+  width: 18vh;
+  height: 5vh;
+}
+.btn-report {
+}
+
+.search-bar {
+  margin-bottom: 3vh;
+}
+
+.search-btn {
   height: 5.5vh;
 }
+.search-area {
+  height: 5.5vh;
+}
+
 #displayArea {
-  margin-top: -10vh;
+  margin-bottom: 30vh;
+  padding-bottom: 30vh;
+  position: sticky;
+  height: 120vh;
+  margin-top: 2vh;
+}
+
+.btnUpdate {
+  margin: 2vh;
+}
+/* .btnn-update {
+  margin-left: -40vh;
+} */
+
+.view-qr,
+.down-qr {
+  margin-bottom: 10vh;
+}
+.btn-compartment {
+  margin-top: 4vh;
+}
+.button-container {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+}
+
+.spacer {
+  flex-grow: 1; /* Allow the spacer to grow and push the buttons apart */
+}
+
+.button-container button {
+  margin: 0 5px; /* Add horizontal margin to separate buttons */
 }
