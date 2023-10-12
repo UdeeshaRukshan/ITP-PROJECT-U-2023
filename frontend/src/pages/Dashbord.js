@@ -39,7 +39,7 @@ const Dashboard = () => {
   const handleChangePassword = () => {
     // Send a request to the backend to change the password
     axios
-      .put(`http://localhost:4042/change-password/${users._id}`, {
+      .put(`http://localhost:4042/update-password/${users._id}`, {
         currentPassword,
         newPassword,
       })
