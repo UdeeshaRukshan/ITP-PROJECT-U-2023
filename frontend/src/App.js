@@ -43,6 +43,7 @@ import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
+
 import FeedbackHistory from "./components/dashbord/feedbacks/FeedbackHistory";
 import BiddingHistory from "./components/dashbord/biddingHistory/biddingHistory";
 import PaymentHistory from "./components/dashbord/PaymentHistory";
@@ -50,7 +51,6 @@ import AdminDashboard from "./pages/AdminDashboard";
 
 import supportQuesPage from "./pages/Support Ques/supportQues";
 import Agent from "./pages/Agent";
-import Payment from "./pages/Payment";
 
 //Admin Dashbord
 
@@ -111,7 +111,7 @@ function App() {
 
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/agent" element={<Agent />} />
-            <Route path="/payment" element={<Payment />} />
+            {/* <Route path="/paymentAdmin" element={<Payment />} /> */}
           </Routes>
 
           <Footer />
