@@ -8,9 +8,7 @@ import {
 import React from "react";
 
 import Header from "./components/Header";
-import Home from "./pages/Home";
 
-import Dashboard from "./pages/Dashbord";
 import AdminDashboard from "./pages/AdminDashboard";
 import Agent from "./pages/Agent";
 import Payment from "./pages/Payment";
@@ -20,13 +18,10 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-
-        <Route path="/dashbord" element={<Dashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/agent" element={<Agent />} />
-        <Route path="/payment" element={<Payment/>}/>
-        <Route path="/auction" element={<Auction/>}/>
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/auction" element={<Auction />} />
       </Routes>
     </div>
   );
