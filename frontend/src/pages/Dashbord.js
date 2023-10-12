@@ -304,7 +304,7 @@ const Dashboard = () => {
         <a href="/dashbord/payment" class="icon-a" id="btn3">
           <i class="fa fa-tv"></i> &nbsp;&nbsp;Payment History
         </a>
-        <a href="" class="icon-a" id="btn4">
+        <a href="/dashbord/feedback" class="icon-a" id="btn4">
           <i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Feedbacks
         </a>
       </div>
