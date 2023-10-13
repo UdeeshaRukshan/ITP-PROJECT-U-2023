@@ -1,8 +1,8 @@
 
 .edit-art-form-container {
-  max-width: 800px; /* Increase the maximum width */
+  max-width: 600px; /* Increase the maximum width */
   margin: 0 auto;
-  padding: 40px; /* Increase padding */
+  padding: 20px; /* Increase padding */
   border: 1px solid #ccc;
   border-radius: 10px; /* Increase border-radius */
   background-color: #f9f9f9;
@@ -10,13 +10,18 @@
 
 .edit-art-form-title {
   font-size: 36px; /* Increase font size */
-  margin-bottom: 30px; /* Increase margin */
+  margin-bottom: 10px; /* Increase margin */
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  height: 100%;
 }
 
 .edit-art-form-label {
   display: block;
   font-weight: bold;
-  font-size: 18px; /* Increase font size */
+  font-size: 15px; /* Increase font size */
 }
 
 .edit-art-form-input[type="text"],
@@ -73,5 +78,9 @@
   display: flex; /* Display its children (buttons) in a row */
   gap: 0px; /* Adjust the gap between buttons as needed */
   justify-content: flex-end; /* Align buttons to the right within the container */
+}
+.edit-art-error-message {
+  color: red;
+  font-size: 13px; /* Adjust the font size as needed */
 }
 

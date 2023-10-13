@@ -36,13 +36,13 @@ export default function AllArts() {
 
   const generateReportForArt = (art) => {
     const doc = new jsPDF();
-    doc.text(`Art Report - ${art.title}`, 10, 10);
-    doc.text(`Art Title: ${art.title}`, 10, 30);
-    doc.text(`Medium: ${art.medium}`, 10, 40);
-    doc.text(`Height (cm): ${art.height}`, 10, 50);
-    doc.text(`Width (cm): ${art.width}`, 10, 60);
-    doc.text(`Condition: ${art.condition}`, 10, 70);
-    doc.text(`Location: ${art.location}`, 10, 80);
+    doc.text(`Art Report - ${art.title}`, 10, 10);<br></br>
+    doc.text(`Art Title: ${art.title}`, 10, 30);<br></br>
+    doc.text(`Medium: ${art.medium}`, 10, 40);<br></br>
+    doc.text(`Height (cm): ${art.height}`, 10, 50);<br></br>
+    doc.text(`Width (cm): ${art.width}`, 10, 60);<br></br>
+    doc.text(`Condition: ${art.condition}`, 10, 70);<br></br>
+    doc.text(`Location: ${art.location}`, 10, 80);<br></br>
     doc.text(`Value ($): ${art.value}`, 10, 90);
 
     doc.save(`${art.title}_report.pdf`);

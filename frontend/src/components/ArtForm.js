@@ -101,7 +101,7 @@ function ArtForm() {
             }
           }}></textarea><br />
           {formErrors.title && (
-          <p className="error-message">{formErrors.title}</p>
+          <p className="art-form-error-message">{formErrors.title}</p>
         )}
 
         <label className="art-form-label" htmlFor="medium">
@@ -128,7 +128,7 @@ function ArtForm() {
             }
           }}/><br />
           {formErrors.medium && (
-          <p className="error-message">{formErrors.medium}</p>
+          <p className="art-form-error-message">{formErrors.medium}</p>
         )}
 
         <div className="row">
@@ -158,7 +158,7 @@ function ArtForm() {
               }}
             />
             {formErrors.height && (
-              <p className="error-message">{formErrors.height}</p>
+              <p className="art-form-error-message">{formErrors.height}</p>
             )}
           </div>
           <div className="col">
@@ -187,7 +187,7 @@ function ArtForm() {
               }}
             />
             {formErrors.width && (
-              <p className="error-message">{formErrors.width}</p>
+              <p className="art-form-error-message">{formErrors.width}</p>
             )}
           </div>
         </div>
@@ -254,7 +254,7 @@ function ArtForm() {
           }}
         />
         {formErrors.value && (
-          <p className="error-message">{formErrors.value}</p>
+          <p className="art-form-error-message">{formErrors.value}</p>
         )}<br />
 
         <label className="art-form-label" htmlFor="images">

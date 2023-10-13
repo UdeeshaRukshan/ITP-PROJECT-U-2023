@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // Import useParams
+import { useParams } from 'react-router-dom'; 
 import './EditArtForm.css';
 
 export default function EditArtForm() {
-  const { artid } = useParams(); // Get the art ID from the URL parameter
+  const { artid } = useParams(); 
   const [updatedArt, setUpdatedArt] = useState({});
+  const [formErrors, setFormErrors] = useState({
+    title: "",
+    medium: "",
+    height: "",
+    width: "",
+    condition: "",
+    location: "",
+    value: "",
+  });
 
   useEffect(() => {
-    // Fetch art data for editing based on the art ID
+   
     async function fetchArtData() {
       try {
         const response = await axios.get(`http://localhost:8070/art/getarts/${artid}`);
@@ -24,25 +33,80 @@ export default function EditArtForm() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUpdatedArt({ ...updatedArt, [name]: value });
+
+    validateField(name, value);
   };
+
+  const validateField = (fieldName, value) => {
+   
+    switch (fieldName) {
+      case "title":
+        if (/\d/.test(value)) {
+          setFormErrors({ ...formErrors, title: "Title cannot contain numerical characters." });
+        } else {
+          setFormErrors({ ...formErrors, title: "" });
+        }
+        break;
+      case "medium":
+        if (/\d/.test(value)) {
+          setFormErrors({ ...formErrors, medium: "Medium cannot contain numerical characters." });
+        } else {
+          setFormErrors({ ...formErrors, medium: "" });
+          
+        }
+        break;
+      case "height":
+        if (value <= 0) {
+          setFormErrors({ ...formErrors, height: "Height must be a positive number." });
+        } else {
+          setFormErrors({ ...formErrors, height: "" });
+        }
+        break;
+      case "width":
+        if (value <= 0) {
+          setFormErrors({ ...formErrors, width: "Width must be a positive number." });
+        } else {
+          setFormErrors({ ...formErrors, width: "" });
+        }
+        break;
+      case "value":
+        if (value <= 0) {
+          setFormErrors({ ...formErrors, value: "Value must be a meaningful number." });
+        } else {
+          setFormErrors({ ...formErrors, value: "" });
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    for (const key in formErrors) {
+      if (formErrors[key]) {
+        alert("Please fix the validation errors before submitting.");
+        return;
+      }
+    }
+
     try {
       await axios.put(`http://localhost:8070/art/updateart/${artid}`, updatedArt);
-      window.location.href = '/getarts'; // Redirect to the list of arts after successful update
+      window.location.href = '/getarts'; 
     } catch (error) {
       alert(error.message);
     }
   };
 
   const handleCancel = () => {
-    window.location.href = '/getarts'; // Redirect to the list of arts without saving changes
+    window.location.href = '/getarts'; 
   };
 
   return (
     <div className="edit-art-form-container">
-      <h2>Edit Art</h2>
+      <h2 className="edit-art-form-title">Edit Art</h2>
       <form onSubmit={handleSubmit}>
         <label className="edit-art-form-label">
           Title:
@@ -54,6 +118,7 @@ export default function EditArtForm() {
             value={updatedArt.title}
             onChange={handleInputChange}
           />
+           {formErrors.title && <p className="edit-art-error-message">{formErrors.title}</p>}
         </label>
         <label className="edit-art-form-label">
           Medium:
@@ -66,7 +131,8 @@ export default function EditArtForm() {
             value={updatedArt.medium}
             onChange={handleInputChange}
           />
-        </label>
+           {formErrors.medium && <p className="edit-art-error-message">{formErrors.medium}</p>}
+        </label><br></br>
         <label className="edit-art-form-label">
           Height (cm):
           <input
@@ -78,7 +144,10 @@ export default function EditArtForm() {
             value={updatedArt.height}
             onChange={handleInputChange}
           />
-        </label>
+          {formErrors.height && (
+              <p className="edit-art-error-message">{formErrors.height}</p>
+            )}
+        </label><br></br>
         <label className="edit-art-form-label">
           Width (cm):
           <input
@@ -90,6 +159,9 @@ export default function EditArtForm() {
             value={updatedArt.width}
             onChange={handleInputChange}
           />
+          {formErrors.width && (
+              <p className="edit-art-error-message">{formErrors.width}</p>
+            )}
         </label>
         <label className="edit-art-form-label">
           Describe the condition of the art:
@@ -119,7 +191,7 @@ export default function EditArtForm() {
             <option value="Polonnaruwa">Polonnaruwa</option>
             <option value="Anuradhapura">Anuradhapura</option>
           </select>
-        </label>
+        </label><br></br>
         <label className="edit-art-form-label">
           Value ($):
           <input
@@ -131,7 +203,10 @@ export default function EditArtForm() {
             value={updatedArt.value}
             onChange={handleInputChange}
           />
-        </label>
+          {formErrors.value && (
+              <p className="edit-art-error-message">{formErrors.value}</p>
+            )}
+        </label><br></br>
         <div className="edit-art-form-button-container">
           <button type="submit" className="edit-art-form-save-button">
             Save

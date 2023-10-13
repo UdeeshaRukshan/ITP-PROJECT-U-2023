@@ -56,3 +56,8 @@
   max-width: 200px; /* Increase max-width */
   max-height: 200px; /* Increase max-height */
 }
+
+.art-form-error-message {
+  color: red;
+  font-size: 15px; /* Adjust the font size as needed */
+}
