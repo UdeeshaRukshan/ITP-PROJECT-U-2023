@@ -11,27 +11,37 @@ function VehicleForm() {
   const [features, setFeatures] = useState("");
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
 
   function sendData(e) {
     e.preventDefault();
 
-    const newVehicle = {
-      vehicleNumber,
-      year,
-      model,
-      fuelType,
-      mileage,
-      features,
-      location,
-      value,
-      images,
-    };
+    if (images.length < 6 || images.length > 10) {
+      alert("Please select between 6 and 10 images.");
+      return;
+    }
+
+    const formData = new FormData();
+
+    // Append each image file to the FormData object
+    for (let i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
+
+    // Append other fields to the FormData object
+    formData.append("vehicleNumber", vehicleNumber);
+    formData.append("year", year);
+    formData.append("model", model);
+    formData.append("fuelType", fuelType);
+    formData.append("mileage", mileage);
+    formData.append("features", features);
+    formData.append("location", location);
+    formData.append("value", value);
 
     axios
-      .post("http://localhost:4042/vehicle/addvehicle", newVehicle)
+      .post("http://localhost:8070/vehicle/addvehicle", formData)
       .then(() => {
-        alert("Vehicle Added");
+        alert("Your Vehicle Added ");
         setVehicleNumber("");
         setYear("");
         setModel("");
@@ -40,22 +50,46 @@ function VehicleForm() {
         setFeatures("");
         setLocation("");
         setValue("");
-        setImages("");
+        setImages([]);
       })
       .catch((err) => {
         alert(err);
       });
   }
 
+  function handleImageChange(e) {
+    const selectedImages = e.target.files;
+    if (selectedImages.length >= 6 && selectedImages.length <= 10) {
+      // Validate image types
+      for (let i = 0; i < selectedImages.length; i++) {
+        const fileType = selectedImages[i].type;
+        if (fileType !== "image/jpeg" && fileType !== "image/png") {
+          alert("Please select only JPEG and PNG images.");
+          e.target.value = null; // Clear the file input
+          return;
+        }
+      }
+
+      // Update the images state if the number and types of selected images are valid.
+      setImages([...selectedImages]);
+    } else {
+      alert("Please select between 6 to 10 images.");
+      e.target.value = null; // Clear the file input
+    }
+  }
+
   return (
-    <div className="container">
+    <div className="vehicle-form-container">
       <form onSubmit={sendData}>
-        <h2>Vehicle Info</h2>
-        <label htmlFor="vehicleNumber">Vehicle Number:</label>
+        <h2 className="vehicle-form-title">Tell Us About Your Vehicle</h2>
+
+        <label className="vehicle-form-label" htmlFor="title">
+          Vehicle Number:
+        </label>
         <input
           type="text"
           id="vehicleNumber"
-          name="vehicleNumber"
+          className="vehicle-form-input"
           placeholder="e.g., ABC-2056"
           required
           onChange={(e) => {
@@ -66,31 +100,37 @@ function VehicleForm() {
 
         <div className="row">
           <div className="col">
-            <label htmlFor="model">Model:</label>
+            <label className="vehicle-form-label" htmlFor="model">
+              {" "}
+              Vehicle Model:
+            </label>
             <input
               type="text"
               id="model"
-              name="model"
+              className="vehicle-form-input"
               placeholder="e.g., Honda Civic"
               required
               onChange={(e) => {
-                setYear(e.target.value);
+                setModel(e.target.value);
               }}
             />
             <br></br>
           </div>
           <div className="col">
-            <label htmlFor="year">Manufacture Year:</label>
+            <label className="vehicle-form-label" htmlFor="year">
+              Manufacture Year:
+            </label>
             <input
               type="number"
               id="year"
-              name="year"
+              className="vehicle-form-input"
               min="1900" // Set the minimum year to allow
               max="2099" // Set the maximum year to allow
               step="1" // Set the step to 1 to allow whole numbers only
+              placeholder="e.g., 2000"
               required
               onChange={(e) => {
-                setModel(e.target.value);
+                setYear(e.target.value);
               }}
             />
             <br></br>
@@ -99,9 +139,11 @@ function VehicleForm() {
 
         <div className="row">
           <div className="col">
-            <label htmlFor="fuelType">Fuel Type:</label>
+            <label className="vehicle-form-label" htmlFor="fuelType">
+              Fuel Type:
+            </label>
             <select
-              className="form-select"
+              className="vehicle-form-select"
               aria-label="Default select example"
               required
               onChange={(e) => {
@@ -116,11 +158,14 @@ function VehicleForm() {
             </select>
           </div>
           <div className="col">
-            <label htmlFor="mileage">Mileage:</label>
+            <label className="vehicle-form-label" htmlFor="mileage">
+              Mileage:(In killometers)
+            </label>
             <input
               type="number"
               id="mileage"
               name="mileage"
+              className="vehicle-form-input"
               placeholder="e.g., 3200"
               required
               onChange={(e) => {
@@ -128,18 +173,20 @@ function VehicleForm() {
                 if (inputMileage > 0) {
                   setMileage(inputMileage);
                 } else {
-                  alert("Must enter valid mileage");
+                  alert("Must enter valid value");
                 }
               }}
             />
           </div>
         </div>
 
-        <label htmlFor="features">Features:</label>
+        <label className="vehicle-form-label" htmlFor="title">
+          Features:
+        </label>
         <textarea
           id="features"
-          name="features"
-          placeholder="Mention the condition of your vehicle."
+          className="vehicle-form-textarea"
+          placeholder="Mention the condition of your vehicle. "
           required
           onChange={(e) => {
             setFeatures(e.target.value);
@@ -147,11 +194,12 @@ function VehicleForm() {
         ></textarea>
         <br></br>
 
-        <label htmlFor="location">Location:</label>
+        <label className="vehicle-form-label" htmlFor="location">
+          Where is this vehicle located:
+        </label>
         <select
-          class="form-select"
+          className="vehicle-form-select"
           id="location"
-          name="location"
           required
           onChange={(e) => {
             setLocation(e.target.value);
@@ -168,12 +216,14 @@ function VehicleForm() {
         </select>
         <br />
 
-        <label htmlFor="openingValue">Opening Value:(Rs)</label>
+        <label className="vehicle-form-label" htmlFor="openingValue">
+          Set a opening value to auction your vehicle:($)
+        </label>
         <input
           type="number"
-          id="openingvalue"
-          name="openingvalue"
-          placeholder="e.g., 75lakhs"
+          id="openingValue"
+          className="vehicle-form-input"
+          placeholder="e.g., 6000"
           required
           onChange={(e) => {
             const inputOpeningValue = e.target.value;
@@ -184,10 +234,11 @@ function VehicleForm() {
             }
           }}
         />
+        <br />
 
-        <label htmlFor="images">
+        <label className="vehicle-form-label" htmlFor="image">
           Images:(Please add at least 6 photos of the interior and exterior of
-          the vehicle){" "}
+          the vehicle)
         </label>
         <input
           type="file"
@@ -196,28 +247,23 @@ function VehicleForm() {
           accept="image/*"
           multiple
           required
-          onChange={(e) => {
-            const selectedFiles = e.target.files;
-            if (selectedFiles.length < 6) {
-              // Display an alert for fewer than 6 photos
-              alert("At least 6 photos are required.");
-              // Clear the input to prevent invalid selections
-              e.target.value = null;
-            } else if (selectedFiles.length > 10) {
-              // Display an alert for more than 10 photos
-              alert("You can only add upto 10 photos.");
-              // Limit the selection to the first 10 photos
-              setImages(Array.from(selectedFiles).slice(0, 10));
-            } else {
-              setImages(selectedFiles);
-            }
-          }}
+          onChange={handleImageChange}
         />
         <br></br>
 
-        <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img
+              className="vehicle-form-image-preview"
+              src={URL.createObjectURL(image)}
+              alt={`Image ${index}`}
+            />
+          </div>
+        ))}
+
+        <button type="submit" className="vehicle-form-button">
+          Submit
+        </button>
       </form>
     </div>
   );

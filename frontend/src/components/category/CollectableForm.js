@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Collectable.css";
+import "./CollectableForm.css";
 
 function CollectableForm() {
   const [type, setType] = useState("");
@@ -12,6 +12,11 @@ function CollectableForm() {
   function sendData(e) {
     e.preventDefault();
 
+    if (images.length > 10) {
+      alert("You can only upload up to 10 images.");
+      return;
+    }
+
     const newCollectable = {
       type,
       name,
@@ -21,9 +26,9 @@ function CollectableForm() {
     };
 
     axios
-      .post("http://localhost:4042/collectable/addcollectable", newCollectable)
+      .post("http://localhost:8070/collectable/addcollectable", newCollectable)
       .then(() => {
-        alert("Collectable Added");
+        alert("Your Item Added");
         setType("");
         setName("");
         setValue("");
@@ -35,12 +40,26 @@ function CollectableForm() {
       });
   }
 
+  function handleImageChange(e) {
+    const selectedImages = e.target.files;
+    const imageArray = [];
+
+    for (let i = 0; i < selectedImages.length; i++) {
+      imageArray.push(URL.createObjectURL(selectedImages[i]));
+    }
+
+    setImages(imageArray);
+  }
+
   return (
-    <div className="container">
+    <div className="collectable-form-container">
       <form onSubmit={sendData}>
-        <h2>Add a New Collectible</h2>
+        <h2 className="collectable-form-title">Tell Us About Your Item</h2>
+        <label className="collectable-form-label" htmlFor="type">
+          Type:
+        </label>
         <select
-          class="form-select"
+          className="collectable-form-select"
           aria-label="Default select example"
           required
           onChange={(e) => {
@@ -58,11 +77,13 @@ function CollectableForm() {
           <option value="Other">Other</option>
         </select>
 
-        <label htmlFor="name">Name:</label>
+        <label className="collectable-form-label" htmlFor="name">
+          Name:
+        </label>
         <input
           type="text"
           id="name"
-          name="name"
+          className="collectable-form-input"
           placeholder="e.g., Desert Flower Novel."
           required
           onChange={(e) => {
@@ -70,10 +91,12 @@ function CollectableForm() {
           }}
         />
 
-        <label htmlFor="description">Description:</label>
+        <label className="collectable-form-label" htmlFor="description">
+          Description:
+        </label>
         <textarea
           id="description"
-          name="description"
+          className="collectable-form-textarea"
           placeholder="e.g.,Used book,Only two pages are torn but readable."
           required
           onChange={(e) => {
@@ -81,41 +104,56 @@ function CollectableForm() {
           }}
         ></textarea>
 
-        <label htmlFor="openingValue">Opening Value (Rs):</label>
+        <label className="collectable-form-label" htmlFor="openingValue">
+          Give a opening value to auction your item:($)
+        </label>
         <input
           type="number"
           id="openingValue"
-          name="openingValue"
-          placeholder="e.g., 100"
+          className="collectable-form-input"
+          placeholder="e.g., 15"
           required
           onChange={(e) => {
-            setValue(e.target.value);
-          }}
-        />
-
-        <label htmlFor="images">Images:</label>
-        <input
-          type="file"
-          id="images"
-          name="images"
-          accept="image/*"
-          multiple
-          required
-          onChange={(e) => {
-            const selectedFiles = e.target.files;
-            if (selectedFiles.length >= 1 && selectedFiles.length < 10) {
-              setImages(selectedFiles);
+            const inputOpeningValue = e.target.value;
+            if (inputOpeningValue > 0) {
+              setValue(inputOpeningValue);
             } else {
-              // Display an alert message
-              alert("Please select at least 1 but fewer than 10 photos.");
-              e.target.value = null;
+              alert("Must enter valid value");
             }
           }}
         />
 
-        <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
+        <label className="collectable-form-label" htmlFor="images">
+          Images (up to 10):
+        </label>
+        <input
+          type="file"
+          id="images"
+          name="images"
+          multiple
+          required
+          accept="image/*"
+          onChange={handleImageChange}
+        />
+        <br />
+
+        {images.length > 0 && (
+          <div>
+            <p>Selected Images:</p>
+            {images.map((image, index) => (
+              <img
+                key={index}
+                className="collectable-form-image-preview"
+                src={image}
+                alt={`Image ${index}`}
+              />
+            ))}
+          </div>
+        )}
+
+        <button type="submit" className="collectable-form-button">
+          Submit
+        </button>
       </form>
     </div>
   );
