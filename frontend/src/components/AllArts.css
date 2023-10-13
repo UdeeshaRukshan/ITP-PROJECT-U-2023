@@ -16,9 +16,9 @@
 }
 
 .all-arts-table {
-  width: 50%;
+  width: 90%;
   border-collapse: collapse;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 .all-arts-thread .all-arts-th {
@@ -30,7 +30,7 @@
 
 .all-arts-tbody td {
   border: 1px solid #ddd;
-  padding: 8px; /* Increased padding for data cells */
+  padding: 6px; /* Increased padding for data cells */
 }
 
 /* Alternate row colors */
@@ -43,8 +43,8 @@
 }
 
 .all-arts-input {
-  width: calc(60% - 16px); /* Adjusted width for input fields */
-  padding: 10px;
+  width: calc(80% - 50px); /* Adjusted width for input fields */
+  padding: 90px;
   margin-bottom: 5px;
   box-sizing: border-box;
 }

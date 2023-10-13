@@ -92,7 +92,7 @@ export default function AllArts() {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-      </div><br></br>
+      </div>
       <table className="all-arts-table">
         <thead className="all-arts-thread">
           <tr className="tr-all-arts">
