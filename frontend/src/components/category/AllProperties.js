@@ -87,7 +87,24 @@ export default function AllProperties() {
       <Link to={"/addproperty"}>
         <button
           onClick={() => console.log("Button Clicked")}
-          style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
+          style={{
+            marginLeft: '10px', 
+            marginBottom: '10px', 
+            backgroundColor: '#3fa34d', 
+            color: 'white', 
+            padding: '20px 20px', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+            marginLeft: 1250 }}
+
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = '#6bbf59';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = '#3fa34d';
+            }}
         >
           Add Property
         </button>

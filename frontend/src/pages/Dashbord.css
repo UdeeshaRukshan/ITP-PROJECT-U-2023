@@ -350,3 +350,6 @@ th {
 #displayArea {
   margin-top: -30vh;
 }
+.error {
+  color: red;
+}

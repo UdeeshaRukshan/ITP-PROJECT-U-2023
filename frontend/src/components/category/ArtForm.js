@@ -45,7 +45,7 @@ function ArtForm() {
     };
 
     axios
-      .post("http://localhost:8070/art/addart", newArt)
+      .post("http://localhost:4042/art/addart", newArt)
       .then(() => {
         alert("Your Art Added");
         setTitle("");
