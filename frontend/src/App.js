@@ -30,6 +30,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import FeedbackEdit from "./pages/FeedbackEdit";
+import FeedbackReport from "./pages/FeedbackReport";
 
 function App() {
   const queryClient = new QueryClient();
@@ -45,7 +46,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
-           
+
 
             <Route path="/dashbord/agent" element={<Agent />} />
 
@@ -54,9 +55,10 @@ function App() {
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
 
+            <Route path="/feedbacks" element={<FeedbackView />} />
             <Route path="/feedback" element={<Feedback />} />
-        <Route path="/feedback/all" element={<FeedbackView />} />
-        <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
+            <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
+            <Route path="/feedback/report" element={<FeedbackReport />} />
           </Routes>
           <Footer />
         </div>

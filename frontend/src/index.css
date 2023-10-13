@@ -258,7 +258,52 @@ hr {
   background-color: #ff4141;
   color: #fff;
 }
-.btn-right{
+.btn-right {
+  display: flex;
+  justify-content: end;
+}
+.analytics {
+  padding: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.analytics .ttl {
+  font-size: 22px;
+  font-weight: 600;
+}
+.analytics .ttl span {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0c90f1;
+}
+.chart-wrap {
+  display: flex;
+  padding: 30px;
+  justify-content: space-evenly;
+}
+.feedback-search-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.feedback-search-wrap input{
+  width: 350px;
+  padding: 10px 15px;
+}
+.feedback-search-wrap button{
+margin-left: 15px;
+}
+.feedback-pagination{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.feedback-pagination button{
+ width: 150px;
+ padding: 10px 15px;
+}
+.add-feedback-wrap{
+  width: 100%;
   display: flex;
   justify-content: end;
 }
