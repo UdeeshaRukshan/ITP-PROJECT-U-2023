@@ -28,7 +28,7 @@ function PropertyForm() {
     };
 
     axios
-      .post("http://localhost:8070/property/addproperty", newProperty)
+      .post("http://localhost:4042/property/addproperty", newProperty)
       .then(() => {
         alert("Property Added");
         setAddress("");
