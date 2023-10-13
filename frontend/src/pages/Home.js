@@ -11,7 +11,11 @@ const containerStyle = {
   padding: "20px",
   maxWidth: "800px",
   margin: "0 auto",
+  backgroundColor: "#FAF9F6",
+  border: "1px solid #ccc", // Add border
+  borderRadius: "5px", // Add border radius for rounded corners
 };
+
 
 const buttonContainerStyle = {
   display: "flex",

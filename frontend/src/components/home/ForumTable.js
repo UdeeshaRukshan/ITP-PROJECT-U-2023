@@ -8,7 +8,7 @@ import { Document, Page, Text, View, PDFDownloadLink } from "@react-pdf/renderer
 const styles = {
   page: {
     flexDirection: "column",
-    backgroundColor: "#fff",
+    backgroundColor: "#000000",
     padding: 10,
   },
   section: {

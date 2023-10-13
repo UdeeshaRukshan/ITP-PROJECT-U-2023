@@ -31,7 +31,7 @@ const DeleteForum = () => {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    //justifyContent: "center",
     height: "100vh",
   };
 
