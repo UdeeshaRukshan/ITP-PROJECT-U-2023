@@ -1,0 +1,105 @@
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+const FeedbackView = () => {
+  const [reviews, setReviews] = useState([]);
+  const [username, setUsername] = useState("");
+  const [cookies, removeCookie] = useCookies([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+      }
+      const { data } = await axios.post(
+        "http://localhost:4042",
+        {},
+        { withCredentials: true }
+      );
+      const { user } = data;
+      setUsername(user);
+    };
+    verifyCookie();
+    handleSearch();
+  }, [cookies, navigate, removeCookie]);
+
+  function handleDelete(id) {
+    fetch("http://localhost:4042/api/feedback/delete/" + id, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        handleSearch();
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  }
+  function handleEdit(id) {
+    navigate("/feedback/edit/" + id);
+  }
+
+  function handleSearch() {
+    fetch("http://localhost:4042/api/feedback", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.error) {
+          setReviews(data);
+        }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  }
+
+  return (
+    <div class="main">
+      <div class="review_container">
+        {!reviews.error &&
+          reviews.map((review) => (
+            <div className="feedback_card">
+              <div className="name_wrap">
+                <div class="letter">{review.customerName.charAt(0)}</div>
+                <div>
+                  <div className="customer_name">{review.customerName}</div>
+                  <div className="email">{review.email}</div>
+                </div>
+              </div>
+              <div className="rate">{review.rate}</div>
+              <div class="comment">{review.recommendation}</div>
+              {review.user === username ? (
+                <div className="btn-right">
+                  <button
+                    class="feed_delete"
+                    onClick={() => handleDelete(review._id)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    class="feed_edit"
+                    onClick={() => handleEdit(review._id)}
+                  >
+                    Edit
+                  </button>
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
+
+export default FeedbackView;

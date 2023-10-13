@@ -43,8 +43,6 @@ function isValidSriLankanNIC(nic) {
   const genderPart = nic.charAt(9);
   const otherPart = nic.substring(10);
 
- 
-
   if (!/^\d{2}$/.test(otherPart)) {
     return false;
   }
@@ -212,6 +210,7 @@ const Signup = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            marginTop: "15vh",
           }}
         >
           <img

@@ -1,4 +1,4 @@
-.art-form-container {
+.property-form-container {
   max-width: 800px; /* Increase the maximum width */
   margin: 0 auto;
   padding: 40px; /* Increase padding */
@@ -8,24 +8,19 @@
   margin-top: 15vh;
 }
 
-.art-form-title {
+.property-form-title {
   font-size: 36px; /* Increase font size */
   margin-bottom: 30px; /* Increase margin */
-  text-align: center; /* Center text horizontally */
-  display: flex;
-  align-items: center; /* Center text vertically */
-  justify-content: center; /* Center text horizontally */
-  height: 100%;
 }
 
-.art-form-label {
+.property-form-label {
   display: block;
   font-weight: bold;
   font-size: 18px; /* Increase font size */
 }
 
-.art-form-input[type="text"],
-.art-form-textarea {
+.property-form-input[type="text"],
+.property-form-textarea {
   width: 100%;
   padding: 12px; /* Increase padding */
   margin-top: 10px; /* Increase margin-top */
@@ -35,7 +30,7 @@
   font-size: 16px; /* Increase font size */
 }
 
-.art-form-button {
+.property-form-button {
   display: block;
   margin: 0 auto;
   background-color: #007bff;
@@ -47,11 +42,11 @@
   font-size: 18px; /* Increase font size */
 }
 
-.art-form-button:hover {
+.property-form-button:hover {
   background-color: #0056b3;
 }
 
-.art-form-image-preview {
+.property-form-image-preview {
   display: inline-block;
   margin-right: 20px; /* Increase margin-right */
   max-width: 200px; /* Increase max-width */

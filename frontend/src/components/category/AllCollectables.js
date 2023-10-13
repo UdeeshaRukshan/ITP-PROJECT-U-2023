@@ -80,12 +80,14 @@ export default function AllCollectables() {
 
   return (
     <div style={{ marginTop: 100, marginLeft: 80 }}>
-      <button
-        onClick={() => console.log("Button Clicked")}
-        style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
-      >
-        Add Collectable
-      </button>
+      <Link to={"/addcollectable"}>
+        <button
+          onClick={() => console.log("Button Clicked")}
+          style={{ marginLeft: 20, marginBottom: 10, marginLeft: 1125 }}
+        >
+          Add Collectable
+        </button>
+      </Link>
       <SimpleGrid cols={3}>{renderCollectableItems()}</SimpleGrid>
     </div>
   );

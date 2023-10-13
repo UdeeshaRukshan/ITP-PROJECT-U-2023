@@ -1,53 +1,266 @@
-/* Login.css */
-.form_containerr {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 2px solid #ccc;
-
-  background-color: #f8f8f8;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.form_group {
-  margin-bottom: 15px;
-}
-
 label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  font-size: 1.2rem;
+  color: #656262;
 }
 
-.submit_button {
+body {
+  height: 120%;
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5c5454;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.form_container {
+  background-color: #fff;
+  margin-left: 35%;
+  margin-top: 5%;
+  padding: 2rem 3rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.form_container > h2 {
+  margin-block: 1rem;
+  padding-block: 0.6rem;
+  color: rgba(0, 212, 255, 1);
+}
+
+.form_container > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.form_container div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form_container input {
+  border: none;
+  padding: 0.5rem;
+  border-bottom: 1px solid gray;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.form_container input::placeholder {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.form_container button {
+  background-color: rgba(0, 212, 255, 1);
   color: #fff;
   border: none;
-
+  padding: 0.6rem;
+  font-size: 1rem;
   cursor: pointer;
+  border-radius: 0.3rem;
 }
 
-.submit_button:hover {
-  background-color: #0056b3;
+span a {
+  text-decoration: none;
+  color: rgba(0, 212, 255, 1);
 }
 
-.signup_link {
-  display: block;
+.home_page {
+  height: 90vh;
+  width: 100%;
+  background: #000;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 3rem;
+  flex-direction: column;
+}
+
+.home_page span {
+  color: rgba(0, 212, 255, 1);
+}
+
+.home_page button {
+  background-color: rgb(27, 73, 83);
+  color: #fff;
+  cursor: pointer;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  border-radius: 2rem;
+  transition: ease-in 0.3s;
+  border: none;
+}
+
+.home_page button:hover {
+  background-color: rgba(0, 212, 255, 1);
+}
+
+/* @media only screen and (max-width: 1200px) {
+  .home_page {
+    font-size: 1.5rem;
+  }
+  .home_page button {
+    padding: 0.6rem 1rem;
+    font-size: 1.5rem;
+  }
+} */
+.main {
+  width: 100%;
+  padding: 20px;
+  background-color: #e6e6e6;
+}
+hr {
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+.feedback_container {
+  background-color: #c1bbbb;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 5px;
+  filter: drop-shadow(1px 1px 5px #04040431);
+  margin: auto;
+  margin-top: 10vh;
+}
+.feedback_container .title {
+  font-size: 20px;
+  font-weight: 700;
   text-align: center;
 }
+.feedback_container .data_set {
+  margin-bottom: 20px;
+}
+.feedback_container .data_set .form-label {
+  color: #000;
+  font-size: 14px;
+  display: block;
+  font-weight: 600;
 
-.signup_link a {
-  color: #007bff;
-  text-decoration: none;
+  margin-bottom: 5px;
+}
+.feedback_container .data_set .form-control {
+  background-color: #e6e6e6;
+  width: 100%;
+  border: none;
+  padding: 5px;
+}
+.feedback_container .data_set .form-check-label {
+  font-size: 14px;
+  margin-left: 10px;
+  margin-right: 30px;
+  color: #2c2c2c;
+}
+.feedback_container textarea {
+  width: 100%;
+  height: 120px;
+  border: none;
+  max-width: 100%;
+}
+.feedback_container button {
+  background-color: #01bb10;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+}
+.alert {
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.alert-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+.alert-success {
+  background-color: #28a745;
+  color: #fff;
 }
 
-.signup_link a:hover {
-  text-decoration: underline;
+.review_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  filter: drop-shadow(0 0 5px #00000027);
+}
+.review_container .feedback_card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 10vh;
+}
+.review_container .rate {
+  font-size: 18px;
+  font-weight: 500;
+}
+.review_container .name_wrap {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.review_container .name_wrap .letter {
+  width: 60px;
+  height: 60px;
+  background-color: #0c90f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+}
+.review_container .name_wrap .customer_name {
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 10px;
+}
+.review_container .name_wrap .email {
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 10px;
+  color: #656262;
+  font-style: italic;
+}
+.review_container .comment {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: #656262;
+  height: 80px;
+  overflow: hidden;
+}
+.feed_edit {
+  background-color: #7597fc;
+  color: #000;
+  margin-left: 20px;
+}
+.feed_delete {
+  background-color: #fa8080;
+  color: #000;
+}
+.feed_edit:hover {
+  background-color: #3769ff;
+  color: #fff;
+  margin-left: 20px;
+}
+.feed_delete:hover {
+  background-color: #ff4141;
+  color: #fff;
+}
+.btn-right {
+  display: flex;
+  justify-content: end;
 }

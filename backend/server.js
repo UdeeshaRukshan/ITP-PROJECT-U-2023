@@ -8,14 +8,14 @@ const authRoute = require("./Routes/AuthRoute");
 const ticketRoute = require("./Routes/TicketRoute");
 const image = require("./models/image");
 const auctioneerRouter = require("./Routes/auctioneers");
-const vehicleRouter = require("./routes/vehicles.js");
-const artRouter = require("./routes/arts.js");
+const vehicleRouter = require("./Routes/vehicles.js");
+const artRouter = require("./Routes/arts.js");
 const adminRoute = require("./Routes/AdminRoutes");
 const propertyRouter = require("./Routes/properties");
-const collectableRouter = require("./routes/collectables");
-
+const collectableRouter = require("./Routes/collectables");
+const paymentRoute = require("./routes/paymentRoutes");
 const wishlistRoutes = require("./Routes/WishlistRoutes");
-
+const feedbackRoute = require("./Routes/FeedbackRoute");
 const agentRouter = require("./Routes/agentroute");
 
 const cloudinary = require("cloudinary").v2;
@@ -159,5 +159,7 @@ app.use("/art", artRouter);
 app.use("/property", propertyRouter);
 app.use("/collectable", collectableRouter);
 app.use("/admin", adminRoute);
-
+app.use("/payment", paymentRoute);
 app.use("/agent", agentRouter);
+
+app.use("/api/feedback", feedbackRoute);
