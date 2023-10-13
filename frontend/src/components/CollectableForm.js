@@ -9,6 +9,13 @@ function CollectableForm() {
   const [value, setValue] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState("");
+  const [formErrors, setFormErrors] = useState({
+    type: "",
+    name: "",
+    value: "",
+    description: "",
+    images: "",
+  });
    
   function sendData(e) {
     e.preventDefault();
@@ -57,10 +64,11 @@ function CollectableForm() {
       <h2 className="collectable-form-title">Tell Us About Your Item</h2>
       <label className="collectable-form-label" htmlFor="type">Type:</label>
       <select className="collectable-form-select" aria-label="Default select example" required
+      value={type}
       onChange={(e) =>{
         setType(e.target.value);
       }}>
-         <option selected disabled>Type</option>
+         <option value="">Type</option>
          <option value="Furniture">Furniture</option>
          <option value="Antique">Antique</option>
          <option value="Books">Books</option>
@@ -76,10 +84,23 @@ function CollectableForm() {
           className="collectable-form-input"
           placeholder="e.g., Desert Flower Novel."        
           required
+          value={name}
           onChange={(e) =>{
-            setName(e.target.value);
+            const inputValue = e.target.value;
+            if (/\d/.test(inputValue)) {
+              setFormErrors({
+                ...formErrors,
+                name: "Name cannot contain numerical characters.",
+              });
+            } else {
+              setFormErrors({ ...formErrors, name: "" });
+              setName(inputValue);
+            }
           }}
         />
+        {formErrors.name && (
+          <p className="collectable-form-error-message">{formErrors.name}</p>
+        )}
 
         <label className="collectable-form-label" htmlFor="description">Description:</label>
         <textarea
@@ -87,6 +108,7 @@ function CollectableForm() {
           className="collectable-form-textarea"
           placeholder="e.g.,Used book,Only two pages are torn but readable."
           required
+          value={description}
           onChange={(e) =>{
             setDescription(e.target.value);
           }}
@@ -99,15 +121,23 @@ function CollectableForm() {
           className="collectable-form-input"
           placeholder="e.g., 15"
           required
+          value={value}
           onChange={(e) =>{
             const inputOpeningValue = e.target.value;
                if (inputOpeningValue > 0) {
+                setFormErrors({ ...formErrors, value: "" });
                 setValue(inputOpeningValue);
-                } else {
-                alert("Must enter valid value");
-                }
+            } else {
+                setFormErrors({
+                ...formErrors,
+                value: "Value must be a meaningful number.",
+              });
+            }
           }}
         />
+        {formErrors.value && (
+          <p className="collectable-form-error-message">{formErrors.value}</p>
+        )}<br />
 
          <label className="collectable-form-label" htmlFor="images">Images (up to 10):</label>
          <input
@@ -130,7 +160,7 @@ function CollectableForm() {
               alt={`Image ${index}`} />
             ))}
           </div>
-        )}
+        )}<br></br>
               
 
         <button type="submit" className="collectable-form-button">

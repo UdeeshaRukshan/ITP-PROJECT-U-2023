@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import "./AllVehicles.css"; 
+import jsPDF from 'jspdf';
 
 export default function AllVehicles() {
-  // State to store vehicle data
   const [vehicles, setVehicles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Fetch vehicle data from the server
   useEffect(() => {
     async function fectchVehicles() {
       try {
@@ -20,44 +21,6 @@ export default function AllVehicles() {
     fectchVehicles();
   }, []);
 
-  const renderImages = (images) => {
-    return images.map((image, index) => (
-      <img
-        key={index}
-        src={image.dataUrl}
-        alt={`Vehicle ${index + 1}`}
-      />
-    ));
-  };
-
-
-  // Render vehicle rows
-  const renderVehicleRaws = () => {
-    return vehicles.map((vehicle) => (
-      <tr key={vehicle._id}>
-        <td>{vehicle.vehicleNumber}</td>
-        <td>{vehicle.model}</td>
-        <td>{vehicle.year}</td>
-        <td>{vehicle.fuelType}</td>
-        <td>{vehicle.mileage}</td>
-        <td>{vehicle.features}</td>
-        <td>{vehicle.location}</td>
-        <td>{vehicle.value}</td>
-        <td>{renderImages(vehicle.images)}</td>
-        <td>
-        <div className="all-vehicle-button-container">
-          <button className="delete-button-allvehicle" onClick={() => handleDeleteClick(vehicle._id)}>
-            Delete
-          </button>
-        </div>
-      </td>
-      </tr>
-    ));
-  };
-
- 
-
-  // Function to handle delete button click
   const handleDeleteClick = async (vehicleid) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this?");
     
@@ -72,9 +35,78 @@ export default function AllVehicles() {
     }
   };
 
+  const generateReportForVehicle = (vehicle) => {
+    const doc = new jsPDF();
+    doc.text(`Vehicle Report - ${vehicle.fuelType}`, 10, 10);<br></br>
+    doc.text(`Vehicle Number: ${vehicle.vehicleNumber}`, 10, 20);<br></br>
+    doc.text(`Model: ${vehicle.model}`, 10, 30);<br></br>
+    doc.text(`Year: ${vehicle.year}`, 10, 40);<br></br>
+    doc.text(`Fuel Type: ${vehicle.fuelType}`, 10, 50);<br></br>
+    doc.text(`Mileage(km): ${vehicle.mileage}`, 10, 60);<br></br>
+    doc.text(`Features: ${vehicle.features}`, 10, 70);<br></br>
+    doc.text(`Location: ${vehicle.location}`, 10, 80);<br></br>
+    doc.text(`Value ($): ${vehicle.value}`, 10, 90);
+    
+
+    doc.save(`${vehicle.fuelType}_report.pdf`);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const renderImages = (images) => {
+    return images.map((image, index) => (
+      <img
+        key={index}
+        src={image.dataUrl}
+        alt={`Vehicle ${index + 1}`}
+      />
+    ));
+  };
+
+  const renderVehicleRaws = () => {
+    const filteredVehicles = vehicles.filter((vehicle) =>
+      vehicle.fuelType.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return filteredVehicles.map((vehicle) => (
+      <tr key={vehicle._id}>
+        <td>{vehicle.vehicleNumber}</td>
+        <td>{vehicle.model}</td>
+        <td>{vehicle.year}</td>
+        <td>{vehicle.fuelType}</td>
+        <td>{vehicle.mileage}</td>
+        <td>{vehicle.features}</td>
+        <td>{vehicle.location}</td>
+        <td>{vehicle.value}</td>
+        <td>{renderImages(vehicle.images)}</td>
+        <td>
+          <Link to={`/updatevehicle/${vehicle._id}`}>
+            <button className="all-veh-edit-button">Edit</button>
+          </Link>
+          <button className="delete-button-allvehicle" onClick={() => handleDeleteClick(vehicle._id)}>
+            Delete
+          </button>
+          <button className="all-veh-generate-report-button" onClick={() => generateReportForVehicle(vehicle)}>
+            Generate Report
+          </button>
+      </td>
+      </tr>
+    ));
+  };
+
   return (
   <div className="all-vehicle-container">
     <h2 className="all-vehicle-header">All Vehicles</h2>
+    <div className="all-veh-search-container">
+        <input
+          type="text"
+          placeholder="Search by type of the fuel type"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+      </div>
     <table className="all-vehicle-table">
       <thead className="all-vehicle-thread">
           <tr className="tr-all-vehicle">

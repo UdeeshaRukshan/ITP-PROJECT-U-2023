@@ -210,7 +210,7 @@ function ArtForm() {
           Location:
         </label>
         <select
-          className="form-select"
+          className="art-form-select"
           id="location"
           name="location"
           required

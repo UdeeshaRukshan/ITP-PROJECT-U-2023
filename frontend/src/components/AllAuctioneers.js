@@ -3,10 +3,8 @@ import axios from "axios";
 import "./AllAuctioneers.css"; 
 
 export default function AllAuctioneers() {
-  // State to store auctioneer data
   const [auctioneers, setAuctioneers] = useState([]);
 
-  // Fetch auctioneer data from the server
   useEffect(() => {
     async function fetchAuctioneers() {
       try {
@@ -19,8 +17,7 @@ export default function AllAuctioneers() {
 
     fetchAuctioneers();
   }, []);
-
-  // Render auctioneer rows
+  
   const renderAuctioneerRows = () => {
     return auctioneers.map((auctioneer, index) => (
       <tr key={auctioneer._id} className={index % 2 === 0 ? "all-auc-even-row" : "all-auc-odd-row"}>

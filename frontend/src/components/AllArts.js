@@ -52,6 +52,16 @@ export default function AllArts() {
     setSearchQuery(e.target.value);
   };
 
+  const renderImages = (images) => {
+    return images.map((image, index) => (
+      <img
+        key={index}
+        src={image.dataUrl}
+        alt={`Item ${index + 1}`}
+      />
+    ));
+  };
+
   const renderArtsRows = () => {
     const filteredArts = arts.filter((art) =>
       art.medium.toLowerCase().includes(searchQuery.toLowerCase())
@@ -66,7 +76,7 @@ export default function AllArts() {
         <td>{art.condition}</td>
         <td>{art.location}</td>
         <td>{art.value}</td>
-        <td>{art.images}</td>
+        <td>{renderImages(art.images)}</td>
         <td>
           <Link to={`/updateart/${art._id}`}>
             <button className="all-arts-edit-button">Edit</button>

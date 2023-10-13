@@ -13,9 +13,7 @@ import AllProperties from "./components/AllProperties";
 import AllCollectables from "./components/AllCollectables";
 import AllVehicles from "./components/AllVehicles";
 import EditArtForm from "./components/EditArtForm";
-
-
-
+import EditCollectableForm from "./components/EditCollectableForm";
 
 
 function App() {
@@ -37,6 +35,8 @@ function App() {
            <Route path="/getcollectables" exact element={<AllCollectables/>} />
            <Route path="/getvehicles" exact element={<AllVehicles/>} />
            <Route path="/updateart/:artid" exact element={<EditArtForm/>} />
+           <Route path="/updatecollectable/:collectableid" exact element={<EditCollectableForm/>} />
+
           {/* Add other routes if needed */}
          </Routes>
         </Router>

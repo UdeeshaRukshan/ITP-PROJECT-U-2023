@@ -25,12 +25,10 @@ function sendData(e){
 
   const formData = new FormData();
 
-  // Append each image file to the FormData object
   for (let i = 0; i < images.length; i++) {
     formData.append("images", images[i]);
   }
 
-  // Append other fields to the FormData object
   formData.append("vehicleNumber", vehicleNumber);
   formData.append("year", year);
   formData.append("model", model);
@@ -61,21 +59,20 @@ function sendData(e){
     function handleImageChange(e) {
       const selectedImages = e.target.files;
       if (selectedImages.length >= 6 && selectedImages.length <= 10) {
-        // Validate image types
+        
         for (let i = 0; i < selectedImages.length; i++) {
           const fileType = selectedImages[i].type;
           if (fileType !== "image/jpeg" && fileType !== "image/png") {
             alert("Please select only JPEG and PNG images.");
-            e.target.value = null; // Clear the file input
+            e.target.value = null; 
             return;
           }
         }
   
-        // Update the images state if the number and types of selected images are valid.
         setImages([...selectedImages]);
       } else {
         alert("Please select between 6 to 10 images.");
-        e.target.value = null; // Clear the file input
+        e.target.value = null; 
       }
     }
   
@@ -107,9 +104,9 @@ function sendData(e){
             type="number" 
             id="year" 
             className="vehicle-form-input"
-            min="1900" // Set the minimum year to allow
-            max="2099" // Set the maximum year to allow
-            step="1"    // Set the step to 1 to allow whole numbers only
+            min="1900" 
+            max="2099" 
+            step="1"    
             placeholder="e.g., 2000"
             required
           onChange={(e) => {

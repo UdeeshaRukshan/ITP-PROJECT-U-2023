@@ -8,6 +8,14 @@
   color: #000000;
 }
 
+.all-collec-header {
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  height:50%; /* Adjust the height as needed */
+}
+
 .all-collec-table {
   width: 100%;
   border-collapse: collapse;
@@ -54,6 +62,10 @@
   font-size: 14px;
 }
 
+.delete-button-allcollec:hover {
+  background-color: #f46a61; /* Change the hover background color to your desired color */
+}
+
 .save-button-allcollec {
   background-color: #4caf50; /* Changed save button color */
   color: #fff;
@@ -72,4 +84,50 @@
 .delete-button-allcollec {
   background-color: #f44336;
   color: #fff;
+}
+
+.all-collectable-edit-button {
+  background-color: #4934e4; /* Change the background color to your desired color */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px; /* Adjust the margin as needed */
+}
+
+.all-collectable-edit-button:hover {
+  background-color: #569ff2; /* Change the hover background color to your desired color */
+}
+
+.all-collectables-generate-report-button {
+  background-color: #e89734;
+  color: #fff;
+  border: none;
+  padding: 4px 8px; /* Adjust the padding to make it smaller */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 12px; /* Adjust the font size as needed */
+}
+
+.all-collectables-generate-report-button:hover {
+  background-color: #f0c528; /* Change the hover background color to your desired color */
+}
+
+.all-collectables-search-container {
+  display: flex; /* Use flexbox to arrange items */
+  justify-content: flex-end; /* Align items to the right */
+  align-items: flex-start; /* Align items at the top */
+  padding: 10px; /* Add some padding to the container */
+}
+
+.all-collectables-search-container input[type="text"] {
+  width: 30%; /* Set the width of the input */
+  padding: 12px; /* Add padding to the input */
+  border: 2.5px solid #363753; /* Add a border to the input */
+  border-radius: 5px; /* Add rounded corners */
+  font-size: 16px; /* Set the font size */
+  outline: none; /* Remove the input outline on focus */
+  background-color: #e0f0ff;
 }

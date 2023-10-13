@@ -1,16 +1,16 @@
 
-.collectable-form-container {
+.edit-collectable-form-container {
     max-width: 600px; /* Increase the maximum width */
     margin: 0 auto;
-    padding: 40px; /* Increase padding */
+    padding: 20px; /* Increase padding */
     border: 1px solid #ccc;
     border-radius: 10px; /* Increase border-radius */
     background-color: #f9f9f9;
   }
   
-  .collectable-form-title {
-    font-size: 30px; /* Increase font size */
-    margin-bottom: 30px; /* Increase margin */
+  .edit-collectable-form-title {
+    font-size: 36px; /* Increase font size */
+    margin-bottom: 10px; /* Increase margin */
     text-align: center; /* Center text horizontally */
     display: flex;
     align-items: center; /* Center text vertically */
@@ -18,14 +18,14 @@
     height: 100%;
   }
   
-  .collectable-form-label {
+  .edit-collectable-form-label {
     display: block;
     font-weight: bold;
-    font-size: 18px; /* Increase font size */
+    font-size: 15px; /* Increase font size */
   }
   
-  .collectable-form-input[type="text"],
-  .collectable-form-textarea {
+  .edit-collectable-form-input[type="text"],
+  .edit-collectable-form-textarea {
     width: 100%;
     padding: 12px; /* Increase padding */
     margin-top: 10px; /* Increase margin-top */
@@ -35,10 +35,10 @@
     font-size: 16px; /* Increase font size */
   }
   
-  .collectable-form-button {
+  .edit-collectable-form-save-button {
     display: block;
     margin: 0 auto;
-    background-color: #007bff;
+    background-color: #18bf26;
     color: #fff;
     padding: 15px 30px; /* Increase padding */
     border: none;
@@ -47,19 +47,41 @@
     font-size: 18px; /* Increase font size */
   }
   
-  .collectable-form-button:hover {
-    background-color: #0056b3;
+  .edit-collectable-form-save-button:hover {
+    background-color: #02752a;
   }
   
-  .collectable-form-image-preview {
+  .edit-collectable-form-cancel-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #757a7f;
+    color: #fff;
+    padding: 15px 30px; /* Increase padding */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px; /* Increase font size */
+  }
+  
+  .edit-collectable-form-cancel-button:hover {
+    background-color: #202326;
+  }
+  
+  .edit-collectable-form-image-preview {
     display: inline-block;
     margin-right: 20px; /* Increase margin-right */
     max-width: 200px; /* Increase max-width */
     max-height: 200px; /* Increase max-height */
   }
-
-  .collectable-form-error-message {
+  
+  .edit-collectable-form-button-container {
+    display: flex; /* Display its children (buttons) in a row */
+    gap: 0px; /* Adjust the gap between buttons as needed */
+    justify-content: flex-end; /* Align buttons to the right within the container */
+  }
+  .edit-collectable-form-error-message {
     color: red;
     font-size: 15px; /* Adjust the font size as needed */
   }
+  
   

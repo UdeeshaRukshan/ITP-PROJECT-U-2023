@@ -1,6 +1,6 @@
 .all-arts-container {
   max-width: 1400px;
-  margin: auto; /* Increased space at the top */
+  margin: 80px auto; /* Increased space at the top */
 }
 
 .all-arts-header-center {
@@ -16,21 +16,21 @@
 }
 
 .all-arts-table {
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .all-arts-thread .all-arts-th {
   background-color: #363753;
   color: #fff;
-  padding: 20px; /* Increased padding for header cells */
+  padding: 15px; /* Increased padding for header cells */
   text-align: left;
 }
 
 .all-arts-tbody td {
   border: 1px solid #ddd;
-  padding: 6px; /* Increased padding for data cells */
+  padding: 10px; /* Increased padding for data cells */
 }
 
 /* Alternate row colors */
@@ -43,8 +43,8 @@
 }
 
 .all-arts-input {
-  width: calc(80% - 50px); /* Adjusted width for input fields */
-  padding: 90px;
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
   margin-bottom: 5px;
   box-sizing: border-box;
 }
@@ -127,7 +127,8 @@
   display: flex; /* Use flexbox to arrange items */
   justify-content: flex-end; /* Align items to the right */
   align-items: flex-start; /* Align items at the top */
-  padding: 10px; /* Add some padding to the container */
+  padding: 10px; 
+  /* Add some padding to the container */
 }
 
 .all-arts-search-container input[type="text"] {
@@ -137,4 +138,5 @@
   border-radius: 5px; /* Add rounded corners */
   font-size: 16px; /* Set the font size */
   outline: none; /* Remove the input outline on focus */
+  background-color: #e0f0ff;
 }
