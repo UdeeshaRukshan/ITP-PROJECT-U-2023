@@ -1,11 +1,10 @@
 import React, { useState, useRef } from "react";
-import "./ArtForm.css"; // Import CSS file for styling
+import "./ArtForm.css"; 
 import axios from "axios";
 
 function ArtForm() {
 
   const [title, setTitle] = useState("");
-  
   const [medium, setMedium] = useState("");
   const [height, setHeight] = useState("");
   const [width, setWidth] = useState("");
@@ -23,8 +22,6 @@ function ArtForm() {
     value: "",
     images: "",
   });
-
-  // const redirectUrl = useRef("/getarts/:artid"); // Replace with the actual URL
 
   function sendData(e){
     e.preventDefault();
@@ -58,9 +55,6 @@ function ArtForm() {
       setValue("");
       setImages("");
 
-      // Redirect to the desired URL after successful form submission
-      // window.location.href = redirectUrl.current;
-      
     }).catch((err)=>{
       alert(err);
     });
