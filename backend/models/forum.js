@@ -10,12 +10,13 @@ const ForumSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    publishYear: {
-      type: Number,
+    createdDate: { // Change 'publishYear' to 'createdDate'
+      type: Date, // Assuming 'createdDate' is still a number, you can change the type as needed
       required: true,
     },
-    content: { // New property 'content'
-      type: String, // Assuming content is a string, you can change the type as needed
+    content: {
+      type: String,
+      // Add any other properties or validation you need for 'content'
     },
   },
   {

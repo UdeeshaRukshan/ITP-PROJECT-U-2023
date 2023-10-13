@@ -4,13 +4,13 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import "./EditForum.css"; // Update CSS file name if necessary
+
 
 const EditForum = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [publishYear, setPublishYear] = useState("");
-  const [content, setContent] = useState(""); // Added content state
+  const [createdDate, setCreatedDate] = useState("");
+  const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -19,12 +19,12 @@ const EditForum = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/forums/${id}`) // Updated URL to match your forum endpoint
+      .get(`http://localhost:4000/forums/${id}`)
       .then((response) => {
-        setAuthor(response.data.author);
-        setPublishYear(response.data.publishYear);
         setTitle(response.data.title);
-        setContent(response.data.content); // Set the content
+        setAuthor(response.data.author);
+        setCreatedDate(response.data.createdDate);
+        setContent(response.data.content);
         setLoading(false);
       })
       .catch((error) => {
@@ -34,16 +34,49 @@ const EditForum = () => {
       });
   }, [id]);
 
+  const containerStyle = {
+    padding: "20px",
+  };
+
+  const formContainerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  };
+
+  const formGroupStyle = {
+    marginBottom: "20px",
+  };
+
+  const formLabelStyle = {
+    fontSize: "20px",
+    marginRight: "10px",
+    color: "#888",
+  };
+
+  const formInputStyle = {
+    border: "2px solid #ccc",
+    padding: "4px",
+    width: "100%",
+  };
+
+  const formButtonStyle = {
+    padding: "10px",
+    backgroundColor: "#87CEEB",
+    margin: "10px",
+    width: "100%",
+  };
+
   const handleEditForum = () => {
     const data = {
       title,
       author,
-      publishYear,
-      content, // Include content in the data object
+      createdDate,
+      content,
     };
     setLoading(true);
     axios
-      .put(`http://localhost:4000/forums/${id}`, data) // Updated URL to match your forum endpoint
+      .put(`http://localhost:4000/forums/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Forum Edited successfully", { variant: "success" });
@@ -57,47 +90,55 @@ const EditForum = () => {
   };
 
   return (
-    <div className="p-4">
+    <div style={containerStyle}>
       <BackButton />
-      <h1 className="text-3xl my-4">Edit Forum</h1>
+      <h1 style={{ fontSize: "24px", margin: "20px 0" }}>Edit Forum</h1>
       {loading ? <Spinner /> : ""}
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Title</label>
+      <div style={formContainerStyle} className="form-container">
+        <div style={{ ...formGroupStyle, color: "red" }} className="form-group">
+          <label style={{ ...formLabelStyle, color: "blue" }} className="form-label">
+            Title
+          </label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            style={formInputStyle}
           />
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Author</label>
+        <div style={formGroupStyle} className="form-group">
+          <label style={formLabelStyle} className="form-label">
+            Author
+          </label>
           <input
             type="text"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            style={formInputStyle}
           />
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Publish Year</label>
+        <div style={formGroupStyle} className="form-group">
+          <label style={formLabelStyle} className="form-label">
+            Created Date
+          </label>
           <input
-            type="number"
-            value={publishYear}
-            onChange={(e) => setPublishYear(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            type="text"
+            value={createdDate}
+            onChange={(e) => setCreatedDate(e.target.value)}
+            style={formInputStyle}
           />
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Content</label>
+        <div style={formGroupStyle} className="form-group">
+          <label style={formLabelStyle} className="form-label">
+            Content
+          </label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full h-48" // Adjust the height as needed
+            style={{ ...formInputStyle, height: "100px" }}
           />
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={handleEditForum}>
+        <button style={formButtonStyle} className="form-button" onClick={handleEditForum}>
           Save
         </button>
       </div>

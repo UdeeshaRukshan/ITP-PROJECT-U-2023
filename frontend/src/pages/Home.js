@@ -5,9 +5,47 @@ import { Link } from "react-router-dom";
 import ForumTable from "../components/home/ForumTable";
 import ForumCard from "../components/home/FourmCard";
 
+const containerStyle = {
+  display: "flex",
+  flexDirection: "column",
+  padding: "20px",
+  maxWidth: "800px",
+  margin: "0 auto",
+};
 
+const buttonContainerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "20px",
+};
 
-import "./Home.css"; // Import your custom CSS file
+const buttonStyle = {
+  backgroundColor: "#87CEEB",
+  padding: "4px 12px",
+  borderRadius: "8px",
+  marginRight: "10px",
+  cursor: "pointer",
+};
+
+const titleStyle = {
+  fontSize: "24px",
+  margin: "0",
+};
+
+const createLinkStyle = {
+  textDecoration: "none",
+  color: "white",
+};
+
+const createButtonStyle = {
+  backgroundColor: "#87CEEB",
+  padding: "4px 12px",
+  borderRadius: "8px",
+  cursor: "pointer",
+  textDecoration: "none",
+  color: "white",
+};
 
 const Home = () => {
   const [forums, setForums] = useState([]);
@@ -29,35 +67,33 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="custom-home-container">
-      <div className="button-container">
+    <div style={containerStyle}>
+      <div style={buttonContainerStyle}>
         <button
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          style={showType === "table" ? { ...buttonStyle, backgroundColor: "#87CEEB" } : buttonStyle}
           onClick={() => setShowType("table")}
         >
           Table
         </button>
         <button
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          style={showType === "card" ? { ...buttonStyle, backgroundColor: "#87CEEB" } : buttonStyle}
           onClick={() => setShowType("card")}
         >
-          Card
+          Forums
         </button>
       </div>
-      <div className="flex justify-between items-center">
-        <h1 className="title">Share your Knowledge with us</h1>
-        <Link to="/forums/create" className="create-link"> {/* Updated create URL */}
-          <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg">
-            Create
-          </button>
+      <div style={buttonContainerStyle}>
+        <h1 style={titleStyle}>Share your Knowledge with us</h1>
+        <Link to="/forums/create" style={createLinkStyle}>
+          <button style={createButtonStyle}>Create</button>
         </Link>
       </div>
       {loading ? (
         <Spinner />
       ) : showType === "table" ? (
-        <ForumTable forums={forums} /> // Updated component name
+        <ForumTable forums={forums} />
       ) : (
-        <ForumCard forums={forums} /> // Updated component name
+        <ForumCard forums={forums} />
       )}
     </div>
   );

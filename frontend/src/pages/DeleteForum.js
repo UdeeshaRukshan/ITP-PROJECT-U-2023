@@ -4,7 +4,6 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import "./DeleteForum.css"; // Update CSS file name if necessary
 
 const DeleteForum = () => {
   const [loading, setLoading] = useState(false);
@@ -15,33 +14,59 @@ const DeleteForum = () => {
   const handleDeleteForum = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:4000/forums/${id}`) // Updated URL to match your forum endpoint
+      .delete(`http://localhost:4000/forums/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Forum Deleted successfully", { variant: "success" });
         navigate("/");
       })
       .catch((error) => {
-        setLoading(false);
+        setLoading(false); // Corrected this line
         enqueueSnackbar("Error", { variant: "error" });
         console.log(error);
       });
   };
 
-  return (
-    <div className="p-4">
-      <BackButton />
-      <h1 className="text-3xl my-4">Delete Forum</h1>
-      {loading ? <Spinner /> : ""}
-      <div className="flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto">
-        <h3 className="text-2xl">Are You Sure You want to delete this forum?</h3>
+  const containerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+  };
 
-        <button
-          className="p-4 bg-red-600 text-white m-8 w-full"
-          onClick={handleDeleteForum}
-        >
-          Yes, Delete it
-        </button>
+  const forumBoxStyle = {
+    border: "2px solid #87CEEB",
+    borderRadius: "8px",
+    padding: "20px",
+    width: "600px",
+  };
+
+  const buttonStyle = {
+    padding: "10px",
+    backgroundColor: "#FF0000",
+    color: "#FFFFFF",
+    margin: "10px",
+    width: "100%",
+  };
+
+  return (
+    <div className="container">
+      <div className="p-4">
+        <BackButton />
+        <h1 className="text-3xl my-4">Delete Forum</h1>
+        {loading ? <Spinner /> : ""}
+        <div style={containerStyle}>
+          <div style={forumBoxStyle}>
+            <h3 className="text-2xl">Are You Sure You want to delete this forum?</h3>
+            <button
+              style={buttonStyle}
+              onClick={handleDeleteForum}
+            >
+              Yes, Delete it
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

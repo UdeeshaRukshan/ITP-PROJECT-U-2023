@@ -4,7 +4,6 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import "./CreateForum.css";
 
 const CreateForum = () => {
   const [title, setTitle] = useState("");
@@ -14,10 +13,9 @@ const CreateForum = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [publishYear, setPublishYear] = useState(null);
+  const [createdDate, setCreatedDate] = useState("");
 
   const handleSaveForum = () => {
-    // Reset previous errors
     setErrors({});
 
     const validationErrors = {};
@@ -32,10 +30,10 @@ const CreateForum = () => {
       validationErrors.author = "Author can only contain letters and spaces";
     }
 
-    if (!publishYear.trim() || isNaN(publishYear) || +publishYear < 0) {
-      validationErrors.publishYear = "Invalid publish year";
+    if (!createdDate.trim()) {
+      validationErrors.createdDate = "Created Date is required";
     }
-
+    
     if (!content.trim()) {
       validationErrors.content = "Content is required";
     }
@@ -48,7 +46,7 @@ const CreateForum = () => {
     const data = {
       title,
       author,
-      publishYear,
+      createdDate,
       content,
     };
 
@@ -67,56 +65,67 @@ const CreateForum = () => {
       });
   };
 
+  const inputStyle = {
+    border: "2px solid #ccc",
+    padding: "4px",
+    width: "100%",
+  };
+
+  const errorStyle = {
+    color: "red",
+  };
+
   return (
-    <div className="p-4">
+    <div style={{ padding: "20px" }}>
       <BackButton />
-      <h1 className="text-3xl my-4">Create Forum</h1>
+      <h1 style={{ fontSize: "24px", margin: "20px 0" }}>Create Forum</h1>
       {loading ? <Spinner /> : ""}
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Title</label>
+      <div style={{ border: "2px solid #87CEEB", borderRadius: "8px", padding: "20px", width: "600px", margin: "0 auto" }}>
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ fontSize: "20px", marginRight: "10px", color: "#888" }}>Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            style={inputStyle}
           />
-          {errors.title && <p className="text-red-500">{errors.title}</p>}
+          {errors.title && <p style={errorStyle}>{errors.title}</p>}
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Author</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ fontSize: "20px", marginRight: "10px", color: "#888" }}>Author</label>
           <input
             type="text"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            style={inputStyle}
           />
-          {errors.author && <p className="text-red-500">{errors.author}</p>}
+          {errors.author && <p style={errorStyle}>{errors.author}</p>}
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Publish Year</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ fontSize: "20px", marginRight: "10px", color: "#888" }}>Created Date</label>
           <input
-            type="text"
-            value={publishYear}
-            onChange={(e) => setPublishYear(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            type="date"
+            value={createdDate}
+            onChange={(e) => setCreatedDate(e.target.value)}
+            style={inputStyle}
           />
-          {errors.publishYear && <p className="text-red-500">{errors.publishYear}</p>}
+          {errors.createdDate && <p style={errorStyle}>{errors.createdDate}</p>}
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Content</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ fontSize: "20px", marginRight: "10px", color: "#888" }}>Content</label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full h-48"
+            style={{ ...inputStyle, height: "100px" }}
           />
-          {errors.content && <p className="text-red-500">{errors.content}</p>}
+          {errors.content && <p style={errorStyle}>{errors.content}</p>}
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={handleSaveForum}>
+        <button style={{ padding: "10px", backgroundColor: "#87CEEB", margin: "10px" }} onClick={handleSaveForum}>
           Save
         </button>
       </div>
     </div>
   );
 };
+
 export default CreateForum;

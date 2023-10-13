@@ -6,18 +6,18 @@ const router = express.Router();
 // Route for Save a new Forum
 router.post("/", async (request, response) => {
   try {
-    const { title, author, publishYear, content } = request.body;
+    const { title, author, createdDate, content } = request.body;
 
-    if (!title || !author || !publishYear || !content) {
+    if (!title || !author || !createdDate || !content) {
       return response.status(400).send({
-        message: "Send all required fields: title, author, publishYear, content",
+        message: "Send all required fields: title, author, createdDate, content",
       });
     }
 
     const newForum = {
       title,
       author,
-      publishYear,
+      createdDate,
       content,
     };
 
@@ -62,19 +62,19 @@ router.get("/:id", async (request, response) => {
 // Route for Update a Forum
 router.put("/:id", async (request, response) => {
   try {
-    const { title, author, publishYear, content } = request.body;
+    const { title, author, createdDate, content } = request.body;
     const { id } = request.params;
 
-    if (!title || !author || !publishYear || !content) {
+    if (!title || !author || !createdDate || !content) {
       return response.status(400).send({
-        message: "Send all required fields: title, author, publishYear, content",
+        message: "Send all required fields: title, author, createdDate, content",
       });
     }
 
     const result = await Forum.findByIdAndUpdate(id, {
       title,
       author,
-      publishYear,
+      createdDate,
       content,
     });
 
