@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import "./Login.css";
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -26,6 +27,9 @@ const Login = () => {
   });
 
   const { email, password } = inputValue;
+
+  const [errorMessage, setErrorMessage] = useState(""); // Add error message state
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -34,10 +38,13 @@ const Login = () => {
     });
   };
 
-  const handleError = (err) =>
+  const handleError = (err) => {
+    setErrorMessage(err);
     toast.error(err, {
       position: "bottom-left",
     });
+  };
+
   const handleSuccess = (msg) =>
     toast.success(msg, {
       position: "bottom-left",
@@ -132,7 +139,7 @@ const Login = () => {
             }}
           >
             <img
-              class="login-img"
+              className="login-img"
               src="https://res.cloudinary.com/dkflvz7re/image/upload/v1695736356/ibrezjjiztmfuqduuwox.png"
             />
             <Typography component="h1" variant="h5">
@@ -213,6 +220,11 @@ const Login = () => {
                   </Link>
                 </Grid>
               </Grid>
+              {errorMessage && ( // Conditionally display error message
+                <div className="error-message">
+                  <p>{errorMessage}</p>
+                </div>
+              )}
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
