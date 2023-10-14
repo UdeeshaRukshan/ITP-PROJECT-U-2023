@@ -75,9 +75,15 @@ const Dashboard = () => {
   };
 
   const validateAge = (age) => {
+    if (!age || age.trim() === "") {
+      // Handle empty input
+      return false;
+    }
+
     const parsedAge = parseInt(age);
-    return !isNaN(parsedAge) && parsedAge >= 18; // Age validation: must be a number and at least 18 years old
+    return !isNaN(parsedAge) && parsedAge >= 18;
   };
+
   const validateSriLankanNIC = (nic) => {
     // Sri Lankan NIC format: 123456789V or 123456789X
     const nicRegex = /^\d{9}[VX]$/;
@@ -455,7 +461,7 @@ const Dashboard = () => {
               <div className="form-group">
                 <label>Age:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="age"
                   value={editedUser.age}
                   onChange={handleInputChange}
