@@ -1,60 +1,59 @@
-
-.all-prop-container {
-  max-width: 1400px;
+.all-vehicle-container {
+  max-width: 1300px;
   margin: 80px auto; /* Increased space at the top */
 }
 
-.all-prop-header {
+.all-vehicle-header {
   color: #000000;
 }
 
-.all-prop-header {
+.all-vehicle-header {
   text-align: center; /* Center text horizontally */
   display: flex;
   align-items: center; /* Center text vertically */
   justify-content: center; /* Center text horizontally */
-  height:50%; /* Adjust the height as needed */
+  height: 50%; /* Adjust the height as needed */
 }
 
-.all-prop-table {
+.all-vehicle-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.all-prop-thread .all-prop-th {
+.all-vehicle-thread .all-vehicle-th {
   background-color: #363753;
   color: #fff;
   padding: 15px; /* Increased padding for header cells */
   text-align: left;
 }
 
-.all-prop-tbody td {
+.all-vehicle-tbody td {
   border: 1px solid #ddd;
   padding: 10px; /* Increased padding for data cells */
 }
 
 /* Alternate row colors */
-.all-prop-tbody tr:nth-child(even) {
+.all-vehicle-tbody tr:nth-child(even) {
   background-color: #e5e5e5; /* Change this color as needed for even rows */
 }
 
-.all-prop-tbody tr:nth-child(odd) {
+.all-vehicle-tbody tr:nth-child(odd) {
   background-color: #ffffff; /* Change this color as needed for odd rows */
 }
 
-.all-prop-input {
+.all-vehicle-input {
   width: calc(100% - 16px); /* Adjusted width for input fields */
   padding: 10px;
   margin-bottom: 5px;
   box-sizing: border-box;
 }
 
-.save-button-allprop,
-.cancel-button-allprop,
-.all-button-allprop,
-.delete-button-allprop {
-  padding: 10px 15px;
+.save-button-allvehicle,
+.cancel-button-allvehicle,
+.all-button-allvehicle,
+.delete-button-allvehicle {
+  padding: 10px 10px;
   margin-right: 10px;
   cursor: pointer;
   border: none;
@@ -62,26 +61,27 @@
   font-size: 14px;
 }
 
-.save-button-allprop {
+.save-button-allvehicle {
   background-color: #4caf50; /* Changed save button color */
   color: #fff;
 }
 
-.cancel-button-allprop {
+.cancel-button-allvehicle {
   background-color: #ddd;
   color: #363753;
 }
 
-.all-button-allprop {
+.all-button-allvehicle {
   background-color: #2196f3; /* Changed all button color */
   color: #fff;
 }
 
-.delete-button-allprop {
+.delete-button-allvehicle {
   background-color: #f44336;
   color: #fff;
 }
-.all-prop-edit-button {
+
+.all-veh-edit-button {
   background-color: #4934e4; /* Change the background color to your desired color */
   color: #fff;
   border: none;
@@ -91,11 +91,11 @@
   margin-right: 5px; /* Adjust the margin as needed */
 }
 
-.all-prop-edit-button:hover {
-  background-color: #0056b3; /* Change the hover background color to your desired color */
+.all-veh-edit-button:hover {
+  background-color: #569ff2; /* Change the hover background color to your desired color */
 }
 
-.all-prop-generate-report-button {
+.all-veh-generate-report-button {
   background-color: #e89734;
   color: #fff;
   border: none;
@@ -106,18 +106,18 @@
   font-size: 12px; /* Adjust the font size as needed */
 }
 
-.all-prop-generate-report-button:hover {
+.all-veh-generate-report-button:hover {
   background-color: #f0c528; /* Change the hover background color to your desired color */
 }
 
-.all-prop-search-container {
+.all-veh-search-container {
   display: flex; /* Use flexbox to arrange items */
   justify-content: flex-end; /* Align items to the right */
   align-items: flex-start; /* Align items at the top */
   padding: 10px; /* Add some padding to the container */
 }
 
-.all-prop-search-container input[type="text"] {
+.all-veh-search-container input[type="text"] {
   width: 30%; /* Set the width of the input */
   padding: 12px; /* Add padding to the input */
   border: 2.5px solid #363753; /* Add a border to the input */

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import './AllArts.css';
-import jsPDF from 'jspdf';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-export default function AllArts() {
+import jsPDF from "jspdf";
+import "../../components/categoriesUpdate/AllArtsUpdate.css";
+export default function AllArtsUpdate() {
   const [arts, setArts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchArts() {
       try {
-        const response = await axios.get('http://localhost:8070/art/getarts');
+        const response = await axios.get("http://localhost:4042/art/getarts");
         setArts(response.data);
       } catch (error) {
         alert(error.message);
@@ -22,11 +22,13 @@ export default function AllArts() {
   }, []);
 
   const handleDeleteArt = async (artId) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this art piece?');
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this art piece?"
+    );
 
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:8070/art/deleteart/${artId}`);
+        await axios.delete(`http://localhost:4042/art/deleteart/${artId}`);
         setArts((prevArts) => prevArts.filter((art) => art._id !== artId));
       } catch (error) {
         alert(error.message);
@@ -36,13 +38,20 @@ export default function AllArts() {
 
   const generateReportForArt = (art) => {
     const doc = new jsPDF();
-    doc.text(`Art Report - ${art.title}`, 10, 10);<br></br>
-    doc.text(`Art Title: ${art.title}`, 10, 30);<br></br>
-    doc.text(`Medium: ${art.medium}`, 10, 40);<br></br>
-    doc.text(`Height (cm): ${art.height}`, 10, 50);<br></br>
-    doc.text(`Width (cm): ${art.width}`, 10, 60);<br></br>
-    doc.text(`Condition: ${art.condition}`, 10, 70);<br></br>
-    doc.text(`Location: ${art.location}`, 10, 80);<br></br>
+    doc.text(`Art Report - ${art.title}`, 10, 10);
+    <br></br>;
+    doc.text(`Art Title: ${art.title}`, 10, 30);
+    <br></br>;
+    doc.text(`Medium: ${art.medium}`, 10, 40);
+    <br></br>;
+    doc.text(`Height (cm): ${art.height}`, 10, 50);
+    <br></br>;
+    doc.text(`Width (cm): ${art.width}`, 10, 60);
+    <br></br>;
+    doc.text(`Condition: ${art.condition}`, 10, 70);
+    <br></br>;
+    doc.text(`Location: ${art.location}`, 10, 80);
+    <br></br>;
     doc.text(`Value ($): ${art.value}`, 10, 90);
 
     doc.save(`${art.title}_report.pdf`);
@@ -54,11 +63,7 @@ export default function AllArts() {
 
   const renderImages = (images) => {
     return images.map((image, index) => (
-      <img
-        key={index}
-        src={image.dataUrl}
-        alt={`Item ${index + 1}`}
-      />
+      <img key={index} src={image.dataUrl} alt={`Item ${index + 1}`} />
     ));
   };
 
@@ -81,10 +86,16 @@ export default function AllArts() {
           <Link to={`/updateart/${art._id}`}>
             <button className="all-arts-edit-button">Edit</button>
           </Link>
-          <button className="delete-button-allarts" onClick={() => handleDeleteArt(art._id)}>
+          <button
+            className="delete-button-allarts"
+            onClick={() => handleDeleteArt(art._id)}
+          >
             Delete
           </button>
-          <button className="all-arts-generate-report-button" onClick={() => generateReportForArt(art)}>
+          <button
+            className="all-arts-generate-report-button"
+            onClick={() => generateReportForArt(art)}
+          >
             Generate Report
           </button>
         </td>
@@ -94,7 +105,8 @@ export default function AllArts() {
 
   return (
     <div className="all-arts-container">
-      <h1 className="all-arts-header-center">All Arts</h1><br></br>
+      <h1 className="all-arts-header-center">All Arts</h1>
+      <br></br>
       <div className="all-arts-search-container">
         <input
           type="text"

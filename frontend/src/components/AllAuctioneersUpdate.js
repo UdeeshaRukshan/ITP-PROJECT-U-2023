@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AllAuctioneers.css"; 
+import "./AllAuctioneers.css";
 
 export default function AllAuctioneers() {
   const [auctioneers, setAuctioneers] = useState([]);
@@ -8,7 +8,9 @@ export default function AllAuctioneers() {
   useEffect(() => {
     async function fetchAuctioneers() {
       try {
-        const response = await axios.get("http://localhost:8070/auctioneer/getauctioneers");
+        const response = await axios.get(
+          "http://localhost:4042/auctioneer/getauctioneers"
+        );
         setAuctioneers(response.data);
       } catch (error) {
         alert(error.message);
@@ -17,10 +19,13 @@ export default function AllAuctioneers() {
 
     fetchAuctioneers();
   }, []);
-  
+
   const renderAuctioneerRows = () => {
     return auctioneers.map((auctioneer, index) => (
-      <tr key={auctioneer._id} className={index % 2 === 0 ? "all-auc-even-row" : "all-auc-odd-row"}>
+      <tr
+        key={auctioneer._id}
+        className={index % 2 === 0 ? "all-auc-even-row" : "all-auc-odd-row"}
+      >
         <td>{auctioneer.firstName}</td>
         <td>{auctioneer.lastName}</td>
         <td>{auctioneer.email}</td>
@@ -30,7 +35,10 @@ export default function AllAuctioneers() {
         <td>{auctioneer.city}</td>
         <td>
           <div className="all-auc-button-container">
-            <button className="delete-button-allauc" onClick={() => handleDeleteClick(auctioneer._id)}>
+            <button
+              className="delete-button-allauc"
+              onClick={() => handleDeleteClick(auctioneer._id)}
+            >
               Delete
             </button>
           </div>
@@ -40,12 +48,20 @@ export default function AllAuctioneers() {
   };
 
   const handleDeleteClick = async (auctioneerId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete your details?");
-    
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete your details?"
+    );
+
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:8070/auctioneer/delete/${auctioneerId}`);
-        setAuctioneers((prevAuctioneers) => prevAuctioneers.filter((auctioneer) => auctioneer._id !== auctioneerId));
+        await axios.delete(
+          `http://localhost:8070/auctioneer/delete/${auctioneerId}`
+        );
+        setAuctioneers((prevAuctioneers) =>
+          prevAuctioneers.filter(
+            (auctioneer) => auctioneer._id !== auctioneerId
+          )
+        );
       } catch (error) {
         alert(error.message);
       }
@@ -65,7 +81,7 @@ export default function AllAuctioneers() {
             <th className="all-auc-th">Address</th>
             <th className="all-auc-th">Street</th>
             <th className="all-auc-th">City</th>
-            <th className="all-auc-th">Actions</th> 
+            <th className="all-auc-th">Actions</th>
           </tr>
         </thead>
         <tbody className="all-auc-tbody">{renderAuctioneerRows()}</tbody>

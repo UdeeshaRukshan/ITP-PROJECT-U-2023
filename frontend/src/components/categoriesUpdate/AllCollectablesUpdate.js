@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom';
-import "./AllCollectables.css"; 
-import jsPDF from 'jspdf';
+import { Link } from "react-router-dom";
+import "../../components/categoriesUpdate/AllCollectablesUpdate.css";
+import jsPDF from "jspdf";
 
-export default function AllCollectables() {
+export default function AllCollectablesUpdate() {
   const [collectables, setCollectables] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchCollectables() {
       try {
-        const response = await axios.get("http://localhost:8070/collectable/getcollectables");
+        const response = await axios.get(
+          "http://localhost:4042/collectable/getcollectables"
+        );
         setCollectables(response.data);
       } catch (error) {
         alert(error.message);
@@ -22,13 +24,21 @@ export default function AllCollectables() {
   }, []);
 
   const handleDeleteClick = async (collectableId) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this item?");
-    
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:8070/collectable/deletecollectable/${collectableId}`);
+        await axios.delete(
+          `http://localhost:4042/collectable/deletecollectable/${collectableId}`
+        );
 
-        setCollectables((prevCollectables) => prevCollectables.filter((collectable) => collectable._id !== collectableId));
+        setCollectables((prevCollectables) =>
+          prevCollectables.filter(
+            (collectable) => collectable._id !== collectableId
+          )
+        );
       } catch (error) {
         alert(error.message);
       }
@@ -37,12 +47,15 @@ export default function AllCollectables() {
 
   const generateReportForCollectable = (collectable) => {
     const doc = new jsPDF();
-    doc.text(`Collectable Report - ${collectable.type}`, 10, 10);<br></br>
-    doc.text(`Collectable Type: ${collectable.type}`, 10, 30);<br></br>
-    doc.text(`Name: ${collectable.name}`, 10, 40);<br></br>
-    doc.text(`Description: ${collectable.description}`, 10, 50);<br></br>
+    doc.text(`Collectable Report - ${collectable.type}`, 10, 10);
+    <br></br>;
+    doc.text(`Collectable Type: ${collectable.type}`, 10, 30);
+    <br></br>;
+    doc.text(`Name: ${collectable.name}`, 10, 40);
+    <br></br>;
+    doc.text(`Description: ${collectable.description}`, 10, 50);
+    <br></br>;
     doc.text(`Value ($): ${collectable.value}`, 10, 60);
-    
 
     doc.save(`${collectable.type}_report.pdf`);
   };
@@ -53,11 +66,7 @@ export default function AllCollectables() {
 
   const renderImages = (images) => {
     return images.map((image, index) => (
-      <img
-        key={index}
-        src={image.dataUrl}
-        alt={`Item ${index + 1}`}
-      />
+      <img key={index} src={image.dataUrl} alt={`Item ${index + 1}`} />
     ));
   };
 
@@ -77,13 +86,19 @@ export default function AllCollectables() {
           <Link to={`/updatecollectable/${collectable._id}`}>
             <button className="all-collectable-edit-button">Edit</button>
           </Link>
-          <button className="delete-button-allcollec" onClick={() => handleDeleteClick(collectable._id)}>
+          <button
+            className="delete-button-allcollec"
+            onClick={() => handleDeleteClick(collectable._id)}
+          >
             Delete
           </button>
-          <button className="all-collectables-generate-report-button" onClick={() => generateReportForCollectable(collectable)}>
+          <button
+            className="all-collectables-generate-report-button"
+            onClick={() => generateReportForCollectable(collectable)}
+          >
             Generate Report
           </button>
-      </td>
+        </td>
       </tr>
     ));
   };
@@ -106,7 +121,7 @@ export default function AllCollectables() {
             <th className="all-collec-th">Name</th>
             <th className="all-collec-th">Value($)</th>
             <th className="all-collec-th">Description</th>
-            <th className="all-collec-th">Images</th> 
+            <th className="all-collec-th">Images</th>
             <th className="all-collec-th">Action</th>
           </tr>
         </thead>

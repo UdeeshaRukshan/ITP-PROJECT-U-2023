@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom';
-import "./AllVehicles.css"; 
-import jsPDF from 'jspdf';
+import { Link } from "react-router-dom";
+import "../../components/categoriesUpdate/AllVehiclesUpdate.css";
+import jsPDF from "jspdf";
 
-export default function AllVehicles() {
+export default function AllVehiclesUpdate() {
   const [vehicles, setVehicles] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fectchVehicles() {
       try {
-        const response = await axios.get("http://localhost:8070/vehicle/getvehicles");
+        const response = await axios.get(
+          "http://localhost:4042/vehicle/getvehicles"
+        );
         setVehicles(response.data);
       } catch (error) {
         alert(error.message);
@@ -22,13 +24,19 @@ export default function AllVehicles() {
   }, []);
 
   const handleDeleteClick = async (vehicleid) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this?");
-    
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this?"
+    );
+
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:8070/vehicle/deletevehicle/${vehicleid}`);
+        await axios.delete(
+          `http://localhost:4042/vehicle/deletevehicle/${vehicleid}`
+        );
 
-        setVehicles((prevVehicles) => prevVehicles.filter((vehicle) => vehicle._id !== vehicleid));
+        setVehicles((prevVehicles) =>
+          prevVehicles.filter((vehicle) => vehicle._id !== vehicleid)
+        );
       } catch (error) {
         alert(error.message);
       }
@@ -37,16 +45,23 @@ export default function AllVehicles() {
 
   const generateReportForVehicle = (vehicle) => {
     const doc = new jsPDF();
-    doc.text(`Vehicle Report - ${vehicle.fuelType}`, 10, 10);<br></br>
-    doc.text(`Vehicle Number: ${vehicle.vehicleNumber}`, 10, 20);<br></br>
-    doc.text(`Model: ${vehicle.model}`, 10, 30);<br></br>
-    doc.text(`Year: ${vehicle.year}`, 10, 40);<br></br>
-    doc.text(`Fuel Type: ${vehicle.fuelType}`, 10, 50);<br></br>
-    doc.text(`Mileage(km): ${vehicle.mileage}`, 10, 60);<br></br>
-    doc.text(`Features: ${vehicle.features}`, 10, 70);<br></br>
-    doc.text(`Location: ${vehicle.location}`, 10, 80);<br></br>
+    doc.text(`Vehicle Report - ${vehicle.fuelType}`, 10, 10);
+    <br></br>;
+    doc.text(`Vehicle Number: ${vehicle.vehicleNumber}`, 10, 20);
+    <br></br>;
+    doc.text(`Model: ${vehicle.model}`, 10, 30);
+    <br></br>;
+    doc.text(`Year: ${vehicle.year}`, 10, 40);
+    <br></br>;
+    doc.text(`Fuel Type: ${vehicle.fuelType}`, 10, 50);
+    <br></br>;
+    doc.text(`Mileage(km): ${vehicle.mileage}`, 10, 60);
+    <br></br>;
+    doc.text(`Features: ${vehicle.features}`, 10, 70);
+    <br></br>;
+    doc.text(`Location: ${vehicle.location}`, 10, 80);
+    <br></br>;
     doc.text(`Value ($): ${vehicle.value}`, 10, 90);
-    
 
     doc.save(`${vehicle.fuelType}_report.pdf`);
   };
@@ -57,11 +72,7 @@ export default function AllVehicles() {
 
   const renderImages = (images) => {
     return images.map((image, index) => (
-      <img
-        key={index}
-        src={image.dataUrl}
-        alt={`Vehicle ${index + 1}`}
-      />
+      <img key={index} src={image.dataUrl} alt={`Vehicle ${index + 1}`} />
     ));
   };
 
@@ -85,21 +96,27 @@ export default function AllVehicles() {
           <Link to={`/updatevehicle/${vehicle._id}`}>
             <button className="all-veh-edit-button">Edit</button>
           </Link>
-          <button className="delete-button-allvehicle" onClick={() => handleDeleteClick(vehicle._id)}>
+          <button
+            className="delete-button-allvehicle"
+            onClick={() => handleDeleteClick(vehicle._id)}
+          >
             Delete
           </button>
-          <button className="all-veh-generate-report-button" onClick={() => generateReportForVehicle(vehicle)}>
+          <button
+            className="all-veh-generate-report-button"
+            onClick={() => generateReportForVehicle(vehicle)}
+          >
             Generate Report
           </button>
-      </td>
+        </td>
       </tr>
     ));
   };
 
   return (
-  <div className="all-vehicle-container">
-    <h2 className="all-vehicle-header">All Vehicles</h2>
-    <div className="all-veh-search-container">
+    <div className="all-vehicle-container">
+      <h2 className="all-vehicle-header">All Vehicles</h2>
+      <div className="all-veh-search-container">
         <input
           type="text"
           placeholder="Search by type of the fuel type"
@@ -107,8 +124,8 @@ export default function AllVehicles() {
           onChange={handleSearchChange}
         />
       </div>
-    <table className="all-vehicle-table">
-      <thead className="all-vehicle-thread">
+      <table className="all-vehicle-table">
+        <thead className="all-vehicle-thread">
           <tr className="tr-all-vehicle">
             <th className="all-vehicle-th">Vehicle Number</th>
             <th className="all-vehicle-th">Model</th>
@@ -117,8 +134,8 @@ export default function AllVehicles() {
             <th className="all-vehicle-th">Mileage(Km)</th>
             <th className="all-vehicle-th">Features</th>
             <th className="all-vehicle-th">Location</th>
-            <th className="all-vehicle-th">Value($)</th> 
-            <th className="all-vehicle-th">Images</th> 
+            <th className="all-vehicle-th">Value($)</th>
+            <th className="all-vehicle-th">Images</th>
             <th className="all-vehicle-th">Action</th>
           </tr>
         </thead>
