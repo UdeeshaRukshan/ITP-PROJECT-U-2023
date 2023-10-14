@@ -17,55 +17,51 @@ const DeleteForum = () => {
       .delete(`http://localhost:4000/forums/${id}`)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar("Forum Deleted successfully", { variant: "success" });
+        enqueueSnackbar("Article Deleted successfully", { variant: "success" });
         navigate("/");
       })
       .catch((error) => {
-        setLoading(false); // Corrected this line
+        setLoading(false);
         enqueueSnackbar("Error", { variant: "error" });
         console.log(error);
       });
   };
 
-  const containerStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    //justifyContent: "center",
-    height: "100vh",
-  };
-
-  const forumBoxStyle = {
-    border: "2px solid #87CEEB",
-    borderRadius: "8px",
-    padding: "20px",
-    width: "600px",
-  };
-
-  const buttonStyle = {
-    padding: "10px",
-    backgroundColor: "#FF0000",
-    color: "#FFFFFF",
-    margin: "10px",
-    width: "100%",
-  };
-
   return (
-    <div className="container">
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "100vh",
+      }}
+      className="container"
+    >
       <div className="p-4">
         <BackButton />
-        <h1 className="text-3xl my-4">Delete Forum</h1>
+        <h1 className="text-3xl my-4">Delete Article</h1>
         {loading ? <Spinner /> : ""}
-        <div style={containerStyle}>
-          <div style={forumBoxStyle}>
-            <h3 className="text-2xl">Are You Sure You want to delete this forum?</h3>
-            <button
-              style={buttonStyle}
-              onClick={handleDeleteForum}
-            >
-              Yes, Delete it
-            </button>
-          </div>
+        <div
+          style={{
+            border: "2px solid #87CEEB",
+            borderRadius: "8px",
+            padding: "20px",
+            width: "600px",
+          }}
+        >
+          <h3 className="text-2xl">Are You Sure You want to delete this Article?</h3>
+          <button
+            style={{
+              padding: "10px",
+              backgroundColor: "#FF0000",
+              color: "#FFFFFF",
+              margin: "10px",
+              width: "100%",
+            }}
+            onClick={handleDeleteForum}
+          >
+            Yes, Delete it
+          </button>
         </div>
       </div>
     </div>

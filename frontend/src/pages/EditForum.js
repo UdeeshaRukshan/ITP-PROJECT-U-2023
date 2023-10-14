@@ -18,41 +18,31 @@ const EditForum = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const containerStyle = {
-    padding: "20px",
-    border: "1px solid #ccc",
-  };
-
-  const formContainerStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    border: "1px solid #ccc",
     padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "12px",
+    width: "600px",
+    margin: "0 auto",
   };
 
-  const formGroupStyle = {
-    marginBottom: "20px",
-    display: "flex",
-    flexDirection: "column",
-  };
-
-  const formLabelStyle = {
-    fontSize: "20px",
-    marginRight: "10px",
-    color: "#888",
-  };
-
-  const formInputStyle = {
-    border: "2px solid #ccc",
-    padding: "4px",
+  const inputStyle = {
+    border: "2px solid #808080",
+    padding: "8px",
     width: "100%",
   };
 
-  const formButtonStyle = {
-    padding: "10px",
-    backgroundColor: "#87CEEB",
-    margin: "10px",
-    width: "25%",
+  const buttonStyle = {
+    padding: "8px",
+    backgroundColor: "#0000FF",
+    margin: "8px",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
   };
 
   const errorStyle = {
@@ -62,31 +52,36 @@ const EditForum = () => {
   const [errors, setErrors] = useState({
     title: "",
     author: "",
+    createdDate: "",
   });
 
   const validateInputs = () => {
     const newErrors = {
       title: "",
       author: "",
+      createdDate: "",
     };
-  
-    // Regular expression pattern to allow only letters
+
     const lettersPattern = /^[A-Za-z]+$/;
-  
-    if (!title) {
+
+    if (!title.trim()) {
       newErrors.title = "Title is required.";
     } else if (!lettersPattern.test(title)) {
       newErrors.title = "Title should contain only letters.";
     }
-  
-    if (!author) {
+
+    if (!author.trim()) {
       newErrors.author = "Author is required.";
     } else if (!lettersPattern.test(author)) {
       newErrors.author = "Author should contain only letters.";
     }
-  
+
+    if (!createdDate) {
+      newErrors.createdDate = "Created Date is required.";
+    }
+
     setErrors(newErrors);
-  
+
     return Object.values(newErrors).every((error) => error === "");
   };
 
@@ -97,7 +92,9 @@ const EditForum = () => {
       .then((response) => {
         setTitle(response.data.title);
         setAuthor(response.data.author);
-        setCreatedDate(response.data.createdDate ? new Date(response.data.createdDate) : null);
+        setCreatedDate(
+          response.data.createdDate ? new Date(response.data.createdDate) : null
+        );
         setContent(response.data.content);
         setLoading(false);
       })
@@ -121,26 +118,29 @@ const EditForum = () => {
         .put(`http://localhost:4000/forums/${id}`, data)
         .then(() => {
           setLoading(false);
-          enqueueSnackbar("Forum Edited successfully", { variant: "success" });
+          enqueueSnackbar("Article Edited successfully", { variant: "success" });
           navigate("/");
         })
         .catch((error) => {
           setLoading(false);
-          enqueueSnackbar("Error editing forum", { variant: "error" });
+          enqueueSnackbar("Error editing Article", { variant: "error" });
           console.log(error);
         });
     }
   };
-  
 
   return (
     <div style={containerStyle}>
       <BackButton />
-      <h1 style={{ fontSize: "24px", margin: "20px 0" }}>Edit Forum</h1>
+      <h1 style={{ fontSize: "24px", margin: "20px 0", fontFamily: "Sans-serif" }}>
+        Edit Forum
+      </h1>
       {loading ? <Spinner /> : ""}
-      <div style={formContainerStyle} className="form-container">
-        <div style={formGroupStyle} className="form-group">
-          <label style={formLabelStyle} className="form-label">
+      <div>
+        <div style={{ margin: "16px 0" }}>
+          <label
+            style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+          >
             Title
           </label>
           <input
@@ -150,12 +150,15 @@ const EditForum = () => {
               setTitle(e.target.value);
               setErrors({ ...errors, title: "" });
             }}
-            style={formInputStyle}
+            onBlur={validateInputs}
+            style={inputStyle}
           />
           <div style={errorStyle}>{errors.title}</div>
         </div>
-        <div style={formGroupStyle} className="form-group">
-          <label style={formLabelStyle} className="form-label">
+        <div style={{ margin: "16px 0" }}>
+          <label
+            style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+          >
             Author
           </label>
           <input
@@ -165,32 +168,48 @@ const EditForum = () => {
               setAuthor(e.target.value);
               setErrors({ ...errors, author: "" });
             }}
-            style={formInputStyle}
+            onBlur={validateInputs}
+            style={inputStyle}
           />
           <div style={errorStyle}>{errors.author}</div>
         </div>
-        <div style={formGroupStyle} className="form-group">
-          <label style={formLabelStyle} className="form-label">
+        <div style={{ margin: "16px 0" }}>
+          <label
+            style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+          >
             Created Date
           </label>
           <ReactDatePicker
             selected={createdDate}
-            onChange={(date) => setCreatedDate(date)}
+            onChange={(date) => {
+              setCreatedDate(date);
+              setErrors({ ...errors, createdDate: "" });
+            }}
+            onBlur={validateInputs}
             dateFormat="yyyy-MM-dd"
-            style={formInputStyle}
+            style={inputStyle}
           />
+          <div style={errorStyle}>{errors.createdDate}</div>
         </div>
-        <div style={formGroupStyle} className="form-group">
-          <label style={formLabelStyle} className="form-label">
+        <div style={{ margin: "16px 0" }}>
+          <label
+            style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+          >
             Content
           </label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            style={{ ...formInputStyle, height: "100px" }}
+            style={{
+              ...inputStyle,
+              height: "100px",
+            }}
           />
         </div>
-        <button style={formButtonStyle} className="form-button" onClick={handleEditForum}>
+        <button
+          style={buttonStyle}
+          onClick={handleEditForum}
+        >
           Save
         </button>
       </div>

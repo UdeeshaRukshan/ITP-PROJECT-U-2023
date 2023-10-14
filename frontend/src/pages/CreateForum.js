@@ -9,16 +9,13 @@ const CreateForum = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
+  const [createdDate, setCreatedDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [createdDate, setCreatedDate] = useState(""); // Keep the variable name
 
-  const handleSaveForum = () => {
-    // Reset previous errors
-    setErrors({});
-
+  const validateInput = () => {
     const validationErrors = {};
 
     if (!title.trim()) {
@@ -38,31 +35,36 @@ const CreateForum = () => {
       validationErrors.content = "Content is required";
     }
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
+    setErrors(validationErrors);
+
+    return Object.keys(validationErrors).length === 0;
+  };
+
+  const handleSaveForum = () => {
+    setErrors({}); // Clear any previous errors.
+
+    if (validateInput()) {
+      const data = {
+        title,
+        author,
+        createdDate,
+        content,
+      };
+
+      setLoading(true);
+      axios
+        .post("http://localhost:4000/forums", data)
+        .then(() => {
+          setLoading(false);
+          enqueueSnackbar("Article Created successfully", { variant: "success" });
+          navigate("/");
+        })
+        .catch((error) => {
+          setLoading(false);
+          enqueueSnackbar("Error", { variant: "error" });
+          console.log(error);
+        });
     }
-
-    const data = {
-      title,
-      author,
-      createdDate, // Use createdDate instead of a different variable
-      content,
-    };
-
-    setLoading(true);
-    axios
-      .post("http://localhost:4000/forums", data)
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar("Forum Created successfully", { variant: "success" });
-        navigate("/");
-      })
-      .catch((error) => {
-        setLoading(false);
-        enqueueSnackbar("Error", { variant: "error" });
-        console.log(error);
-      });
   };
 
   return (
@@ -90,6 +92,7 @@ const CreateForum = () => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              onBlur={validateInput} // Validate on blur
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
@@ -110,6 +113,7 @@ const CreateForum = () => {
               type="text"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
+              onBlur={validateInput} // Validate on blur
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
@@ -130,6 +134,7 @@ const CreateForum = () => {
               type="date"
               value={createdDate}
               onChange={(e) => setCreatedDate(e.target.value)}
+              onBlur={validateInput} // Validate on blur
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
@@ -149,6 +154,7 @@ const CreateForum = () => {
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              onBlur={validateInput} // Validate on blur
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
@@ -163,7 +169,7 @@ const CreateForum = () => {
           <button
             style={{
               padding: "8px",
-              backgroundColor: "#87ceeb",
+              backgroundColor: "blue",
               margin: "8px",
             }}
             onClick={handleSaveForum}

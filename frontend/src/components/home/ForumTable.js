@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
   table1: {
     width: "100%",
     borderCollapse: "collapse",
+    fontFamily: "Sans-serif",
   },
   tableHeader: {
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#0000FF",
     border: "1px solid #d0d0d0",
   },
   tableCell: {
@@ -48,36 +49,41 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 5,
   },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "20px",
+    color: "#0000FF",
+  },
+  createLink: {
+    textDecoration: "none",
+    color: "white",
+  },
+  createButton: {
+    backgroundColor: "#0000FF",
+    padding: "4px 12px",
+    borderRadius: "8px",
+    cursor: "pointer",
+    textDecoration: "none",
+    color: "White",
+  },
+  downloadButton: {
+    backgroundColor: "#00FF00",
+    padding: "4px 12px",
+    borderRadius: "8px",
+    cursor: "pointer",
+    textDecoration: "none",
+    color: "Black",
+  },
+  searchInput: {
+    width: "100%",
+    padding: "8px",
+    marginBottom: "10px",
+    border: "1px solid #d0d0d0",
+    borderRadius: "4px",
+  },
 });
-
-const searchInputStyle = {
-  width: "100%",
-  padding: "8px",
-  marginBottom: "10px",
-  border: "1px solid #d0d0d0",
-  borderRadius: "4px",
-};
-
-const buttonContainerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "20px",
-};
-
-const createLinkStyle = {
-  textDecoration: "none",
-  color: "white",
-};
-
-const createButtonStyle = {
-  backgroundColor: "#87CEEB",
-  padding: "4px 12px",
-  borderRadius: "8px",
-  cursor: "pointer",
-  textDecoration: "none",
-  color: "white",
-};
 
 const ForumTable = ({ forums }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -90,16 +96,20 @@ const ForumTable = ({ forums }) => {
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
-          <Text style={styles.title}>Forum Report</Text>
+          <Text style={styles.title}>Article Report</Text>
           {filteredForums.map((forum, index) => (
-            <Text key={forum._id} style={styles.forumItem}>
-              {`${index + 1}. Title: ${forum.title}, Owner: ${forum.author}, Creation Date: ${forum.createdDate}, Content: ${forum.content}`}
-            </Text>
+            <View key={forum._id} style={styles.forumItem}>
+              <Text>{`${index + 1}. Title: ${forum.title}`}</Text>
+              <Text>{`Owner: ${forum.author}`}</Text>
+              <Text>{`Creation Date: ${forum.createdDate}`}</Text>
+              <Text>{`Content: ${forum.content}`}</Text>
+            </View>
           ))}
         </View>
       </Page>
     </Document>
   );
+  
 
   return (
     <div>
@@ -108,7 +118,7 @@ const ForumTable = ({ forums }) => {
         placeholder="Search by Title"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        style={searchInputStyle}
+        style={styles.searchInput}
       />
 
       <table style={styles.table1}>
@@ -143,15 +153,16 @@ const ForumTable = ({ forums }) => {
         </tbody>
       </table>
 
-      <PDFDownloadLink document={<MyDocument />} fileName="forum_report.pdf">
-        {({ blob, url, loading, error }) =>
-          loading ? "Loading document..." : "Download PDF Report"
-        }
-      </PDFDownloadLink>
-      <div style={buttonContainerStyle}>
-        <Link to="/forums/create" style={createLinkStyle}>
-          <button style={createButtonStyle}>Create</button>
+      <div style={styles.buttonContainer}>
+        <Link to="/forums/create" style={styles.createLink}>
+          <button style={styles.createButton}>Create</button>
         </Link>
+
+        <PDFDownloadLink document={<MyDocument />} fileName="Article_report.pdf">
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : <button style={styles.downloadButton}>Download PDF Report</button>
+          }
+        </PDFDownloadLink>
       </div>
     </div>
   );

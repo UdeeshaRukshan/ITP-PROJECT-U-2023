@@ -25,16 +25,18 @@ const buttonContainerStyle = {
 };
 
 const buttonStyle = {
-  backgroundColor: "#87CEEB",
+  backgroundColor: "#0000FF",
   padding: "4px 12px",
   borderRadius: "8px",
   marginRight: "10px",
   cursor: "pointer",
+  fontFamily: "Sans-serif",
 };
 
 const titleStyle = {
   fontSize: "24px",
   margin: "0",
+  fontFamily: "Sans-serif",
 };
 
 const createLinkStyle = {
@@ -74,13 +76,13 @@ const Home = () => {
     <div style={containerStyle}>
       <div style={buttonContainerStyle}>
         <button
-          style={showType === "table" ? { ...buttonStyle, backgroundColor: "#87CEEB" } : buttonStyle}
+          style={showType === "table" ? { ...buttonStyle, backgroundColor: "#0000FF" } : buttonStyle}
           onClick={() => setShowType("table")}
         >
           Table
         </button>
         <button
-          style={showType === "card" ? { ...buttonStyle, backgroundColor: "#87CEEB" } : buttonStyle}
+          style={showType === "card" ? { ...buttonStyle, backgroundColor: "##0000FF" } : buttonStyle}
           onClick={() => setShowType("card")}
         >
           Articles
