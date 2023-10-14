@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const EditForum = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [createdDate, setCreatedDate] = useState("");
+  const [createdDate, setCreatedDate] = useState(null);
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -19,14 +19,14 @@ const EditForum = () => {
 
   const containerStyle = {
     padding: "20px",
-    border: "1px solid #ccc", // Add border to the container
+    border: "1px solid #ccc",
   };
 
   const formContainerStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    border: "1px solid #ccc", // Add border to the form container
+    border: "1px solid #ccc",
     padding: "20px",
   };
 
@@ -89,7 +89,6 @@ const EditForum = () => {
   
     return Object.values(newErrors).every((error) => error === "");
   };
-  
 
   useEffect(() => {
     setLoading(true);
@@ -98,7 +97,7 @@ const EditForum = () => {
       .then((response) => {
         setTitle(response.data.title);
         setAuthor(response.data.author);
-        setCreatedDate(response.data.createdDate);
+        setCreatedDate(response.data.createdDate ? new Date(response.data.createdDate) : null);
         setContent(response.data.content);
         setLoading(false);
       })
@@ -114,7 +113,7 @@ const EditForum = () => {
       const data = {
         title,
         author,
-        createdDate,
+        createdDate: createdDate ? createdDate.toISOString() : null,
         content,
       };
       setLoading(true);
@@ -132,6 +131,7 @@ const EditForum = () => {
         });
     }
   };
+  
 
   return (
     <div style={containerStyle}>
@@ -148,7 +148,7 @@ const EditForum = () => {
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
-              setErrors({ ...errors, title: "" }); // Clear error when user types
+              setErrors({ ...errors, title: "" });
             }}
             style={formInputStyle}
           />
@@ -163,23 +163,23 @@ const EditForum = () => {
             value={author}
             onChange={(e) => {
               setAuthor(e.target.value);
-              setErrors({ ...errors, author: "" }); // Clear error when user types
+              setErrors({ ...errors, author: "" });
             }}
             style={formInputStyle}
           />
           <div style={errorStyle}>{errors.author}</div>
         </div>
         <div style={formGroupStyle} className="form-group">
-  <label style={formLabelStyle} className="form-label">
-    Created Date
-  </label>
-  <ReactDatePicker
-    selected={new Date(createdDate)}
-    onChange={(date) => setCreatedDate(date)}
-    dateFormat="yyyy-MM-dd"
-    style={formInputStyle}
-  />
-</div>
+          <label style={formLabelStyle} className="form-label">
+            Created Date
+          </label>
+          <ReactDatePicker
+            selected={createdDate}
+            onChange={(date) => setCreatedDate(date)}
+            dateFormat="yyyy-MM-dd"
+            style={formInputStyle}
+          />
+        </div>
         <div style={formGroupStyle} className="form-group">
           <label style={formLabelStyle} className="form-label">
             Content
