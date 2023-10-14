@@ -61,7 +61,7 @@ import EditCard from "./components/payment/EditCard";
 import Feedback from "./pages/Feedback";
 import FeedbackView from "./pages/FeedbackView";
 import FeedbackEdit from "./pages/FeedbackEdit";
-
+import FeedbackReport from "./pages/FeedbackReport";
 //Admin Dashbord
 
 function App() {
@@ -129,6 +129,8 @@ function App() {
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/feedback/all" element={<FeedbackView />} />
             <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
+            <Route path="/feedbacks" element={<FeedbackView />} />
+            <Route path="/feedback/report" element={<FeedbackReport />} />
           </Routes>
 
           <Footer />
