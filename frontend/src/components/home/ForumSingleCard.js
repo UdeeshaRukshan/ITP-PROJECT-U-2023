@@ -25,6 +25,7 @@ const titleStyles = {
   marginBottom: "5px",
   color: "#333",
   fontWeight: "bold",
+  fontFamily: "Sans-serif",
 };
 
 const contentStyles = {
@@ -32,7 +33,10 @@ const contentStyles = {
   marginBottom: "5px",
   color: "#333",
   fontWeight: "bold",
+  fontFamily: "Sans-serif",
+  backgroundColor: "yellow", // Add this line to highlight
 };
+
 
 const iconStyles = {
   fontSize: "20px",
@@ -43,8 +47,35 @@ const iconStyles = {
   },
 };
 
+const buttonStyles = {
+  display: "flex",
+  alignItems: "center",
+  marginTop: "10px",
+};
+
+const likeButtonStyles = {
+  fontSize: "20px",
+  cursor: "pointer",
+  marginRight: "10px",
+};
+
+const dislikeButtonStyles = {
+  fontSize: "20px",
+  cursor: "pointer",
+};
+
 const ForumSingleCard = ({ forum }) => {
   const [showModal, setShowModal] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+
+  const handleLike = () => {
+    setLikes(likes + 1);
+  };
+
+  const handleDislike = () => {
+    setDislikes(dislikes + 1);
+  };
 
   return (
     <div style={cardStyles}>
@@ -52,6 +83,16 @@ const ForumSingleCard = ({ forum }) => {
       <h2 style={titleStyles}>Author: {forum.author}</h2>
       <h2 style={titleStyles}>Created Date: {forum.createdDate}</h2>
       <p style={contentStyles}>Content: {forum.content}</p>
+
+      <div style={buttonStyles}>
+        <span style={likeButtonStyles} onClick={handleLike}>
+          &#128077; {likes}
+        </span>
+        <span style={dislikeButtonStyles} onClick={handleDislike}>
+          &#128078; {dislikes}
+        </span>
+      </div>
+
       {showModal && (
         <ForumModal forum={forum} onClose={() => setShowModal(false)} />
       )}
