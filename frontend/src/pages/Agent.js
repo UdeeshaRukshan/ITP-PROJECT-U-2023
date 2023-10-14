@@ -575,6 +575,7 @@ function DashboardContent() {
                               <button
                                 className="btnn-cancel"
                                 onClick={toggleUpdateAgentForm}
+                                style={{ marginLeft: "2vh" }}
                               >
                                 Cancel
                               </button>
@@ -583,7 +584,10 @@ function DashboardContent() {
                         </div>
                       )}
                       {isAddAgentFormVisible ? (
-                        <div className="popup-form">
+                        <div
+                          className="popup-form"
+                          style={{ marginLeft: "-7vh" }}
+                        >
                           <h3>Add New Agent</h3>
                           <form onSubmit={handleSubmit}>
                             <div className="form-group">
@@ -710,6 +714,7 @@ function DashboardContent() {
                                           style={{
                                             backgroundColor: "green",
                                             color: "white",
+                                            marginTop: "3vh",
                                           }}
                                           onClick={() =>
                                             toggleUpdateAgentForm(agent._id)
@@ -737,6 +742,7 @@ function DashboardContent() {
                                       <td>{agent.name}</td>
                                       <td>{agent.age}</td>
                                       <td>{agent.address}</td>
+                                      <td>{agent.assign}</td>
                                       <td>{agent.jobtype}</td>
                                       <td>
                                         <button
@@ -758,11 +764,14 @@ function DashboardContent() {
                                           style={{
                                             backgroundColor: "green",
                                             color: "white",
+                                            marginTop: "3vh",
                                           }}
                                           onClick={() =>
                                             toggleUpdateAgentForm(agent._id)
                                           }
-                                        ></button>
+                                        >
+                                          Update
+                                        </button>
                                         <button
                                           className="btn btnDelete"
                                           style={{
@@ -796,6 +805,7 @@ function DashboardContent() {
                         <button
                           className="view-qr"
                           onClick={generateQRCodeForReport}
+                          style={{ marginTop: "3vh" }}
                         >
                           View QR Code
                         </button>
