@@ -16,7 +16,6 @@ const containerStyle = {
   borderRadius: "5px", // Add border radius for rounded corners
 };
 
-
 const buttonContainerStyle = {
   display: "flex",
   justifyContent: "space-between",
@@ -31,6 +30,9 @@ const buttonStyle = {
   marginRight: "10px",
   cursor: "pointer",
   fontFamily: "Sans-serif",
+  width: "15vh",
+  height: "5vh",
+  color: "white",
 };
 
 const titleStyle = {
@@ -53,7 +55,7 @@ const createButtonStyle = {
   color: "white",
 };
 
-const Home = () => {
+const Artical = () => {
   const [forums, setForums] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
@@ -61,7 +63,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:4000/forums") // Updated URL to "/forums"
+      .get("http://localhost:4042/forums") // Updated URL to "/forums"
       .then((response) => {
         setForums(response.data.data);
         setLoading(false);
@@ -76,13 +78,21 @@ const Home = () => {
     <div style={containerStyle}>
       <div style={buttonContainerStyle}>
         <button
-          style={showType === "table" ? { ...buttonStyle, backgroundColor: "#0000FF" } : buttonStyle}
+          style={
+            showType === "table"
+              ? { ...buttonStyle, backgroundColor: "#0000FF" }
+              : buttonStyle
+          }
           onClick={() => setShowType("table")}
         >
           Table
         </button>
         <button
-          style={showType === "card" ? { ...buttonStyle, backgroundColor: "##0000FF" } : buttonStyle}
+          style={
+            showType === "card"
+              ? { ...buttonStyle, backgroundColor: "##0000FF" }
+              : buttonStyle
+          }
           onClick={() => setShowType("card")}
         >
           Articles
@@ -100,4 +110,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Artical;

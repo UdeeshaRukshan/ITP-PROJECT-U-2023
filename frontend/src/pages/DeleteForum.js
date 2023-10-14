@@ -14,7 +14,7 @@ const DeleteForum = () => {
   const handleDeleteForum = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:4000/forums/${id}`)
+      .delete(`http://localhost:4042/forums/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Article Deleted successfully", { variant: "success" });
@@ -49,7 +49,9 @@ const DeleteForum = () => {
             width: "600px",
           }}
         >
-          <h3 className="text-2xl">Are You Sure You want to delete this Article?</h3>
+          <h3 className="text-2xl">
+            Are You Sure You want to delete this Article?
+          </h3>
           <button
             style={{
               padding: "10px",

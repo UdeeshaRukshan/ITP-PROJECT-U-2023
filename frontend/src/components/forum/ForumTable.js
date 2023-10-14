@@ -116,6 +116,7 @@ const ForumTable = ({ forums }) => {
               <Text>{`Owner: ${forum.author}`}</Text>
               <Text>{`Creation Date: ${forum.createdDate}`}</Text>
               <Text>{`Content: ${forum.content}`}</Text>
+              <br></br>
             </View>
           ))}
         </View>
