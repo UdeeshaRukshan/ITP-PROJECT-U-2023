@@ -37,7 +37,6 @@ const contentStyles = {
   backgroundColor: "yellow", // Add this line to highlight
 };
 
-
 const iconStyles = {
   fontSize: "20px",
   marginLeft: "5px",
