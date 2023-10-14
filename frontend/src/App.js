@@ -68,7 +68,7 @@ import CreateForum from "./pages/CreateForum"; // Import the appropriate compone
 import ShowForum from "./pages/ShowForum"; // Import the appropriate component for displaying a single forum
 import EditForum from "./pages/EditForum"; // Import the appropriate component for editing forums
 import DeleteForum from "./pages/DeleteForum"; // Import the appropriate component for deleting forums
-import ForumSingleCard from "./components/forum/ForumSingleCard";
+
 import ForumCard from "./components/forum/FourmCard";
 function App() {
   const queryClient = new QueryClient();
@@ -84,11 +84,13 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
+            {/* Madushi */}
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
             <Route path="/support/supportQues" element={<supportQuesPage />} />
+            {/* Nuwani */}
             <Route path="/add" exact element={<PersonalDetails />} />
             <Route path="/addart" exact element={<ArtForm />} />
             <Route path="/addvehicle" exact element={<VehiclesForm />} />
@@ -123,11 +125,10 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/agent" element={<Agent />} />
+            {/* Thamasha */}
             {/* <Route path="/paymentAdmin" element={<Payment />} /> */}
             <Route path="/payment" element={<PaymentForm />} />{" "}
-            {/* Use "element" */}
             <Route path="/paymentlist" element={<PaymentList />} />{" "}
-            {/* Use "element" */}
             <Route path="/review" element={<Review />} />{" "}
             <Route path="/transaction" element={<Transaction />} />{" "}
             <Route path="/edit-card" element={<EditCard />} />
@@ -137,13 +138,11 @@ function App() {
             <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
             <Route path="/feedbacks" element={<FeedbackView />} />
             <Route path="/feedback/report" element={<FeedbackReport />} />
+            {/* Adithya */}
             <Route path="/forum" element={<Artical />} />
             <Route path="/forums/create" element={<CreateForum />} />{" "}
-            {/* Route for creating a new forum */}
             <Route path="/forums/:id" element={<ShowForum />} />{" "}
-            {/* Route for displaying a single forum */}
             <Route path="/forums/edit/:id" element={<EditForum />} />{" "}
-            {/* Route for editing a forum */}
             <Route path="/forums/delete/:id" element={<DeleteForum />} />{" "}
             <Route path="/showforum" element={<ForumCard />} />{" "}
           </Routes>
