@@ -56,7 +56,9 @@ const CreateForum = () => {
         .post("http://localhost:4000/forums", data)
         .then(() => {
           setLoading(false);
-          enqueueSnackbar("Article Created successfully", { variant: "success" });
+          enqueueSnackbar("Article Created successfully", {
+            variant: "success",
+          });
           navigate("/");
         })
         .catch((error) => {
@@ -84,7 +86,11 @@ const CreateForum = () => {
         >
           <div className="my-4">
             <label
-              style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+              style={{
+                fontSize: "1.5rem",
+                marginRight: "4px",
+                color: "#808080",
+              }}
             >
               Title
             </label>
@@ -96,16 +102,18 @@ const CreateForum = () => {
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
-                width: "100%",
+                width: "95%",
               }}
             />
-            {errors.title && (
-              <p style={{ color: "red" }}>{errors.title}</p>
-            )}
+            {errors.title && <p style={{ color: "red" }}>{errors.title}</p>}
           </div>
           <div className="my-4">
             <label
-              style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+              style={{
+                fontSize: "1.5rem",
+                marginRight: "4px",
+                color: "#808080",
+              }}
             >
               Author
             </label>
@@ -117,16 +125,18 @@ const CreateForum = () => {
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
-                width: "100%",
+                width: "95%",
               }}
             />
-            {errors.author && (
-              <p style={{ color: "red" }}>{errors.author}</p>
-            )}
+            {errors.author && <p style={{ color: "red" }}>{errors.author}</p>}
           </div>
           <div className="my-4">
             <label
-              style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+              style={{
+                fontSize: "1.5rem",
+                marginRight: "4px",
+                color: "#808080",
+              }}
             >
               Created Date
             </label>
@@ -138,7 +148,7 @@ const CreateForum = () => {
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
-                width: "100%",
+                width: "95%",
               }}
             />
             {errors.createdDate && (
@@ -147,7 +157,11 @@ const CreateForum = () => {
           </div>
           <div className="my-4">
             <label
-              style={{ fontSize: "1.5rem", marginRight: "4px", color: "#808080" }}
+              style={{
+                fontSize: "1.5rem",
+                marginRight: "4px",
+                color: "#808080",
+              }}
             >
               Content
             </label>
@@ -158,19 +172,21 @@ const CreateForum = () => {
               style={{
                 border: "2px solid #808080",
                 padding: "8px",
-                width: "100%",
+                width: "95%",
                 height: "48px",
               }}
             />
-            {errors.content && (
-              <p style={{ color: "red" }}>{errors.content}</p>
-            )}
+            {errors.content && <p style={{ color: "red" }}>{errors.content}</p>}
           </div>
           <button
             style={{
               padding: "8px",
-              backgroundColor: "blue",
+              backgroundColor: "#2264D7",
               margin: "8px",
+              width: "20vh",
+              height: "8vh",
+              color: "white",
+              fontSize: "18px",
             }}
             onClick={handleSaveForum}
           >

@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdOutlineDelete } from "react-icons/md";
-import { Document, Page, Text, View, PDFDownloadLink, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  PDFDownloadLink,
+  StyleSheet,
+} from "@react-pdf/renderer";
 
 // Define a stylesheet for the PDF document
 const styles = StyleSheet.create({
@@ -30,8 +37,9 @@ const styles = StyleSheet.create({
     fontFamily: "Sans-serif",
   },
   tableHeader: {
-    backgroundColor: "#0000FF",
+    backgroundColor: "#284FBC",
     border: "1px solid #d0d0d0",
+    height: "8vh",
   },
   tableCell: {
     border: "1px solid #d0d0d0",
@@ -61,20 +69,25 @@ const styles = StyleSheet.create({
     color: "white",
   },
   createButton: {
-    backgroundColor: "#0000FF",
+    backgroundColor: "#284FBC",
     padding: "4px 12px",
     borderRadius: "8px",
     cursor: "pointer",
     textDecoration: "none",
-    color: "White",
+    width: "20vh",
+    fontSize: "13px",
+    color: "white",
+    height: "7vh",
   },
   downloadButton: {
-    backgroundColor: "#00FF00",
+    backgroundColor: "#4AA16D",
     padding: "4px 12px",
     borderRadius: "8px",
     cursor: "pointer",
     textDecoration: "none",
     color: "Black",
+    width: "20vh",
+    fontSize: "13px",
   },
   searchInput: {
     width: "100%",
@@ -109,7 +122,6 @@ const ForumTable = ({ forums }) => {
       </Page>
     </Document>
   );
-  
 
   return (
     <div>
@@ -124,20 +136,32 @@ const ForumTable = ({ forums }) => {
       <table style={styles.table1}>
         <thead>
           <tr>
-            <th style={{ ...styles.tableHeader, ...styles.hiddenOnMobile }}>No</th>
+            <th style={{ ...styles.tableHeader, ...styles.hiddenOnMobile }}>
+              No
+            </th>
             <th style={styles.tableHeader}>Title</th>
-            <th style={{ ...styles.tableHeader, ...styles.hiddenOnMobile }}>Name</th>
-            <th style={{ ...styles.tableHeader, ...styles.hiddenOnMobile }}>Creation Date</th>
+            <th style={{ ...styles.tableHeader, ...styles.hiddenOnMobile }}>
+              Name
+            </th>
+            <th style={{ ...styles.tableHeader, ...styles.hiddenOnMobile }}>
+              Creation Date
+            </th>
             <th style={styles.tableHeader}>Operations</th>
           </tr>
         </thead>
         <tbody>
           {filteredForums.map((forum, index) => (
             <tr key={forum._id}>
-              <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>{index + 1}</td>
+              <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>
+                {index + 1}
+              </td>
               <td style={styles.tableCell}>{forum.title}</td>
-              <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>{forum.author}</td>
-              <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>{forum.createdDate}</td>
+              <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>
+                {forum.author}
+              </td>
+              <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>
+                {forum.createdDate}
+              </td>
               <td style={styles.tableCell}>
                 <div style={styles.operationIcons}>
                   <Link to={`/forums/edit/${forum._id}`}>
@@ -158,9 +182,16 @@ const ForumTable = ({ forums }) => {
           <button style={styles.createButton}>Create</button>
         </Link>
 
-        <PDFDownloadLink document={<MyDocument />} fileName="Article_report.pdf">
+        <PDFDownloadLink
+          document={<MyDocument />}
+          fileName="Article_report.pdf"
+        >
           {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : <button style={styles.downloadButton}>Download PDF Report</button>
+            loading ? (
+              "Loading document..."
+            ) : (
+              <button style={styles.downloadButton}>Download PDF Report</button>
+            )
           }
         </PDFDownloadLink>
       </div>
