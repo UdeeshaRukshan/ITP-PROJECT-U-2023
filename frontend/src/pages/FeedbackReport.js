@@ -55,7 +55,7 @@ const FeedbackReport = () => {
   };
 
   return (
-    <div class="main">
+    <div class="main" style={{ marginTop: "20vh" }}>
       <button onClick={report}>Generate PDF</button>
       <div class="analytics" id="pdf_content">
         <div class="ttl">
