@@ -63,7 +63,7 @@ const Artical = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:4000/forums") // Updated URL to "/forums"
+      .get("http://localhost:4042/forums") // Updated URL to "/forums"
       .then((response) => {
         setForums(response.data.data);
         setLoading(false);

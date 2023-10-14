@@ -88,7 +88,7 @@ const EditForum = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/forums/${id}`)
+      .get(`http://localhost:4042/forums/${id}`)
       .then((response) => {
         setTitle(response.data.title);
         setAuthor(response.data.author);
@@ -118,7 +118,9 @@ const EditForum = () => {
         .put(`http://localhost:4000/forums/${id}`, data)
         .then(() => {
           setLoading(false);
-          enqueueSnackbar("Article Edited successfully", { variant: "success" });
+          enqueueSnackbar("Article Edited successfully", {
+            variant: "success",
+          });
           navigate("/");
         })
         .catch((error) => {
@@ -132,7 +134,9 @@ const EditForum = () => {
   return (
     <div style={containerStyle}>
       <BackButton />
-      <h1 style={{ fontSize: "24px", margin: "20px 0", fontFamily: "Sans-serif" }}>
+      <h1
+        style={{ fontSize: "24px", margin: "20px 0", fontFamily: "Sans-serif" }}
+      >
         Edit Forum
       </h1>
       {loading ? <Spinner /> : ""}
@@ -206,10 +210,7 @@ const EditForum = () => {
             }}
           />
         </div>
-        <button
-          style={buttonStyle}
-          onClick={handleEditForum}
-        >
+        <button style={buttonStyle} onClick={handleEditForum}>
           Save
         </button>
       </div>

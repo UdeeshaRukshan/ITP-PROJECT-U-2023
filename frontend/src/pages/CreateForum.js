@@ -53,7 +53,7 @@ const CreateForum = () => {
 
       setLoading(true);
       axios
-        .post("http://localhost:4000/forums", data)
+        .post("http://localhost:4042/forums", data)
         .then(() => {
           setLoading(false);
           enqueueSnackbar("Article Created successfully", {

@@ -13,7 +13,7 @@ const ShowWishlist = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:4000/wishlists/${id}`) // Update URL to match your wishlist endpoint
+      .get(`http://localhost:4042/wishlists/${id}`) // Update URL to match your wishlist endpoint
       .then((response) => {
         setWishlist(response.data);
         setLoading(false);

@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 const { MONGO_URL, PORT } = process.env;
 
-const port = PORT || 4000;
+const port = PORT || 4042;
 
 mongoose
   .connect(MONGO_URL, {
