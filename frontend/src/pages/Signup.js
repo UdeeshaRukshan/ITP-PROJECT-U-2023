@@ -316,8 +316,8 @@ const Signup = () => {
                   value={id}
                   placeholder="Enter your Nic No"
                   onChange={handleOnChange}
-                  // error={!!errors.id}
-                  // helperText={errors.id}
+                  error={!!errors.id}
+                  helperText={errors.id}
                 />
               </Grid>
               <Grid item xs={12}>
