@@ -169,17 +169,32 @@ const EditCard = () => {
   };
 
   return (
-    <div className="edit-card-container">
+    <div className="edit-card-container" style={{ marginTop: "15vh" }}>
       <h2 className="edit-card-header">Edit Card Details</h2>
       <table className="edit-card-table">
-        <thead className="edit-card-thread">
+        <thead
+          className="edit-card-thread"
+          style={{ backgroundColor: "#363753" }}
+        >
           <tr className="tr-edit-card">
-            <th className="edit-card-th">ID</th>
-            <th className="edit-card-th">Card Name</th>
-            <th className="edit-card-th">Card Number</th>
-            <th className="edit-card-th">Expiry Date</th>
-            <th className="edit-card-th">CVV</th>
-            <th className="edit-card-th">Action</th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              ID
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Card Name
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Card Number
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Expiry Date
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              CVV
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Action
+            </th>
           </tr>
         </thead>
         <tbody className="edit-card-tbody">
@@ -261,12 +276,14 @@ const EditCard = () => {
                 ) : (
                   <>
                     <button
+                      style={{ backgroundColor: "green" }}
                       className="edit-button-editcard"
                       onClick={() => handleEditCard(index)}
                     >
                       Edit
                     </button>
                     <button
+                      style={{ backgroundColor: "red" }}
                       className="delete-button-editcard"
                       onClick={() => handleDeleteCard(index)}
                     >
