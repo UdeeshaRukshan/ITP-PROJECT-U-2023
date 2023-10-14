@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
-import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
 import { Document, Page, Text, View, PDFDownloadLink, StyleSheet } from "@react-pdf/renderer";
 
@@ -51,16 +50,19 @@ const styles = StyleSheet.create({
   },
 });
 
+const searchInputStyle = {
+  width: "100%",
+  padding: "8px",
+  marginBottom: "10px",
+  border: "1px solid #d0d0d0",
+  borderRadius: "4px",
+};
+
 const buttonContainerStyle = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   marginBottom: "20px",
-};
-
-const titleStyle = {
-  fontSize: "24px",
-  margin: "0",
 };
 
 const createLinkStyle = {
@@ -78,12 +80,18 @@ const createButtonStyle = {
 };
 
 const ForumTable = ({ forums }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredForums = forums.filter((forum) =>
+    forum.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           <Text style={styles.title}>Forum Report</Text>
-          {forums.map((forum, index) => (
+          {filteredForums.map((forum, index) => (
             <Text key={forum._id} style={styles.forumItem}>
               {`${index + 1}. Title: ${forum.title}, Owner: ${forum.author}, Creation Date: ${forum.createdDate}, Content: ${forum.content}`}
             </Text>
@@ -95,6 +103,14 @@ const ForumTable = ({ forums }) => {
 
   return (
     <div>
+      <input
+        type="text"
+        placeholder="Search by Title"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        style={searchInputStyle}
+      />
+
       <table style={styles.table1}>
         <thead>
           <tr>
@@ -106,7 +122,7 @@ const ForumTable = ({ forums }) => {
           </tr>
         </thead>
         <tbody>
-          {forums.map((forum, index) => (
+          {filteredForums.map((forum, index) => (
             <tr key={forum._id}>
               <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>{index + 1}</td>
               <td style={styles.tableCell}>{forum.title}</td>
@@ -114,9 +130,6 @@ const ForumTable = ({ forums }) => {
               <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>{forum.createdDate}</td>
               <td style={styles.tableCell}>
                 <div style={styles.operationIcons}>
-                  <Link to={`/forums/details/${forum._id}`}>
-                    <BsInfoCircle style={styles.icon} />
-                  </Link>
                   <Link to={`/forums/edit/${forum._id}`}>
                     <AiOutlineEdit style={styles.icon} />
                   </Link>
@@ -129,16 +142,15 @@ const ForumTable = ({ forums }) => {
           ))}
         </tbody>
       </table>
+
       <PDFDownloadLink document={<MyDocument />} fileName="forum_report.pdf">
         {({ blob, url, loading, error }) =>
           loading ? "Loading document..." : "Download PDF Report"
         }
       </PDFDownloadLink>
       <div style={buttonContainerStyle}>
-  
         <Link to="/forums/create" style={createLinkStyle}>
-          <button style={createButtonStyle}>Create
-          </button>
+          <button style={createButtonStyle}>Create</button>
         </Link>
       </div>
     </div>
@@ -146,4 +158,3 @@ const ForumTable = ({ forums }) => {
 };
 
 export default ForumTable;
-
