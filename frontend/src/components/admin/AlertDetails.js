@@ -26,6 +26,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import Report from "./Report";
 
 function AlertDetails() {
   const fileInput = React.useRef();
@@ -254,6 +255,9 @@ function AlertDetails() {
               width: "60%",
             }}
           >
+            {notifications.length>0 && 
+            <Report notifications={notifications}/>
+            }
             <React.Fragment>
               <Grid container spacing={4}>
                 {notifications ? (
