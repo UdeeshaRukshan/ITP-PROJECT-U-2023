@@ -116,7 +116,7 @@ const EditForum = () => {
       };
       setLoading(true);
       axios
-        .put(`http://localhost:4000/forums/${id}`, data)
+        .put(`http://localhost:4042/forums/${id}`, data)
         .then(() => {
           setLoading(false);
           enqueueSnackbar("Article Edited successfully", {
