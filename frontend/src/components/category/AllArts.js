@@ -12,6 +12,20 @@ export default function AllArts() {
   const [wishlist, setWishlist] = useState([]);
   const [message, setMessage] = useState("");
   // Fetch art data from the server
+
+  const imageLinks = [
+    "https://img.freepik.com/premium-photo/modern-abstract-geometry-hand-painted-beauty-background-decorative-painting_716388-1097.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/free-photo/hand-drawn-ecological-futuristic-building-concepts-generative-ai_260559-462.jpg?size=626&ext=jpg&ga=GA1.2.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/free-photo/eyes-sparkled-with-vibrant-colors-autumn-leaves-generative-ai_8829-2921.jpg?size=626&ext=jpg&ga=GA1.2.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/premium-photo/blue-grey-more-colors-abstract-painting-3d-illustration_710973-4234.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/premium-vector/abstact-expressionism-illustration-design_628782-120.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/free-vector/rare-yellow-senegal-parrot_53876-76675.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/premium-photo/modern-abstract-geometry-hand-painted-beauty-background-decorative-painting_716388-1097.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    "https://cdn.britannica.com/24/189624-050-F3C5BAA9/Mona-Lisa-oil-wood-panel-Leonardo-da.jpg",
+    "https://img.freepik.com/free-vector/african-tribal-ethnic-pattern-template-with-minimal-logo_53876-119416.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+
+    // Add more image links as needed
+  ];
   useEffect(() => {
     async function fetchArts() {
       try {
@@ -47,13 +61,14 @@ export default function AllArts() {
 
   // Render art items
   const renderArtItems = () => {
-    return arts.map((art) => (
+    return arts.map((art, index) => (
       <div key={art._id} className="catalog-item">
         <div className="item-image">
-          <img
+          <img src={imageLinks[index]} alt={`art ${art._id}`} />
+          {/* <img
             src="https://cdn.britannica.com/24/189624-050-F3C5BAA9/Mona-Lisa-oil-wood-panel-Leonardo-da.jpg" // Use property-specific image URL
             alt={`art ${art._id}`}
-          />
+          /> */}
         </div>
         <div className="item-details">
           <h3>{art.title}</h3>
@@ -87,23 +102,23 @@ export default function AllArts() {
         <button
           onClick={() => console.log("Button Clicked")}
           style={{
-            marginLeft: '10px', 
-            marginBottom: '10px', 
-            backgroundColor: '#3fa34d', 
-            color: 'white', 
-            padding: '20px 20px', 
-            border: 'none', 
-            borderRadius: '5px', 
-            cursor: 'pointer',
-            transition: 'background-color 0.3s',
-            marginLeft: 1250 }}
-
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = '#6bbf59';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = '#3fa34d';
-            }}
+            marginLeft: "10px",
+            marginBottom: "10px",
+            backgroundColor: "#3fa34d",
+            color: "white",
+            padding: "20px 20px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            transition: "background-color 0.3s",
+            marginLeft: 1250,
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#6bbf59";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#3fa34d";
+          }}
         >
           Add Art
         </button>
