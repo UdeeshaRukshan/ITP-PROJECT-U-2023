@@ -68,7 +68,7 @@ import CreateForum from "./pages/CreateForum"; // Import the appropriate compone
 import ShowForum from "./pages/ShowForum"; // Import the appropriate component for displaying a single forum
 import EditForum from "./pages/EditForum"; // Import the appropriate component for editing forums
 import DeleteForum from "./pages/DeleteForum"; // Import the appropriate component for deleting forums
-import ForumSingleCard from "./components/forum/ForumSingleCard";
+
 import ForumCard from "./components/forum/FourmCard";
 function App() {
   const queryClient = new QueryClient();
@@ -141,11 +141,8 @@ function App() {
             {/* Adithya */}
             <Route path="/forum" element={<Artical />} />
             <Route path="/forums/create" element={<CreateForum />} />{" "}
-            {/* Route for creating a new forum */}
             <Route path="/forums/:id" element={<ShowForum />} />{" "}
-            {/* Route for displaying a single forum */}
             <Route path="/forums/edit/:id" element={<EditForum />} />{" "}
-            {/* Route for editing a forum */}
             <Route path="/forums/delete/:id" element={<DeleteForum />} />{" "}
             <Route path="/showforum" element={<ForumCard />} />{" "}
           </Routes>
