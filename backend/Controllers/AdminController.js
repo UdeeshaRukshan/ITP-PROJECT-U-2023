@@ -223,34 +223,34 @@ const deleteNotification = asyncHandler(async (req, res) => {
   }
 });
 
-const sendEmail = asyncHandler(async (req, res) => {
-  const { userEmail, subject, message } = req.body;
+// const sendEmail = asyncHandler(async (req, res) => {
+//   const { userEmail, subject, message } = req.body;
 
-  console.log(userEmail, subject, message);
+//   console.log(userEmail, subject, message);
 
-  var transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "sdinuwan13@gmail.com",
-      pass: "add your pass key here",
-    },
-  });
+//   var transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//       user: "sdinuwan13@gmail.com",
+//       pass: "add your pass key here",
+//     },
+//   });
 
-  var mailOptions = {
-    from: "sdinuwan13@gmail.com",
-    to: userEmail,
-    subject: subject,
-    text: message,
-  };
+//   var mailOptions = {
+//     from: "sdinuwan13@gmail.com",
+//     to: userEmail,
+//     subject: subject,
+//     text: message,
+//   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      res.status(400).json({ message: "Failed to send email", status: false });
-    } else {
-      res.status(200).send(info);
-    }
-  });
-});
+//   transporter.sendMail(mailOptions, function (error, info) {
+//     if (error) {
+//       res.status(400).json({ message: "Failed to send email", status: false });
+//     } else {
+//       res.status(200).send(info);
+//     }
+//   });
+// });
 
 module.exports = {
   authAdmin,
