@@ -29,6 +29,11 @@ import {
 } from "@tanstack/react-query";
 
 //nuwani
+import AllArtsUpdate from "./components/categoriesUpdate/AllArtsUpdate";
+import AllPropertiesUpdate from "./components/categoriesUpdate/AllPropertiesUpdate";
+import AllCollectablesUpdate from "./components/categoriesUpdate/AllCollectablesUpdate";
+import AllVehiclesUpdate from "./components/categoriesUpdate/AllVehiclesUpdate";
+
 import PersonalDetails from "./components/category/PersonalDetails";
 import ArtForm from "./components/category/ArtForm";
 import VehiclesForm from "./components/category/VehiclesForm";
@@ -101,6 +106,22 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
+            <Route path="/getarts/update" exact element={<AllArtsUpdate />} />
+            <Route
+              path="/getproperties/update"
+              exact
+              element={<AllPropertiesUpdate />}
+            />
+            <Route
+              path="/getcollectables/update"
+              exact
+              element={<AllCollectablesUpdate />}
+            />
+            <Route
+              path="/getvehicles/update"
+              exact
+              element={<AllVehiclesUpdate />}
+            />
             <Route
               path="/dashbord/feedback"
               exact
