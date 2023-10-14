@@ -287,8 +287,8 @@ function DashboardContent() {
   );
 }
 
-export default function AdminSupport() {
-  return <AdminSupport />;
+export default function Dashboard() {
+  return <DashboardContent/>;
 }
 
 const VisuallyHiddenInput = styled("input")({

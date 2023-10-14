@@ -13,19 +13,31 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Agent from "./pages/Agent";
 import Payment from "./pages/Payment";
 import Auction from "./pages/Auction";
-import AdminSupport from "./pages/AdminSupport";
+import DashboardContent from "./pages/AdminSupport";
+import { MantineProvider } from '@mantine/core';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+
 function App() {
+  const queryClient = new QueryClient()
+
   return (
-    <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/agent" element={<Agent />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/auction" element={<Auction />} />
-        <Route path="/adminsupport" element={<AdminSupport />} />
-      </Routes>
-    </div>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <QueryClientProvider client={queryClient}>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/agent" element={<Agent />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/auction" element={<Auction />} />
+            <Route path="/adminsupport" element={<DashboardContent />} />
+          </Routes>
+        </div>
+      </QueryClientProvider>
+    </MantineProvider>
   );
 }
 
