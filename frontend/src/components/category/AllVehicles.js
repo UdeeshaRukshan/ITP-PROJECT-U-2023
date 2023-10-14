@@ -3,6 +3,8 @@ import axios from "axios";
 import "./AllVehicles.css"; // Import your CSS file
 import { SimpleGrid } from "@mantine/core";
 import { Link } from "react-router-dom";
+import moment from 'moment-timezone';
+
 export default function AllVehicles() {
   // State to store vehicle data
   const [vehicles, setVehicles] = useState([]);
@@ -38,7 +40,19 @@ export default function AllVehicles() {
         const response = await axios.get(
           "http://localhost:4042/vehicle/getvehicles"
         );
-        setVehicles(response.data);
+        const convertedData = response.data.map(item => {
+          const sriLankaStartTime = moment(item.startTime).tz('Asia/Colombo');
+          const sriLankaEndTime = moment(item.endTime).tz('Asia/Colombo');
+          const formattedStartTime = sriLankaStartTime.format('MMM DD, YYYY, h:mm A');
+          const formattedEndTime = sriLankaEndTime.format('MMM DD, YYYY, h:mm A');
+          return {
+            ...item,
+            startTime: formattedStartTime,
+            endTime: formattedEndTime,
+          };
+        });
+        setVehicles(convertedData);
+        console.log(convertedData);
       } catch (error) {
         alert(error.message);
       }
@@ -53,8 +67,8 @@ export default function AllVehicles() {
       <div key={vehicle._id} className="catalog-item">
         <div className="item-details">
           <img
-            src="https://hips.hearstapps.com/hmg-prod/images/2024-lamborghini-revuelto-127-641a1d518802b.jpg?crop=0.813xw:0.721xh;0.0994xw,0.128xh&resize=1200:*" // Use property-specific image URL
-            alt={`Vehicle ${vehicle._id}`}
+            src={vehicle.image?vehicle.image:null} // Use property-specific image URL
+            alt={`Vehicle ${vehicle.model}`}
           />
           <div className="item-details">
             <h3>{vehicle.model}</h3>

@@ -37,7 +37,19 @@ const vehicleSchema = new Schema({
         type : Number,
         required: true
     },
-    images: [{ type: String }], // Store multiple image URLs or file names in an array
+    image: { 
+        type: String,
+        required: true 
+    },
+    startTime: {
+        type: Date, 
+        required: true
+    },
+    endTime: {
+        type: Date,
+        required: true
+    }
+    
 });
 
 const Vehicle = mongoose.model("Vehicle",vehicleSchema);

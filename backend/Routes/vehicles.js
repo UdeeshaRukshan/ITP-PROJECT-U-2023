@@ -11,8 +11,9 @@ router.route("/addvehicle").post((req,res) =>{
     const features = req.body.features;
     const location = req.body.location;
     const value = req.body.value;
-    const images = req.body.images;
-
+    const image = req.body.image;
+    const startTime = new Date(req.body.startTime);
+    const endTime = new Date(req.body.endTime);
     
         const newVehicle = new Vehicle({
           vehicleNumber,
@@ -23,7 +24,9 @@ router.route("/addvehicle").post((req,res) =>{
           features,
           location,
           value,
-          images,
+          image,
+          startTime,
+          endTime
         })
 
         newVehicle.save().then(() => {

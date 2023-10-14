@@ -3,6 +3,9 @@ import axios from "axios";
 import "./VehicleForm.css";
 
 function VehicleForm() {
+
+  const fileInput = React.useRef();
+
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [year, setYear] = useState("");
   const [model, setModel] = useState("");
@@ -11,35 +14,60 @@ function VehicleForm() {
   const [features, setFeatures] = useState("");
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState();
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
 
   function sendData(e) {
     e.preventDefault();
 
-    if (images.length < 6 || images.length > 10) {
-      alert("Please select between 6 and 10 images.");
+    if (!image) {
+      alert("Please select image.");
       return;
     }
 
-    const formData = new FormData();
-
-    // Append each image file to the FormData object
-    for (let i = 0; i < images.length; i++) {
-      formData.append("images", images[i]);
+    function formatDateTime(date) {
+      return date.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      });
     }
 
-    // Append other fields to the FormData object
-    formData.append("vehicleNumber", vehicleNumber);
-    formData.append("year", year);
-    formData.append("model", model);
-    formData.append("fuelType", fuelType);
-    formData.append("mileage", mileage);
-    formData.append("features", features);
-    formData.append("location", location);
-    formData.append("value", value);
+    function getCurrentTimeInSriLanka() {
+      const currentTimeInSriLanka = new Date().toLocaleString('en-US', { timeZone: 'Asia/Colombo' });
+      return new Date(currentTimeInSriLanka);
+    }
+
+    const currentSriLankaTime = getCurrentTimeInSriLanka();
+    setStartTime(formatDateTime(currentSriLankaTime));
+
+    const endTimeInSriLanka = new Date(currentSriLankaTime);
+    endTimeInSriLanka.setHours(endTimeInSriLanka.getHours() + 24);
+    setEndTime(formatDateTime(endTimeInSriLanka));
+
+    console.log(startTime);
+    console.log(endTime);
+
 
     axios
-      .post("http://localhost:4042/vehicle/addvehicle", formData)
+      .post("http://localhost:4042/vehicle/addvehicle",
+      {
+        vehicleNumber,
+        year,
+        model,
+        fuelType,
+        mileage,
+        features,
+        location,
+        value,
+        image,
+        startTime,
+        endTime
+      })
       .then(() => {
         alert("Your Vehicle Added ");
         setVehicleNumber("");
@@ -50,33 +78,51 @@ function VehicleForm() {
         setFeatures("");
         setLocation("");
         setValue("");
-        setImages([]);
+        setImage(null);
+        setStartTime(null);
+        setEndTime(null);
       })
       .catch((err) => {
         alert(err);
       });
   }
 
-  function handleImageChange(e) {
-    const selectedImages = e.target.files;
-    if (selectedImages.length >= 6 && selectedImages.length <= 10) {
-      // Validate image types
-      for (let i = 0; i < selectedImages.length; i++) {
-        const fileType = selectedImages[i].type;
-        if (fileType !== "image/jpeg" && fileType !== "image/png") {
-          alert("Please select only JPEG and PNG images.");
-          e.target.value = null; // Clear the file input
-          return;
-        }
-      }
-
-      // Update the images state if the number and types of selected images are valid.
-      setImages([...selectedImages]);
-    } else {
-      alert("Please select between 6 to 10 images.");
-      e.target.value = null; // Clear the file input
+  const postDetails = (pic) => {
+    if (pic === undefined) {
+      console.log("Plese upload an image!!!");
     }
-  }
+    if (pic.type === "image/jpeg" || "image.png") {
+      const data = new FormData();
+
+      data.append("file", pic);
+      const uploadPreset = "notificationimg"; 
+      const cloudName = "drmwn5axe";
+      const cloudinaryUploadURL = "https://api.cloudinary.com/v1_1/drmwn5axe/image/upload";
+
+      
+      data.append("upload_preset", uploadPreset);
+
+      data.append("cloud_name", cloudName);
+
+      fetch(cloudinaryUploadURL, {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+
+        .then((data) => {
+          //const imageUrl = data.url.toString();
+          setImage(data.url.toString());
+          console.log(data.url.toString())
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log("Plese upload an image!!!");
+    }
+  };
+
 
   return (
     <div className="vehicle-form-container">
@@ -240,26 +286,14 @@ function VehicleForm() {
           Images:(Please add at least 6 photos of the interior and exterior of
           the vehicle)
         </label>
-        <input
-          type="file"
-          id="images"
-          name="images"
-          accept="image/*"
-          multiple
-          required
-          onChange={handleImageChange}
-        />
-        <br></br>
 
-        {images.map((image, index) => (
-          <div key={index}>
-            <img
-              className="vehicle-form-image-preview"
-              src={URL.createObjectURL(image)}
-              alt={`Image ${index}`}
-            />
-          </div>
-        ))}
+        <input
+            ref={fileInput}
+            type="file"
+            accept="image/*"
+            onChange={(e) => postDetails(e.target.files[0])}
+          />
+        <br></br>
 
         <button type="submit" className="vehicle-form-button">
           Submit

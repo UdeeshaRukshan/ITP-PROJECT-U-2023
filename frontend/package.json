@@ -32,6 +32,7 @@
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.7.0",
     "mdb-react-ui-kit": "^6.3.0",
+    "moment-timezone": "^0.5.43",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
