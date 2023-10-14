@@ -1,48 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const containerStyle = {
-  maxWidth: "1300px",
-  margin: "80px auto", // Increased space at the top
-};
-
-const headerStyle = {
-  color: "#000000",
-};
-
-const tableStyle = {
-  width: "100%",
-  borderCollapse: "collapse",
-  marginTop: "20px",
-};
-
-const headerCellStyle = {
-  backgroundColor: "#363753",
-  color: "#fff",
-  padding: "15px", // Increased padding for header cells
-  textAlign: "left",
-};
-
-const dataCellStyle = {
-  border: "1px solid #ddd",
-  padding: "10px", // Increased padding for data cells
-};
-
-const evenRowStyle = {
-  backgroundColor: "#e5e5e5", // Change this color as needed for even rows
-};
-
-const oddRowStyle = {
-  backgroundColor: "#ffffff", // Change this color as needed for odd rows
-};
-
-const inputStyle = {
-  width: "calc(100% - 16px)", // Adjusted width for input fields
-  padding: "10px",
-  marginBottom: "5px",
-  boxSizing: "border-box",
-};
-
 const buttonStyle = {
   padding: "10px 15px",
   marginRight: "10px",
@@ -169,17 +127,32 @@ const EditCard = () => {
   };
 
   return (
-    <div className="edit-card-container">
+    <div className="edit-card-container" style={{ marginTop: "15vh" }}>
       <h2 className="edit-card-header">Edit Card Details</h2>
       <table className="edit-card-table">
-        <thead className="edit-card-thread">
+        <thead
+          className="edit-card-thread"
+          style={{ backgroundColor: "#363753" }}
+        >
           <tr className="tr-edit-card">
-            <th className="edit-card-th">ID</th>
-            <th className="edit-card-th">Card Name</th>
-            <th className="edit-card-th">Card Number</th>
-            <th className="edit-card-th">Expiry Date</th>
-            <th className="edit-card-th">CVV</th>
-            <th className="edit-card-th">Action</th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              ID
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Card Name
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Card Number
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Expiry Date
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              CVV
+            </th>
+            <th className="edit-card-th" style={{ backgroundColor: "#363753" }}>
+              Action
+            </th>
           </tr>
         </thead>
         <tbody className="edit-card-tbody">
@@ -261,12 +234,14 @@ const EditCard = () => {
                 ) : (
                   <>
                     <button
+                      style={{ backgroundColor: "green" }}
                       className="edit-button-editcard"
                       onClick={() => handleEditCard(index)}
                     >
                       Edit
                     </button>
                     <button
+                      style={{ backgroundColor: "red" }}
                       className="delete-button-editcard"
                       onClick={() => handleDeleteCard(index)}
                     >

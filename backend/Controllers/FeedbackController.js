@@ -46,13 +46,11 @@ const deleteFeedbacksById = async (req, res, next) => {
   const feedback = await Feedback.findByIdAndDelete(id);
   try {
     if (feedback) {
-      return res
-        .status(200)
-        .json({
-          error: false,
-          message: "Feedback Deleted!",
-          deletedFeedback: feedback,
-        });
+      return res.status(200).json({
+        error: false,
+        message: "Feedback Deleted!",
+        deletedFeedback: feedback,
+      });
     }
     return res.status(200).json({ error: true, message: "No Feedback Found!" });
   } catch (err) {
@@ -60,10 +58,81 @@ const deleteFeedbacksById = async (req, res, next) => {
   }
 };
 
+const searchFeedback = async (req, res, next) => {
+  try {
+    const query = req.body.query;
+    const results = await Feedback.find({
+      $or: [
+        { customerName: { $regex: query, $options: "i" } },
+        { email: { $regex: query, $options: "i" } },
+      ],
+    });
+    res.status(200).json(results);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getRatingsCount = async (req, res, next) => {
+  try {
+    const ratingsCount = await Feedback.aggregate([
+      {
+        $group: {
+          _id: "$rate",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+    ]);
+    const transformedResult = ratingsCount.map((item) => ({
+      [item._id]: item.count,
+    }));
+    res.status(200).json(transformedResult);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getReviewCountByMonth = async (req, res, next) => {
+  try {
+    const reviewCounts = await Feedback.aggregate([
+      {
+        $group: {
+          _id: {
+            $dateToString: { format: "%Y-%m", date: "$createdAt" },
+          },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+    ]);
+    res.status(200).json(reviewCounts);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getReviewStats = async (req, res, next) => {
+  try {
+    const totalReviewCount = await Feedback.countDocuments();
+    const uniqueUserCount = await Feedback.distinct("user").count();
+    res.status(200).json({ totalReviewCount, uniqueUserCount });
+  } catch (err) {
+    next(err);
+  }
+};
 module.exports = {
   getFeedback,
   getFeedbacks,
   createFeedback,
   updateFeedback,
   deleteFeedbacksById,
+  searchFeedback,
+  getRatingsCount,
+  getReviewCountByMonth,
+  getReviewStats,
 };
