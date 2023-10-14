@@ -84,11 +84,13 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
+            {/* Madushi */}
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
             <Route path="/support/supportQues" element={<supportQuesPage />} />
+            {/* Nuwani */}
             <Route path="/add" exact element={<PersonalDetails />} />
             <Route path="/addart" exact element={<ArtForm />} />
             <Route path="/addvehicle" exact element={<VehiclesForm />} />
@@ -123,11 +125,10 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/agent" element={<Agent />} />
+            {/* Thamasha */}
             {/* <Route path="/paymentAdmin" element={<Payment />} /> */}
             <Route path="/payment" element={<PaymentForm />} />{" "}
-            {/* Use "element" */}
             <Route path="/paymentlist" element={<PaymentList />} />{" "}
-            {/* Use "element" */}
             <Route path="/review" element={<Review />} />{" "}
             <Route path="/transaction" element={<Transaction />} />{" "}
             <Route path="/edit-card" element={<EditCard />} />
@@ -137,6 +138,7 @@ function App() {
             <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
             <Route path="/feedbacks" element={<FeedbackView />} />
             <Route path="/feedback/report" element={<FeedbackReport />} />
+            {/* Adithya */}
             <Route path="/forum" element={<Artical />} />
             <Route path="/forums/create" element={<CreateForum />} />{" "}
             {/* Route for creating a new forum */}
