@@ -12,8 +12,8 @@ import AllArtsUpdate from "./components/categoriesUpdate/AllArtsUpdate";
 import AllPropertiesUpdate from "./components/categoriesUpdate/AllPropertiesUpdate";
 import AllCollectablesUpdate from "./components/categoriesUpdate/AllCollectablesUpdate";
 import AllVehiclesUpdate from "./components/categoriesUpdate/AllVehiclesUpdate";
-import EditArtForm from "./components/EditArtForm";
-import EditCollectableForm from "./components/EditCollectableForm";
+import EditArtForm from "./components/categoriesUpdate/EditArtForm";
+import EditCollectableForm from "./components/categoriesUpdate/EditCollectableForm";
 
 function App() {
   return (

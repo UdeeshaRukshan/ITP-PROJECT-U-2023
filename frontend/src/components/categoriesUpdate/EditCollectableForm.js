@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import './EditCollecForm.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import "./EditCollecForm.css";
 
 export default function EditCollectableForm() {
   const { collectableid } = useParams();
@@ -16,7 +16,9 @@ export default function EditCollectableForm() {
   useEffect(() => {
     async function fetchArtData() {
       try {
-        const response = await axios.get(`http://localhost:8070/collectable/getcollectables/${collectableid}`);
+        const response = await axios.get(
+          `http://localhost:4042/collectable/getcollectables/${collectableid}`
+        );
         setUpdatedCollectable(response.data.Collectable);
       } catch (error) {
         alert(error.message);
@@ -37,14 +39,20 @@ export default function EditCollectableForm() {
     switch (name) {
       case "name":
         if (/\d/.test(value)) {
-          setFormErrors({ ...formErrors, name: "Name cannot contain numerical characters." });
+          setFormErrors({
+            ...formErrors,
+            name: "Name cannot contain numerical characters.",
+          });
         } else {
           setFormErrors({ ...formErrors, name: "" });
         }
         break;
       case "value":
         if (value <= 0) {
-          setFormErrors({ ...formErrors, value: "Value must be a meaningful number." });
+          setFormErrors({
+            ...formErrors,
+            value: "Value must be a meaningful number.",
+          });
         } else {
           setFormErrors({ ...formErrors, value: "" });
         }
@@ -65,15 +73,18 @@ export default function EditCollectableForm() {
     }
 
     try {
-      await axios.put(`http://localhost:8070/collectable/updatecollectable/${collectableid}`, updatedCollectable);
-      window.location.href = '/getcollectables';
+      await axios.put(
+        `http://localhost:4042/collectable/updatecollectable/${collectableid}`,
+        updatedCollectable
+      );
+      window.location.href = "/getcollectables";
     } catch (error) {
       alert(error.message);
     }
   };
 
   const handleCancel = () => {
-    window.location.href = '/getcollectables';
+    window.location.href = "/getcollectables";
   };
 
   return (
@@ -87,7 +98,7 @@ export default function EditCollectableForm() {
           className="edit-collectable-form-select"
           aria-label="Default select example"
           required
-          name="type" 
+          name="type"
           value={updatedCollectable.type}
           onChange={handleInputChange}
         >
@@ -109,7 +120,7 @@ export default function EditCollectableForm() {
           className="edit-collectable-form-input"
           placeholder="e.g., Desert Flower Novel."
           required
-          name="name" 
+          name="name"
           value={updatedCollectable.name}
           onChange={handleInputChange}
         />
@@ -127,7 +138,7 @@ export default function EditCollectableForm() {
           className="edit-collectable-form-textarea"
           placeholder="e.g., Used book, Only two pages are torn but readable."
           required
-          name="description" 
+          name="description"
           value={updatedCollectable.description}
           onChange={handleInputChange}
         ></textarea>
@@ -141,7 +152,7 @@ export default function EditCollectableForm() {
           className="edit-collectable-form-input"
           placeholder="e.g., 15"
           required
-          name="value" 
+          name="value"
           value={updatedCollectable.value}
           onChange={handleInputChange}
         />
@@ -150,12 +161,16 @@ export default function EditCollectableForm() {
             {formErrors.value}
           </p>
         )}
-        <br /><br></br>
+        <br />
+        <br></br>
         <div className="edit-collectable-form-button-container">
           <button type="submit" className="edit-collectable-form-save-button">
             Save
           </button>
-          <a href="/getcollectables" className="edit-collectable-form-cancel-button">
+          <a
+            href="/getcollectables"
+            className="edit-collectable-form-cancel-button"
+          >
             Cancel
           </a>
         </div>
