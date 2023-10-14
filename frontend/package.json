@@ -20,6 +20,7 @@
     "bootstrap": "^5.3.2",
     "cloudinary": "^1.41.0",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.7.0",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",

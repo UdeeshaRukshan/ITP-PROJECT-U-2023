@@ -3,11 +3,11 @@ import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-
+import jsPDF from "jspdf";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-
+import "jspdf-autotable";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
@@ -343,24 +343,31 @@ function DashboardContent() {
   };
   //pdf download
 
-  const downloadPdf = () => {
-    axios
-      .get("http://localhost:4042/generate-pdf", {
-        responseType: "blob", // Set the response type to blob for binary data
-      })
-      .then((response) => {
-        // Create a URL for the blob data and trigger a download
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "agent_report.pdf"); // Set the desired file name
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode.removeChild(link);
-      })
-      .catch((error) => {
-        console.error("Error downloading PDF:", error);
-      });
+  const generateAndDownloadPdf = (agents) => {
+    const doc = new jsPDF();
+
+    // Set the title of the PDF
+    doc.text("Agent Report", 10, 10);
+
+    // Create a table with column headers
+    const headers = ["Name", "Age", "Address", "Job Type", "Assign To"];
+    const data = agents.map((agent) => [
+      agent.name,
+      agent.age,
+      agent.address,
+      agent.jobtype,
+      agent.assign,
+    ]);
+
+    // Use autoTable from the plugin
+    doc.autoTable({
+      startY: 20,
+      head: [headers],
+      body: data,
+    });
+
+    // Save the PDF with a specific name
+    doc.save("agent_report.pdf");
   };
   const toggleAssignForm = (agentId, itemAddress) => {
     setIsAssignFormVisible(!isAssignFormVisible);
@@ -809,7 +816,10 @@ function DashboardContent() {
                         >
                           View QR Code
                         </button>
-                        <button className="down-qr" onClick={downloadPdf}>
+                        <button
+                          className="down-qr"
+                          onClick={() => generateAndDownloadPdf(agents)}
+                        >
                           Download Pdf
                         </button>
                       </div>
