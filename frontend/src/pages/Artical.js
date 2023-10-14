@@ -14,6 +14,7 @@ const containerStyle = {
   backgroundColor: "#FAF9F6",
   border: "1px solid #ccc", // Add border
   borderRadius: "5px", // Add border radius for rounded corners
+  marginTop: "10vh",
 };
 
 const buttonContainerStyle = {

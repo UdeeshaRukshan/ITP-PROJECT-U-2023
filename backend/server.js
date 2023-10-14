@@ -162,5 +162,5 @@ app.use("/collectable", collectableRouter);
 app.use("/admin", adminRoute);
 app.use("/payment", paymentRoute);
 app.use("/agent", agentRouter);
-
+app.use("/forums", forumRoute);
 app.use("/api/feedback", feedbackRoute);

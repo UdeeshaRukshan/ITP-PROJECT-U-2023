@@ -26,6 +26,7 @@ const EditForum = () => {
     borderRadius: "12px",
     width: "600px",
     margin: "0 auto",
+    marginTop: "10vh",
   };
 
   const inputStyle = {

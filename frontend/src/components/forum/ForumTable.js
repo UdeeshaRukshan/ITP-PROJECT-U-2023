@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#FFFFFF",
     padding: 10,
+    marginTop: "10vh",
   },
   section: {
     margin: 10,
@@ -74,10 +75,10 @@ const styles = StyleSheet.create({
     borderRadius: "8px",
     cursor: "pointer",
     textDecoration: "none",
-    width: "20vh",
+    width: "13vh",
     fontSize: "13px",
     color: "white",
-    height: "7vh",
+    height: "5vh",
   },
   downloadButton: {
     backgroundColor: "#4AA16D",
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
     color: "Black",
     width: "20vh",
     fontSize: "13px",
+    height: "3vh",
   },
   searchInput: {
     width: "100%",
@@ -125,7 +127,7 @@ const ForumTable = ({ forums }) => {
   );
 
   return (
-    <div>
+    <div style={{}}>
       <input
         type="text"
         placeholder="Search by Title"
