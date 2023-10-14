@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
-import ForumTable from "../components/home/ForumTable";
-import ForumCard from "../components/home/FourmCard";
+import ForumTable from "../components/forum/ForumTable";
+import ForumCard from "../components/forum/FourmCard";
 
 const containerStyle = {
   display: "flex",
