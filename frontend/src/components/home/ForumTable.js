@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
-import { Document, Page, Text, View, PDFDownloadLink } from "@react-pdf/renderer";
+import { Document, Page, Text, View, PDFDownloadLink, StyleSheet } from "@react-pdf/renderer";
 
-const styles = {
+// Define a stylesheet for the PDF document
+const styles = StyleSheet.create({
   page: {
     flexDirection: "column",
-    backgroundColor: "#000000",
+    backgroundColor: "#FFFFFF",
     padding: 10,
   },
   section: {
@@ -22,6 +23,7 @@ const styles = {
   },
   forumItem: {
     fontSize: 12,
+    marginBottom: 10,
   },
   table1: {
     width: "100%",
@@ -33,7 +35,7 @@ const styles = {
   },
   tableCell: {
     border: "1px solid #d0d0d0",
-    padding: "8px",
+    padding: 8,
     textAlign: "center",
   },
   hiddenOnMobile: {
@@ -44,9 +46,35 @@ const styles = {
     justifyContent: "space-between",
   },
   icon: {
-    fontSize: "1.5rem",
-    margin: "0 5px",
+    fontSize: 18,
+    marginLeft: 5,
   },
+});
+
+const buttonContainerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "20px",
+};
+
+const titleStyle = {
+  fontSize: "24px",
+  margin: "0",
+};
+
+const createLinkStyle = {
+  textDecoration: "none",
+  color: "white",
+};
+
+const createButtonStyle = {
+  backgroundColor: "#87CEEB",
+  padding: "4px 12px",
+  borderRadius: "8px",
+  cursor: "pointer",
+  textDecoration: "none",
+  color: "white",
 };
 
 const ForumTable = ({ forums }) => {
@@ -84,7 +112,6 @@ const ForumTable = ({ forums }) => {
               <td style={styles.tableCell}>{forum.title}</td>
               <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>{forum.author}</td>
               <td style={{ ...styles.tableCell, ...styles.hiddenOnMobile }}>{forum.createdDate}</td>
-
               <td style={styles.tableCell}>
                 <div style={styles.operationIcons}>
                   <Link to={`/forums/details/${forum._id}`}>
@@ -107,8 +134,16 @@ const ForumTable = ({ forums }) => {
           loading ? "Loading document..." : "Download PDF Report"
         }
       </PDFDownloadLink>
+      <div style={buttonContainerStyle}>
+  
+        <Link to="/forums/create" style={createLinkStyle}>
+          <button style={createButtonStyle}>Create
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
 
 export default ForumTable;
+

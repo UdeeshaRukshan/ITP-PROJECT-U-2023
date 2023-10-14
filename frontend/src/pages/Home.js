@@ -83,15 +83,10 @@ const Home = () => {
           style={showType === "card" ? { ...buttonStyle, backgroundColor: "#87CEEB" } : buttonStyle}
           onClick={() => setShowType("card")}
         >
-          Forums
+          Articles
         </button>
       </div>
-      <div style={buttonContainerStyle}>
-        <h1 style={titleStyle}>Share your Knowledge with us</h1>
-        <Link to="/forums/create" style={createLinkStyle}>
-          <button style={createButtonStyle}>Create</button>
-        </Link>
-      </div>
+      <h1 style={titleStyle}>Learn about Auction</h1>
       {loading ? (
         <Spinner />
       ) : showType === "table" ? (
