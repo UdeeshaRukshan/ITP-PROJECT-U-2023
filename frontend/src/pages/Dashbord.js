@@ -86,7 +86,7 @@ const Dashboard = () => {
 
   const validateSriLankanNIC = (nic) => {
     // Sri Lankan NIC format: 123456789V or 123456789X
-    const nicRegex = /^\d{9}[VX]$/;
+    const nicRegex = /^(\d{9}[VX]|\d{12})$/;
     return nicRegex.test(nic.toUpperCase());
   };
   const handleInputChange = (e) => {

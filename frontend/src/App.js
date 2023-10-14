@@ -29,6 +29,11 @@ import {
 } from "@tanstack/react-query";
 
 //nuwani
+import AllArtsUpdate from "./components/categoriesUpdate/AllArtsUpdate";
+import AllPropertiesUpdate from "./components/categoriesUpdate/AllPropertiesUpdate";
+import AllCollectablesUpdate from "./components/categoriesUpdate/AllCollectablesUpdate";
+import AllVehiclesUpdate from "./components/categoriesUpdate/AllVehiclesUpdate";
+
 import PersonalDetails from "./components/category/PersonalDetails";
 import ArtForm from "./components/category/ArtForm";
 import VehiclesForm from "./components/category/VehiclesForm";
@@ -63,7 +68,13 @@ import FeedbackView from "./pages/FeedbackView";
 import FeedbackEdit from "./pages/FeedbackEdit";
 import FeedbackReport from "./pages/FeedbackReport";
 //Admin Dashbord
+import Artical from "./pages/Artical";
+import CreateForum from "./pages/CreateForum"; // Import the appropriate component for creating forums
+import ShowForum from "./pages/ShowForum"; // Import the appropriate component for displaying a single forum
+import EditForum from "./pages/EditForum"; // Import the appropriate component for editing forums
+import DeleteForum from "./pages/DeleteForum"; // Import the appropriate component for deleting forums
 
+import ForumCard from "./components/forum/FourmCard";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -78,11 +89,13 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashbord" element={<Dashboard />} />
             <Route path="/home" element={<IndexPage />} />
+            {/* Madushi */}
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
             <Route path="/support/supportQues" element={<supportQuesPage />} />
+            {/* Nuwani */}
             <Route path="/add" exact element={<PersonalDetails />} />
             <Route path="/addart" exact element={<ArtForm />} />
             <Route path="/addvehicle" exact element={<VehiclesForm />} />
@@ -93,6 +106,22 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
+            <Route path="/getarts/update" exact element={<AllArtsUpdate />} />
+            <Route
+              path="/getproperties/update"
+              exact
+              element={<AllPropertiesUpdate />}
+            />
+            <Route
+              path="/getcollectables/update"
+              exact
+              element={<AllCollectablesUpdate />}
+            />
+            <Route
+              path="/getvehicles/update"
+              exact
+              element={<AllVehiclesUpdate />}
+            />
             <Route
               path="/dashbord/feedback"
               exact
@@ -117,11 +146,10 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/agent" element={<Agent />} />
+            {/* Thamasha */}
             {/* <Route path="/paymentAdmin" element={<Payment />} /> */}
             <Route path="/payment" element={<PaymentForm />} />{" "}
-            {/* Use "element" */}
             <Route path="/paymentlist" element={<PaymentList />} />{" "}
-            {/* Use "element" */}
             <Route path="/review" element={<Review />} />{" "}
             <Route path="/transaction" element={<Transaction />} />{" "}
             <Route path="/edit-card" element={<EditCard />} />
@@ -131,6 +159,13 @@ function App() {
             <Route path="/feedback/edit/:id" element={<FeedbackEdit />} />
             <Route path="/feedbacks" element={<FeedbackView />} />
             <Route path="/feedback/report" element={<FeedbackReport />} />
+            {/* Adithya */}
+            <Route path="/forum" element={<Artical />} />
+            <Route path="/forums/create" element={<CreateForum />} />{" "}
+            <Route path="/forums/:id" element={<ShowForum />} />{" "}
+            <Route path="/forums/edit/:id" element={<EditForum />} />{" "}
+            <Route path="/forums/delete/:id" element={<DeleteForum />} />{" "}
+            <Route path="/showforum" element={<ForumCard />} />{" "}
           </Routes>
 
           <Footer />

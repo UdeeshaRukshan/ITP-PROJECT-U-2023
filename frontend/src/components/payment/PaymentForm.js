@@ -209,7 +209,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className="payment-form">
+    <div className="payment-form" style={{ marginTop: "10vh" }}>
       <h2 className="paymentform-head">Checkout</h2>
       <div className="form-subheading">Personal Information</div>
       <form onSubmit={handleSubmit}>

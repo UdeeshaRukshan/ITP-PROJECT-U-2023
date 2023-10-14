@@ -80,6 +80,7 @@ const PaymentList = () => {
       backgroundColor: "#ffffff",
       borderRadius: "8px",
       boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+      marginTop: "15vh",
     },
     paymentListHeader: {
       color: "#000000",

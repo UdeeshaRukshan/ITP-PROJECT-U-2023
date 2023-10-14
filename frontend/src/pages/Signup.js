@@ -29,25 +29,33 @@ function isValidAge(age) {
   age = age.replace(/[^0-9]/g, "");
   return age >= 18 && age <= 85;
 }
-
-function containsNumber(inputString) {
-  return /\d/.test(inputString);
-}
-
 function isValidSriLankanNIC(nic) {
-  if (nic.length !== 12) {
+  // Check if the NIC is either 10 digits with 'V' or 'X' at the end or 12 digits
+  if (
+    (nic.length !== 10 && nic.length !== 12) ||
+    (nic.length === 10 && !/^[0-9]{9}[VXvx]$/.test(nic)) ||
+    (nic.length === 12 && !/^[0-9]{12}$/.test(nic))
+  ) {
     return false;
   }
 
-  const birthdatePart = nic.substring(0, 9);
+  // If it's a 10-digit NIC, convert it to a 12-digit format
+  if (nic.length === 10) {
+    nic = nic.replace(/[^0-9]/g, "") + "00" + nic.charAt(9).toUpperCase();
+  }
+
+  // Extract components of the NIC
+  const birthdatePart = nic.substring(0, 6);
   const genderPart = nic.charAt(9);
   const otherPart = nic.substring(10);
 
-  if (!/^\d{2}$/.test(otherPart)) {
-    return false;
-  }
+  // Additional checks can be added if needed, such as validating the birthdate.
 
   return true;
+}
+
+function containsNumber(inputString) {
+  return /\d/.test(inputString);
 }
 
 const defaultTheme = createTheme();
@@ -316,8 +324,8 @@ const Signup = () => {
                   value={id}
                   placeholder="Enter your Nic No"
                   onChange={handleOnChange}
-                  // error={!!errors.id}
-                  // helperText={errors.id}
+                  error={!!errors.id}
+                  helperText={errors.id}
                 />
               </Grid>
               <Grid item xs={12}>

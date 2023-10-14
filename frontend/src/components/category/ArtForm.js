@@ -28,11 +28,6 @@ function ArtForm() {
   function sendData(e) {
     e.preventDefault();
 
-    if (images.length > 10) {
-      alert("You can only upload up to 10 images.");
-      return;
-    }
-
     const newArt = {
       title,
       medium,
@@ -66,14 +61,11 @@ function ArtForm() {
   }
 
   function handleImageChange(e) {
-    const selectedImages = e.target.files;
-    const imageArray = [];
-
-    for (let i = 0; i < selectedImages.length; i++) {
-      imageArray.push(URL.createObjectURL(selectedImages[i]));
+    const selectedImage = e.target.files[0]; // Get the first selected image
+    if (selectedImage) {
+      const imageURL = URL.createObjectURL(selectedImage);
+      setImages([imageURL]);
     }
-
-    setImages(imageArray);
   }
 
   return (

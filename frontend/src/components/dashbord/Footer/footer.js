@@ -58,7 +58,7 @@ const Footer = () => {
 
             <ul class="footer_ul_amrc">
               <li>
-                <a href="http://webenlance.com">Submit your Vehicle</a>
+                <a href="/showforum">Submit your Vehicle</a>
               </li>
               <li>
                 <a href="http://webenlance.com">Submit your property</a>
