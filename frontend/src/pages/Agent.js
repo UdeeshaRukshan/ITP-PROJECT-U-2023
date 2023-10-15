@@ -117,7 +117,7 @@ function DashboardContent() {
   const [filteredAgents, setFilteredAgents] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState("");
   const [selectedItemAddress, setSelectedItemAddress] = useState("");
-
+  const [selectedItem, setSelectedItem] = useState("");
   const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);
   const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
   const [isAssignFormVisible, setIsAssignFormVisible] = useState(false);
@@ -252,7 +252,10 @@ function DashboardContent() {
   //update form
   const handleUpdate = (e) => {
     e.preventDefault();
-
+    const updatedData = {
+      ...formData,
+      assign: selectedItem,
+    };
     // Send updated formData to your server using Axios or fetch
     axios
       .put(`http://localhost:4042/agent/update/${updateAgentId}`, formData)
@@ -266,6 +269,7 @@ function DashboardContent() {
           jobtype: "",
           assign: "",
         });
+        setSelectedItem("");
         // Optionally, you can hide the update form
         toggleUpdateAgentForm();
         // Refresh the agents list or update the specific agent in the list
