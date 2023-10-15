@@ -190,7 +190,7 @@ hr {
 
 .review_container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
   filter: drop-shadow(0 0 5px #00000027);
