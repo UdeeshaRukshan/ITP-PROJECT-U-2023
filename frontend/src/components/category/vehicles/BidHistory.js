@@ -41,9 +41,9 @@ export default function AuctionHistory() {
     return (
         <div className="bidHistory">
             <h1 style = {{marginLeft:"15vh"}}>Auction History</h1>
-            <hr style = {{marginLeft:"15vh",marginRight:"75vh"}}/>
+            <hr style = {{marginLeft:"15vh",marginRight:"45vh"}}/>
             <div ref={componentPDF} style={{ marginLeft:"15vh",marginRight:"75vh",width:"120vh"}}>
-                <table className="table">
+                <table className="tbl">
                     <thead>
                         <tr>
                             <th>Item ID</th>
@@ -63,7 +63,7 @@ export default function AuctionHistory() {
                 </table>
             </div>
             <div>
-                <button className="btn btn-primary" onClick={generatePDF} style = {{marginLeft:"15vh"}}>Print</button>
+                <button className="btn btn-primary" onClick={generatePDF} style = {{marginLeft:"15vh",marginTop:"10px"}}>Print</button>
             </div>
         </div>
     );
