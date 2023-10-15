@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import AddComment from './AddComments';
 import AllComments from './allComments';
-
+import axios from 'axios';
 function VehicleDetails() {
     const { id } = useParams();
     const [vehicle, setVehicle] = useState(null);
@@ -31,6 +31,7 @@ function VehicleDetails() {
     
         return null;
         }
+
   
     useEffect(() => {
       async function fetchVehicleDetails() {
@@ -114,7 +115,24 @@ function VehicleDetails() {
             console.log(error);
         }
     };
+
+    function addBidHistory(){
+      const bidHis = {
+        itemId:id,
+        userId:getCookie('userId'),
+        bidValue:currentBid
+    
+      }
+      axios.post("http://localhost:4042/BidHistory/add",bidHis).then(() =>{
+                console.log("Bid History Updated");
+            }).catch((err)=>{
+                alert(err)
+            })
+    }
+    addBidHistory();
 }
+
+
   
     if (loading) {
       return <p>Loading...</p>;

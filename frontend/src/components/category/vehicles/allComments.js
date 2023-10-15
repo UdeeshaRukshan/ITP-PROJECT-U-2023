@@ -6,6 +6,8 @@ import { HiUser } from "react-icons/hi";
 export default function AllComments() {
   const [comments, setComments] = useState([]);
 
+  
+
   useEffect(() => {
     function getComments() {
       axios.get("http://localhost:4042/LiveComments/")

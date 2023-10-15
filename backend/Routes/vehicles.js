@@ -110,7 +110,7 @@ router.route("/addBid/:vehicleid/:currentBid/:bidder").get(async(req,res) => {
         })
     .then((Vehicle) => {
         res.status(200).send({status: "Bid added", Vehicle})   
-    }).catch(() => {
+    }).catch((err) => {
         console.log(err.message);
         res.status(500).send({status: "Error with adding bid", error:err.message});
 
