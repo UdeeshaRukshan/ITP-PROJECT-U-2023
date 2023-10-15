@@ -247,6 +247,7 @@ function VehicleDetails() {
               justifyContent: "center",
               alignItems: "center",
               marginRight: "70vw",
+              fontSize:"3.5vh"
             }}
           >
             Description

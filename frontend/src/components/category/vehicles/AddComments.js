@@ -58,8 +58,8 @@ function AddComment() {
 
   return (
     <div className="liveComments">
-      <h3 className="description-Heading">Live Comments</h3>
-      <hr />
+      <h3 className="description-Heading" style = {{marginLeft:"18vh"}}>Live Comments</h3>
+      <hr style = {{marginLeft:"18vh",marginRight:"18vh"}}/>
       <div className="cmtPrompt">
         <form onSubmit={sendComments}>
           <input
