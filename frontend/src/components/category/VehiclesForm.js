@@ -3,6 +3,8 @@ import axios from "axios";
 import "./VehicleForm.css";
 
 function VehicleForm() {
+  const fileInput = React.useRef();
+
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [year, setYear] = useState("");
   const [model, setModel] = useState("");
@@ -11,59 +13,60 @@ function VehicleForm() {
   const [features, setFeatures] = useState("");
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
-  const [images, setImages] = useState([]);
-  const [formErrors, setFormErrors] = useState({
-    vehicleNumber: "",
-    year: "",
-    model: "",
-    fuelType: "",
-    mileage: "",
-    features: "",
-    location: "",
-    value: "",
-  });
-
-  function validateYear(inputYear) {
-    if (isNaN(inputYear) || inputYear < 1900 || inputYear > 2023) {
-      return 'Please enter a valid year between 1900 and 2023.';
-    }
-    return '';
-  }
-
-  function handleYearChange(e) {
-    const inputYear = e.target.value;
-    const errorMessage = validateYear(inputYear);
-    setFormErrors({ ...formErrors, year: errorMessage });
-    setYear(inputYear);
-  }
+  const [image, setImage] = useState();
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
 
   function sendData(e) {
     e.preventDefault();
 
-    if (images.length < 6 || images.length > 10) {
-      alert("Please select between 6 and 10 images.");
+    if (!image) {
+      alert("Please select image.");
       return;
     }
 
-    const formData = new FormData();
-
-   
-    for (let i = 0; i < images.length; i++) {
-      formData.append("images", images[i]);
+    function formatDateTime(date) {
+      return date.toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      });
     }
 
-    
-    formData.append("vehicleNumber", vehicleNumber);
-    formData.append("year", year);
-    formData.append("model", model);
-    formData.append("fuelType", fuelType);
-    formData.append("mileage", mileage);
-    formData.append("features", features);
-    formData.append("location", location);
-    formData.append("value", value);
+    function getCurrentTimeInSriLanka() {
+      const currentTimeInSriLanka = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Colombo",
+      });
+      return new Date(currentTimeInSriLanka);
+    }
+
+    const currentSriLankaTime = getCurrentTimeInSriLanka();
+    setStartTime(formatDateTime(currentSriLankaTime));
+
+    const endTimeInSriLanka = new Date(currentSriLankaTime);
+    endTimeInSriLanka.setHours(endTimeInSriLanka.getHours() + 24);
+    setEndTime(formatDateTime(endTimeInSriLanka));
+
+    console.log(startTime);
+    console.log(endTime);
 
     axios
-      .post("http://localhost:4042/vehicle/addvehicle", formData)
+      .post("http://localhost:4042/vehicle/addvehicle", {
+        vehicleNumber,
+        year,
+        model,
+        fuelType,
+        mileage,
+        features,
+        location,
+        value,
+        image,
+        startTime,
+        endTime,
+      })
       .then(() => {
         alert("Your Vehicle Added ");
         setVehicleNumber("");
@@ -74,33 +77,50 @@ function VehicleForm() {
         setFeatures("");
         setLocation("");
         setValue("");
-        setImages([]);
+        setImage(null);
+        setStartTime(null);
+        setEndTime(null);
       })
       .catch((err) => {
         alert(err);
       });
   }
 
-  function handleImageChange(e) {
-    const selectedImages = e.target.files;
-    if (selectedImages.length >= 6 && selectedImages.length <= 10) {
-     
-      for (let i = 0; i < selectedImages.length; i++) {
-        const fileType = selectedImages[i].type;
-        if (fileType !== "image/jpeg" && fileType !== "image/png") {
-          alert("Please select only JPEG and PNG images.");
-          e.target.value = null; 
-          return;
-        }
-      }
-
-      
-      setImages([...selectedImages]);
-    } else {
-      alert("Please select between 6 to 10 images.");
-      e.target.value = null; 
+  const postDetails = (pic) => {
+    if (pic === undefined) {
+      console.log("Plese upload an image!!!");
     }
-  }
+    if (pic.type === "image/jpeg" || "image.png") {
+      const data = new FormData();
+
+      data.append("file", pic);
+      const uploadPreset = "notificationimg";
+      const cloudName = "drmwn5axe";
+      const cloudinaryUploadURL =
+        "https://api.cloudinary.com/v1_1/drmwn5axe/image/upload";
+
+      data.append("upload_preset", uploadPreset);
+
+      data.append("cloud_name", cloudName);
+
+      fetch(cloudinaryUploadURL, {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+
+        .then((data) => {
+          //const imageUrl = data.url.toString();
+          setImage(data.url.toString());
+          console.log(data.url.toString());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log("Plese upload an image!!!");
+    }
+  };
 
   return (
     <div className="vehicle-form-container">
@@ -117,21 +137,9 @@ function VehicleForm() {
           placeholder="e.g., ABC-2056"
           required
           onChange={(e) => {
-            const inputVehicleNumber = e.target.value;
-            if (/^[A-Za-z0-9-]+$/.test(inputVehicleNumber)) {
-              setFormErrors({ ...formErrors, vehicleNumber: "" });
-              setVehicleNumber(inputVehicleNumber);
-            } else {
-              setFormErrors({
-                ...formErrors,
-                vehicleNumber: "Please enter a valid vehicle number."
-              });
-            }
+            setVehicleNumber(e.target.value);
           }}
         />
-        {formErrors.vehicleNumber && (
-          <p className="vehicle-form-error-message">{formErrors.vehicleNumber}</p>
-        )}
         <br></br>
 
         <div className="row">
@@ -147,22 +155,10 @@ function VehicleForm() {
               placeholder="e.g., Honda Civic"
               required
               onChange={(e) => {
-                const inputValue = e.target.value;
-                if (/\d/.test(inputValue)) {
-                  setFormErrors({
-                    ...formErrors,
-                    model: "Model cannot contain numerical characters.",
-                  });
-                } else {
-                  setFormErrors({ ...formErrors, medium: "" });
-                  setModel(inputValue);
-                }
+                setModel(e.target.value);
               }}
             />
             <br></br>
-            {formErrors.model && (
-          <p className="vehicle-form-error-message">{formErrors.model}</p>
-        )}
           </div>
           <div className="col">
             <label className="vehicle-form-label" htmlFor="year">
@@ -173,16 +169,15 @@ function VehicleForm() {
               id="year"
               className="vehicle-form-input"
               min="1900" // Set the minimum year to allow
-              max="2023" // Set the maximum year to allow
+              max="2099" // Set the maximum year to allow
               step="1" // Set the step to 1 to allow whole numbers only
               placeholder="e.g., 2000"
               required
-              onChange={handleYearChange}
-          />
-          {formErrors.year && (
-            <p className="vehicle-form-error-message">{formErrors.year}</p>
-          )}
-          <br />
+              onChange={(e) => {
+                setYear(e.target.value);
+              }}
+            />
+            <br></br>
           </div>
         </div>
 
@@ -277,45 +272,26 @@ function VehicleForm() {
           onChange={(e) => {
             const inputOpeningValue = e.target.value;
             if (inputOpeningValue > 0) {
-              setFormErrors({ ...formErrors, value: "" });
               setValue(inputOpeningValue);
             } else {
-              setFormErrors({
-                ...formErrors,
-                value: "Opening value must be a meaningful number.",
-              });
+              alert("Must enter valid value");
             }
           }}
         />
         <br />
-        {formErrors.value && (
-          <p className="vehicle-form-error-message">{formErrors.value}</p>
-        )}
 
         <label className="vehicle-form-label" htmlFor="image">
           Images:(Please add at least 6 photos of the interior and exterior of
           the vehicle)
         </label>
+
         <input
+          ref={fileInput}
           type="file"
-          id="images"
-          name="images"
           accept="image/*"
-          multiple
-          required
-          onChange={handleImageChange}
+          onChange={(e) => postDetails(e.target.files[0])}
         />
         <br></br>
-
-        {images.map((image, index) => (
-          <div key={index}>
-            <img
-              className="vehicle-form-image-preview"
-              src={URL.createObjectURL(image)}
-              alt={`Image ${index}`}
-            />
-          </div>
-        ))}
 
         <button type="submit" className="vehicle-form-button">
           Submit
