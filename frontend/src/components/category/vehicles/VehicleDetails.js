@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import AddComment from './AddComments';
 import AllComments from './allComments';
 import axios from 'axios';
+import AuctionHistory from './BidHistory';
 function VehicleDetails() {
     const { id } = useParams();
     const [vehicle, setVehicle] = useState(null);
@@ -18,6 +19,7 @@ function VehicleDetails() {
     const [userId, setUserId] = useState(null);
     const [auctionStatus, setAuctionStatus] = useState(false);
     const [placeBid, setPlaceBid] = useState('none');
+    const [user,setUsers] = useState([]);
 
     function getCookie(name) {
         const cookieValue = document.cookie
@@ -31,6 +33,19 @@ function VehicleDetails() {
     
         return null;
         }
+
+        useEffect(() => {
+          axios
+            .get("http://localhost:4042/dashbord", {
+              withCredentials: true, 
+            })
+            .then((response) => {
+              setUsers(response.data);
+            })
+            .catch((error) => {
+              console.error("Error fetching user data:", error);
+            });
+        }, []);
 
   
     useEffect(() => {
@@ -119,7 +134,7 @@ function VehicleDetails() {
     function addBidHistory(){
       const bidHis = {
         itemId:id,
-        userId:getCookie('userId'),
+        userId:user.email,
         bidValue:currentBid
     
       }
@@ -157,8 +172,8 @@ function VehicleDetails() {
                         />
                     </div>
 
-                    <div style={{marginBottom:'20px', display:'flex',justifyContent:'center',alignItems:'center',marginTop:'20px',marginLeft:'-200px'}}>
-                        <Badge pill bg="danger" style={{width:'40vw',display:'flex'}}>
+                    <div style={{marginBottom:'20px', display:'flex',justifyContent:'center',alignItems:'center',marginTop:'20px',marginLeft:'-20px'}}>
+                        <Badge pill bg="danger" style={{width:'60vw',display:'flex' }}>
                             <h6 style={{marginLeft:'40px'}}>Time Left : {countdown}</h6>
                             <h6 style={{marginLeft:'60px'}}>High Bid : {vehicle.value}</h6>
                             <h6 style={{marginLeft:'60px'}}>Comments : 13</h6>
@@ -185,14 +200,14 @@ function VehicleDetails() {
                     </form>
                     </div>
 
-                    <h5 style={{ display:'grid',justifyContent:'center',alignItems:'center',marginRight:'50vw'}}>
+                    <h5 style={{ display:'grid',justifyContent:'center',alignItems:'center',marginRight:'70vw'}}>
                         Description
                     </h5>
-                    <hr style={{ display:'flex',justifyContent:'center',alignItems:'center',width:'60vw',marginLeft:'20vw'}}></hr>
+                    <hr style={{ display:'flex',justifyContent:'center',alignItems:'center',width:'80vw',marginLeft:'10vw'}}></hr>
 
-                    <div  style={{ width: "60vw", display: 'grid', justifyContent: 'center', alignItems: 'flex-start' }}>
+                    <div  style={{ width: "80vw", display: 'grid', justifyContent: 'center', alignItems: 'flex-start' }}>
 
-                    <div style={{backgroundColor:'whitesmoke',width:'60vw',marginLeft:'40vw',padding:'10px'}}>
+                    <div style={{backgroundColor:'whitesmoke',width:'80vw',marginLeft:'20vw',padding:'10px'}}>
 
                         <h6 style={{ textAlign: "left", display: "flex" }}>
                         <b>Vehicle modal : </b>{vehicle.model}

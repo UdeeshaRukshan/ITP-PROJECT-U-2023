@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./biddingHistory.css";
+import AuctionHistory from "../../category/vehicles/BidHistory";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -95,8 +96,8 @@ const BiddingHistory = () => {
       <br />
       <br />
 
-      <div className="col-div-8 displayA" id="displayArea">
-        <div className="user-profilee"></div>
+      <div className="col-div-8 displayA" id="displayArea" style = {{width : "180vh"}}><AuctionHistory/>
+      
       </div>
     </div>
   );
