@@ -24,10 +24,14 @@ const ticketSchema = new mongoose.Schema(
       type: String,
       required: [true, "your message is required"],
     },
-    ticketSolved : {
-      type : Boolean,
-      required : false
-    }
+    ticketSolved: {
+      type: Boolean,
+      required: false
+    },
+    response: {
+      type: String,
+      default: ""
+    },
   },
   { timestamps: true }
 );

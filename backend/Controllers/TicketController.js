@@ -63,3 +63,20 @@ module.exports.getAllTicketsForAdmin = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+module.exports.addResponse = async (req, res) => {
+
+  try {
+    const { ticketId } = req.params;
+
+    const updateFields = {
+      response: req.body.response,
+      ticketSolved: true,
+    }
+    const updatedRes = await Ticket.findOneAndUpdate({ _id: ticketId },updateFields,{ new: true });
+    res.status(201).json(updatedRes);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to add Response", err });
+
+  }
+}

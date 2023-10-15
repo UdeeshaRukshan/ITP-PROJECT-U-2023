@@ -32,6 +32,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useQuery } from "react-query";
 import Chip from "@mui/material/Chip";
 import { Stack, TextField } from "@mui/material";
+import { IconSearch } from "@tabler/icons-react";
+
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -96,6 +98,7 @@ function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [value, setValue] = React.useState(0);
   const [rowData, setRowData] = useState({
+    _id: "",
     RefID: "",
     subject: "",
     Category: "",
@@ -104,6 +107,8 @@ function DashboardContent() {
     isSolved: false,
   });
   const [opened, setOpened] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');//search state for new received ticket table
+
 
   // admin response
   const [response, setResponse] = useState("");
@@ -118,11 +123,26 @@ function DashboardContent() {
         .then((res) => res.data),
   });
 
-  console.log(data);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
   };
+
+  const filteredData = data
+    ? data.filter((ticket) => {
+      // Define your filter criteria here
+      const valuesToSearch = [
+        ticket.subject,
+        ticket.category,
+        new Date(ticket.createdAt).toLocaleDateString("en-GB").split("T")[0],
+      ];
+
+      // Check if the searchQuery is found in any of the column values
+      return valuesToSearch.some((value) =>
+        value.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    })
+    : [];
+
 
   const logout = (e) => {
     e.preventDefault();
@@ -152,64 +172,77 @@ function DashboardContent() {
         refetch();
       });
   };
+  const handleResponseSubmit = (ticketId, response) => {
+    axios
+      .put(`http://localhost:4042/ticket/responses/${ticketId}`, { response }, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setOpened(false);
+        refetch();
+      });
+  };
+
+
 
   //generate table rows
   const rows = data
-    ? data.map((ticket, index) => (
-        <tr key={ticket._id}>
-          <td>{<Text color="dark">{`#REF${ticket._id.slice(1, 6)}`}</Text>}</td>
-          <td>{<Text color="dark">{ticket.subject}</Text>}</td>
-          <td>
-            {
-              <Chip
-                color={ticket.ticketSolved === true ? "success" : "warning"}
-                variant="soft"
-                label={ticket.ticketSolved === true ? "SOLVED" : "PENDING"}
-              />
-            }
-          </td>
-          <td>
-            {
-              <Text color="dark">
-                {
-                  new Date(ticket.createdAt)
-                    .toLocaleDateString("en-GB")
-                    .split("T")[0]
-                }
-              </Text>
-            }
-          </td>
-          <td>{<Text color="dark">last Action</Text>}</td>
-          <td>
-            {
-              <>
-                <Button
-                  onClick={() => {
-                    setRowData({
-                      RefID: `#REF${ticket._id.slice(1, 6)}`,
-                      subject: ticket.subject,
-                      Message: ticket.message,
-                      Email: ticket.loggedUserEmail,
-                      Category: ticket.category,
-                      isSolved: ticket.ticketSolved,
-                    });
-                    setOpened(true);
-                  }}
-                  mr={5}
-                >
-                  View
-                </Button>
-                <Button
-                  onClick={() => changeTicketStatus(ticket._id)}
-                  disabled={ticket.ticketSolved}
-                >
-                  Mark As solved
-                </Button>
-              </>
-            }
-          </td>
-        </tr>
-      ))
+    ? filteredData.map((ticket, index) => (
+      <tr key={ticket._id}>
+        <td>{<Text color="dark">{`#REF${ticket._id.slice(1, 6)}`}</Text>}</td>
+        <td>{<Text color="dark">{ticket.subject}</Text>}</td>
+        <td>
+          {
+            <Chip
+              color={ticket.ticketSolved === true ? "success" : "warning"}
+              variant="soft"
+              label={ticket.ticketSolved === true ? "SOLVED" : "PENDING"}
+            />
+          }
+        </td>
+        <td>
+          {
+            <Text color="dark">
+              {
+                new Date(ticket.createdAt)
+                  .toLocaleDateString("en-GB")
+                  .split("T")[0]
+              }
+            </Text>
+          }
+        </td>
+        <td>{<Text color="dark">last Action</Text>}</td>
+        <td>
+          {
+            <>
+              <Button
+                onClick={() => {
+                  setRowData({
+                    _id: ticket._id,
+                    RefID: `#REF${ticket._id.slice(1, 6)}`,
+                    subject: ticket.subject,
+                    Message: ticket.message,
+                    Email: ticket.loggedUserEmail,
+                    Category: ticket.category,
+                    isSolved: ticket.ticketSolved,
+                  });
+                  setOpened(true);
+                }}
+                mr={5}
+              >
+                View
+              </Button>
+              <Button
+                onClick={() => changeTicketStatus(ticket._id)}
+                disabled={ticket.ticketSolved}
+              >
+                Mark As solved
+              </Button>
+            </>
+          }
+        </td>
+      </tr>
+    ))
     : null;
 
   return (
@@ -236,7 +269,7 @@ function DashboardContent() {
             />
             <TextField
               value={rowData.Email}
-              label={"Date Created"}
+              label={"Email Address"}
               InputProps={{
                 readOnly: true,
               }}
@@ -267,11 +300,20 @@ function DashboardContent() {
               style={{ marginBottom: 20 }}
             />
             {rowData.isSolved === false && (
-              <TextField
-                label={"Response"}
-                style={{ marginBottom: 20 }}
-                onChange={(e) => setResponse(e.target.value)}
-              />
+              <>
+                <TextField
+                  label={"Response"}
+                  style={{ marginBottom: 20 }}
+                  onChange={(e) => setResponse(e.target.value)}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleResponseSubmit(rowData._id, response)}
+                >
+                  Submit Response
+                </Button>
+              </>
             )}
           </Stack>
         </DialogContent>
@@ -327,6 +369,16 @@ function DashboardContent() {
             // //   width: "100%",
             // // }}
             >
+              <TextInput
+                radius={20}
+                icon={<IconSearch size={15} />}
+                placeholder="Search..."
+                size="xs"
+                style={{ marginLeft: "550px" }}
+
+                value={searchQuery}
+                onChange={handleSearchInputChange}
+              />
               <Box
                 sx={{
                   borderBottom: 1,
@@ -338,6 +390,7 @@ function DashboardContent() {
                   padding: "10px 20px",
                 }}
               >
+
                 <Paper shadow="md" radius={"md"} withBorder mt={20}>
                   <Title order={1} align="center" mb={10}>
                     Support Tickets
