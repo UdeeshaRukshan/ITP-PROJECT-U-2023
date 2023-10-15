@@ -365,7 +365,14 @@ function DashboardContent() {
       head: [headers],
       body: data,
     });
+    const totalAgentCount = agents.length;
 
+    // Add the total agent count to the PDF
+    doc.text(
+      `Total Agent Count: ${totalAgentCount}`,
+      10,
+      doc.autoTable.previous.finalY + 10
+    );
     // Save the PDF with a specific name
     doc.save("agent_report.pdf");
   };
