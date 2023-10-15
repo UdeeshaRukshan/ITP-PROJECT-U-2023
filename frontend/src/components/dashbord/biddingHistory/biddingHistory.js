@@ -96,7 +96,8 @@ const BiddingHistory = () => {
       <br />
       <br />
 
-      <div className="col-div-8 displayA" id="displayArea" style = {{width : "180vh"}}><AuctionHistory/>
+      <div className="col-div-8 displayA" id="displayArea" style = {{width : "180vh"}}>
+        <AuctionHistory/>
       
       </div>
     </div>
