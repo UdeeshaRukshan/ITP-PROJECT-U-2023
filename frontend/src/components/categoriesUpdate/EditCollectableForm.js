@@ -88,7 +88,10 @@ export default function EditCollectableForm() {
   };
 
   return (
-    <div className="edit-collectable-form-container">
+    <div
+      className="edit-collectable-form-container"
+      style={{ marginTop: "15vh" }}
+    >
       <h2 className="edit-collectable-form-title">Edit Item</h2>
       <form onSubmit={handleSubmit}>
         <label className="edit-collectable-form-label" htmlFor="type">
@@ -168,7 +171,7 @@ export default function EditCollectableForm() {
             Save
           </button>
           <a
-            href="/getcollectables"
+            href="/getcollectables/update"
             className="edit-collectable-form-cancel-button"
           >
             Cancel
