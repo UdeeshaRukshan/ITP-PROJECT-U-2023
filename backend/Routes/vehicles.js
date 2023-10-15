@@ -10,7 +10,9 @@ router.route("/addvehicle").post((req, res) => {
   const features = req.body.features;
   const location = req.body.location;
   const value = req.body.value;
-  const images = req.body.images;
+  const image = req.body.image;
+  const startTime = new Date(req.body.startTime);
+  const endTime = new Date(req.body.endTime);
 
   const newVehicle = new Vehicle({
     vehicleNumber,
@@ -21,7 +23,9 @@ router.route("/addvehicle").post((req, res) => {
     features,
     location,
     value,
-    images,
+    image,
+    startTime,
+    endTime,
   });
 
   newVehicle
@@ -81,7 +85,6 @@ router.route("/updatevehicle/:vehicleid").put(async (req, res) => {
         .send({ status: "Error with updating data", error: err.message });
     });
 });
-
 router.route("/deletevehicle/:vehicleid").delete(async (req, res) => {
   let userID = req.params.vehicleid;
 
@@ -110,6 +113,7 @@ router.route("/getvehicle/:vehicleid").get(async (req, res) => {
         .send({ status: "Error with get vehicle", error: err.message });
     });
 });
+
 router.route("/addBid/:vehicleid/:currentBid/:bidder").get(async (req, res) => {
   let vehicleID = req.params.vehicleid;
   let value = req.params.currentBid;
@@ -121,11 +125,12 @@ router.route("/addBid/:vehicleid/:currentBid/:bidder").get(async (req, res) => {
     .then((Vehicle) => {
       res.status(200).send({ status: "Bid added", Vehicle });
     })
-    .catch(() => {
+    .catch((err) => {
       console.log(err.message);
       res
         .status(500)
         .send({ status: "Error with adding bid", error: err.message });
     });
 });
+
 module.exports = router;
