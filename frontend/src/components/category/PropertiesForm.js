@@ -9,6 +9,13 @@ function PropertyForm() {
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
+  const [formErrors, setFormErrors] = useState({
+    address: "",
+    street: "",
+    city: "",
+    description: "",
+    value: "",
+  });
 
   function sendData(e) {
     e.preventDefault();
@@ -83,9 +90,22 @@ function PropertyForm() {
           placeholder="Street/house/apartment etc."
           required
           onChange={(e) => {
-            setStreet(e.target.value);
+            const inputValue = e.target.value;
+            if (/\d/.test(inputValue)) {
+              setFormErrors({
+                ...formErrors,
+                street: "Street cannot contain numerical characters.",
+              });
+            } else {
+              setFormErrors({ ...formErrors, street: "" });
+              setStreet(inputValue);
+            }
+
           }}
         />
+        {formErrors.street && (
+          <p className="property-form-error-message">{formErrors.street}</p>
+        )}
 
         <label className="property-form-label" htmlFor="city">
           City:
@@ -134,12 +154,19 @@ function PropertyForm() {
           onChange={(e) => {
             const inputOpeningValue = e.target.value;
             if (inputOpeningValue > 0) {
+              setFormErrors({ ...formErrors, value: "" });
               setValue(inputOpeningValue);
             } else {
-              alert("Must enter valid value");
+              setFormErrors({
+                ...formErrors,
+                value: "Opening value must be a meaningful number.",
+              });
             }
           }}
         />
+         {formErrors.value && (
+          <p className="property-form-error-message">{formErrors.value}</p>
+        )}
 
         <label className="property-form-label" htmlFor="images">
           Images (up to 10):

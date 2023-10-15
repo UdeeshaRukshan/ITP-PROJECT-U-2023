@@ -27,6 +27,19 @@ export default function AllCollectables() {
       setMessage("Server error");
     }
   };
+
+  const imageLinks =[
+    "https://img.freepik.com/premium-photo/ornate-wood-leather-chair-photo-frame-white-background_899449-21698.jpg?w=740",
+    "https://images.unsplash.com/photo-1600189261867-30e5ffe7b8da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+    "https://img.freepik.com/premium-photo/gold-wedding-ring-illustration-generative-ai_115919-6696.jpg?w=740",
+    "https://img.freepik.com/premium-photo/photo-gundam-robot-with-latest-variations-wallpaper_947926-1649.jpg",
+    "https://images.unsplash.com/photo-1685970731571-72ede0cb26ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80",
+    "https://img.freepik.com/premium-photo/vintage-lighting-table-lamp-with-antique-charm-elegance_941761-3910.jpg?w=740",
+    "https://images.unsplash.com/photo-1677804418426-be788c0be43f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+    
+
+
+  ];
   // Fetch auctioneer data from the server
   useEffect(() => {
     async function fetchCollectables() {
@@ -45,13 +58,14 @@ export default function AllCollectables() {
 
   // Render auctioneer items in a catalog-like box
   const renderCollectableItems = () => {
-    return collectables.map((collectable) => (
+    return collectables.map((collectable,index) => (
       <div key={collectable._id} className="catalog-item">
         <div className="item-image">
-          <img
+        <img src={imageLinks[index]} alt={`collectable ${collectable._id}`} />
+          {/* <img
             src="https://m.media-amazon.com/images/I/81SDCMipR-L.jpg" // Use property-specific image URL
             alt={`art ${collectable._id}`}
-          />
+          /> */}
         </div>
         <div className="item-details">
           <h3>{collectable.name}</h3>

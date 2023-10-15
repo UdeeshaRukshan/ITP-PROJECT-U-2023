@@ -48,6 +48,8 @@ import AllVehicles from "./components/category/AllVehicles";
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
+import EditArtForm from "./components/categoriesUpdate/EditArtForm";
+import EditCollectableForm from "./components/categoriesUpdate/EditCollectableForm";
 
 import FeedbackHistory from "./components/dashbord/feedbacks/FeedbackHistory";
 import BiddingHistory from "./components/dashbord/biddingHistory/biddingHistory";
@@ -106,6 +108,7 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
+            {/* Nuwani Update part */}
             <Route path="/getarts/update" exact element={<AllArtsUpdate />} />
             <Route
               path="/getproperties/update"
@@ -122,6 +125,12 @@ function App() {
               exact
               element={<AllVehiclesUpdate />}
             />
+            <Route
+              path="/updatecollectable/:collectableid"
+              exact
+              element={<EditCollectableForm />}
+            />
+            <Route path="/updateart/:artid" exact element={<EditArtForm />} />
             <Route
               path="/dashbord/feedback"
               exact

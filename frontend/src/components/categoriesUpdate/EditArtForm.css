@@ -1,0 +1,86 @@
+
+.edit-art-form-container {
+  max-width: 600px; /* Increase the maximum width */
+  margin: 0 auto;
+  padding: 20px; /* Increase padding */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Increase border-radius */
+  background-color: #f9f9f9;
+}
+
+.edit-art-form-title {
+  font-size: 36px; /* Increase font size */
+  margin-bottom: 10px; /* Increase margin */
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  height: 100%;
+}
+
+.edit-art-form-label {
+  display: block;
+  font-weight: bold;
+  font-size: 15px; /* Increase font size */
+}
+
+.edit-art-form-input[type="text"],
+.edit-art-form-textarea {
+  width: 100%;
+  padding: 12px; /* Increase padding */
+  margin-top: 10px; /* Increase margin-top */
+  border: 2px solid #ccc; /* Increase border thickness */
+  border-radius: 6px; /* Increase border-radius */
+  box-sizing: border-box;
+  font-size: 16px; /* Increase font size */
+}
+
+.edit-art-form-save-button {
+  display: block;
+  margin: 0 auto;
+  background-color: #18bf26;
+  color: #fff;
+  padding: 15px 30px; /* Increase padding */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px; /* Increase font size */
+}
+
+.edit-art-form-save-button:hover {
+  background-color: #02752a;
+}
+
+.edit-art-form-cancel-button {
+  display: block;
+  margin: 0 auto;
+  background-color: #757a7f;
+  color: #fff;
+  padding: 15px 30px; /* Increase padding */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px; /* Increase font size */
+}
+
+.edit-art-form-cancel-button:hover {
+  background-color: #202326;
+}
+
+.edit-art-form-image-preview {
+  display: inline-block;
+  margin-right: 20px; /* Increase margin-right */
+  max-width: 200px; /* Increase max-width */
+  max-height: 200px; /* Increase max-height */
+}
+
+.edit-art-form-button-container {
+  display: flex; /* Display its children (buttons) in a row */
+  gap: 0px; /* Adjust the gap between buttons as needed */
+  justify-content: flex-end; /* Align buttons to the right within the container */
+}
+.edit-art-error-message {
+  color: red;
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
