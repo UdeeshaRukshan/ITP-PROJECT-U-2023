@@ -1,23 +1,21 @@
 import { MantineProvider } from "@mantine/core";
 import {
+  BrowserRouter as Router,
   Route,
   Routes,
+  Navigate,
 } from "react-router-dom";
-import React from "react";
 import Footer from "./components/dashbord/Footer/footer";
+import React from "react";
 import IndexPage from "./pages/IndexPage";
 import Header from "./components/Header";
 
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Feedback from "./pages/Feedback";
-import FeedbackView from "./pages/FeedbackView";
 
 import ContactUs from "./pages/ContactUs";
 
-
 import Dashboard from "./pages/Dashbord";
-import Agent from "./components/dashbord/Agent";
 
 //madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
@@ -29,8 +27,6 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import FeedbackEdit from "./pages/FeedbackEdit";
-import FeedbackReport from "./pages/FeedbackReport";
 
 //nuwani
 import AllArtsUpdate from "./components/categoriesUpdate/AllArtsUpdate";
