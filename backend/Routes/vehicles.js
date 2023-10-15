@@ -75,7 +75,6 @@ router.route("/updatevehicle/:vehicleid").put(async (req,res) => {
     })
 
 })
-
 router.route("/deletevehicle/:vehicleid").delete(async (req,res) => {
     let userID = req.params.vehicleid;
 
@@ -96,6 +95,24 @@ router.route("/getvehicle/:vehicleid").get(async(req,res) => {
     }).catch(() => {
         console.log(err.message);
         res.status(500).send({status: "Error with get vehicle", error:err.message});
+
+    })
+})
+
+router.route("/addBid/:vehicleid/:currentBid/:bidder").get(async(req,res) => {
+    let vehicleID = req.params.vehicleid;
+    let value = req.params.currentBid
+    let bidder = req.params.bidder
+    await Vehicle.findByIdAndUpdate(vehicleID,
+        {
+            value:value,
+            bidder:bidder
+        })
+    .then((Vehicle) => {
+        res.status(200).send({status: "Bid added", Vehicle})   
+    }).catch(() => {
+        console.log(err.message);
+        res.status(500).send({status: "Error with adding bid", error:err.message});
 
     })
 })

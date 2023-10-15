@@ -61,6 +61,7 @@ import EditCard from "./components/payment/EditCard";
 import Feedback from "./pages/Feedback";
 import FeedbackView from "./pages/FeedbackView";
 import FeedbackEdit from "./pages/FeedbackEdit";
+import VehicleDetails from "./components/category/vehicles/VehicleDetails";
 
 //Admin Dashbord
 
@@ -93,6 +94,7 @@ function App() {
             <Route path="/properties" exact element={<AllProperties />} />
             <Route path="/collectables" exact element={<AllCollectables />} />
             <Route path="/vehicle" exact element={<AllVehicles />} />
+            <Route path="/vehicle-view/:id" exact element={<VehicleDetails />} />
             <Route
               path="/dashbord/feedback"
               exact

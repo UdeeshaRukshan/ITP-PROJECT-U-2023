@@ -76,7 +76,7 @@ export default function AllVehicles() {
           </div>
           <div className="item-actions">
             <Link
-              to={`/vehicle/${vehicle._id}`}
+              to={`/vehicle-view/${vehicle._id}`}
               className="view-details-button"
               style={{ fontSize: 10 }}
             >

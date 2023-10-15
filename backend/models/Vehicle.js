@@ -7,7 +7,6 @@ const vehicleSchema = new Schema({
     vehicleNumber: {
         type : String,
         required: true //backend validation
-
     },
     year: {
         type : String,
@@ -48,6 +47,10 @@ const vehicleSchema = new Schema({
     endTime: {
         type: Date,
         required: true
+    },
+    bidder: {
+        type: String,
+        default:"no bidder"
     }
     
 });
