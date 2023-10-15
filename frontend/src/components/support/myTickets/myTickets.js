@@ -18,8 +18,8 @@ import { showNotification, updateNotification } from "@mantine/notifications";
 import { IconDiscountCheck, IconExclamationCircle } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState,useRef } from "react";
-import{useReactToPrint} from "react-to-print";
+import { useState, useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 const MyTickets = () => {
   const [opened, setOpened] = useState(false);
   const printRef = useRef(null);
@@ -30,7 +30,8 @@ const MyTickets = () => {
     Category: "",
     Message: "",
     Email: "",
-    isSolved : false,
+    isSolved: false,
+    Response: "",
   });
   const { error, isLoading, data, refetch } = useQuery({
     queryKey: ["raisedTickets"],
@@ -78,91 +79,103 @@ const MyTickets = () => {
   //generate table rows
   const rows = data
     ? data.map((ticket, index) => (
-        <tr key={ticket._id}>
-          <td>{<Text color="dark">{`#REF${ticket._id.slice(1, 6)}`}</Text>}</td>
-          <td>{<Text color="dark">{ticket.subject}</Text>}</td>
-          <td>
-            {
-              <Badge
-                color={ticket.ticketSolved === true ? "teal" : "yellow"}
+      <tr key={ticket._id}>
+        <td>{<Text color="dark">{`#REF${ticket._id.slice(1, 6)}`}</Text>}</td>
+        <td>{<Text color="dark">{ticket.subject}</Text>}</td>
+        <td>
+          {
+            <Badge
+              color={ticket.ticketSolved === true ? "teal" : "yellow"}
+              radius="sm"
+              variant="filled"
+            >
+              {ticket.ticketSolved === true ? "SOLVED" : "PENDING"}
+            </Badge>
+          }
+        </td>
+        <td>
+          {
+            <Text color="dark">
+              {
+                new Date(ticket.createdAt)
+                  .toLocaleDateString("en-GB")
+                  .split("T")[0]
+              }
+            </Text>
+          }
+        </td>
+        <td>{<Text color="dark">last Action</Text>}</td>
+        <td>
+          {
+            <>
+              <Button
+                color="red"
                 radius="sm"
                 variant="filled"
+                onClick={() => deleteTicket(ticket._id)}
+                mr={5}
               >
-                {ticket.ticketSolved === true ? "SOLVED" : "PENDING"}
-              </Badge>
-            }
-          </td>
-          <td>
-            {
-              <Text color="dark">
-                {
-                  new Date(ticket.createdAt)
-                    .toLocaleDateString("en-GB")
-                    .split("T")[0]
-                }
-              </Text>
-            }
-          </td>
-          <td>{<Text color="dark">last Action</Text>}</td>
-          <td>
-            {
-              <>
-                <Button
-                  color="red"
-                  radius="sm"
-                  variant="filled"
-                  onClick={() => deleteTicket(ticket._id)}
-                  mr={5}
-                >
-                  Delete
-                </Button>
+                Delete
+              </Button>
 
-                <Button
-                  onClick={() => {
-                    setRowData({
-                      ...rowData,
-                      RefID: `#REF${ticket._id.slice(1, 6)}`,
-                      subject: ticket.subject,
-                      Message: ticket.message,
-                      Email: ticket.loggedUserEmail,
-                      Category: ticket.category,
-                      isSolved : ticket.ticketSolved
-                    });
-                    setOpened(true);
-                  }}
-                >
-                  View
-                </Button>
-              </>
-            }
-          </td>
-        </tr>
-      ))
+              <Button
+                onClick={() => {
+                  setRowData({
+                    ...rowData,
+                    RefID: `#REF${ticket._id.slice(1, 6)}`,
+                    subject: ticket.subject,
+                    Message: ticket.message,
+                    Email: ticket.loggedUserEmail,
+                    Category: ticket.category,
+                    isSolved: ticket.ticketSolved,
+                    Response: ticket.response
+                  });
+                  setOpened(true);
+                }}
+              >
+                View
+              </Button>
+            </>
+          }
+        </td>
+      </tr>
+    ))
     : null;
 
-    // handle print
-    const handlePrint = useReactToPrint({
-      content: () => printRef.current,
-    })
+  // handle print
+  const handlePrint = useReactToPrint({
+    content: () => printRef.current,
+  })
   return (
     <>
       <Modal opened={opened} onClose={() => setOpened(false)} radius={20} p={30}>
         <Box ref={printRef} p={30}>
-        <Group position="apart" spacing="xl" mb={10}>
-          <Title order={2}>Ticket : #REF123</Title>
-          <Badge
-            color={rowData.isSolved === true ? "teal" : "yellow"}
-            radius="md"
-            variant="filled"
-          >
-            {rowData.isSolved === true ? "SOLVED" : "PENDING"}
-          </Badge>
-        </Group>
-        <TextInput readOnly label="Reference Id" value={rowData.RefID} mb={10}/>
-        <TextInput readOnly label="Email" value={rowData.Email} mb={10}/>
-        <TextInput readOnly label="Subject" value={rowData.subject} mb={10}/>
-        <TextInput readOnly label="Category" value={rowData.Category} mb={10}/>
-        <Textarea autosize readOnly label="Message" value={rowData.Message} mb={10}/>
+          <Group position="apart" spacing="xl" mb={10}>
+            <Title order={2}>Ticket : #REF123</Title>
+            <Badge
+              color={rowData.isSolved === true ? "teal" : "yellow"}
+              radius="md"
+              variant="filled"
+            >
+              {rowData.isSolved === true ? "SOLVED" : "PENDING"}
+            </Badge>
+          </Group>
+          <TextInput readOnly label="Reference Id" value={rowData.RefID} mb={10} />
+          <TextInput readOnly label="Email" value={rowData.Email} mb={10} />
+          <TextInput readOnly label="Subject" value={rowData.subject} mb={10} />
+          <TextInput readOnly label="Category" value={rowData.Category} mb={10} />
+          <Textarea autosize readOnly label="Message" value={rowData.Message} mb={10} />
+          <Textarea
+            autosize
+            readOnly
+            label="Response"
+            value={rowData.Response}
+            mb={10}
+            placeholder="This ticket is solved by admin"
+            style={{ border: "1px solid red" }} // Set the border style here
+          />
+
+
         </Box>
         <Button fullWidth onClick={handlePrint}>Download/Print Ticket</Button>
       </Modal>
