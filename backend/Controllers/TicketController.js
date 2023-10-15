@@ -39,7 +39,9 @@ module.exports.updateTicketStatus = async (req, res) => {
 
     const ticket = await Ticket.findOneAndUpdate(
       { _id: ticketId },
-      { ticketSolved: true },
+      {
+        ticketSolved: true,
+      },
       { new: true }
     );
     console.log(ticket);
@@ -47,6 +49,17 @@ module.exports.updateTicketStatus = async (req, res) => {
     res.status(200).json(ticket);
   } catch (error) {
     console.log(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//get all submitted tickets from the database
+module.exports.getAllTicketsForAdmin = async (req, res) => {
+  try {
+    // returns all ticket relevent to current logged-in user
+    const tickets = await Ticket.find({});
+    res.status(200).json(tickets);
+  } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };

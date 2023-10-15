@@ -21,9 +21,17 @@ import {
   Container,
   Table,
   Group,
+  Modal,
+  TextInput,
 } from "@mantine/core";
+import Dialog, { DialogProps } from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import { useQuery } from "react-query";
 import Chip from "@mui/material/Chip";
+import { Stack, TextField } from "@mui/material";
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -96,13 +104,22 @@ function DashboardContent() {
     isSolved: false,
   });
   const [opened, setOpened] = useState(false);
+
+  // admin response
+  const [response, setResponse] = useState("");
+
   const { error, isLoading, data, refetch } = useQuery({
     queryKey: ["raisedTickets"],
     queryFn: () =>
       axios
-        .get("http://localhost:4042/ticket/getall", { withCredentials: true })
+        .get("http://localhost:4042/ticket/getall/admin", {
+          withCredentials: true,
+        })
         .then((res) => res.data),
   });
+
+  console.log(data);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -169,7 +186,6 @@ function DashboardContent() {
                 <Button
                   onClick={() => {
                     setRowData({
-                      ...rowData,
                       RefID: `#REF${ticket._id.slice(1, 6)}`,
                       subject: ticket.subject,
                       Message: ticket.message,
@@ -195,100 +211,165 @@ function DashboardContent() {
         </tr>
       ))
     : null;
+
   return (
-    <Box sx={{ flexGrow: 1, display: "block" }}>
-      <Grid container spacing={2}>
-        <Grid item xs={2}>
-          <Drawer variant="permanent" open={open}>
-            <List component="nav">
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Avatar sx={{ width: "100px", height: "100px" }} />
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Divider sx={{ width: "75%", mt: "10px" }} />
-              </div>
-              {mainListItems}
-              <Divider sx={{ my: 1 }} />
-              <Button
-                component="label"
-                variant="contained"
-                startIcon={<LogoutIcon />}
-                onClick={logout}
-              >
-                LogOut
-                <VisuallyHiddenInput type="file" />
-              </Button>
-            </List>
-          </Drawer>
-        </Grid>
-        <Grid item xs={10}>
-          <Box
-          // component="main"
-          // // sx={{
-          // //   backgroundColor: (theme) =>
-          // //     theme.palette.mode === "light"
-          // //       ? theme.palette.grey[100]
-          // //       : theme.palette.grey[900],
-          // //   flexGrow: 1,
-          // //   height: "100vh",
-          // //   overflow: "auto",
-          // //   width: "100%",
-          // // }}
-          >
-            <Box
-              sx={{
-                borderBottom: 1,
-                // borderColor: "divider",
-                width: "84vw",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "10px 20px",
+    <>
+      <Dialog open={opened} onClose={() => setOpened(false)} fullWidth>
+        <DialogTitle>
+          Ticket Details{" "}
+          <Chip
+            size="small"
+            label={rowData.isSolved === true ? "COMPLETE" : "PENDING"}
+            color={rowData.isSolved === true ? "success" : "warning"}
+            variant="outlined"
+          />
+        </DialogTitle>
+        <DialogContent>
+          <Stack>
+            <TextField
+              value={rowData.RefID}
+              label={"Ref ID"}
+              InputProps={{
+                readOnly: true,
               }}
+              style={{ marginTop: 8, marginBottom: 20 }}
+            />
+            <TextField
+              value={rowData.Email}
+              label={"Date Created"}
+              InputProps={{
+                readOnly: true,
+              }}
+              style={{ marginBottom: 20 }}
+            />
+            <TextField
+              value={rowData.Category}
+              label={"Category"}
+              InputProps={{
+                readOnly: true,
+              }}
+              style={{ marginBottom: 20 }}
+            />
+            <TextField
+              value={rowData.subject}
+              label={"Subject"}
+              InputProps={{
+                readOnly: true,
+              }}
+              style={{ marginBottom: 20 }}
+            />
+            <TextField
+              value={rowData.Message}
+              label={"Message"}
+              InputProps={{
+                readOnly: true,
+              }}
+              style={{ marginBottom: 20 }}
+            />
+            {rowData.isSolved === false && (
+              <TextField
+                label={"Response"}
+                style={{ marginBottom: 20 }}
+                onChange={(e) => setResponse(e.target.value)}
+              />
+            )}
+          </Stack>
+        </DialogContent>
+      </Dialog>
+      <Box sx={{ flexGrow: 1, display: "block" }}>
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
+            <Drawer variant="permanent" open={open}>
+              <List component="nav">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Avatar sx={{ width: "100px", height: "100px" }} />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Divider sx={{ width: "75%", mt: "10px" }} />
+                </div>
+                {mainListItems}
+                <Divider sx={{ my: 1 }} />
+                <Button
+                  component="label"
+                  variant="contained"
+                  startIcon={<LogoutIcon />}
+                  onClick={logout}
+                >
+                  LogOut
+                  <VisuallyHiddenInput type="file" />
+                </Button>
+              </List>
+            </Drawer>
+          </Grid>
+          <Grid item xs={10}>
+            <Box
+            // component="main"
+            // // sx={{
+            // //   backgroundColor: (theme) =>
+            // //     theme.palette.mode === "light"
+            // //       ? theme.palette.grey[100]
+            // //       : theme.palette.grey[900],
+            // //   flexGrow: 1,
+            // //   height: "100vh",
+            // //   overflow: "auto",
+            // //   width: "100%",
+            // // }}
             >
-              <Paper shadow="md" radius={"md"} withBorder mt={20}>
-                <Title order={1} align="center" mb={10}>
-                  Support Tickets
-                </Title>
-                <Divider />
-                <Container>
-                  <Table highlightOnHover withBorder mt={10} mb={10}>
-                    <thead>
-                      <tr>
-                        <th>Reference</th>
-                        <th>Subject</th>
-                        <th>Status</th>
-                        <th>Date Created</th>
-                        <th>Last Action</th>
-                        <th> </th>
-                      </tr>
-                    </thead>
-                    <tbody>{rows}</tbody>
-                  </Table>
-                </Container>
-              </Paper>
+              <Box
+                sx={{
+                  borderBottom: 1,
+                  // borderColor: "divider",
+                  width: "84vw",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "10px 20px",
+                }}
+              >
+                <Paper shadow="md" radius={"md"} withBorder mt={20}>
+                  <Title order={1} align="center" mb={10}>
+                    Support Tickets
+                  </Title>
+                  <Divider />
+                  <Container>
+                    <Table highlightOnHover withBorder mt={10} mb={10}>
+                      <thead>
+                        <tr>
+                          <th>Reference</th>
+                          <th>Subject</th>
+                          <th>Status</th>
+                          <th>Date Created</th>
+                          <th>Last Action</th>
+                          <th> </th>
+                        </tr>
+                      </thead>
+                      <tbody>{rows}</tbody>
+                    </Table>
+                  </Container>
+                </Paper>
+              </Box>
             </Box>
-          </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </>
   );
 }
 
 export default function Dashboard() {
-  return <DashboardContent/>;
+  return <DashboardContent />;
 }
 
 const VisuallyHiddenInput = styled("input")({
