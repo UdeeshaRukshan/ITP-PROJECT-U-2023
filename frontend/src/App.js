@@ -130,11 +130,7 @@ function App() {
               exact
               element={<EditCollectableForm />}
             />
-            <Route
-              path="/updateart/:artid"
-              exact
-              element={<EditCollectableForm />}
-            />
+            <Route path="/updateart/:artid" exact element={<EditArtForm />} />
             <Route
               path="/dashbord/feedback"
               exact
