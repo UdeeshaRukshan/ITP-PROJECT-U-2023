@@ -121,7 +121,7 @@ export default function EditArtForm() {
   };
 
   return (
-    <div className="edit-art-form-container">
+    <div className="edit-art-form-container" style={{ marginTop: "15vh" }}>
       <h2 className="edit-art-form-title">Edit Art</h2>
       <form onSubmit={handleSubmit}>
         <label className="edit-art-form-label">
@@ -235,7 +235,7 @@ export default function EditArtForm() {
           <button type="submit" className="edit-art-form-save-button">
             Save
           </button>
-          <a href="/getarts" className="edit-art-form-cancel-button">
+          <a href="/getarts/update" className="edit-art-form-cancel-button">
             Cancel
           </a>
         </div>
