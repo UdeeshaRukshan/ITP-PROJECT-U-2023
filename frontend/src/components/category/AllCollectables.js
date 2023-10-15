@@ -27,6 +27,18 @@ export default function AllCollectables() {
       setMessage("Server error");
     }
   };
+
+  const imageLinks =[
+    "https://img.freepik.com/premium-photo/cartoony-3d-printed-witch-with-hat-dark-silver_899449-52124.jpg?w=740",
+    "https://img.freepik.com/premium-photo/cartoony-3d-printed-witch-with-hat-dark-silver_899449-52124.jpg?w=740",
+    "https://img.freepik.com/premium-photo/gold-wedding-ring-illustration-generative-ai_115919-6696.jpg?w=740",
+    "https://img.freepik.com/free-photo/group-stuffed-bears-are-sitting-front-blue-wall_1340-35253.jpg?t=st=1697354476~exp=1697358076~hmac=67434c22e5110b182931ee21c5f362f20e9c63f66f65284f108dd99d9d5bc2da&w=360",
+    "https://img.freepik.com/premium-vector/abstact-expressionism-illustration-design_628782-120.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/free-vector/rare-yellow-senegal-parrot_53876-76675.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    
+
+
+  ];
   // Fetch auctioneer data from the server
   useEffect(() => {
     async function fetchCollectables() {
@@ -45,13 +57,14 @@ export default function AllCollectables() {
 
   // Render auctioneer items in a catalog-like box
   const renderCollectableItems = () => {
-    return collectables.map((collectable) => (
+    return collectables.map((collectable,index) => (
       <div key={collectable._id} className="catalog-item">
         <div className="item-image">
-          <img
+        <img src={imageLinks[index]} alt={`collectable ${collectable._id}`} />
+          {/* <img
             src="https://m.media-amazon.com/images/I/81SDCMipR-L.jpg" // Use property-specific image URL
             alt={`art ${collectable._id}`}
-          />
+          /> */}
         </div>
         <div className="item-details">
           <h3>{collectable.name}</h3>
