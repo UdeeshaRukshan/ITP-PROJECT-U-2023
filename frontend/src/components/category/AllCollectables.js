@@ -29,12 +29,13 @@ export default function AllCollectables() {
   };
 
   const imageLinks =[
-    "https://img.freepik.com/premium-photo/cartoony-3d-printed-witch-with-hat-dark-silver_899449-52124.jpg?w=740",
-    "https://img.freepik.com/premium-photo/cartoony-3d-printed-witch-with-hat-dark-silver_899449-52124.jpg?w=740",
+    "https://img.freepik.com/premium-photo/ornate-wood-leather-chair-photo-frame-white-background_899449-21698.jpg?w=740",
+    "https://images.unsplash.com/photo-1600189261867-30e5ffe7b8da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     "https://img.freepik.com/premium-photo/gold-wedding-ring-illustration-generative-ai_115919-6696.jpg?w=740",
-    "https://img.freepik.com/free-photo/group-stuffed-bears-are-sitting-front-blue-wall_1340-35253.jpg?t=st=1697354476~exp=1697358076~hmac=67434c22e5110b182931ee21c5f362f20e9c63f66f65284f108dd99d9d5bc2da&w=360",
-    "https://img.freepik.com/premium-vector/abstact-expressionism-illustration-design_628782-120.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
-    "https://img.freepik.com/free-vector/rare-yellow-senegal-parrot_53876-76675.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
+    "https://img.freepik.com/premium-photo/photo-gundam-robot-with-latest-variations-wallpaper_947926-1649.jpg",
+    "https://images.unsplash.com/photo-1685970731571-72ede0cb26ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80",
+    "https://img.freepik.com/premium-photo/vintage-lighting-table-lamp-with-antique-charm-elegance_941761-3910.jpg?w=740",
+    "https://images.unsplash.com/photo-1677804418426-be788c0be43f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
     
 
 
