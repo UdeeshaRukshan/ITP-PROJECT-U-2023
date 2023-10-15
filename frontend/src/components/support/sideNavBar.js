@@ -32,10 +32,10 @@ const SideNavBar = ({ activeIndex }) => {
           rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
           mb={5}
           icon={<IconHelp size="1rem" stroke={1.5} />}
-          onClick={() => navigate("/support/supportQues")}
-            color="dark"
-            variant="filled"
-            active={active === 8? true : false}
+          // onClick={() => navigate("/support/supportQues")}
+          //   color="dark"
+          //   variant="filled"
+          //   active={active === 8? true : false}
         />
         <NavLink
           label="Frequently Asked Questions"

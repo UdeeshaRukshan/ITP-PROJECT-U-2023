@@ -1,6 +1,6 @@
-const SupportQues=()=>{
-    console.log("hello");
-}
+// const SupportQues=()=>{
+//     console.log("hello");
+// }
 
 
-export default SupportQues;
+// export default SupportQues;

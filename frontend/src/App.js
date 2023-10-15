@@ -21,7 +21,7 @@ import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
 import { Notifications } from "@mantine/notifications";
 import MyTicketPage from "./pages/MyTickets/myTickets";
-import supportQuesPage from "./pages/Support Ques/supportQues";
+//import supportQuesPage from "./pages/Support Ques/supportQues";
 import {
   QueryClient,
   QueryClientProvider,
