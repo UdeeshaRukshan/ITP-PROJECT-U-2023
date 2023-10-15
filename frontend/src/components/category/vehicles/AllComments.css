@@ -1,0 +1,50 @@
+/* all-comments.css */
+
+/* Style the comments display container */
+.liveComments {
+
+    margin-top : 30px;
+  
+  
+  }
+  .description-Heading{
+    text-align: left;
+    margin-left: 10px;
+  }
+  hr{
+    max-width: 5000px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .cmtDisplay {
+      max-width: 5000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+      border-radius: 0px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    
+    /* Style the comment list */
+    .cmtDisplay ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    /* Style individual comments */
+    .cmtDisplay li {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Style the text of the comments */
+    .cmtDisplay li p {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    

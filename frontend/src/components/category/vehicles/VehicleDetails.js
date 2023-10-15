@@ -4,6 +4,8 @@ import moment from 'moment-timezone';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import AddComment from './AddComments';
+import AllComments from './allComments';
 
 function VehicleDetails() {
     const { id } = useParams();
@@ -205,6 +207,13 @@ function VehicleDetails() {
                             <b>End time: </b>{vehicle.endTime}
                         </h6>
                         </div>
+                        </div>
+
+                        <diV>
+                          <AddComment/>
+                        </diV>
+                        <div>
+                          <AllComments/>
                         </div>
             </div>
         ):(
