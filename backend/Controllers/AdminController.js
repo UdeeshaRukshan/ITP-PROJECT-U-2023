@@ -4,7 +4,6 @@ const Notification = require("../models/Notification");
 const asyncHandler = require("express-async-handler");
 const nodemailer = require("nodemailer");
 
-
 //user authenticate
 const authAdmin = asyncHandler(async (req, res) => {
   //getting body data
@@ -190,7 +189,7 @@ const getUserById = asyncHandler(async (req, res) => {
 const getAllNotificationByUserId = asyncHandler(async (req, res) => {
   try {
     const { userId } = req.body; // Assuming you have a route parameter for the user ID
-    const notification = await Notification.find({selectedUser:userId})
+    const notification = await Notification.find({ selectedUser: userId });
     if (!notification) {
       return res.status(200).json({ message: "Notifications not found" });
     }
@@ -262,5 +261,5 @@ module.exports = {
   updateNotification,
   deleteNotification,
   sendEmail,
-  getAllNotificationByUserId
+  getAllNotificationByUserId,
 };
