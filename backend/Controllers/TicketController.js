@@ -1,4 +1,5 @@
 const Ticket = require("../models/TicketModel");
+const {sendTicketSubmitMail} = require("../Mails/tickets.mails")
 
 //store values in database
 module.exports.ticketadd = async (req, res) => {
@@ -17,6 +18,8 @@ if(!name || !email || !category|| !subject|| !message){
       subject,
       message,
     });
+
+    sendTicketSubmitMail(ticket.name,ticket.email)
 
     res.status(201).json(ticket);
   } catch (error) {
