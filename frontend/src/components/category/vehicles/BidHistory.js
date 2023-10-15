@@ -5,6 +5,7 @@ import { useReactToPrint } from "react-to-print";
 export default function AuctionHistory() {
   const [auctions, setAuctions] = useState([]);
   const [user, setUsers] = useState([]);
+  const [searchItem, setSearchItem] = useState(""); // State for search input
 
   const componentPDF = useRef();
   const userID = user.email;
@@ -43,10 +44,26 @@ export default function AuctionHistory() {
     onAfterPrint: () => alert("Data Saved in PDF"),
   });
 
+  // Function to filter auctions based on searchItem
+  const filteredAuctions = auctions.filter((auction) =>
+    auction.itemId.includes(searchItem)
+  );
+
   return (
     <div className="bidHistory">
       <h1 style={{ marginLeft: "15vh" }}>Auction History</h1>
       <hr style={{ marginLeft: "15vh", marginRight: "45vh" }} />
+
+      {/* Add a search input */}
+      <div style={{ marginLeft: "15vh" }}>
+        <input
+          type="text"
+          placeholder="Search by Item ID"
+          value={searchItem}
+          onChange={(e) => setSearchItem(e.target.value)}
+        />
+      </div>
+
       <div
         ref={componentPDF}
         style={{ marginLeft: "15vh", marginRight: "75vh", width: "120vh" }}
@@ -60,7 +77,7 @@ export default function AuctionHistory() {
             </tr>
           </thead>
           <tbody>
-            {auctions.map((auction) => (
+            {filteredAuctions.map((auction) => (
               <tr key={auction._id}>
                 <td>{auction.itemId}</td>
                 <td>{auction.userId}</td>
@@ -82,3 +99,4 @@ export default function AuctionHistory() {
     </div>
   );
 }
+
