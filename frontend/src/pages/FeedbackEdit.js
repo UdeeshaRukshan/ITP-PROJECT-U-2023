@@ -91,7 +91,7 @@ const FeedbackEdit = () => {
       .then((data) => {
         setAlertColor("success");
         setShowAlert("Feedback Added Successfully");
-        navigate("/feedback/all");
+        navigate("/dashbord/feedback");
       })
       .catch((error) => {
         console.log("Error:", error);

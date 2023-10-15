@@ -130,6 +130,7 @@ hr {
   border-radius: 5px;
   filter: drop-shadow(1px 1px 5px #04040431);
   margin: auto;
+  margin-top: 10vh;
 }
 .feedback_container .title {
   font-size: 20px;
@@ -189,7 +190,7 @@ hr {
 
 .review_container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
   filter: drop-shadow(0 0 5px #00000027);
@@ -281,28 +282,28 @@ hr {
   padding: 30px;
   justify-content: space-evenly;
 }
-.feedback-search-wrap{
+.feedback-search-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.feedback-search-wrap input{
+.feedback-search-wrap input {
   width: 350px;
   padding: 10px 15px;
 }
-.feedback-search-wrap button{
-margin-left: 15px;
+.feedback-search-wrap button {
+  margin-left: 15px;
 }
-.feedback-pagination{
+.feedback-pagination {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.feedback-pagination button{
- width: 150px;
- padding: 10px 15px;
+.feedback-pagination button {
+  width: 150px;
+  padding: 10px 15px;
 }
-.add-feedback-wrap{
+.add-feedback-wrap {
   width: 100%;
   display: flex;
   justify-content: end;

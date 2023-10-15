@@ -10,6 +10,8 @@ export const PrimaryNav = styled.nav`
   display: flex;
   justify-content: center;
   background: #363753;
+  top: 0;
+  position: sticky;
 `;
 export const MenuLink = styled(Link)`
   color: #fff;

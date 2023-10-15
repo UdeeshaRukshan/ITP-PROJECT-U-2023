@@ -2,6 +2,8 @@
   color: #fff;
 }
 footer {
+  padding-right: 5vh;
+  margin-top: 5%;
   width: 100%;
   background-color: #363753;
   min-height: 250px;
@@ -99,4 +101,8 @@ footer p {
   width: 20px;
   height: 20px;
   text-align: center;
+}
+.first-div {
+  margin-right: 20vh;
+  margin-left: 10vh;
 }

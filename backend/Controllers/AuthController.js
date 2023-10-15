@@ -59,6 +59,7 @@ module.exports.Login = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email" });
     }
     const token = createSecretToken(user._id);
+
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
@@ -66,6 +67,12 @@ module.exports.Login = async (req, res, next) => {
 
     const username = email; // Replace with the actual username value
     res.cookie("username", username, {
+      maxAge: 3600000, // Cookie expiration time in milliseconds
+      path: "/",
+      withCredentials: true,
+      httpOnly: false, // Make the cookie accessible only on the server-side
+    });
+    res.cookie("userId", user._id.toString(), {
       maxAge: 3600000, // Cookie expiration time in milliseconds
       path: "/",
       withCredentials: true,
@@ -113,14 +120,14 @@ module.exports.UserProfile = async (req, res) => {
 module.exports.UpdateUser = async (req, res, next) => {
   try {
     const userId = req.params.id; // Assuming you have a route parameter for the user ID
-    const { email, password, firstname, lastname, address, age } = req.body; // Assuming you send the updates in the request body
+    const { email, firstname, lastname, address, age, id } = req.body; // Assuming you send the updates in the request body
     const updates = {
       email,
-      password,
       firstname,
       lastname,
       address,
       age,
+      id,
     };
 
     // Update user details using Mongoose's findByIdAndUpdate
@@ -154,3 +161,5 @@ module.exports.DeleteUser = async (req, res, next) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// module.exports.UpdatePassword = async (req, res) => {

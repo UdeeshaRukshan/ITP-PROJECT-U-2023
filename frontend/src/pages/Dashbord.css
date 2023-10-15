@@ -21,7 +21,7 @@ body {
 }
 .sidenav {
   margin-top: 9.5vh;
-  height: 100%;
+  height: 130%;
   width: 300px;
   position: fixed;
   z-index: 1;
@@ -52,6 +52,7 @@ body {
 }
 .main-div {
   background-color: #c9cad5;
+  height: 120vh;
 }
 
 #main {
@@ -231,7 +232,7 @@ th {
 .delete-button input[type="button"] {
   background-color: #f44336;
 }
-img {
+.img-x {
   margin-left: 2.5vh;
   width: 20vh;
   height: 20vh;
@@ -247,13 +248,15 @@ img {
 
 /* Dashboard.css */
 /* Style for the user profile container */
+
 .user-profile {
   background-color: #f4efef;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100vh;
-  max-height: 70vh;
+  max-height: 100vh;
+  margin-top: -8vh;
 }
 
 /* Style for the profile title (username) */
@@ -264,10 +267,6 @@ img {
 }
 
 /* Style for the user information */
-.profile-info p {
-  margin: 10px 0;
-  font-size: 16px;
-}
 
 /* Strong text (labels) */
 .profile-info strong {
@@ -275,10 +274,14 @@ img {
 }
 
 /* You can customize these styles further to match your design */
-.button-container {
-  margin-left: 50vh;
-  justify-content: space-between;
+.button-containerr {
+  display: inline;
 }
+.profile-info {
+  font-size: 22px; /* Adjust the font size as needed */
+  color: #333; /* Text color */
+}
+
 .profile-info {
   margin-top: 10px; /* Add margin to separate from other content */
 }
@@ -292,6 +295,11 @@ img {
 /* Style for strong (labels) */
 .profile-info strong {
   font-weight: bold;
+  margin: 20px;
+}
+.profile-info p {
+  font-weight: bold;
+  margin: 20px;
 }
 
 .form-group {
@@ -312,4 +320,36 @@ img {
 
 .btn-update {
   margin-left: 4vh;
+}
+
+.logoutbtn {
+  margin-top: 20vh;
+  float: right;
+  width: 15vh;
+  height: 7vh;
+  color: white;
+  font-size: large;
+  background-color: #363753;
+  margin-right: 10vh;
+
+  border-color: #333;
+}
+.button-containerr {
+  /* Ensure the container doesn't break onto a new line */
+  white-space: nowrap;
+}
+
+.button-containerr button {
+  /* Style the buttons */
+  display: inline-block; /* Display buttons in a line */
+  margin-right: 10px; /* Add some space between buttons (adjust as needed) */
+}
+.btn-deleteA {
+  height: 5.5vh;
+}
+#displayArea {
+  margin-top: -30vh;
+}
+.error {
+  color: red;
 }

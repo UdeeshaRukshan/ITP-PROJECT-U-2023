@@ -10,9 +10,9 @@ const Footer = () => {
 
   return (
     <footer class="footer">
-      <div class="container bottom_border">
+      <div class="container-g bottom_border">
         <div class="row">
-          <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+          <div class=" col-sm-4 col-md col-sm-4  col-12 col first-div">
             <h1 class="headin5_amrc col_white_amrc pt2">AuctionPal</h1>
 
             <p class="mb10">
@@ -39,16 +39,16 @@ const Footer = () => {
 
             <ul class="footer_ul_amrc">
               <li>
-                <a href="http://webenlance.com">Buying a Item</a>
+                <a href="/forum">Buying a Item</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Selling a Item</a>
+                <a href="/forum">Selling a Item</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Finalizing the Sale</a>
+                <a href="/forum">Finalizing the Sale</a>
               </li>
               <li>
-                <a href="http://webenlance.com">FAQ</a>
+                <a href="/forum">FAQ</a>
               </li>
             </ul>
           </div>
@@ -58,22 +58,22 @@ const Footer = () => {
 
             <ul class="footer_ul_amrc">
               <li>
-                <a href="http://webenlance.com">Submit your Vehicle</a>
+                <a href="/forum">Submit your Vehicle</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Submit your property</a>
+                <a href="/forum">Submit your property</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Submit your Art</a>
+                <a href="/forum">Submit your Art</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Submit your Collectable</a>
+                <a href="/forum">Submit your Collectable</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Photography guide</a>
+                <a href="/forum">Photography guide</a>
               </li>
               <li>
-                <a href="http://webenlance.com">Image Cropping</a>
+                <a href="/forum">Image Cropping</a>
               </li>
             </ul>
           </div>
@@ -97,7 +97,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div class="container">
+      <div class="container-x">
         <ul class="foote_bottom_ul_amrc">
           <li>
             <a href="http://webenlance.com">Home</a>

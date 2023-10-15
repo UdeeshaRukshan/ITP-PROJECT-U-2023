@@ -1,20 +1,17 @@
 const mongoose = require("mongoose");
 
-const WishListItemSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const wishlistItemSchema = new mongoose.Schema({
+  userId : {
+    type : String,
   },
-  description: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-});
+  itemId: [
+    {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "Property"
+    }
+  ]
+},{timestamps : true});
 
-const WishListItem = mongoose.model("WishListItem", WishListItemSchema);
+const WishlistItem = mongoose.model("WishlistItem", wishlistItemSchema);
 
-module.exports = WishListItem;
+module.exports = WishlistItem;

@@ -1,0 +1,64 @@
+.vehicle-form-container {
+  max-width: 800px; /* Increase the maximum width */
+  margin: 0 auto;
+  padding: 40px; /* Increase padding */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Increase border-radius */
+  background-color: #f9f9f9;
+  margin-top: 15vh;
+}
+
+.vehicle-form-title {
+  font-size: 36px; /* Increase font size */
+  margin-bottom: 30px; /* Increase margin */
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  height: 100%;
+}
+
+.vehicle-form-label {
+  display: block;
+  font-weight: bold;
+  font-size: 18px; /* Increase font size */
+}
+
+.vehicle-form-input[type="text"],
+.vehicle-form-textarea {
+  width: 100%;
+  padding: 12px; /* Increase padding */
+  margin-top: 10px; /* Increase margin-top */
+  border: 2px solid #ccc; /* Increase border thickness */
+  border-radius: 6px; /* Increase border-radius */
+  box-sizing: border-box;
+  font-size: 16px; /* Increase font size */
+}
+
+.vehicle-form-button {
+  display: block;
+  margin: 0 auto;
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px 30px; /* Increase padding */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px; /* Increase font size */
+}
+
+.vehicle-form-button:hover {
+  background-color: #0056b3;
+}
+
+.vehicle-form-image-preview {
+  display: inline-block;
+  margin-right: 20px; /* Increase margin-right */
+  max-width: 200px; /* Increase max-width */
+  max-height: 200px; /* Increase max-height */
+}
+
+.vehicle-form-error-message {
+  color: red;
+  font-size: 15px; /* Adjust the font size as needed */
+}
