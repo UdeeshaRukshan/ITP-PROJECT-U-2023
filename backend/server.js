@@ -152,6 +152,9 @@ app.put("/update-password/:id", async (req, res) => {
 app.use(express.json());
 
 app.use("/", authRoute);
+
+// randi
+app.use("/api/feedback", feedbackRoute);
 app.use("/ticket", ticketRoute);
 app.use("/api", wishlistRoutes);
 app.use("/auctioneer", auctioneerRouter);
