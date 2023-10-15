@@ -132,8 +132,8 @@ function DashboardContent() {
       // Define your filter criteria here
       const valuesToSearch = [
         ticket.subject,
-        ticket.category,
         new Date(ticket.createdAt).toLocaleDateString("en-GB").split("T")[0],
+        `#REF${ticket._id.slice(1, 6)}`
       ];
 
       // Check if the searchQuery is found in any of the column values
@@ -211,7 +211,6 @@ function DashboardContent() {
             </Text>
           }
         </td>
-        <td>{<Text color="dark">last Action</Text>}</td>
         <td>
           {
             <>
@@ -404,7 +403,6 @@ function DashboardContent() {
                           <th>Subject</th>
                           <th>Status</th>
                           <th>Date Created</th>
-                          <th>Last Action</th>
                           <th> </th>
                         </tr>
                       </thead>
