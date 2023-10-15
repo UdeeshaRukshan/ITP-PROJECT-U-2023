@@ -136,7 +136,7 @@ function VehicleDetails() {
 
     function addBidHistory() {
       const bidHis = {
-        itemId: id,
+        itemId: vehicle.model,
         userId: user.email,
         bidValue: currentBid,
       };
