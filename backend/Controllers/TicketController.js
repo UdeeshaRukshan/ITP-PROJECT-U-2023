@@ -1,9 +1,12 @@
 const Ticket = require("../models/TicketModel");
 
+//store values in database
 module.exports.ticketadd = async (req, res) => {
   try {
     const { name, email, category, subject, message } = req.body;
-
+if(!name || !email || !category|| !subject|| !message){
+  throw new Error("All feilds are required")
+}
     const {username} = req.cookies;
 
     const ticket = await Ticket.create({

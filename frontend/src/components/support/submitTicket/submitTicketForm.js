@@ -169,6 +169,7 @@ const SubmitTicketForm = () => {
           maxRows={5}
           {...ticket.getInputProps("message")}
         />
+        
         <Space h="md" />
         <Button
           type="submit"
