@@ -12,6 +12,30 @@ function VehicleForm() {
   const [location, setLocation] = useState("");
   const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
+  const [formErrors, setFormErrors] = useState({
+    vehicleNumber: "",
+    year: "",
+    model: "",
+    fuelType: "",
+    mileage: "",
+    features: "",
+    location: "",
+    value: "",
+  });
+
+  function validateYear(inputYear) {
+    if (isNaN(inputYear) || inputYear < 1900 || inputYear > 2023) {
+      return 'Please enter a valid year between 1900 and 2023.';
+    }
+    return '';
+  }
+
+  function handleYearChange(e) {
+    const inputYear = e.target.value;
+    const errorMessage = validateYear(inputYear);
+    setFormErrors({ ...formErrors, year: errorMessage });
+    setYear(inputYear);
+  }
 
   function sendData(e) {
     e.preventDefault();
@@ -23,12 +47,12 @@ function VehicleForm() {
 
     const formData = new FormData();
 
-    // Append each image file to the FormData object
+   
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }
 
-    // Append other fields to the FormData object
+    
     formData.append("vehicleNumber", vehicleNumber);
     formData.append("year", year);
     formData.append("model", model);
@@ -60,21 +84,21 @@ function VehicleForm() {
   function handleImageChange(e) {
     const selectedImages = e.target.files;
     if (selectedImages.length >= 6 && selectedImages.length <= 10) {
-      // Validate image types
+     
       for (let i = 0; i < selectedImages.length; i++) {
         const fileType = selectedImages[i].type;
         if (fileType !== "image/jpeg" && fileType !== "image/png") {
           alert("Please select only JPEG and PNG images.");
-          e.target.value = null; // Clear the file input
+          e.target.value = null; 
           return;
         }
       }
 
-      // Update the images state if the number and types of selected images are valid.
+      
       setImages([...selectedImages]);
     } else {
       alert("Please select between 6 to 10 images.");
-      e.target.value = null; // Clear the file input
+      e.target.value = null; 
     }
   }
 
@@ -93,9 +117,21 @@ function VehicleForm() {
           placeholder="e.g., ABC-2056"
           required
           onChange={(e) => {
-            setVehicleNumber(e.target.value);
+            const inputVehicleNumber = e.target.value;
+            if (/^[A-Za-z0-9-]+$/.test(inputVehicleNumber)) {
+              setFormErrors({ ...formErrors, vehicleNumber: "" });
+              setVehicleNumber(inputVehicleNumber);
+            } else {
+              setFormErrors({
+                ...formErrors,
+                vehicleNumber: "Please enter a valid vehicle number."
+              });
+            }
           }}
         />
+        {formErrors.vehicleNumber && (
+          <p className="vehicle-form-error-message">{formErrors.vehicleNumber}</p>
+        )}
         <br></br>
 
         <div className="row">
@@ -111,10 +147,22 @@ function VehicleForm() {
               placeholder="e.g., Honda Civic"
               required
               onChange={(e) => {
-                setModel(e.target.value);
+                const inputValue = e.target.value;
+                if (/\d/.test(inputValue)) {
+                  setFormErrors({
+                    ...formErrors,
+                    model: "Model cannot contain numerical characters.",
+                  });
+                } else {
+                  setFormErrors({ ...formErrors, medium: "" });
+                  setModel(inputValue);
+                }
               }}
             />
             <br></br>
+            {formErrors.model && (
+          <p className="vehicle-form-error-message">{formErrors.model}</p>
+        )}
           </div>
           <div className="col">
             <label className="vehicle-form-label" htmlFor="year">
@@ -125,15 +173,16 @@ function VehicleForm() {
               id="year"
               className="vehicle-form-input"
               min="1900" // Set the minimum year to allow
-              max="2099" // Set the maximum year to allow
+              max="2023" // Set the maximum year to allow
               step="1" // Set the step to 1 to allow whole numbers only
               placeholder="e.g., 2000"
               required
-              onChange={(e) => {
-                setYear(e.target.value);
-              }}
-            />
-            <br></br>
+              onChange={handleYearChange}
+          />
+          {formErrors.year && (
+            <p className="vehicle-form-error-message">{formErrors.year}</p>
+          )}
+          <br />
           </div>
         </div>
 
@@ -228,13 +277,20 @@ function VehicleForm() {
           onChange={(e) => {
             const inputOpeningValue = e.target.value;
             if (inputOpeningValue > 0) {
+              setFormErrors({ ...formErrors, value: "" });
               setValue(inputOpeningValue);
             } else {
-              alert("Must enter valid value");
+              setFormErrors({
+                ...formErrors,
+                value: "Opening value must be a meaningful number.",
+              });
             }
           }}
         />
         <br />
+        {formErrors.value && (
+          <p className="vehicle-form-error-message">{formErrors.value}</p>
+        )}
 
         <label className="vehicle-form-label" htmlFor="image">
           Images:(Please add at least 6 photos of the interior and exterior of

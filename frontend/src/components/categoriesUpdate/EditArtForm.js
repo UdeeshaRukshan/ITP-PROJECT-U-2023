@@ -122,7 +122,7 @@ export default function EditArtForm() {
 
   return (
     <div className="edit-art-form-container" style={{ marginTop: "15vh" }}>
-      <h2 className="edit-art-form-title">Edit Art</h2>
+      <h2 className="edit-art-form-title">Edit Your Art Details</h2>
       <form onSubmit={handleSubmit}>
         <label className="edit-art-form-label">
           Title:

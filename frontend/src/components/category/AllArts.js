@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { SimpleGrid } from "@mantine/core";
 
-import "./AllArts.css"; // Import your CSS file
+import "./AllArts.css"; 
 
 export default function AllArts() {
-  // State to store art data
+  
   const [arts, setArts] = useState([]);
 
   const [wishlist, setWishlist] = useState([]);
   const [message, setMessage] = useState("");
-  // Fetch art data from the server
-
+ 
   const imageLinks = [
     "https://img.freepik.com/premium-photo/modern-abstract-geometry-hand-painted-beauty-background-decorative-painting_716388-1097.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
     "https://img.freepik.com/free-photo/hand-drawn-ecological-futuristic-building-concepts-generative-ai_260559-462.jpg?size=626&ext=jpg&ga=GA1.2.841406425.1697306658&semt=sph",
@@ -24,7 +23,7 @@ export default function AllArts() {
     "https://cdn.britannica.com/24/189624-050-F3C5BAA9/Mona-Lisa-oil-wood-panel-Leonardo-da.jpg",
     "https://img.freepik.com/free-vector/african-tribal-ethnic-pattern-template-with-minimal-logo_53876-119416.jpg?size=626&ext=jpg&ga=GA1.1.841406425.1697306658&semt=sph",
 
-    // Add more image links as needed
+    
   ];
   useEffect(() => {
     async function fetchArts() {
@@ -59,7 +58,7 @@ export default function AllArts() {
     }
   };
 
-  // Render art items
+  
   const renderArtItems = () => {
     return arts.map((art, index) => (
       <div key={art._id} className="catalog-item">
@@ -95,7 +94,7 @@ export default function AllArts() {
     ));
   };
 
-  // Return the JSX for rendering
+ 
   return (
     <div style={{ marginTop: 100, marginLeft: 80 }}>
       <Link to={"/addart"}>
