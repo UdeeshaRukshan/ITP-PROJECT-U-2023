@@ -212,6 +212,7 @@ function VehicleDetails() {
                 <h2 style={{ margin: "auto", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
                     Auction has been ended!!!
                 </h2>
+                <button style={{ margin: "auto", display: "flex", justifyContent: "center", alignItems: "center", height: "8vh" ,marginTop: "-30vh",width:"20vh"}}>Pay Now</button>
             </div>
         )}
 
