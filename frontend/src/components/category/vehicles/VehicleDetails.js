@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import AddComment from "./AddComments";
 import AllComments from "./allComments";
 import axios from "axios";
-import AuctionHistory from "./BidHistory";
+
 function VehicleDetails() {
   const { id } = useParams();
   const [vehicle, setVehicle] = useState(null);
