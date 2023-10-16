@@ -49,7 +49,7 @@ function SendNewAlerts() {
           },
         };
         const { data } = axios.post(
-          "http://localhost:4042/admin/send-notification",
+          "http://localhost:4043/admin/send-notification",
           {
             image,
             description,
@@ -103,7 +103,7 @@ function SendNewAlerts() {
         },
       };
       const { data } = await axios.get(
-        `http://localhost:4042/admin/search?search=${search}`,
+        `http://localhost:4043/admin/search?search=${search}`,
         config
       );
       if (data) {

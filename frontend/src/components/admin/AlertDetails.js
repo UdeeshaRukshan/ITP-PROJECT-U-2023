@@ -57,7 +57,7 @@ function AlertDetails() {
         },
       };
       const { data } = await axios.get(
-        "http://localhost:4042/admin/get-all-notifications",
+        "http://localhost:4043/admin/get-all-notifications",
         {},
         config
       );
@@ -93,7 +93,7 @@ function AlertDetails() {
           },
         };
         const { data } = await axios.post(
-          "http://localhost:4042/admin/update-notification",
+          "http://localhost:4043/admin/update-notification",
           {
             image,
             description,
@@ -131,7 +131,7 @@ function AlertDetails() {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:4042/admin/delete-notification",
+        "http://localhost:4043/admin/delete-notification",
         {
           id,
         },
@@ -172,7 +172,7 @@ function AlertDetails() {
         },
       };
       const { data } = await axios.get(
-        `http://localhost:4042/admin/search?search=${search}`,
+        `http://localhost:4043/admin/search?search=${search}`,
         config
       );
       if (data) {

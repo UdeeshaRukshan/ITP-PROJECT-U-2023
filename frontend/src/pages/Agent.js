@@ -155,7 +155,7 @@ function DashboardContent() {
     // Show a confirmation dialog before deleting the agent
     if (window.confirm("Are you sure you want to delete this agent?")) {
       axios
-        .delete(`http://localhost:4042/agent/delete/${agentId}`)
+        .delete(`http://localhost:4043/agent/delete/${agentId}`)
         .then((response) => {
           console.log("Agent deleted successfully");
           // Optionally, refresh the agent list or remove the deleted agent from the state
@@ -180,7 +180,7 @@ function DashboardContent() {
   useEffect(() => {
     // Fetch items from your server
     axios
-      .get("http://localhost:4042/property/getproperties")
+      .get("http://localhost:4043/property/getproperties")
       .then((response) => {
         setItems(response.data);
       })
@@ -194,7 +194,7 @@ function DashboardContent() {
 
     // Send formData to your server using Axios or fetch
     axios
-      .post("http://localhost:4042/agent/add", formData)
+      .post("http://localhost:4043/agent/add", formData)
       .then((response) => {
         console.log("Agent added successfully");
         // Optionally, you can reset the form fields
@@ -213,7 +213,7 @@ function DashboardContent() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4042/image") // Fix the URL, add "http://"
+      .get("http://localhost:4043/image") // Fix the URL, add "http://"
       .then((response) => {
         const fetchedImageUrls = response.data;
         setImageUrls(fetchedImageUrls);
@@ -228,7 +228,7 @@ function DashboardContent() {
   useEffect(() => {
     // Fetch user data from your server
     axios
-      .get("http://localhost:4042/dashbord", {
+      .get("http://localhost:4043/dashbord", {
         withCredentials: true, //fix cookie problem
       })
       .then((response) => {
@@ -241,7 +241,7 @@ function DashboardContent() {
   useEffect(() => {
     // Fetch agents from your server
     axios
-      .get("http://localhost:4042/agent/agents")
+      .get("http://localhost:4043/agent/agents")
       .then((response) => {
         setAgents(response.data);
       })
@@ -258,7 +258,7 @@ function DashboardContent() {
     };
     // Send updated formData to your server using Axios or fetch
     axios
-      .put(`http://localhost:4042/agent/update/${updateAgentId}`, formData)
+      .put(`http://localhost:4043/agent/update/${updateAgentId}`, formData)
       .then((response) => {
         console.log("Agent updated successfully");
         // Optionally, you can reset the form fields
@@ -291,7 +291,7 @@ function DashboardContent() {
   const handleGenerateReport = () => {
     // Send a GET request to the server to generate and download the report
     axios
-      .get("http://localhost:4042/agent/generate-report", {
+      .get("http://localhost:4043/agent/generate-report", {
         responseType: "blob", // Set the response type to blob for binary data
       })
       .then((response) => {
@@ -316,7 +316,7 @@ function DashboardContent() {
   useEffect(() => {
     // Fetch agents from your server
     axios
-      .get("http://localhost:4042/agent/agents")
+      .get("http://localhost:4043/agent/agents")
       .then((response) => {
         setAgents(response.data);
 
@@ -919,7 +919,7 @@ function LoginForm() {
           },
         };
         const { data } = await axios.post(
-          "http://localhost:4042/admin/signin",
+          "http://localhost:4043/admin/signin",
           {
             userName,
             password,

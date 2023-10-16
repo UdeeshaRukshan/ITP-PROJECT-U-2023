@@ -117,7 +117,7 @@ function DashboardContent() {
     queryKey: ["raisedTickets"],
     queryFn: () =>
       axios
-        .get("http://localhost:4042/ticket/getall/admin", {
+        .get("http://localhost:4043/ticket/getall/admin", {
           withCredentials: true,
         })
         .then((res) => res.data),
@@ -165,7 +165,7 @@ function DashboardContent() {
 
   const changeTicketStatus = (ticketId) => {
     axios
-      .put(`http://localhost:4042/ticket/update/${ticketId}`, {
+      .put(`http://localhost:4043/ticket/update/${ticketId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -174,7 +174,7 @@ function DashboardContent() {
   };
   const handleResponseSubmit = (ticketId, response) => {
     axios
-      .put(`http://localhost:4042/ticket/responses/${ticketId}`, { response }, {
+      .put(`http://localhost:4043/ticket/responses/${ticketId}`, { response }, {
         withCredentials: true,
       })
       .then((res) => {

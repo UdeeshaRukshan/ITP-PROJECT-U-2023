@@ -55,7 +55,7 @@ function SendEmail() {
               },
             };
             const { info } = axios.post(
-              "http://localhost:4042/admin/sendEmail",
+              "http://localhost:4043/admin/sendEmail",
               {
                 userEmail,
                 subject,
