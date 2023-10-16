@@ -106,9 +106,7 @@ const IndexPage = () => {
           >
             <h1 className="mb-3">AuctionPal Categories</h1>
             <p>
-              Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut
-              dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed
-              rebum vero dolor duo.
+            "AuctionPal is an intuitive online platform for all your auction needs. Whether you're a seller looking to list items or a bidder seeking great deals, AuctionPal streamlines the process. Manage bids, set reserve prices, and enjoy a user-friendly experience. Simplify your auctions with AuctionPal today!
             </p>
           </div>
           <div className="row g-4">

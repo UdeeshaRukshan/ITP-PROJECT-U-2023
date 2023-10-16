@@ -47,7 +47,7 @@ export default function AllCollectablesUpdate() {
 
   const generateReportForCollectable = (collectable) => {
     const doc = new jsPDF();
-    doc.text(`Collectable Report - ${collectable.type}`, 10, 10);
+    doc.text(`AUCTIONPAL Collectable Report - ${collectable.type}`, 10, 10);
     <br></br>;
     doc.text(`Collectable Type: ${collectable.type}`, 10, 30);
     <br></br>;
