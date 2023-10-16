@@ -12,7 +12,7 @@ const adminRoute = require("./Routes/AdminRoutes");
 dotenv.config();
 
 const { MONGO_URL } = process.env;
-const PORT = 4042;
+const PORT = 4043;
 
 mongoose
   .connect(MONGO_URL, {
@@ -28,7 +28,7 @@ app.listen(PORT, () => {
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3001"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     //optionsSuccessStatus: 200,
     credentials: true,
