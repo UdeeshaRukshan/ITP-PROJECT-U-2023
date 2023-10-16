@@ -13,7 +13,7 @@ function VehicleDetails() {
   const [vehicle, setVehicle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentBid, setCurrentBid] = useState(0);
+  const [currentBid, setCurrentBid] = useState();
   const [countdown, setCountdown] = useState(0);
   const [pageVisibility, setPageVisibility] = useState(true);
   const [userId, setUserId] = useState(null);
@@ -234,10 +234,11 @@ function VehicleDetails() {
               <input
                 type="number"
                 id="bidAmount"
+                placeholder="2000"
                 value={currentBid}
                 onChange={(e) => setCurrentBid(parseInt(e.target.value, 10))}
               />
-              <button type="submit">Place Bid</button>
+              <button type="submit" style ={{marginLeft:"3vh"}}>Place Bid</button>
             </form>
           </div>
 
