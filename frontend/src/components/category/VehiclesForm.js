@@ -294,10 +294,10 @@ function VehicleForm() {
         />
         <br></br>
 
-       <Link to={"/vehicle"}> <button type="submit" className="vehicle-form-button">
+        <button type="submit" className="vehicle-form-button">
           Submit
         </button>
-        </Link>
+        
       </form>
     </div>
   );
