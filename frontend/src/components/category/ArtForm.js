@@ -187,7 +187,7 @@ function ArtForm() {
         </div>
 
         <label className="art-form-label" htmlFor="condition">
-          Describe the condition of the art:
+          Describe the condition of your art:
         </label>
         <textarea
           id="condition"
