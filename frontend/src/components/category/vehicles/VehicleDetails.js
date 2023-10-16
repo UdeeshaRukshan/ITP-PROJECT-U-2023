@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import moment from "moment-timezone";
 import Badge from "react-bootstrap/Badge";
@@ -343,7 +343,7 @@ function VehicleDetails() {
           >
             Auction has been ended!!!
           </h2>
-          <button
+        <Link to={"/payment"} > <button
             style={{
               margin: "auto",
               display: "flex",
@@ -353,9 +353,12 @@ function VehicleDetails() {
               marginTop: "-30vh",
               width: "20vh",
             }}
+          
+          
           >
             Pay Now
-          </button>
+          </button></Link>
+          
         </div>
       )}
     </div>
