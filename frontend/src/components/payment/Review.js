@@ -8,6 +8,17 @@ const Review = () => {
   const { paymentid } = useParams();
 
   useEffect(() => {
+      // Mock data for payment details (replace this with actual data from your API)
+        const mockPaymentDetails = {
+          cardName: "John Doe",
+          firstName: "John",
+          cardNumber: "**** **** **** 1234",
+          expiryDate: "12/23",
+        };
+    
+        // Set the mock data initially
+        setPaymentDetails(mockPaymentDetails);
+
     axios
       .get(`http://localhost:4042/payment/getpayment/${paymentid}`)
       .then((response) => {

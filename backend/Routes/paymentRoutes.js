@@ -110,10 +110,12 @@ router.route("/getpayment/:paymentid").get(async (req, res) => {
     })
     .catch((err) => {
       console.log(err.message);
-      res.status(500).send({
-        status: "Error with getting Payment details",
-        error: err.message,
-      });
+      res
+        .status(500)
+        .send({
+          status: "Error with getting Payment details",
+          error: err.message,
+        });
     });
 });
 

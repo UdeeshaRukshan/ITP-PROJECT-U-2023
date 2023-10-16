@@ -22,9 +22,9 @@ const PaymentList = () => {
 
   const maskCardNumber = (cardNumber) => {
     const visibleDigits = cardNumber.slice(-4);
-    const maskedDigits = "*".repeat(cardNumber.length - 4);
+    const maskedDigits = "*".repeat(Math.max(0, cardNumber.length - 4));
     return maskedDigits + visibleDigits;
-  };
+  };  
 
   const maskCVV = (cvv) => {
     return "*".repeat(cvv.length);

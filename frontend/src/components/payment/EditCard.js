@@ -219,12 +219,14 @@ const EditCard = () => {
                 {editCard && editCard.index === index ? (
                   <>
                     <button
+                      style={{ backgroundColor: "#4caf50" }}
                       className="save-button-editcard"
                       onClick={handleUpdateCard}
                     >
                       Save
                     </button>
                     <button
+                      style={{ backgroundColor: "#ddd" }}
                       className="cancel-button-editcard"
                       onClick={() => setEditCard(null)}
                     >
@@ -234,14 +236,14 @@ const EditCard = () => {
                 ) : (
                   <>
                     <button
-                      style={{ backgroundColor: "green" }}
+                      style={{ backgroundColor: "#2196f3" }}
                       className="edit-button-editcard"
                       onClick={() => handleEditCard(index)}
                     >
                       Edit
                     </button>
                     <button
-                      style={{ backgroundColor: "red" }}
+                      style={{ backgroundColor: "#f44336" }}
                       className="delete-button-editcard"
                       onClick={() => handleDeleteCard(index)}
                     >
