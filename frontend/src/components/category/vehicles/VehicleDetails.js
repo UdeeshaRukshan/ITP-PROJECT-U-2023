@@ -205,9 +205,10 @@ function VehicleDetails() {
               <h6 style={{ marginLeft: "60px" }}>Comments : 08</h6>
             </Badge>
             {auctionStatus ? (
-              <Badge pill bg="success">
-                <h6>You won the auction</h6>
+              <Badge pill bg="success" style = {{borderRadius:"3vh"}}>
+               <button style = {{borderRadius:"3vh",boxSizing:"8vh"}}><Link to={"/payment"}><h6 style={{color:"black"}}>You won the auction</h6></Link> </button>
               </Badge>
+
             ) : (
               <Button
                 variant="success"
@@ -344,21 +345,6 @@ function VehicleDetails() {
           >
             Auction has been ended!!!
           </h2>
-        <Link to={"/payment"} > <button
-            style={{
-              margin: "auto",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "8vh",
-              marginTop: "-30vh",
-              width: "20vh",
-            }}
-          
-          
-          >
-            Pay Now
-          </button></Link>
           
         </div>
       )}
