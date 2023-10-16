@@ -18,6 +18,8 @@ const wishlistRoutes = require("./Routes/WishlistRoutes");
 const feedbackRoute = require("./Routes/FeedbackRoute");
 const agentRouter = require("./Routes/agentroute");
 const forumRoute = require("./Routes/forumRoute");
+const comment = require("./Routes/comment");
+const bidHistory = require("./Routes/auctionHistory");
 
 const cloudinary = require("cloudinary").v2;
 const Multer = require("multer");
@@ -152,6 +154,9 @@ app.put("/update-password/:id", async (req, res) => {
 app.use(express.json());
 
 app.use("/", authRoute);
+
+// randi
+app.use("/api/feedback", feedbackRoute);
 app.use("/ticket", ticketRoute);
 app.use("/api", wishlistRoutes);
 app.use("/auctioneer", auctioneerRouter);
@@ -164,3 +169,5 @@ app.use("/payment", paymentRoute);
 app.use("/agent", agentRouter);
 app.use("/forums", forumRoute);
 app.use("/api/feedback", feedbackRoute);
+app.use("/LiveComments", comment);
+app.use("/BidHistory", bidHistory);

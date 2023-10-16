@@ -190,7 +190,7 @@ hr {
 
 .review_container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
   filter: drop-shadow(0 0 5px #00000027);
@@ -199,7 +199,6 @@ hr {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
-  margin-top: 10vh;
 }
 .review_container .rate {
   font-size: 18px;
@@ -260,7 +259,6 @@ hr {
   background-color: #ff4141;
   color: #fff;
 }
-
 .btn-right {
   display: flex;
   justify-content: end;
