@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
-
+import jsPDF from "jspdf";
+import "../vehicles/AuctionPal.png"
 export default function AuctionHistory() {
   const [auctions, setAuctions] = useState([]);
-  const [user, setUsers] = useState([]);
+  const [user, setUsers] = useState({});
   const [searchItem, setSearchItem] = useState(""); // State for search input
 
   const componentPDF = useRef();
@@ -30,7 +31,6 @@ export default function AuctionHistory() {
           `http://localhost:4042/BidHistory/get/${userID}`
         );
         setAuctions(response.data.bidd);
-        console.log(response.data.bidd);
       } catch (err) {
         alert(err.message);
       }
@@ -38,11 +38,33 @@ export default function AuctionHistory() {
     getAuctionHis();
   }, [userID]);
 
-  const generatePDF = useReactToPrint({
-    content: () => componentPDF.current,
-    documentTitle: "AuctionPal-Auction History",
-    onAfterPrint: () => alert("Data Saved in PDF"),
-  });
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    
+    doc.text("AuctionPal", 10, 10);
+    doc.text("Order History", 10, 20); // Display "Order History" after "AuctionPal"
+
+    const icon = new Image();
+    icon.src = "./AuctionPal.png"; 
+
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    context.drawImage(icon, 0, 0);
+    const dataURL = canvas.toDataURL("image/png");
+
+    doc.addImage(dataURL, "PNG", 10, 30, 20, 20);
+
+    doc.autoTable({
+      head: [["Item ID", "User Email", "Bid Value"]],
+      body: filteredAuctions.map((auction) => [
+        auction.itemId,
+        auction.userId,
+        auction.bidValue,
+      ]),
+    });
+
+    doc.save("AuctionPal-AuctionHistory.pdf");
+  };
 
   // Function to filter auctions based on searchItem
   const filteredAuctions = auctions.filter((auction) =>
@@ -55,7 +77,7 @@ export default function AuctionHistory() {
       <hr style={{ marginLeft: "15vh", marginRight: "45vh" }} />
 
       {/* Add a search input */}
-      <div style={{ marginLeft: "15vh"}}>
+      <div style={{ marginLeft: "15vh" }}>
         <input
           type="text"
           placeholder="Search by Item ID"
@@ -68,7 +90,6 @@ export default function AuctionHistory() {
         ref={componentPDF}
         style={{ marginLeft: "15vh", marginRight: "15vh", width: "120vh" }}
       >
-        <h3 style = {{marginLeft:"10vh",marginTop:"8vh"}}>AuctionPal Order History</h3>
         <table className="tb">
           <thead>
             <tr>
@@ -100,4 +121,3 @@ export default function AuctionHistory() {
     </div>
   );
 }
-
