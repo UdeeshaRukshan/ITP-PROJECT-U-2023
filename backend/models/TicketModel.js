@@ -32,6 +32,7 @@ const ticketSchema = new mongoose.Schema(
       type: String,
       required: [true, "your message is required"],
     },
+    
   },
   { timestamps: true }
 );

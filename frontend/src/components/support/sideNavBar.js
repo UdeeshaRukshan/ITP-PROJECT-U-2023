@@ -59,18 +59,7 @@ const SideNavBar = ({ activeIndex, onHowItWorksClick, onFaqClick, onBidClick, on
           icon={<IconCurrencyDollar size="1rem" stroke={1.5} />}
           onClick={() => {onBidClick(); setActive(2)}}
         />
-        {/* <NavLink
-          label="Orders & Shipping"
-          style={{fontWeight: 600}}
-          mb={5}
-          rightSection={
-            <IconChevronRight
-              size="1rem"
-              stroke={1.5}
 
-            />
-          }
-        /> */}
         <NavLink
           label="Payments"
           active={active === 3 ? true : false}
@@ -105,14 +94,6 @@ const SideNavBar = ({ activeIndex, onHowItWorksClick, onFaqClick, onBidClick, on
             color="dark"
             variant="filled"
             active={active === 6 ? true : false}
-          />
-          <NavLink
-            label="Chat bot"
-            rightSection={<IconChevronRight size="1rem" stroke={1.5} />}
-            onClick={() => navigate("/support/chatbot")}
-            color="dark"
-            variant="filled"
-            active={active === 7 ? true : false}
           />
         </NavLink>
       </Paper>

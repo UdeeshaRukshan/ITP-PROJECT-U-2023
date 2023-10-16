@@ -121,7 +121,6 @@ const MyTickets = () => {
               <Button
                 onClick={() => {
                   setRowData({
-                    ...rowData,
                     RefID: `#REF${ticket._id.slice(1, 6)}`,
                     subject: ticket.subject,
                     Message: ticket.message,
@@ -151,7 +150,7 @@ const MyTickets = () => {
       <Modal opened={opened} onClose={() => setOpened(false)} radius={20} p={30}>
         <Box ref={printRef} p={30}>
           <Group position="apart" spacing="xl" mb={10}>
-            <Title order={2}>Ticket : #REF123</Title>
+            <Title order={2}>{rowData.RefID}</Title>
             <Badge
               color={rowData.isSolved === true ? "teal" : "yellow"}
               radius="md"
@@ -171,7 +170,7 @@ const MyTickets = () => {
             label="Response"
             value={rowData.Response}
             mb={10}
-            placeholder="This ticket is solved by admin"
+            placeholder={"This ticket is solved by admin"}
             style={{ border: "1px solid red" }} // Set the border style here
           />
 
