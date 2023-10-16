@@ -487,7 +487,7 @@ const Dashboard = () => {
                 />
                 {errors.id && <div className="error">{errors.id}</div>}
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Current Password:</label>
                 <input
                   type="password"
@@ -508,7 +508,7 @@ const Dashboard = () => {
                 onClick={handleChangePassword}
               >
                 Change Password
-              </button>
+              </button> */}
               {/* Add similar fields for other user properties (address, age, etc.) */}
               <button className="btn btn-success" onClick={handleSaveClick}>
                 Save Changes

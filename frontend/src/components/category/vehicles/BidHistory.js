@@ -40,7 +40,7 @@ export default function AuctionHistory() {
 
   const generatePDF = useReactToPrint({
     content: () => componentPDF.current,
-    documentTitle: "Auction History",
+    documentTitle: "AuctionPal-Auction History",
     onAfterPrint: () => alert("Data Saved in PDF"),
   });
 
@@ -55,7 +55,7 @@ export default function AuctionHistory() {
       <hr style={{ marginLeft: "15vh", marginRight: "45vh" }} />
 
       {/* Add a search input */}
-      <div style={{ marginLeft: "15vh" }}>
+      <div style={{ marginLeft: "15vh"}}>
         <input
           type="text"
           placeholder="Search by Item ID"
@@ -66,9 +66,10 @@ export default function AuctionHistory() {
 
       <div
         ref={componentPDF}
-        style={{ marginLeft: "15vh", marginRight: "75vh", width: "120vh" }}
+        style={{ marginLeft: "15vh", marginRight: "15vh", width: "120vh" }}
       >
-        <table className="tbl">
+        <h3 style = {{marginLeft:"10vh",marginTop:"8vh"}}>AuctionPal Order History</h3>
+        <table className="tb">
           <thead>
             <tr>
               <th>Item ID</th>
@@ -91,7 +92,7 @@ export default function AuctionHistory() {
         <button
           className="btn btn-primary"
           onClick={generatePDF}
-          style={{ marginLeft: "15vh", marginTop: "10px" }}
+          style={{ marginLeft: "100vh", marginTop: "10px" }}
         >
           Print
         </button>

@@ -153,12 +153,19 @@ function ArtForm() {
               onChange={(e) => {
                 const inputHeight = e.target.value;
                 if (inputHeight > 0) {
+                  setFormErrors({ ...formErrors, height: "" });
                   setHeight(inputHeight);
                 } else {
-                  alert("Must enter valid height");
+                  setFormErrors({
+                    ...formErrors,
+                    height: "Height must be a positive number.",
+                  });
                 }
               }}
             />
+            {formErrors.height && (
+              <p className="art-form-error-message">{formErrors.height}</p>
+            )}
           </div>
           <div className="col">
             <label className="art-form-label" htmlFor="width">
@@ -175,12 +182,19 @@ function ArtForm() {
               onChange={(e) => {
                 const inputWidth = e.target.value;
                 if (inputWidth > 0) {
+                  setFormErrors({ ...formErrors, width: "" });
                   setWidth(inputWidth);
                 } else {
-                  alert("Must enter valid width");
+                  setFormErrors({
+                    ...formErrors,
+                    width: "Width must be a positive number.",
+                  });
                 }
               }}
             />
+            {formErrors.width && (
+              <p className="art-form-error-message">{formErrors.width}</p>
+            )}
           </div>
         </div>
 
@@ -238,16 +252,23 @@ function ArtForm() {
           onChange={(e) => {
             const inputOpeningValue = e.target.value;
             if (inputOpeningValue > 0) {
+              setFormErrors({ ...formErrors, value: "" });
               setValue(inputOpeningValue);
             } else {
-              alert("Must enter valid value");
+              setFormErrors({
+                ...formErrors,
+                value: "Value must be a meaningful number.",
+              });
             }
           }}
         />
+         {formErrors.value && (
+          <p className="art-form-error-message">{formErrors.value}</p>
+        )}<br />
         <br />
 
         <label className="art-form-label" htmlFor="images">
-          Images (up to 10):
+          Image:
         </label>
         <input
           type="file"

@@ -50,7 +50,7 @@ const PaymentList = () => {
     const doc = new jsPDF();
     const headerColor = [100, 100, 100];
 
-    doc.text("Payment Details", 20, 10);
+    doc.text("AuctionPal - Payment Details", 20, 10);
 
     doc.autoTable({
       head: [["First Name", "Last Name", "Email", "Expiry Date"]],
