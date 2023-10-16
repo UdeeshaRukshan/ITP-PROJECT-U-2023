@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./VehicleForm.css";
+import { Link } from "react-router-dom";
 
 function VehicleForm() {
   const fileInput = React.useRef();
@@ -293,9 +294,10 @@ function VehicleForm() {
         />
         <br></br>
 
-        <button type="submit" className="vehicle-form-button">
+       <Link to={"/vehicle"}> <button type="submit" className="vehicle-form-button">
           Submit
         </button>
+        </Link>
       </form>
     </div>
   );
