@@ -46,7 +46,7 @@ function App() {
             <Route path="/ticket/submit" element={<SubmitTicketPage />} />
             <Route path="/support/chatbot" element={<Chatbot />} />
             <Route path="/ticket/mytickets" element={<MyTicketPage />} />
-          <Route path = "support/supportQues" element={<supportQuesPage/>}/>
+          <Route path = "/support/supportQues" element={<supportQuesPage/>}/>
           </Routes>
           <Footer />
         </div>
