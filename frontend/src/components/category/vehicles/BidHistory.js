@@ -4,7 +4,7 @@ import { useReactToPrint } from "react-to-print";
 
 export default function AuctionHistory() {
   const [auctions, setAuctions] = useState([]);
-  const [user, setUsers] = useState([]);
+  const [user, setUsers] = useState({});
   const [searchItem, setSearchItem] = useState(""); // State for search input
 
   const componentPDF = useRef();
@@ -40,7 +40,7 @@ export default function AuctionHistory() {
 
   const generatePDF = useReactToPrint({
     content: () => componentPDF.current,
-    documentTitle: "Auction History",
+    documentTitle: "AuctionPal-Auction History",
     onAfterPrint: () => alert("Data Saved in PDF"),
   });
 
@@ -91,7 +91,7 @@ export default function AuctionHistory() {
         <button
           className="btn btn-primary"
           onClick={generatePDF}
-          style={{ marginLeft: "15vh", marginTop: "10px" }}
+          style={{ marginLeft: "100vh", marginTop: "10px" }}
         >
           Print
         </button>
@@ -99,4 +99,5 @@ export default function AuctionHistory() {
     </div>
   );
 }
+
 
