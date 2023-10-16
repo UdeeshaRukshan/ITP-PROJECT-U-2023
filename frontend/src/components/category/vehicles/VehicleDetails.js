@@ -202,7 +202,7 @@ function VehicleDetails() {
             <Badge pill bg="danger" style={{ width: "60vw", display: "flex", border:"1vh" }}>
               <h6 style={{ marginLeft: "40px",marginTop:"6px" }}>Time Left : {countdown}</h6>
               <h6 style={{ marginLeft: "60px",marginTop:"6px" }}>High Bid : {vehicle.value}</h6>
-              <h6 style={{ marginLeft: "60px" ,marginTop:"6px"}}>Comments : 08</h6>
+              <h6 style={{ marginLeft: "60px" ,marginTop:"6px"}}>Comments : 05</h6>
             </Badge>
             {auctionStatus ? (
               <Badge pill bg="success" style = {{borderRadius:"3vh"}}>
