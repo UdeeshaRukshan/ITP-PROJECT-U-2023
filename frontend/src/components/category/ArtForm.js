@@ -247,7 +247,7 @@ function ArtForm() {
         <br />
 
         <label className="art-form-label" htmlFor="images">
-          Images (up to 10):
+          Image:
         </label>
         <input
           type="file"
