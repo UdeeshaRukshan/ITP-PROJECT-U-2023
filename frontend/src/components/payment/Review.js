@@ -10,10 +10,10 @@ const Review = () => {
   useEffect(() => {
       // Mock data for payment details (replace this with actual data from your API)
         const mockPaymentDetails = {
-          cardName: "John Doe",
-          firstName: "John",
-          cardNumber: "**** **** **** 1234",
-          expiryDate: "12/23",
+          cardName: "Visa",
+          firstName: "Dilan",
+          cardNumber: "**** **** **** 3435",
+          expiryDate: "02/25",
         };
     
         // Set the mock data initially
@@ -30,8 +30,8 @@ const Review = () => {
   }, [paymentid]);
 
   const reviewDetails = {
-    auctionItem: "Auction Item 1",
-    yourBid: 60.0,
+    auctionItem: "Honda Prius",
+    yourBid: 15000.0,
   };
 
   // Inline styles
