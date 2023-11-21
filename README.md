@@ -1,10 +1,20 @@
-![image](https://github.com/UdeeshaRukshan/ITP-PROJECT-U-2023/assets/76590372/71c46eac-2d80-41a2-90fb-689a0c3a80f8)# AuctionPal - Online Bidding System
+# AuctionPal - Online Bidding System
 
 AuctionPal is a web-based platform that facilitates online auctions and bidding. It provides a user-friendly interface for both auction organizers and participants, making the process of buying and selling items through auctions seamless and efficient.
 
+## Team Members
+
+- UDEESHA Gamage U.R (Leader) - [it21807480@my.sliit.lk](mailto:it21807480@my.sliit.lk)
+- THAMASHA U.W.T.P.Jayalath - [it21811036@my.sliit.lk](mailto:it21811036@my.sliit.lk)
+- NUWANI Dahanayake Y.D.N.P - [it21310096@my.sliit.lk](mailto:it21310096@my.sliit.lk)
+- MADUSHI Munaweera K.D.M.P - [it21236228@my.sliit.lk](mailto:it21236228@my.sliit.lk)
+- RANDI Wijesinghe S.D.R.N. - [it21805646@my.sliiit.lk](mailto:it21805646@my.sliiit.lk)
+- DINUWAN Kumara P.S.D.N - [it21806872@my.sliit.lk](mailto:it21806872@my.sliit.lk)
+- NIKLESH Fernando W.S.N. - [it21809224@my.sliit.lk](mailto:it21809224@my.sliit.lk)
+- ADITHYA Ranawaka T.A - [it21808098@my.sliit.lk](mailto:it21808098@my.sliit.lk)
+
 ## Table of Contents
 
-- [Team Members](#Team-member)
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -14,21 +24,6 @@ AuctionPal is a web-based platform that facilitates online auctions and bidding.
 - [Contributing](#contributing)
 - [License](#license)
 
-
-
-# Team-members ->
-
-UDEESHA	 Gamage U.R (Leader)  it21807480@my.sliit.lk
-THAMASHA U.W.T.P.Jayalath	    it21811036@my.sliit.lk
-NUWANI	 Dahanayake Y.D.N.P   it21310096@my.sliit.lk
-MADUSHI	 Munaweera K.D.M.P	  it21236228@my.sliit.lk
-RANDI		 Wijesinghe S.D.R.N.	it21805646@my.sliiit.lk
-DINUWAN	 Kumara P.S.D.N		    it21806872@my.sliit.lk
-NIKLESH	 Fernando W.S.N.		  it21809224@my.sliit.lk
-ADITHYA	 Ranawaka T.A		      it21808098@my.sliit.lk
-
-
-
 ## Features
 
 - **User Registration and Authentication**: Allow users to create accounts and log in securely.
@@ -37,9 +32,9 @@ ADITHYA	 Ranawaka T.A		      it21808098@my.sliit.lk
 
 - **Feedback Management**
 
-- **Customer support**
+- **Customer Support**
 
-- **Wishlist and blog**
+- **Wishlist and Blog**
 
 - **Auction Creation and Management**: Enable organizers to create and manage auctions, set starting bids, and define auction durations.
 
@@ -62,4 +57,5 @@ ADITHYA	 Ranawaka T.A		      it21808098@my.sliit.lk
 
 ### Installation
 
-npm i
+```bash
+npm install
