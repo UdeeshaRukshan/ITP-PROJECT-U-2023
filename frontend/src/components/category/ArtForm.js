@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "./ArtForm.css"; 
+import "./ArtForm.css"; // Import CSS file for styling
 import axios from "axios";
 
 function ArtForm() {
@@ -23,8 +23,15 @@ function ArtForm() {
     images: "",
   });
 
+  // const redirectUrl = useRef("/getarts/:artid"); // Replace with the actual URL
+
   function sendData(e) {
     e.preventDefault();
+
+    if (images.length > 10) {
+      alert("You can only upload up to 10 images.");
+      return;
+    }
 
     const newArt = {
       title,
@@ -50,6 +57,8 @@ function ArtForm() {
         setValue("");
         setImages("");
 
+        // Redirect to the desired URL after successful form submission
+        // window.location.href = redirectUrl.current;
       })
       .catch((err) => {
         alert(err);
@@ -57,11 +66,14 @@ function ArtForm() {
   }
 
   function handleImageChange(e) {
-    const selectedImage = e.target.files[0]; 
-    if (selectedImage) {
-      const imageURL = URL.createObjectURL(selectedImage);
-      setImages([imageURL]);
+    const selectedImages = e.target.files;
+    const imageArray = [];
+
+    for (let i = 0; i < selectedImages.length; i++) {
+      imageArray.push(URL.createObjectURL(selectedImages[i]));
     }
+
+    setImages(imageArray);
   }
 
   return (
@@ -93,7 +105,7 @@ function ArtForm() {
         ></textarea>
         <br />
         {formErrors.title && (
-          <p className="art-form-error-message">{formErrors.title}</p>
+          <p className="error-message">{formErrors.title}</p>
         )}
 
         <label className="art-form-label" htmlFor="medium">
@@ -112,7 +124,7 @@ function ArtForm() {
             if (/\d/.test(inputValue)) {
               setFormErrors({
                 ...formErrors,
-                medium: "Medium cannot contain numerical characters.",
+                medium: "Title cannot contain numerical characters.",
               });
             } else {
               setFormErrors({ ...formErrors, medium: "" });
@@ -122,7 +134,7 @@ function ArtForm() {
         />
         <br />
         {formErrors.medium && (
-          <p className="art-form-error-message">{formErrors.medium}</p>
+          <p className="error-message">{formErrors.medium}</p>
         )}
 
         <div className="row">
@@ -245,14 +257,14 @@ function ArtForm() {
             } else {
               setFormErrors({
                 ...formErrors,
-                value: "Opening value must be a meaningful number.",
+                value: "Value must be a meaningful number.",
               });
             }
           }}
         />
          {formErrors.value && (
           <p className="art-form-error-message">{formErrors.value}</p>
-        )}
+        )}<br />
         <br />
 
         <label className="art-form-label" htmlFor="images">

@@ -75,7 +75,7 @@ import CreateForum from "./pages/CreateForum"; // Import the appropriate compone
 import ShowForum from "./pages/ShowForum"; // Import the appropriate component for displaying a single forum
 import EditForum from "./pages/EditForum"; // Import the appropriate component for editing forums
 import DeleteForum from "./pages/DeleteForum"; // Import the appropriate component for deleting forums
-
+import VehicleDetails from "./components/category/vehicles/VehicleDetails";
 import ForumCard from "./components/forum/FourmCard";
 function App() {
   const queryClient = new QueryClient();
@@ -110,6 +110,11 @@ function App() {
             <Route path="/vehicle" exact element={<AllVehicles />} />
             {/* Nuwani Update part */}
             <Route path="/getarts/update" exact element={<AllArtsUpdate />} />
+            <Route
+              path="/vehicle-view/:id"
+              exact
+              element={<VehicleDetails />}
+            />
             <Route
               path="/getproperties/update"
               exact

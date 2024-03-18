@@ -68,7 +68,7 @@ const Feedback = () => {
       .then((data) => {
         setAlertColor("success");
         setShowAlert("Feedback Added Successfully");
-        navigate("/home");
+        navigate("/feedback/all");
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -117,7 +117,7 @@ const Feedback = () => {
   }
 
   return (
-    <div class="main">
+    <div class="main" style={{marginTop: 80 + 'px'}}>
       <div className="feedback_container">
         <div class="title">We value your feedback!</div>
         <hr />

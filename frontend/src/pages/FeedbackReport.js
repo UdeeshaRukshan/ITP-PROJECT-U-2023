@@ -1,86 +1,109 @@
-import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import RatingCountsChart from "../components/feedback/RateChart";
-import MonthChart from "../components/feedback/MonthChart";
-import html2canvas from "html2canvas";
+import { Link } from "react-router-dom";
+
 import jsPDF from "jspdf";
-const FeedbackReport = () => {
-  const [cookies, removeCookie] = useCookies([]);
-  const [reviewsCount, rCount] = useState(0);
-  const [usersCount, uCount] = useState(0);
-  const navigate = useNavigate();
+import "./FeedbackReport.css";
+
+export default function AllFeedbacksUpdate() {
+  const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
-    const verifyCookie = async () => {
-      if (!cookies.token) {
-        navigate("/login");
+    async function fetchFeedbacks() {
+      try {
+        const response = await axios.get("http://localhost:4042/api/feedback");
+        setFeedbacks(response.data);
+      } catch (error) {
+        alert(error.message);
       }
-      await axios.post("http://localhost:4042", {}, { withCredentials: true });
-    };
+    }
 
-    verifyCookie();
-    loadReport();
-  }, [cookies, navigate, removeCookie]);
+    fetchFeedbacks();
+  }, []);
 
-  function loadReport() {
-    fetch("http://localhost:4042/api/feedback/report/stats", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.error) {
-          rCount(data.totalReviewCount);
-          uCount(data.uniqueUserCount);
-        }
-      })
-      .catch((error) => {
-        console.log("Error:", error);
+  const generateReportForFeedback = () => {
+    const doc = new jsPDF();
+    doc.text("Feedback Report", 10, 10);
+
+    let yOffset = 20; // Initial Y offset
+    let plusYOffset = 5;
+doc.setFontSize(12);
+    feedbacks.forEach((feedback) => {
+      doc.text(`Customer Name: ${feedback.customerName}`, 10, yOffset);
+      yOffset += plusYOffset;
+
+      doc.text(`Email Address: ${feedback.email}`, 10, yOffset);
+      yOffset += plusYOffset;
+
+      doc.text(`Satisfied: ${feedback.satisfied}`, 10, yOffset);
+      yOffset += plusYOffset;
+
+      doc.text(`Rate: ${feedback.rate}`, 10, yOffset);
+      yOffset += plusYOffset;
+
+      doc.text(`Recommendation: ${feedback.recommendation}`, 10, yOffset);
+      yOffset += plusYOffset;
+
+      doc.text(`User: ${feedback.user}`, 10, yOffset);
+      yOffset += plusYOffset;
+
+      doc.text(`Created At: ${feedback.createdAt}`, 10, yOffset);
+      yOffset += 10;
+    });
+
+    doc.save("feedbacks_report.pdf");
+  };
+  
+
+  const renderFeedbacksRows = () => {
+    return feedbacks.map((feedback) => {
+      const originalTimestamp = new Date(feedback.createdAt);
+      const formattedTimestamp = originalTimestamp.toLocaleString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
       });
-  }
 
-  const report = () => {
-    const input = document.getElementById("pdf_content");
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-
-      const pdf = new jsPDF();
-      pdf.addImage(imgData, "JPEG", 0, 0);
-      pdf.save("downloaded-pdf.pdf");
+      return (
+        <tr key={feedback._id}>
+          <td>{feedback.customerName}</td>
+          <td>{feedback.email}</td>
+          <td>{feedback.satisfied}</td>
+          <td>{feedback.rate}</td>
+          <td>{feedback.recommendation}</td>
+          <td>{feedback.user}</td>
+          <td>{formattedTimestamp}</td>
+        </tr>
+      );
     });
   };
 
   return (
-    <div class="main" style={{ marginTop: "20vh" }}>
-      <button onClick={report}>Generate PDF</button>
-      <div class="analytics" id="pdf_content">
-        <div class="ttl">
-          Reviews Count : <span>{reviewsCount}</span>
-        </div>
-        <div class="ttl">
-          Users Count : <span>{usersCount}</span>
-        </div>
-      </div>
-      <div class="chart-wrap">
-        <div class="chart-card">
-          <div class="title">
-            Analytics using rated category
-            <RatingCountsChart />
-          </div>
-        </div>
-        <div class="chart-card">
-          <div class="title">
-            Analytics using rated month
-            <MonthChart />
-          </div>
-        </div>
-      </div>
+    <div className="all-arts-container">
+      <h1 className="all-arts-header-center">All Feedbacks</h1>
+      <br></br>
+      <button
+            className="all-arts-generate-report-button"
+            onClick={() => generateReportForFeedback()}
+          >
+            Generate Report
+          </button>
+      <table className="all-arts-table">
+        <thead className="all-arts-thread">
+          <tr className="tr-all-arts">
+            <th className="all-arts-th">Customer Name</th>
+            <th className="all-arts-th">Email Address</th>
+            <th className="all-arts-th">Satisfaction</th>
+            <th className="all-arts-th">Rate</th>
+            <th className="all-arts-th">Recommendation</th>
+            <th className="all-arts-th">User Email</th>
+            <th className="all-arts-th">Created At</th>
+          </tr>
+        </thead>
+        <tbody className="all-arts-tbody">{renderFeedbacksRows()}</tbody>
+      </table>
     </div>
   );
-};
-
-export default FeedbackReport;
+}

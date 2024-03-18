@@ -101,7 +101,7 @@ const FeedbackView = () => {
   }
 
   return (
-    <div class="main">
+    <div class="main" style={{marginTop: 80 + 'px'}}>
       <div class="feedback-search-wrap">
         <input
           type="text"

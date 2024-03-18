@@ -1,0 +1,142 @@
+.all-arts-container {
+  max-width: 1400px;
+  margin: 80px auto; /* Increased space at the top */
+}
+
+.all-arts-header-center {
+  color: #000000;
+}
+
+.all-arts-header-center {
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  height:50%; /* Adjust the height as needed */
+}
+
+.all-arts-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.all-arts-thread .all-arts-th {
+  background-color: #363753;
+  color: #fff;
+  padding: 15px; /* Increased padding for header cells */
+  text-align: left;
+}
+
+.all-arts-tbody td {
+  border: 1px solid #ddd;
+  padding: 10px; /* Increased padding for data cells */
+}
+
+/* Alternate row colors */
+.all-arts-tbody tr:nth-child(even) {
+  background-color: #e5e5e5; /* Change this color as needed for even rows */
+}
+
+.all-arts-tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Change this color as needed for odd rows */
+}
+
+.all-arts-input {
+  width: calc(100% - 16px); /* Adjusted width for input fields */
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.save-button-allarts,
+.cancel-button-allarts,
+.all-button-allarts,
+.delete-button-allarts {
+  padding: 10px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.save-button-allarts {
+  background-color: #4caf50; /* Changed save button color */
+  color: #fff;
+}
+
+.cancel-button-allarts {
+  background-color: #ddd;
+  color: #363753;
+}
+
+.all-button-allarts {
+  background-color: #2196f3; /* Changed all button color */
+  color: #fff;
+}
+
+.delete-button-allarts {
+  background-color: #f44336;
+  color: #fff;
+}
+.all-arts-edit-button {
+  background-color: #4934e4; /* Change the background color to your desired color */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px; /* Adjust the margin as needed */
+}
+
+.all-arts-edit-button:hover {
+  background-color: #4b76db; /* Change the hover background color to your desired color */
+}
+
+.delete-button-allarts:hover {
+  background-color: #ea6c6c; /* Change the hover background color to your desired color */
+}
+
+.all-arts-button-container {
+  display: flex; /* Display buttons in a row */
+  align-items: center; /* Center vertically if needed */
+}
+
+.all-arts-edit-button,
+.delete-button-allarts {
+  margin-right: 10px; /* Adjust the margin as needed to separate the buttons */
+}
+
+.all-arts-generate-report-button {
+  background-color: #e89734;
+  color: #fff;
+  border: none;
+  padding: 4px 8px; /* Adjust the padding to make it smaller */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 12px; /* Adjust the font size as needed */
+}
+
+.all-arts-generate-report-button:hover {
+  background-color: #f0c528; /* Change the hover background color to your desired color */
+}
+
+.all-arts-search-container {
+  display: flex; /* Use flexbox to arrange items */
+  justify-content: flex-end; /* Align items to the right */
+  align-items: flex-start; /* Align items at the top */
+  padding: 10px; 
+  /* Add some padding to the container */
+}
+
+.all-arts-search-container input[type="text"] {
+  width: 30%; /* Set the width of the input */
+  padding: 12px; /* Add padding to the input */
+  border: 2.5px solid #363753; /* Add a border to the input */
+  border-radius: 5px; /* Add rounded corners */
+  font-size: 16px; /* Set the font size */
+  outline: none; /* Remove the input outline on focus */
+  background-color: #e0f0ff;
+}

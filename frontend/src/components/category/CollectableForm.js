@@ -154,7 +154,7 @@ function CollectableForm() {
         )}<br />
 
         <label className="collectable-form-label" htmlFor="images">
-          Images (up to 10):
+          Image:
         </label>
         <input
           type="file"

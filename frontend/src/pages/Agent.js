@@ -3,11 +3,11 @@ import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-
+import jsPDF from "jspdf";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-
+import "jspdf-autotable";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
@@ -117,7 +117,7 @@ function DashboardContent() {
   const [filteredAgents, setFilteredAgents] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState("");
   const [selectedItemAddress, setSelectedItemAddress] = useState("");
-
+  const [selectedItem, setSelectedItem] = useState("");
   const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);
   const [isAddAgentFormVisible, setIsAddAgentFormVisible] = useState(false);
   const [isAssignFormVisible, setIsAssignFormVisible] = useState(false);
@@ -252,7 +252,10 @@ function DashboardContent() {
   //update form
   const handleUpdate = (e) => {
     e.preventDefault();
-
+    const updatedData = {
+      ...formData,
+      assign: selectedItem,
+    };
     // Send updated formData to your server using Axios or fetch
     axios
       .put(`http://localhost:4042/agent/update/${updateAgentId}`, formData)
@@ -266,6 +269,7 @@ function DashboardContent() {
           jobtype: "",
           assign: "",
         });
+        setSelectedItem("");
         // Optionally, you can hide the update form
         toggleUpdateAgentForm();
         // Refresh the agents list or update the specific agent in the list
@@ -274,10 +278,12 @@ function DashboardContent() {
         console.error("Error updating agent:", error);
       });
   };
+
   //toggle buttton
   const toggleAddAgentForm = (agentId) => {
     setIsAddAgentFormVisible(!isAddAgentFormVisible);
   };
+
   const toggleUpdateAgentForm = (agentId) => {
     setIsUpdateAgentFormVisible(!isUpdateAgentFormVisible);
     setUpdateAgentId(agentId); // Set the agent ID to update
@@ -343,24 +349,38 @@ function DashboardContent() {
   };
   //pdf download
 
-  const downloadPdf = () => {
-    axios
-      .get("http://localhost:4042/generate-pdf", {
-        responseType: "blob", // Set the response type to blob for binary data
-      })
-      .then((response) => {
-        // Create a URL for the blob data and trigger a download
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "agent_report.pdf"); // Set the desired file name
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode.removeChild(link);
-      })
-      .catch((error) => {
-        console.error("Error downloading PDF:", error);
-      });
+  const generateAndDownloadPdf = (agents) => {
+    const doc = new jsPDF();
+
+    // Set the title of the PDF
+    doc.text("Agent Report", 10, 10);
+
+    // Create a table with column headers
+    const headers = ["Name", "Age", "Address", "Job Type", "Assign To"];
+    const data = agents.map((agent) => [
+      agent.name,
+      agent.age,
+      agent.address,
+      agent.jobtype,
+      agent.assign,
+    ]);
+
+    // Use autoTable from the plugin
+    doc.autoTable({
+      startY: 20,
+      head: [headers],
+      body: data,
+    });
+    const totalAgentCount = agents.length;
+
+    // Add the total agent count to the PDF
+    doc.text(
+      `Total Agent Count: ${totalAgentCount}`,
+      10,
+      doc.autoTable.previous.finalY + 10
+    );
+    // Save the PDF with a specific name
+    doc.save("agent_report.pdf");
   };
   const toggleAssignForm = (agentId, itemAddress) => {
     setIsAssignFormVisible(!isAssignFormVisible);
@@ -465,6 +485,7 @@ function DashboardContent() {
               }}
             >
               <Box>
+                {" "}
                 <div className="main-div">
                   <div className="col-div-8 displayA" id="displayArea">
                     <div className="search-bar">
@@ -568,12 +589,13 @@ function DashboardContent() {
                               />
                             </div>
 
-                            <div className="button-container">
+                            <div className="button-containerrr">
                               <button type="submit">Update Agent</button>
                               <div className="spacer"></div>
                               <button
                                 className="btnn-cancel"
                                 onClick={toggleUpdateAgentForm}
+                                style={{ marginLeft: "2vh" }}
                               >
                                 Cancel
                               </button>
@@ -582,7 +604,10 @@ function DashboardContent() {
                         </div>
                       )}
                       {isAddAgentFormVisible ? (
-                        <div className="popup-form">
+                        <div
+                          className="popup-form"
+                          style={{ marginLeft: "-7vh" }}
+                        >
                           <h3>Add New Agent</h3>
                           <form onSubmit={handleSubmit}>
                             <div className="form-group">
@@ -709,6 +734,7 @@ function DashboardContent() {
                                           style={{
                                             backgroundColor: "green",
                                             color: "white",
+                                            marginTop: "3vh",
                                           }}
                                           onClick={() =>
                                             toggleUpdateAgentForm(agent._id)
@@ -736,6 +762,7 @@ function DashboardContent() {
                                       <td>{agent.name}</td>
                                       <td>{agent.age}</td>
                                       <td>{agent.address}</td>
+                                      <td>{agent.assign}</td>
                                       <td>{agent.jobtype}</td>
                                       <td>
                                         <button
@@ -757,11 +784,14 @@ function DashboardContent() {
                                           style={{
                                             backgroundColor: "green",
                                             color: "white",
+                                            marginTop: "3vh",
                                           }}
                                           onClick={() =>
                                             toggleUpdateAgentForm(agent._id)
                                           }
-                                        ></button>
+                                        >
+                                          Update
+                                        </button>
                                         <button
                                           className="btn btnDelete"
                                           style={{
@@ -795,10 +825,14 @@ function DashboardContent() {
                         <button
                           className="view-qr"
                           onClick={generateQRCodeForReport}
+                          style={{ marginTop: "3vh" }}
                         >
                           View QR Code
                         </button>
-                        <button className="down-qr" onClick={downloadPdf}>
+                        <button
+                          className="down-qr"
+                          onClick={() => generateAndDownloadPdf(agents)}
+                        >
                           Download Pdf
                         </button>
                       </div>

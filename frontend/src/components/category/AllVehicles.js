@@ -3,6 +3,8 @@ import axios from "axios";
 import "./AllVehicles.css"; // Import your CSS file
 import { SimpleGrid } from "@mantine/core";
 import { Link } from "react-router-dom";
+import moment from "moment-timezone";
+
 export default function AllVehicles() {
   // State to store vehicle data
   const [vehicles, setVehicles] = useState([]);
@@ -38,7 +40,23 @@ export default function AllVehicles() {
         const response = await axios.get(
           "http://localhost:4042/vehicle/getvehicles"
         );
-        setVehicles(response.data);
+        const convertedData = response.data.map((item) => {
+          const sriLankaStartTime = moment(item.startTime).tz("Asia/Colombo");
+          const sriLankaEndTime = moment(item.endTime).tz("Asia/Colombo");
+          const formattedStartTime = sriLankaStartTime.format(
+            "MMM DD, YYYY, h:mm A"
+          );
+          const formattedEndTime = sriLankaEndTime.format(
+            "MMM DD, YYYY, h:mm A"
+          );
+          return {
+            ...item,
+            startTime: formattedStartTime,
+            endTime: formattedEndTime,
+          };
+        });
+        setVehicles(convertedData);
+        console.log(convertedData);
       } catch (error) {
         alert(error.message);
       }
@@ -53,8 +71,8 @@ export default function AllVehicles() {
       <div key={vehicle._id} className="catalog-item">
         <div className="item-details">
           <img
-            src="https://hips.hearstapps.com/hmg-prod/images/2024-lamborghini-revuelto-127-641a1d518802b.jpg?crop=0.813xw:0.721xh;0.0994xw,0.128xh&resize=1200:*" // Use property-specific image URL
-            alt={`Vehicle ${vehicle._id}`}
+            src={vehicle.image ? vehicle.image : null} // Use property-specific image URL
+            alt={`Vehicle ${vehicle.model}`}
           />
           <div className="item-details">
             <h3>{vehicle.model}</h3>
@@ -62,7 +80,7 @@ export default function AllVehicles() {
           </div>
           <div className="item-actions">
             <Link
-              to={`/vehicle/${vehicle._id}`}
+              to={`/vehicle-view/${vehicle._id}`}
               className="view-details-button"
               style={{ fontSize: 10 }}
             >
@@ -86,26 +104,27 @@ export default function AllVehicles() {
         <button
           onClick={() => console.log("Button Clicked")}
           style={{
-            marginLeft: '10px', 
-            marginBottom: '10px', 
-            backgroundColor: '#3fa34d', 
-            color: 'white', 
-            padding: '20px 20px', 
-            border: 'none', 
-            borderRadius: '5px', 
-            cursor: 'pointer',
-            transition: 'background-color 0.3s',
-            marginLeft: 1250 }}
-
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = '#6bbf59';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = '#3fa34d';
-            }}
+            marginLeft: "10px",
+            marginBottom: "10px",
+            backgroundColor: "#3fa34d",
+            color: "white",
+            padding: "20px 20px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            transition: "background-color 0.3s",
+            marginLeft: 1250,
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#6bbf59";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#3fa34d";
+          }}
         >
           Add Vehicle
-        </button><br></br>
+        </button>
+        <br></br>
       </Link>
       <SimpleGrid cols={3}>{renderVehicleItems()}</SimpleGrid>
     </div>
