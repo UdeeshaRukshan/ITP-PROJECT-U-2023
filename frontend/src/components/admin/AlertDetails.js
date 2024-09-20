@@ -3,29 +3,16 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import Avatar from "@mui/material/Avatar";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import Divider from "@mui/material/Divider";
 import Swal from "sweetalert2";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
+
 
 function AlertDetails() {
   const fileInput = React.useRef();

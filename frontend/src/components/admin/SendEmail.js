@@ -1,21 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
 import axios from "axios";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
+
 import Swal from "sweetalert2";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+
 
 function SendEmail() {
   const [userEmail, setUserEmail] = React.useState();

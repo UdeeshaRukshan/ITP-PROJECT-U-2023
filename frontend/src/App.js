@@ -3,64 +3,66 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
+
 } from "react-router-dom";
 import Footer from "./components/dashbord/Footer/footer";
+
 import React from "react";
 import IndexPage from "./pages/IndexPage";
 import Header from "./components/Header";
 
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-
 import ContactUs from "./pages/ContactUs";
 
 import Dashboard from "./pages/Dashbord";
-
-//madushi
 import SubmitTicketPage from "./pages/submitTicket/submitTicket";
 import Chatbot from "./components/support/chatBot/Chatbot";
+
 import { Notifications } from "@mantine/notifications";
 import MyTicketPage from "./pages/MyTickets/myTickets";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 
-//nuwani
+
 import AllArtsUpdate from "./components/categoriesUpdate/AllArtsUpdate";
 import AllPropertiesUpdate from "./components/categoriesUpdate/AllPropertiesUpdate";
 import AllCollectablesUpdate from "./components/categoriesUpdate/AllCollectablesUpdate";
-import AllVehiclesUpdate from "./components/categoriesUpdate/AllVehiclesUpdate";
 
+import AllVehiclesUpdate from "./components/categoriesUpdate/AllVehiclesUpdate";
 import PersonalDetails from "./components/category/PersonalDetails";
 import ArtForm from "./components/category/ArtForm";
+
 import VehiclesForm from "./components/category/VehiclesForm";
 import CollectableForm from "./components/category/CollectableForm";
 import PropertiesForm from "./components/category/PropertiesForm";
+
 import AllAuctioneers from "./components/category/AllAuctioneers";
 import AllArts from "./components/category/AllArts";
 import AllProperties from "./components/category/AllProperties";
+
 import AllCollectables from "./components/category/AllCollectables";
 import CollectableDetails from "./components/itempage/CollectableDetail";
 import AllVehicles from "./components/category/AllVehicles";
+
 import PropertyDetails from "./components/itempage/PropertieDetails";
 import ArtDetails from "./components/itempage/ArtDetails";
 import Wishlist from "./pages/wishlist";
+
 import EditArtForm from "./components/categoriesUpdate/EditArtForm";
 import EditCollectableForm from "./components/categoriesUpdate/EditCollectableForm";
-
 import FeedbackHistory from "./components/dashbord/feedbacks/FeedbackHistory";
+
 import BiddingHistory from "./components/dashbord/biddingHistory/biddingHistory";
 import PaymentHistory from "./components/dashbord/PaymentHistory";
 import AdminDashboard from "./pages/AdminDashboard";
 
-import supportQuesPage from "./pages/Support Ques/supportQues";
 import Agent from "./pages/Agent";
-
 import PaymentForm from "./components/payment/PaymentForm";
 import PaymentList from "./components/payment/PaymentList";
+
 import Review from "./components/payment/Review";
 import Transaction from "./components/payment/Transaction";
 import EditCard from "./components/payment/EditCard";
@@ -68,15 +70,18 @@ import EditCard from "./components/payment/EditCard";
 import Feedback from "./pages/Feedback";
 import FeedbackView from "./pages/FeedbackView";
 import FeedbackEdit from "./pages/FeedbackEdit";
+
 import FeedbackReport from "./pages/FeedbackReport";
-//Admin Dashbord
 import Artical from "./pages/Artical";
-import CreateForum from "./pages/CreateForum"; // Import the appropriate component for creating forums
-import ShowForum from "./pages/ShowForum"; // Import the appropriate component for displaying a single forum
-import EditForum from "./pages/EditForum"; // Import the appropriate component for editing forums
-import DeleteForum from "./pages/DeleteForum"; // Import the appropriate component for deleting forums
+import CreateForum from "./pages/CreateForum"; 
+
+import ShowForum from "./pages/ShowForum"; 
+import EditForum from "./pages/EditForum"; 
+import DeleteForum from "./pages/DeleteForum"; 
+
 import VehicleDetails from "./components/category/vehicles/VehicleDetails";
 import ForumCard from "./components/forum/FourmCard";
+
 function App() {
   const queryClient = new QueryClient();
   return (
