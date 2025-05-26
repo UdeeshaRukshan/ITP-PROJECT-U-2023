@@ -168,6 +168,5 @@ app.use("/admin", adminRoute);
 app.use("/payment", paymentRoute);
 app.use("/agent", agentRouter);
 app.use("/forums", forumRoute);
-app.use("/api/feedback", feedbackRoute);
 app.use("/LiveComments", comment);
 app.use("/BidHistory", bidHistory);
